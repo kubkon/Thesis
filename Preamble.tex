@@ -1,0 +1,166 @@
+\documentclass[12pt, a4paper, oneside, english]{scrbook}
+
+% XeTeX!
+% AMSSYMB needs to be declared before FONTSPEC & XUNICODE
+\usepackage{amssymb}
+% Set fonts
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Baskerville}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+% \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Century Gothic}
+\setmonofont[Scale=MatchLowercase]{Menlo}
+\usepackage{sectsty}
+% \chapterfont{\sffamily\mdseries}
+% \sectionfont{\sffamily\mdseries}
+\allsectionsfont{\sffamily\mdseries}
+
+% Set Line spacing
+\usepackage{setspace}
+% \singlespacing
+\onehalfspacing
+% \doublespacing
+% \setstretch{1.25}
+
+% Set Margins
+\usepackage[left=4cm, right=2.5cm, top=2cm, bottom=4cm]{geometry}
+
+% Set paragraph indents to 1 cm
+\setlength{\parindent}{0.5cm}
+
+% Set no space between paragraphs
+\setlength{\parskip}{0ex}
+
+% No extra space betweem words
+\frenchspacing
+
+% Set up margin notes
+% \usepackage{mparhack}
+% \newcommand{\marginnote}[1]{\marginpar{\vspace{-8ex}\singlespacing\raggedright\scriptsize{#1}}}
+
+% Reduce the size of footnote text
+\usepackage{footmisc}
+\renewcommand*{\footnotelayout}{\scriptsize\rmfamily}
+
+% Set page numbers
+% NB: fancyhdr *has* to load after the geometry package!)
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[LE,RO]{\textbf{\textsf\thepage}}
+
+% This set page numbers for pages at the start of chapters (Not sure exactly why this is needed!)
+\fancypagestyle{plain}{%
+     \fancyfoot[LE,RO]{\textbf{\textsf\thepage}}}
+
+% Force width of header rule to zero
+\renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+
+% Raggedright
+\usepackage{ragged2e}
+\RaggedRight
+\parindent=1.5em
+
+% Prevent over-eager hypenation
+% \hyphenpenalty=5000
+\tolerance=1000
+
+% Set up block quotes
+\let\oldquote\quote
+\renewcommand\quote{\par\RaggedRight\singlespacing\small\oldquote}
+
+% Captions left justified
+\usepackage[format=plain,labelsep=newline,singlelinecheck=false,justification=raggedright,font={small,bf},labelfont={small,bf}]{caption}[2008/04/01]
+
+% Control the fonts and formatting used in the table of contents.
+\usepackage[titles, subfigure]{tocloft}
+% Change the spacing before TOC entries.
+\setlength{\cftbeforechapskip}{2ex}
+% \setlength{\cftbeforesecskip}{1ex}
+% \setlength{\cftbeforesubsecskip}{1ex}
+% Increase the size of chapter entries
+\renewcommand{\cftchapfont}{\normalfont\sffamily\Large}
+% Decrease the size of section entries
+\renewcommand{\cftsecfont}{\normalfont\rmfamily\small}
+% Decrease the size of subsection entries
+\renewcommand{\cftsubsecfont}{\normalfont\rmfamily\small}
+
+% Mini TOC at the start of each chapter
+\usepackage{minitoc}
+% Set the minitoc title in sans
+\renewcommand{\mtifont}{\sffamily\Large}
+% less space between contents lines
+% \tightmtctrue
+
+% Pretty tables
+\usepackage{mdwtab}
+
+% Long tables
+\usepackage{longtable, mdwtab}
+
+\usepackage{longtable}
+% Don't indent longtables by a parindent!
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+
+% Dummy text
+\usepackage{babel}
+\usepackage{blindtext}
+
+% List of publications page
+\usepackage{multibib}
+\newcites{MyPublications}{List of Publications}
+
+% Maths
+\usepackage[fleqn]{amsmath} % All equations left justified
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{stmaryrd}
+\allowdisplaybreaks
+\usepackage{latexsym}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{xfrac} %  \sfrac
+%% Examples
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+%% Theorem
+\theoremstyle{thm}
+\newtheorem*{thm}{Theorem}
+%% Proposition
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[chapter]
+%% Corollary
+\theoremstyle{plain}
+\newtheorem{corollary}[proposition]{Corollary}
+%% Conjecture
+\theoremstyle{plain}
+\newtheorem{conjecture}[proposition]{Conjecture}
+%% QED symbol
+\renewcommand{\qedsymbol}{$\blacksquare$}
+%% Custom operators
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% Subfigures
+% \usepackage{subfig}
+\usepackage{subcaption}
+
+% URLs
+\usepackage{url}
+
+% Compact lists
+\newenvironment{itemize*}%
+  {\begin{itemize}%
+    \setlength{\itemsep}{0.5pt}%
+    \setlength{\parskip}{0.5pt}}%
+  {\end{itemize}}
+
+\newenvironment{enumerate*}%
+  {\begin{enumerate}%
+    \setlength{\itemsep}{0.5pt}%
+    \setlength{\parskip}{0.5pt}}%
+  {\end{enumerate}}
+
+% Set figure size
+\newcommand{\figsize}{4.5in}

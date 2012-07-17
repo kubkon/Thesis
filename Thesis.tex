@@ -1,0 +1,26 @@
+\input{Preamble}
+\begin{document}
+
+\dominitoc
+
+\pagenumbering{roman}
+
+\include{FM/Title}
+% \include{FM/Quote}
+% \include{FM/Abstract}
+% \include{FM/Acknowledgements}
+\include{FM/Contents}
+% \include{FM/Publications}
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+% \include{1/Introduction}
+\include{2/DMP-Auction}
+
+\setcounter{enumiv}{0}
+\bibliographystyle{ieeetr}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{Thesis}
+
+\end{document}
