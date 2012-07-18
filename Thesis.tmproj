@@ -31,9 +31,9 @@
 				<integer>1049</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
-			<integer>127</integer>
+			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>1039</integer>
+			<integer>1032</integer>
 		</dict>
 		<key>Preamble.tex</key>
 		<dict>
@@ -69,6 +69,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{373, 0}, {993, 746}}</string>
+	<string>{{293, 0}, {987, 1002}}</string>
 </dict>
 </plist>
