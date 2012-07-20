@@ -26,14 +26,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>280</integer>
 				<key>line</key>
-				<integer>1049</integer>
+				<integer>1051</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
-			<integer>0</integer>
+			<integer>613</integer>
 			<key>firstVisibleLine</key>
-			<integer>1032</integer>
+			<integer>1037</integer>
 		</dict>
 		<key>Preamble.tex</key>
 		<dict>
