@@ -17,7 +17,7 @@ Let the service request/auction arrival epochs be $\{t_1,\ldots,t_M\}$ such that
 
 Following the notation from the previous chapters, let $N$ denote the set of bidders such that $|N| = n < \infty$; that is, there are $n$ bidders competing in the DM. At any stage $i$, that is at an auction for service request $s_i$, each bidder $j\in N$ submits a bid $b^j_i\in\mathbb{R}_+$. It is further assumed that at each stage, every bidder must participate in an auction. Let $z^j_i\in Z$ denote the available bandwidth of bidder $j$ at time instant $i$ for all $i=1,\ldots,M-1,\: j\in N$. Thus, the cost of servicing request $s_i$ by network operator $j$ with available bandwidth $z^j_i$ is denoted by $c^j_i = c^j_i(s_i,z^j_i)$. The cost is assumed private knowledge and, without loss of generality, it is further assumed $c^j_i\in [0,1]$ for all $i,j$. Let $\mathds{1}^j_i$ be the indicator function for bidder $j$ for service request $s_i$ such that $\mathds{1}^j_i=1$ if bidder $j$ won the auction for service request $s_i$, and $\mathds{1}^j_i=0$ otherwise. The set of indicator variables at each stage $i$ is denoted by $\mathds{1}^N_i=\{\mathds{1}^j_i\}_{j\in N}$ such that $\sum_{j\in N}\mathds{1}^j_i\le 1$; that is, only one bidder can be the winner of an auction at any stage $i$. The profit obtained by bidder $j$ for service request $s_i$ can therefore be expressed as
 \begin{equation*}
-  \pi^j_i = \left(b^j_i - c^j_i\right)\mathds{1}^j_i = \left(b^j_i - c^j_i(s_i, z^j_i)\right)\mathds{1}^j_i
+  u^j_i = \left(b^j_i - c^j_i\right)\mathds{1}^j_i = \left(b^j_i - c^j_i(s_i, z^j_i)\right)\mathds{1}^j_i
 \end{equation*}
 for all $i,j$.
 
