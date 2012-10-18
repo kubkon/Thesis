@@ -60,6 +60,16 @@ while the density of $X_{i:n}$ can be obtained by differentiating Equation~\eqre
 	\label{eq:iid_pdf}
 	f_{X_{i:n}}(x) = \frac{n!}{(n-i)!(i-1)!} f(x) (F(x))^{i-1} (1-F(x))^{n-i}.
 \end{equation}
+
+Let $X_1,\ldots,X_n$ be i.i.d.~r.v.s with finite mean $\mu$. Let
+\begin{equation*}
+  \bar{X}(n) = \frac{\sum_{i=1}^n X_i}{n}.
+\end{equation*}
+Then, for sufficiently large $n$, $\bar{X}(n)$ provides a reasonable approximation of $\mu$ \cite{LawChapter42007}. This result is known as the Strong Law of Large Numbers,
+\begin{thm}[Strong Law of Large Numbers]
+$\bar{X}(n)\rightarrow\mu$ with probability $1$ as $n\rightarrow\infty$.
+\end{thm}
+The proof of this theorem can be found in Chung's ``A Course in Probability Theory'' \cite{Chung2001}.
 % subsection notation_probability (end)
 
 \subsection{Optimization Theory} % (fold)
@@ -1110,7 +1120,7 @@ If the buyer is looking for the cheapest possible service, they might believe it
   \label{fig:expected_prices_relation}
 \end{figure}
 
-To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. For each price weight, the average price is averaged over 10,000 identical and independent observations. By the Strong Law of Large Numbers, we know that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question \cite{LawChapter42007}. Therefore, an average of 10,000 observations of the price for each price weight should provide a reasonable approximation of the expected price for each price weight. The result of the estimation is shown in Figure~\ref{fig:expected_prices}. Figure~\ref{fig:expected_prices_equal} depicts the expected prices given two reputation ratings equal in value, or more succinctly, $|r_i-r_j|=0$; Figure~\ref{fig:expected_prices_025_05} given $|r_i-r_j|=0.25$; Figure~\ref{fig:expected_prices_025_075} given $|r_i-r_j|=0.5$; and, Figure~\ref{fig:expected_prices_025_1} given $|r_i-r_j|=0.75$. It can be observed that as the absolute value of the difference between reputation ratings increases, the expected prices curve becomes less flattened; this is depicted in Figure~\ref{fig:expected_prices_relation}. Furthermore, regardless of the values of the reputation ratings, the expected prices curve is bounded from below by $E[p^*]$.
+To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. For each price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sub:notation_probability}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each price weight should provide a reasonable approximation of the expected price for each price weight. The result of the estimation is shown in Figure~\ref{fig:expected_prices}. Figure~\ref{fig:expected_prices_equal} depicts the expected prices given two reputation ratings equal in value, or more succinctly, $|r_i-r_j|=0, i\neq j$; Figure~\ref{fig:expected_prices_025_05} given $|r_i-r_j|=0.25$; Figure~\ref{fig:expected_prices_025_075} given $|r_i-r_j|=0.5$; and, Figure~\ref{fig:expected_prices_025_1} given $|r_i-r_j|=0.75$. It can be observed that as the absolute value of the difference between reputation ratings increases, the expected prices curve becomes less flattened; this is depicted in Figure~\ref{fig:expected_prices_relation}. Furthermore, regardless of the values of the reputation ratings, the expected prices curve is bounded from below by $E[p^*]$.
 
 All in all, it can be concluded that for any values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
 % subsection buyer_s_perspective_expected_prices_in_restricted_case (end)
