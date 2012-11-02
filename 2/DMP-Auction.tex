@@ -1045,9 +1045,9 @@ for all $c_i\in[0,1]$, and
 for all $c_j\in[0,1]$.
 Keeping costs and reputation ratings fixed, one can then estimate the equilibrium bidding strategy functions with respect to the price weights by sliding the value of $w\in(0,1)$.
 
-By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:pcomp}. Figure~\ref{fig:indirect_bids} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:indirect_prices} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:pcomp} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:indirect_bids}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:indirect_bids}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w\in(w_c,1)$, while network operator 1 for the values of $w\in(0,w_c)$.
+By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:pcomp}. Figure~\ref{fig:indirect_bids} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:indirect_prices} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:pcomp} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:indirect_bids}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:indirect_bids}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w_c < w < 1$, while network operator 1 for the values of $0 < w < w_c$.
 
-Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $w\in (0, w_0]$ where $w_0\approx 0.265$ (Figure~\ref{fig:indirect_prices}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
+Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (Figure~\ref{fig:indirect_prices}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
 % subsection indirect_restricted_case_n_2_ (end)
 % section indirect_approach (end)
 
@@ -1062,86 +1062,39 @@ If the network operators are assumed to submit at least their costs, then, in th
 However, if this assumption is relaxed, then, as showed by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterisation_of_the_equilibrium} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarized in Proposition~\ref{prop:inverse_equi_bidding_str} as well as Proposition~\ref{prop:pcomp_equi_bidding_str} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterize equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str} as non-standard, further argue that such equilibria are important and should not be neglected.
 % subsection comparison_of_results_from_direct_and_indirect_approaches (end)
 
-\subsection{Subscriber's Perspective: Expected Prices in Restricted Case} % (fold)
-\label{sub:buyer_s_perspective_expected_prices_in_restricted_case}
-Having derived the equilibrium bidding strategy functions in the restricted case, it is possible to examine the prices the subscriber will have to pay for different values of the price weight given the reputation ratings of the network operators. The price is equivalent to the winning bid; that is, if network operator $i$ is the winner of the auction, then
-\begin{equation}
-  \label{eq:price_def}
-  p(c_i,c_j\:\vert\: w,r_i,r_j) \equiv b_i \quad\text{for all } c_i,c_j,w,r_i,r_j\in [0,1]
-\end{equation}
-which is read as the price given price weight $w$ and reputation ratings $r_i,r_j$ if network operators are characterized by costs $c_i,c_j$. We consider only the equilibrium bidding strategy functions in Proposition~\ref{prop:inverse_equi_bidding_str} since they assume the network operators submit at least their costs. Hence, suppose all of the assumptions of Section~\ref{sub:indirect_restricted_case_n_2_} hold; that is, there are two network operators, and costs are uniformly distributed over the interval $[0,1]$. There are three cases to consider.
-
-Firstly, if both network operators have equal reputation ratings, $r = r_i = r_j$ say, then Corollary~\ref{cor:special_case_r_i_r_j_} holds for all $w\in [0,1]$. Therefore, regardless of the choice of the price weight, the subscriber will always pay the constant price of
-\begin{equation}
-  \label{eq:price_at_w_1}
-  p^* \equiv p(c_i,c_j \:\vert\: w,r,r) = \min\left\{\frac{1+c_i}{2},\frac{1+c_j}{2}\right\} \quad\text{for all }w\in [0,1]
-\end{equation}
-which is equivalent to Equation~\eqref{eq:standard_fpa} evaluated at $n=2$ with $F_C$ being the distribution function of the uniform distribution with the support $[0,1]$.
-
-Secondly, if one of the network operators, network operator~1 say, is characterized by a lower reputation rating and a lower (or equal) cost than the other network operator, then network operator~1 wins the auction for all values of the price weight. Therefore, the lowest price occurs at $w=1$ (and can be calculated using Equation~\eqref{eq:price_at_w_1}), and increases as $w$ decreases. Furthermore, since network operator~1 is characterized by the lowest reputation rating, the network operator will receive service of the highest quality regardless of the choice of the price weight. This scenario is depicted in Figure~\ref{fig:indirect_win_prices_15_25_25_75}.
-
 \begin{figure}[tp!]
-  \caption{Price for the service plotted against the price weight when there is only one winner of the auction for all values of the price weight}
-  \includegraphics[width=\figsize]{2/Figures/indirect_win_prices_15_25_25_75}
-  \label{fig:indirect_win_prices_15_25_25_75}
-  \caption{Price for the service plotted against the price weight when there are two winners of the auction for different values of the price weight}
-  \includegraphics[width=\figsize]{2/Figures/indirect_win_prices_75_25_25_75}
-  \label{fig:indirect_win_prices_75_25_25_75}
-\end{figure}
-
-Lastly, if one of the network operators, network operator~1 say, is characterized by a lower reputation rating but a higher cost than the other network operator, network operator~2 say, then depending on the value of the price weight either of the network operators may be the winner of the auction. In general, network operator~1 will be the winner of the auction for values of the price weight approaching $w=0$, while network operator~2 for values of the price weight approaching $w=1$. This scenario is depicted in Figure~\ref{fig:indirect_win_prices_75_25_25_75}. Furthermore, as shown in Figure~\ref{fig:indirect_win_prices_75_25_25_75}, in this scenario, the lowest price for the service does not necessarily occur at $w=1$, but at $w$ which is located in the nearest right-hand proximity to the price weight for which an intersection between the compound bids of both network operators occurs; that is, at $w\in (0,1]$ such that $(w - w_c)\to 0$, where $w_c$ is defined as in Section~\ref{sub:indirect_restricted_case_n_2_}. This result is surprising since the intuition suggests that the lowest price should occur for the price weight at which network operators compete only on prices; hence, at $w=1$. However, it can be explained as follows. Since network operator~2 is characterized by a higher reputation rating than network operator~1, as $w$ decreases away from $w=1$, network operator~2 needs to decrease their bid in order to remain competitive. Recall that as $w$ decreases, the reputation rating gains on importance (Equation~\eqref{eq:def_beta}). Therefore, since the cost of network operator~2 is lower than that of network operator~1, only by decreasing their bid towards their cost can network operator~2 win the auction.
-
-If the subscriber is looking for the cheapest possible service, they might believe it is in their best interest to deviate from $w=1$, that is, they might choose a price weight $w\in(0,1)$, since, as in the third case described above, it is possible for the lowest price for the service to occur at $w\neq 1$ (Figure~\ref{fig:indirect_win_prices_75_25_25_75}). However, in order for the subscriber to make an educated guess about the choice of the price weight, they need to examine the expected prices for each value of the price weight. It is important to consider expected prices since, depending on the distribution of costs and the values of reputation ratings, the lowest price may occur at either $w=1$ (Figure~\ref{fig:indirect_win_prices_15_25_25_75}) or $w\in(0,1)$ (Figure~\ref{fig:indirect_win_prices_75_25_25_75}). Therefore, by considering the expected prices, the subscriber optimizes the choice of the price weight by considering the price for the service and its probability of occurring. An analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. Hence, we resort to numerical methods for estimating average (sample mean) prices for each value of the price weight given selected pairs of reputation ratings.
-
-\begin{figure}[tp!]
-	\caption{FIX:ME Caption}
-	\label{fig:expected_prices}
-	\vspace{0.5cm}
-	\begin{subfigure}[b]{0.5\textwidth}
-	  \includegraphics[width=3in]{2/Figures/expected_prices_equal}
-	  \caption{Equal reputation ratings}
-	  \label{fig:expected_prices_equal}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.5\textwidth}
-	  \includegraphics[width=3in]{2/Figures/expected_prices_025_05}
-	  \caption{Reputation ratings of 0.25 and 0.5}
-	  \label{fig:expected_prices_025_05}
-	\end{subfigure}
-	\vspace{0.5cm}\\
-	\begin{subfigure}[b]{0.5\textwidth}
-	  \includegraphics[width=3in]{2/Figures/expected_prices_025_075}
-	  \caption{Reputation ratings of 0.25 and 0.75}
-	  \label{fig:expected_prices_025_075}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.5\textwidth}
-	  \includegraphics[width=3in]{2/Figures/expected_prices_025_1}
-	  \caption{Reputation ratings of 0.25 and 1.0}
-	  \label{fig:expected_prices_025_1}
-	\end{subfigure}
-\end{figure}
-\begin{figure}[t]
-  \caption{FIX:ME Caption}
-  \includegraphics[width=4in]{2/Figures/expected_prices_relation}
-  \label{fig:expected_prices_relation}
-\end{figure}
-
-To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. In order to simplify the notation, let
-\begin{equation}
-  \label{eq:expected_price_def}
-  p(w,r_i,r_j) \equiv E[p(c_i,c_j\:\vert\:w,r_i,r_j)].
-\end{equation}
-For each price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sub:notation_probability}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each price weight should provide a reasonable approximation of the expected price for each price weight. The result of the estimation is shown in Figure~\ref{fig:expected_prices}. Figure~\ref{fig:expected_prices_equal} depicts the expected prices given two reputation ratings equal in value, or more succinctly, $|r_i-r_j|=0, i\neq j$; Figure~\ref{fig:expected_prices_025_05} given $|r_i-r_j|=0.25$; Figure~\ref{fig:expected_prices_025_075} given $|r_i-r_j|=0.5$; and, Figure~\ref{fig:expected_prices_025_1} given $|r_i-r_j|=0.75$.
-
-It can be observed that regardless of the values of the reputation ratings, the expected prices curve, $p(w,r_i,r_j)$, is bounded from below by $E[p^*]$; this is depicted in Figure~\ref{fig:expected_prices_relation}. Hence, it can be concluded that for any values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
-
-\begin{figure}[t]
-  \caption{FIX:ME Caption}
-  \includegraphics[width=4in]{2/Figures/expected_prices_sensitivity}
+  \includegraphics[width=\figsize]{2/Figures/expected_prices}
+  \caption{Average prices plotted against the price weight for different pairs of reputation ratings}
+  \label{fig:expected_prices}
+  \includegraphics[width=\figsize]{2/Figures/expected_prices_sensitivity}
+  \caption{Sensitivity of the price weight to the expected prices}
   \label{fig:expected_prices_sensitivity}
 \end{figure}
 
-Furthermore, as the absolute value of the difference between reputation ratings increases, the expected prices curves, $p(w,r_i,r_j)$, become less flattened; this is depicted in Figure~\ref{fig:expected_prices_relation}. Therefore, it can be concluded that the smaller the absolute difference between the reputation ratings of the network operators, the less (expected) price sensitive the price weight; that is, for any $w_1\in[0,1]$, if $|r^2_i-r^2_j| > |r^1_i-r^1_j|$ for all $r^1_i,r^1_j,r^2_i,r^2_j\in [0,1]$, then $p(w_1,r^2_i,r^2_j) \ge p(w_1,r^1_i,r^1_j)$ (Figure~\ref{fig:expected_prices_sensitivity}). In other words, for any expected price, as the absolute difference between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed.
-% subsection buyer_s_perspective_expected_prices_in_restricted_case (end)
+\subsection{Subscriber's Perspective: Expected Prices in Restricted Case} % (fold)
+\label{sub:subscriber_s_perspective_expected_prices_in_restricted_case}
+Having derived the equilibrium bidding strategy functions in the restricted case, it is possible to examine the expected prices the subscriber will have to pay for different values of the price weight given the reputation ratings of the network operators. We consider only the equilibrium bidding strategy functions in Proposition~\ref{prop:inverse_equi_bidding_str} since they assume the network operators submit at least their costs. Hence, suppose all of the assumptions of Section~\ref{sub:indirect_restricted_case_n_2_} hold; that is, there are two network operators, and costs are uniformly distributed over the interval $[0,1]$. The expected price is equivalent to the expected value of the winning bid; that is, with some abuse of notation
+\begin{equation}
+  \label{eq:exp_price_def}
+  E[p](w,r_i,r_j) = E[b_i \:\vert\: \arg\min_{i\in N}\beta(w,b_i,r_i)],
+\end{equation}
+where $b_i$ is the equilibrium bid, and $\beta(w,b_i,r_i) = \beta(b_i,r_i)$ evaluated for a particular value of $w$ for all $i\in N$.
+
+If both network operators have equal reputation ratings, $r = r_i = r_j$ say, then Corollary~\ref{cor:special_case_r_i_r_j_} holds for all $w\in [0,1]$. Therefore, regardless of the choice of the price weight, the subscriber expects to pay the price of
+\begin{equation}
+  \label{eq:exp_price_at_w_1}
+  E[p^*] \equiv E[p](w,r,r) = E\left[\min_{i\in N}\frac{1+c_i}{2}\right] \quad\text{for all } w\in [0,1],
+\end{equation}
+which is equivalent to Equation~\eqref{eq:standard_fpa} evaluated at $n=2$. In particular, for costs, $c_i$, uniformly distributed over the interval $[0,1]$, $E[p^*] = \frac{2}{3}$.
+
+If, on the other hand, both network operators are characterized by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:inverse_equi_bidding_str}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
+
+To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sub:notation_probability}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices} shows the result of the estimation for four pairs of reputation ratings: $(r_i, r_j) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
+
+It can be observed that regardless of the values of the reputation ratings, the expected prices, $E[p](w,r_i,r_j)$, are bounded from below by $E[p^*]$ for each price weight; this is depicted in Figure~\ref{fig:expected_prices}. Hence, it can be concluded that regardless of the values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
+
+Furthermore, as the difference $(r_j-r_i)$ increases, the expected prices, $E[p](w,r_i,r_j)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices}. Therefore, it can be hypothesized that the smaller the difference $(r_j-r_i)$, the less (expected) price sensitive the price weight; that is, for any $w_1\in[0,1]$, if $(r^2_j-r^2_i) > (r^1_j-r^1_i)$ for all $r^1_i,r^1_j,r^2_i,r^2_j\in [0,1]$, then $E[p](w_1,r^2_i,r^2_j) \ge E[p](w_1,r^1_i,r^1_j)$ (Figure~\ref{fig:expected_prices_sensitivity}). In other words, for any expected price, as the difference $(r_j-r_i)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed.
+% subsection subscriber_s_perspective_expected_prices_in_restricted_case (end)
 % section discussion (end)
 
 \section{Summary} % (fold)
