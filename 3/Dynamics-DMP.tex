@@ -9,6 +9,8 @@ The results presented in the previous chapter describe only a single stage of th
 
 On the other hand, it is important to consider the temporal aspect of the selection process since network selection evolves over time. For example, parameters such as reputation of each network operator, number of subscribers (and price weights), etc., which were considered static thus far, will change over time since the reputation of each network operator depends on their past (service provision) history, and more than one subscriber will enter the marketplace at any one time (and hence, price weights will vary with time).
 
+\section{Mathematical Description} % (fold)
+\label{sec:mathematical_description_\chtwo}
 The conceptual description of the dynamics of network selection mechanism in the DMP is as follows. The subscribers post service requests, and the network operators compete over them. The entire exchange is implemented as a procurement first-price sealed-bid (FPA) auction. The auctions operate in real time, and transaction volumes and prices reflect the relative status of supply and demand. In order to simplify the modeling, it is assumed that the probability of two auctions occurring at the same instance of time is zero. Therefore, the network operators cannot bid at two auctions simultaneously. The subscribers generate a stream of service requests, characterized by price weight and additional attributes, according to some predetermined probability distribution function. The service request attributes are currently considered to include service type, and required bit-rate.
 
 In what follows, a rigorous description of the network selection process in the DMP is loosely based on the work of Figliozzi \emph{et al.}~\cite{FigliozziJaillet2008}. Although Figliozzi's work covers the dynamic analysis of a transportation marketplace, it bears many similarities to the operation of the DMP. Let $\{s_1,\ldots,s_M\}$ be the set of arriving service requests such that $s_i = (s^w_i, s^{attr}_i)$ for all $i=1,\ldots,M-1$, where $s^w_i\in [0,1]$ is the subscriber's price weight, and $s^{attr}_i\in S^{attr}$ is a $k$-tuple of attributes describing the service request. The set of all service request attribute $k$-tuples, $S^{attr}$, is left open-ended; however, at a bare minimum, it should consist of pairs ($2$-tuples) of service type and required bit-rate. For example, the web-browsing service requiring $512$ kbps bit-rate would be described by a pair $(\text{``web''}, 512)$, while the email service requiring 256 kbps by a pair $(\text{``email''}, 256)$.
@@ -32,9 +34,5 @@ The set of indicator variables at each stage $i$ is denoted by $\mathds{1}^N_i=\
   u^j_i = \left(b^j_i - c^j_i\right)\mathds{1}^j_i = \left(b^j_i - c^j_i(s_i, z^j_i)\right)\mathds{1}^j_i
 \end{equation}
 for all $i,j$.
-
-After each auction, a set of publicly observed information, $Y_i$ for all $i$, is revealed.
-
-Perhaps, any remaining sections will tackle different (simplifying) assumptions: costs drawn only once, etc. Are all assumptions related to different information disclosure cases?
-
+% section mathematical_description (end)
 % chapter dynamics_of_network_selection_in_the_digital_marketplace (end)
