@@ -10,46 +10,51 @@ The results presented in the previous chapter describe only a single stage of th
 On the other hand, it is important to consider the temporal aspect of the selection process since network selection evolves over time. For example, parameters such as reputation of each network operator, number of subscribers (and price weights), etc., which were considered static thus far, will change over time since the reputation of each network operator depends on their past (service provision) history, and more than one subscriber will enter the marketplace at any one time (and hence, price weights will vary with time).
 
 \section{Mathematical Description} % (fold)
-\label{sec:mathematical_description_\chtwo}
+\label{sec:mathematical_description_dynamic}
 The conceptual description of the dynamics of network selection mechanism in the DMP is as follows. The subscribers post service requests, and the network operators compete over them. The entire exchange is implemented as a procurement first-price sealed-bid (FPA) auction. The auctions operate in real time, and transaction volumes and prices reflect the relative status of supply and demand. In order to simplify the modeling, it is assumed that the probability of two auctions occurring at the same instance of time is zero. Therefore, the network operators cannot bid at two auctions simultaneously. The subscribers generate a stream of service requests, characterized by price weight and additional attributes, according to some predetermined probability distribution function. The service request attributes are currently considered to include service type, and required bit-rate.
 
-In what follows, a rigorous description of the network selection process in the DMP is loosely based on the work of Figliozzi \emph{et al.}~\cite{FigliozziJaillet2008}. Although Figliozzi's work covers the dynamic analysis of a transportation marketplace, it bears many similarities to the operation of the DMP. Let $\{s_1,\ldots,s_M\}$ be the set of arriving service requests such that $s_i = (s^w_i, s^{attr}_i)$ for all $i=1,\ldots,M-1$, where $s^w_i\in [0,1]$ is the subscriber's price weight, and $s^{attr}_i\in S^{attr}$ is a $k$-tuple of attributes describing the service request. The set of all service request attribute $k$-tuples, $S^{attr}$, is left open-ended; however, at a bare minimum, it should consist of pairs ($2$-tuples) of service type and required bit-rate. For example, the web-browsing service requiring $512$ kbps bit-rate would be described by a pair $(\text{``web''}, 512)$, while the email service requiring 256 kbps by a pair $(\text{``email''}, 256)$.
+In what follows, a rigorous description of the network selection process in the DMP is loosely based on the work of Figliozzi \emph{et al.}~\cite{FigliozziJaillet2008}. Although Figliozzi's work covers the dynamic analysis of a transportation marketplace, it bears many similarities to the operation of the DMP. Let $\{s_1,\ldots,s_M\}$ be the set of arriving service requests such that $s_i = (s^w_i, s^{attr}_i)$ for all $i=1,\ldots,M$, where $s^w_i\in [0,1]$ is the subscriber's price weight, and $s^{attr}_i\in S^{attr}$ is a $k$-tuple of attributes describing the service request. The set of all service request attribute $k$-tuples, $S^{attr}$, is left open-ended; however, at a bare minimum, it should consist of pairs ($2$-tuples) of service type and required bit-rate. For example, the web-browsing service requiring $512$ kbps bit-rate would be described by a pair $(\text{``web''}, 512)$, while the email service requiring 256 kbps by a pair $(\text{``email''}, 256)$.
 
 Let the service request/auction arrival epochs be $\{t_1,\ldots,t_M\}$ such that $t_i < t_{i+1}$ for all $i$, and $t_i$ represents the arrival time of service request $s_i$ for all $i$. It is assumed that there is a one-to-one correspondence between $t_i$ and $s_i$ for all $i$. Furthermore, the service requests and their arrival times are not known in advance; i.e., they are assumed to come from some probability distribution with outcomes $\{\omega_1,\ldots,\omega_M\}$ such that $\omega_i = (t_i, s_i)$ for all $i$.
 
-Following the notation from the previous chapters, let $N$ denote the set of network operators such that $|N| = n < \infty$; that is, there are $n$ network operators competing in the DMP. At any stage $i$, that is at an auction for service request $s_i$, each network operator $j\in N$ submits a bid $b^j_i\in\mathbb{R}_+$. It is further assumed that at each stage, every network operator must participate in an auction. Let $z^j_i\in Z$ denote the available bandwidth of network operator $j$ at time instant $i$ for all $i=1,\ldots,M-1$ and $j\in N$. Thus, the cost of servicing request $s_i$ by network operator $j$ with available bandwidth $z^j_i$ is denoted by $c^j_i = c^j_i(s_i,z^j_i)$. The cost is assumed private knowledge and, without loss of generality, it is further assumed $c^j_i\in [0,1]$ for all $i,j$. Reputation FIX:ME
+Following the notation from the previous chapters, let $N$ denote the set of network operators such that $|N| = n < \infty$; that is, there are $n$ network operators competing in the DMP. At any stage $i$, that is at an auction for service request $s_i$, each network operator $j\in N$ submits a bid $b^j_i\in\mathbb{R}_+$. It is further assumed that at each stage, every network operator must participate in an auction. Let $z^j_i\in Z$ denote the available bandwidth of network operator $j$ at time instant $i$ for all $i=1,\ldots,M$ and $j\in N$. Thus, the cost of servicing request $s_i$ by network operator $j$ with available bandwidth $z^j_i$ is denoted by $c^j_i = c^j_i(s_i,z^j_i)$. The cost is assumed private knowledge and, without loss of generality, it is further assumed $c^j_i\in [0,1]$ for all $i,j$. Reputation FIX:ME
 
 Let $\mathds{1}^j_i$ be an indicator variable for network operator $j$ when service request $s_i$ is being auctioned such that
 \begin{equation}
-  \label{eq:indicator_function_\chtwo}
+  \label{eq:indicator_function_dynamic}
   \mathds{1}^j_i = \left\{
   \begin{array}{ll}
     1 &\text{if } \beta(s^w_i,b^j_i,r^j_i) < \displaystyle\min_{j'\neq j} \beta(s^w_i,b^{j'}_i,r^{j'}_i),\\
     0 &\text{otherwise},
   \end{array}\right.
 \end{equation}
-where $\beta$ is defined as in Equation~FIX:ME. In other words, $\mathds{1}^j_i = 1$ if network operator $j$ secures the service request $s_i$, and $\mathds{1}^j_i = 0$ otherwise. The set of indicator variables at each stage $i$ is denoted by $\mathds{1}^N_i=\{\mathds{1}^j_i\}_{j\in N}$ such that $\sum_{j\in N}\mathds{1}^j_i\le 1$; that is, only one network operator can be the winner of an auction at any stage $i$. The profit obtained by network operator $j$ for service request $s_i$ can therefore be expressed as
+where $\beta$ is defined as in Equation~\eqref{eq:def_beta_static}; that is,
 \begin{equation}
-  \label{eq:def_no_profit_\chtwo}
+  \label{eq:def_beta_dynamic}
+  \beta(s^w_i,b^j_i,r^j_i) = s^w_i b^j_i + (1-s^w_i) r^j_i \quad\text{for all } i=1,\ldots,M, j\in N.
+\end{equation}
+In other words, $\mathds{1}^j_i = 1$ if network operator $j$ secures the service request $s_i$, and $\mathds{1}^j_i = 0$ otherwise. The set of indicator variables at each stage $i$ is denoted by $\mathds{1}^N_i=\{\mathds{1}^j_i\}_{j\in N}$ such that $\sum_{j\in N}\mathds{1}^j_i\le 1$; that is, only one network operator can be the winner of an auction at any stage $i$. The profit obtained by network operator $j$ for service request $s_i$ can therefore be expressed as
+\begin{equation}
+  \label{eq:def_no_profit_dynamic}
   u^j_i = \left(b^j_i - c^j_i\right)\mathds{1}^j_i = \left(b^j_i - c^j_i(s_i, z^j_i)\right)\mathds{1}^j_i
 \end{equation}
 for all $i,j$.
 
-Paragraph explaining why the problem is intractable analytically, as a motivation for use of simulation modeling. FIX:ME
+Paragraph explaining why the problem is intractable analytically, as a motivation for use of simulation modeling. FIX:ME 
 % section mathematical_description (end)
 
 \section{Simulation Modeling} % (fold)
-\label{sec:simulation_modeling_\chtwo}
+\label{sec:simulation_modeling_dynamic}
 Describe Py3k model of the DMP. Mention that the simulation is nonterminating.
 % section simulation_modeling (end)
 
 \section{Simulation Analysis Toolbox} % (fold)
-\label{sec:simulation_analysis_toolbox_\chtwo}
+\label{sec:simulation_analysis_toolbox_dynamic}
 Describe the simulation workflow, including the analysis of transient state; that is, how I go about removing the transient response while searching for the steady-state of a parameter.
 % section simulation_analysis_toolbox (end)
 
 \section{Results and Analysis} % (fold)
-\label{sec:results_and_analysis_\chtwo}
+\label{sec:results_and_analysis_dynamic}
 Analyze reputation rating update systems proposed by Alisdair and Le Bodic. Compare and contrast. Show that they are initial conditions sensitive.
 % section results_and_analysis (end)
 % chapter dynamics_of_network_selection_in_the_digital_marketplace (end)
