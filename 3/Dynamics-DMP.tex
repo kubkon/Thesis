@@ -33,13 +33,13 @@ Furthermore, at each stage $i$, each network operator $j$ is characterized by a 
 Since any one service request $i$ can be handled by a single network operator $j$, each network operator will be generating a binary sequence of user satisfaction reports over time; that is, a sequence $(\sigma^j_i)$. In turn, this sequence will then be used to compute and update the network operator's reputation rating. Currently, an adaptation of the reputation update formula proposed by Le Bodic \emph{et al.}~\cite{DMLeBodic00} is defaultly assumed; that is,
 \begin{equation}
   \label{eq:def_rep_update_lebodic_dynamic}
-  r^j_{i+1} = \frac{\displaystyle\sum_{k=i-d}^{i}{(1-\sigma^j_k)}}{d} \quad\text{for all }i=d+1,\ldots,M \text{ and }j\in N,
+  r^j_{i+1} = \frac{\displaystyle\sum_{k=i-(d-1)}^{i}{(1-\sigma^j_k)}}{d} \quad\text{for all }i=d,\ldots,M \text{ and }j\in N,
 \end{equation}
 where $d\in \mathbb{Z}_+$ is the window size. Since $\sigma^j_i$ is only defined for $i\ge 1$, it is further assumed that
 \begin{equation*}
-  r^j_k = 0.5 \quad\text{for all }k=1,\ldots,d\text{ and }j\in N.
+  r^j_k = 0.5 \quad\text{for all }k=1,\ldots,d-1\text{ and }j\in N.
 \end{equation*}
-Therefore, $r^j_k$ for all $k=1,\ldots,d$ can be perceived as the initial reputation rating assigned to each network operator. It is defaultly chosen to be the midpoint of the feasible reputation rating interval $[0,1]$ in order to represent a mediocre rating. Futhermore, since every network operator begins with the same initial reputation rating, the reputation rating system is not biased towards any one network operator from the start.
+Therefore, $r^j_k$ for all $k=1,\ldots,d-1$ can be perceived as the initial reputation rating assigned to each network operator. It is defaultly chosen to be the midpoint of the feasible reputation rating interval $[0,1]$ in order to represent a mediocre rating. Futhermore, since every network operator begins with the same initial reputation rating, the reputation rating system is not biased towards any one network operator from the start.
 
 Let $\mathds{1}^j_i$ be an indicator variable for network operator $j$ when service request $s_i$ is being auctioned such that
 \begin{equation}
