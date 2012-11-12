@@ -15,7 +15,7 @@ The conceptual description of the dynamics of network selection mechanism in the
 
 Since the service requests are generated over time, the network operators repeatadly compete with each other in a series of FPA auctions. Thus, from the game theoretic perspective, the network selection mechanism is akin to a repeated game where each consecutive auction constitutes a stage game~\cite{BasarOlsder1999, Gibbons92}. If we further assume that the costs of network operators may vary over time (i.e., the costs may change with each consecutive service request), then the game becomes a repeated game of incomplete information. As we will demonstrate below, the analytical analysis of this game in search of an (optimal) equilibrium bidding behavior of the network operators is intractable. Therefore, a more experimental approach will be taken; that is, the problem will be analyzed using simulation modeling approach.
 
-In what follows, a rigorous description of the network selection process in the DMP is loosely based on the work of Figliozzi \emph{et al.}~\cite{FigliozziJaillet2008}. Although Figliozzi's work covers the dynamic analysis of a transportation marketplace, it bears many similarities to the operation of the DMP. Let $\{s_1,\ldots,s_M\}$ be the set of arriving service requests such that $s_i = (s^w_i, s^{attr}_i)$ for all $i\in I$, where $I=\{1,\ldots,M\}$ is the set of indices, $s^w_i\in [0,1]$ is the subscriber's price weight, and $s^{attr}_i\in S^{attr}$ is a $k$-tuple of attributes describing the service request. The set of all service request attribute $k$-tuples, $S^{attr}$, is left open-ended; however, at a bare minimum, it should consist of pairs ($2$-tuples) of service type and required bit-rate. For example, the web-browsing service requiring $512$ kbps bit-rate would be described by a pair $(\text{``web''}, 512)$, while the email service requiring 256 kbps by a pair $(\text{``email''}, 256)$.
+In what follows, a rigorous description of the network selection process in the DMP is loosely based on the work of Figliozzi \emph{et al.}~\cite{FigliozziJaillet2008}. Although Figliozzi's work covers the dynamic analysis of a transportation marketplace, it bears many similarities to the operation of the DMP. Let $\{s_1,\ldots,s_M\}$ be the set of arriving service requests such that $s_i = (s^w_i, s^{attr}_i)$ for all $i\in I$, where $I=\{1,\ldots,M\}$ is the set of indices, $s^w_i\in [0,1]$ is the subscriber's price weight, and $s^{attr}_i\in S^{attr}$ is a $k$-tuple of attributes describing the service request. The set of all service request attribute $k$-tuples, $S^{attr}$, is left open-ended; however, at a bare minimum, it should consist of pairs ($2$-tuples) of service type and required bit-rate. For example, the web-browsing service requiring $512$ kbps bit-rate would be described by a pair $(s_i^{type},s_i^{bw}) = (\text{``web''}, 512)$, while the email service requiring 256 kbps by a pair $(\text{``email''}, 256)$.
 
 Let the service request/auction arrival epochs be $\{t_1,\ldots,t_M\}$ such that $t_i < t_{i+1}$ for all $i$, and $t_i$ represents the arrival time of service request $s_i$ for all $i$. It is assumed that there is a one-to-one correspondence between $t_i$ and $s_i$ for all $i$. Furthermore, the service requests and their arrival times are not known in advance; i.e., they are assumed to come from some probability distribution with outcomes $\{\omega_1,\ldots,\omega_M\}$ such that $\omega_i = (t_i, s_i)$ for all $i$.
 
@@ -30,7 +30,18 @@ Furthermore, at each stage $i$, each network operator $j$ is characterized by a 
     0 &\text{otherwise}.
   \end{array}\right.
 \end{equation}
-Since any one service request $i$ can be handled by a single network operator $j$, each network operator will be generating a binary sequence of user satisfaction reports over time; that is, a sequence $(\sigma^j_i)_{i\in I,j\in N}$. In turn, this sequence will then be used to compute and update the network operator's reputation rating. Currently, an adaptation of the reputation update formula proposed by Le Bodic \emph{et al.}~\cite{DMLeBodic00} is defaultly assumed; that is,
+It is further assumed that the subscriber is satisfied with the service if the available (at the time of service request) bandwidth of the serving network operator exceeds the required bit-rate of the service; that is,
+\begin{equation}
+  \label{eq:def_users_satisfaction_bandwidth_dynamic}
+  \sigma^j_i = \left\{
+  \begin{array}{ll}
+    1 &\text{if } s_i^{bw} \le z_i^j,\\
+    0 &\text{otherwise}.
+  \end{array}\right.
+\end{equation}
+The motivation for such a simple model of the subscriber's satisfaction is as follows: since it is difficult to quantify how the subscribers perceive satisfaction with the service, rather than experimenting with probabilistic distribution of subscribers' satisfaction, we keep it simple and concentrate on more technical aspects of the DMP such as the bidding behavior of the network operators, or the reputation rating update system.
+
+Since any one service request $i$ can be handled by a single network operator $j$, each network operator will be generating a binary sequence of user satisfaction reports over time; that is, a sequence $(\sigma^j_i)_{i\in I,j\in N}$. In turn, this sequence will then be used to compute and update the network operator's reputation rating. Currently, an adaptation of the reputation update formula proposed by Le Bodic \emph{et al.}~\cite{DMLeBodic00} is assumed; that is,
 \begin{equation}
   \label{eq:def_rep_update_lebodic_dynamic}
   r^j_{i+1} = \frac{\displaystyle\sum_{k=i-(d-1)}^{i}{(1-\sigma^j_k)}}{d} \quad\text{for all }i=d,\ldots,M \text{ and }j\in N,
@@ -39,7 +50,7 @@ where $d\in \mathbb{Z}_+$ is the window size. Since $\sigma^j_i$ is only defined
 \begin{equation*}
   r^j_k = 0.5 \quad\text{for all }k=1,\ldots,d-1\text{ and }j\in N.
 \end{equation*}
-Therefore, $r^j_k$ for all $k=1,\ldots,d-1$ can be perceived as the initial reputation rating assigned to each network operator. It is defaultly chosen to be the midpoint of the feasible reputation rating interval $[0,1]$ for all network operators so that the reputation rating system is not biased towards any one network operator from the start. Explain how user satisfaction changes at the moment FIX:ME
+Therefore, $r^j_k=0.5$ for all $k=1,\ldots,d-1$ can be perceived as the initial reputation rating assigned to each network operator. It is chosen to be the midpoint of the feasible reputation rating interval $[0,1]$ for all network operators so that the reputation rating system is not biased towards any one network operator from the start.
 
 Let $\mathds{1}^j_i$ be an indicator variable for network operator $j$ when service request $s_i$ is being auctioned such that
 \begin{equation}
@@ -61,7 +72,7 @@ In other words, $\mathds{1}^j_i = 1$ if network operator $j$ secures the service
   u^j_i = \left(b^j_i - c^j_i\right)\mathds{1}^j_i = \left(b^j_i - c^j_i(s_i, z^j_i)\right)\mathds{1}^j_i \quad\text{for all }i,j.
 \end{equation}
 
-Paragraph explaining why the problem is intractable analytically, as a motivation for use of simulation modeling. Something along the lines of: the described model is equivalent to the one presented by Figliozzi; since they conclude it is analytically impossible to solve their model, we conclude the same about our model. FIX:ME 
+Note that when considering a single-stage auction game (see previous chapter), the solution to a bidding behavior problem was obtained only in a restricted setting; that is, the number of network operators was restricted to two, and costs were drawn from a uniform distribution over the interval $[0,1]$. The problem was intractable for $n>2$ network operators due to the fact that the network operators were asymmetrical. With the added layer of complexity of repeated interactions between the network operators, the problem becomes intractable even in the case of only two network operators, and uniformly distributed costs over the interval $[0,1]$. To see why, notice that the cost of a network operator may vary over time; hence, the problem can be treated as a problem of sequential auctions with bidders with multiunit demand/supply curves, and as explained by Krishna\cite{Krishna10} and Figliozzi~\cite{FigliozziJaillet2008} this class of problems remains intractable.
 % section mathematical_description (end)
 
 \section{Simulation Modeling} % (fold)
