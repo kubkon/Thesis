@@ -89,18 +89,18 @@ The DES simulation engine used in the study is released under the MIT License, a
 	\label{fig:mm1_queue_dynamic}
 \end{figure}
 
-As a quick reminder of basic queueing theory, M/M/1 queue denotes a single-server queueing system with exponential interarrival times and service times, and a FIFO queue discipline. For a proper, more in-depth treatment of queueing theory, see for example~\cite{CassandrasLafortune2008}. Let $\lambda\in\mathbb{Z}_+$ denote the mean interarrival rate, and let $\mu\in\mathbb{Z}_+$ denote the mean service rate such that $0 \le \lambda < \mu$. The mean packet delay in an M/M/1 queueing system can thus be defined as follows
+As a quick reminder of basic queueing theory, M/M/1 queue denotes a single-server queueing system with exponential interarrival times and service times, and a FIFO queue discipline. For a proper, more in-depth treatment of queueing theory, see for example~\cite{CassandrasLafortune2008}. Let $\lambda\in\mathbb{Z}_+$ denote the mean interarrival rate, and let $\mu\in\mathbb{Z}_+$ denote the mean service rate such that $0 \le \lambda < \mu$. The steady state mean packet delay in an M/M/1 queueing system can thus be defined as follows
 \begin{equation}
 	\label{eq:mean_packet_delay_dynamic}
 	T = \frac{1}{\mu - \lambda}.
 \end{equation}
-Let $\rho = \displaystyle\frac{\lambda}{\mu}$ denote the mean link (or system) utilization. Clearly, $\rho\in [0,1)$. Hence, the mean packet delay in Equation~\eqref{eq:mean_packet_delay_dynamic} can be rewritten as
+Let $\rho = \displaystyle\frac{\lambda}{\mu}$ denote the mean link (or system) utilization. Clearly, $\rho\in [0,1)$. Hence, the steady state mean packet delay in Equation~\eqref{eq:mean_packet_delay_dynamic} can be rewritten as
 \begin{equation}
 	\label{eq:mean_packet_delay_2_dynamic}
 	T(\rho) = \frac{1}{\mu(1 - \rho)}.
 \end{equation}
 
-The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps), and $\lambda\in\{5,10,\ldots,45\}$ pps which is equivalent to $\rho\in\{0.1,0.2,\ldots,0.9\}$.
+The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps), and $\lambda\in\{5,10,\ldots,45\}$ pps which is equivalent to $\rho\in\{0.1,0.2,\ldots,0.9\}$. The objective of the simulation is to estimate the steady state mean packet delay, $T(\rho)$, for each value of the mean link utilization, $\rho$. To this end, for each value of $\rho$, the system was simulated for 1 hour, and a simulation run was replicated 100 times with different seeds to the pseudo-random number generator (PRNG). The output of each simulation run constituted a time-series of packet delays in the system. Since the simulation is inherently a nonterminating simulation, the estimation of the steady-state mean packet delay consisted of two steps: 1) removal of transient (or warm-up) response of the system, and 2) averaging within and across the simulation runs (with transient period removed). For each value of $\rho$, the transient period stretched for 2000 packet delay samples. Furthermore, the transient period was analyzed and removed according to Welch's method~\cite{LawChapter92007}.
 
 \begin{table}[p!]
 	\caption{DES validation FIX:ME}
