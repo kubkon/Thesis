@@ -80,6 +80,34 @@ Note that when considering a single-stage auction game (see Chapter~\ref{cha:net
 Describe Py3k model of the DMP. Mention that the simulation is nonterminating.
 
 The mathematical description of the problem was adapted and translated into a discrete-event system (DES) simulation model and implemented in Python programming language, version 3 (Py3k). Py3k was chosen mainly due to the fact that it is a dynamically-typed language which makes prototyping quicker than in a statically-typed language such as C++. This allows the researcher to focus more on the design and results of the experiment rather than its implementation. Furthermore, Py3k features a set of libraries that further simplify the implementation stage of the DES simulation; for example, `subprocess' module allows the execution of multiple simulation runs in parallel~\cite{Py3kSubprocess}, while `numpy', `scipy', and `matplotlib' modules provide a set of convenience routines for numerical computation and scientific plotting in Py3k~\cite{Numpy, Scipy, Matplotlib}. On the other hand, since Py3k is an interpreted language, it can potentially be slower in execution time and less memory efficient than a compiled language such as C++~\cite{Py3kC++}; however, it does not visibly increase the overall cost of the simulation study since the computer resources are inexpensive.
+
+The DES simulation engine used in the study is released under the MIT License, and is available for download on Github: \url{https://github.com/kubkon/des-in-python}. Since the engine is not part of any known simulation package and was written from scratch, it should be validated prior to conducting the simulation study. To this end, the validation stage comprises simulation of a simple first-in first-out network link modeled as an M/M/1 queue, and analysis of steady state average packet delay in the system. The M/M/1 queue was chosen since it is simple to implement, and the simulation results can directly be verified with the theoretical prediction.
+
+\begin{table}[htp]
+	\caption{DES validation FIX:ME}
+	\begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}c c c}
+		\hlx{vhv}
+		\multirow{2}{*}{Average link utilization} & \multicolumn{2}{c}{Average packet delay, s} \\
+		 				& Mean 			& $95\%$ confidence interval (x$10^{-5}$) \\
+		\hlx{vhv}
+		 $0.1$	& $0.02224$	& $4.38835$\\
+		 $0.2$	& $0.02497$	& $3.88310$\\
+		 $0.3$	& $0.02858$	& $4.32400$\\
+		 $0.4$	& $0.03333$	& $6.22518$\\
+		 $0.5$	& $0.03999$	& $7.67952$\\
+		 $0.6$	& $0.04997$	& $13.62042$\\
+		 $0.7$	& $0.06654$	& $22.25786$\\
+		 $0.8$	&	$0.10025$	& $51.73063$\\
+		 $0.9$	& $0.20100$	& $192.24667$\\
+		 \hlx{vhs}
+	\end{tabular*}
+	\label{tab:des_validation}
+\end{table}
+\begin{figure}[hbp]
+	\caption{DES validation FIX:ME}
+	\includegraphics[width=\figsize]{3/Figures/des_validation}
+	\label{fig:des_validation}
+\end{figure}
 % section simulation_modeling (end)
 
 \section{Simulation Analysis Toolbox} % (fold)
