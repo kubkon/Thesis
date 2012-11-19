@@ -81,9 +81,28 @@ Describe Py3k model of the DMP. Mention that the simulation is nonterminating.
 
 The mathematical description of the problem was adapted and translated into a discrete-event system (DES) simulation model and implemented in Python programming language, version 3 (Py3k). Py3k was chosen mainly due to the fact that it is a dynamically-typed language which makes prototyping quicker than in a statically-typed language such as C++. This allows the researcher to focus more on the design and results of the experiment rather than its implementation. Furthermore, Py3k features a set of libraries that further simplify the implementation stage of the DES simulation; for example, `subprocess' module allows the execution of multiple simulation runs in parallel~\cite{Py3kSubprocess}, while `numpy', `scipy', and `matplotlib' modules provide a set of convenience routines for numerical computation and scientific plotting in Py3k~\cite{Numpy, Scipy, Matplotlib}. On the other hand, since Py3k is an interpreted language, it can potentially be slower in execution time and less memory efficient than a compiled language such as C++~\cite{Py3kC++}; however, it does not visibly increase the overall cost of the simulation study since the computer resources are inexpensive.
 
-The DES simulation engine used in the study is released under the MIT License, and is available for download on Github: \url{https://github.com/kubkon/des-in-python}. Since the engine is not part of any known simulation package and was written from scratch, it should be validated prior to conducting the simulation study. To this end, the validation stage comprises simulation of a simple first-in first-out network link modeled as an M/M/1 queue, and analysis of steady state average packet delay in the system. The M/M/1 queue was chosen since it is simple to implement, and the simulation results can directly be verified with the theoretical prediction.
+The DES simulation engine used in the study is released under the MIT License, and is available for download on Github: \url{https://github.com/kubkon/des-in-python}. Since the engine is not part of any known simulation package and was written from scratch, it should be validated prior to conducting the simulation study. To this end, the validation stage comprises simulation of a simple first-in first-out (FIFO) network link modeled as an M/M/1 queue, and analysis of steady state average packet delay in the system (Figure~\ref{fig:mm1_queue_dynamic}). The M/M/1 queue was chosen since it is simple to implement, and the simulation results can directly be verified by comparison with the theoretical prediction.
 
-\begin{table}[htp]
+\begin{figure}[h]
+	\caption{Illustration of M/M/1 queuing model}
+	\includegraphics[width=3in]{3/Figures/mm1_queue}
+	\label{fig:mm1_queue_dynamic}
+\end{figure}
+
+As a quick reminder of basic queueing theory, M/M/1 queue denotes a single-server queueing system with exponential interarrival times and service times, and a FIFO queue discipline. For a proper, more in-depth treatment of queueing theory, see for example~\cite{CassandrasLafortune2008}. Let $\lambda\in\mathbb{Z}_+$ denote the mean interarrival rate, and let $\mu\in\mathbb{Z}_+$ denote the mean service rate such that $0 \le \lambda < \mu$. The mean packet delay in an M/M/1 queueing system can thus be defined as follows
+\begin{equation}
+	\label{eq:mean_packet_delay_dynamic}
+	T = \frac{1}{\mu - \lambda}.
+\end{equation}
+Let $\rho = \displaystyle\frac{\lambda}{\mu}$ denote the mean link (or system) utilization. Clearly, $\rho\in [0,1)$. Hence, the mean packet delay in Equation~\eqref{eq:mean_packet_delay_dynamic} can be rewritten as
+\begin{equation}
+	\label{eq:mean_packet_delay_2_dynamic}
+	T(\rho) = \frac{1}{\mu(1 - \rho)}.
+\end{equation}
+
+The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps), and $\lambda\in\{5,10,\ldots,45\}$ pps which is equivalent to $\rho\in\{0.1,0.2,\ldots,0.9\}$.
+
+\begin{table}[p!]
 	\caption{DES validation FIX:ME}
 	\begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}c c c}
 		\hlx{vhv}
@@ -101,12 +120,12 @@ The DES simulation engine used in the study is released under the MIT License, a
 		 $0.9$	& $0.20100$	& $192.24667$\\
 		 \hlx{vhs}
 	\end{tabular*}
-	\label{tab:des_validation}
+	\label{tab:des_validation_dynamic}
 \end{table}
-\begin{figure}[hbp]
+\begin{figure}[p!]
 	\caption{DES validation FIX:ME}
 	\includegraphics[width=\figsize]{3/Figures/des_validation}
-	\label{fig:des_validation}
+	\label{fig:des_validation_dynamic}
 \end{figure}
 % section simulation_modeling (end)
 
