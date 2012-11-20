@@ -77,10 +77,10 @@ Note that when considering a single-stage auction game (see Chapter~\ref{cha:net
 
 \section{Simulation Modeling} % (fold)
 \label{sec:simulation_modeling_dynamic}
-Describe Py3k model of the DMP. Mention that the simulation is nonterminating.
-
 The mathematical description of the problem was adapted and translated into a discrete-event system (DES) simulation model and implemented in Python programming language, version 3 (Py3k). Py3k was chosen mainly due to the fact that it is a dynamically-typed language which makes prototyping quicker than in a statically-typed language such as C++. This allows the researcher to focus more on the design and results of the experiment rather than its implementation. Furthermore, Py3k features a set of libraries that further simplify the implementation stage of the DES simulation; for example, `subprocess' module allows the execution of multiple simulation runs in parallel~\cite{Py3kSubprocess}, while `numpy', `scipy', and `matplotlib' modules provide a set of convenience routines for numerical computation and scientific plotting in Py3k~\cite{Numpy, Scipy, Matplotlib}. On the other hand, since Py3k is an interpreted language, it can potentially be slower in execution time and less memory efficient than a compiled language such as C++~\cite{Py3kC++}; however, it does not visibly increase the overall cost of the simulation study since the computer resources are inexpensive.
 
+\subsection{Validation of DES Simulation Engine} % (fold)
+\label{sub:validation_of_des_simulation_engine}
 The DES simulation engine used in the study is released under the MIT License, and is available for download on Github: \url{https://github.com/kubkon/des-in-python}. Since the engine is not part of any known simulation package and was written from scratch, it should be validated prior to conducting the simulation study. To this end, the validation stage comprises simulation of a simple first-in first-out (FIFO) network link modeled as an M/M/1 queue, and analysis of steady-state average packet delay in the system (Figure~\ref{fig:mm1_queue_dynamic}). The M/M/1 queue was chosen since it is simple to implement, and the simulation results can directly be verified by comparison with the theoretical prediction.
 
 \begin{figure}[h]
@@ -128,16 +128,18 @@ The queueing system was simulated with the following parameters: $\mu=50$ packet
 	\label{fig:mm1_simulation_results_dynamic}
 \end{figure}
 
-Table~\ref{tab:mm1_simulation_results_dynamic} depicts the estimated steady-state average packet delay for each value of the average link utilization, $\rho$. In all cases, the mean value of the average packet delay closely converges to the theoretical prediction; this conclusion is emphasized in Figure~\ref{fig:mm1_simulation_results_dynamic}. Furthermore, the 95\% confidence interval for the mean of average packet delay does not exceed the factor of $10^{-3}$ for any value of the average link utilization. This successfully validates the DES simulation engine.
+Table~\ref{tab:mm1_simulation_results_dynamic} depicts the estimated steady-state average packet delay for each value of the average link utilization, $\rho$. In all cases, the mean value of the average packet delay closely converges to the theoretical prediction; this conclusion is emphasized in Figure~\ref{fig:mm1_simulation_results_dynamic}. Furthermore, the 95\% confidence interval for the mean of average packet delay does not exceed the factor of $10^{-3}$ for any value of the average link utilization. All in all, this successfully validates the DES simulation engine.
+% subsection validation_of_des_simulation_engine (end)
+
+\subsection{Simulation Model of the Digital Marketplace} % (fold)
+\label{sub:simulation_model_of_the_digital_marketplace}
+
+% subsection simulation_model_of_the_digital_marketplace (end)
 % section simulation_modeling (end)
 
-\section{Simulation Analysis Toolbox} % (fold)
-\label{sec:simulation_analysis_toolbox_dynamic}
-Describe the simulation workflow, including the analysis of transient state; that is, how I go about removing the transient response while searching for the steady-state of a parameter.
-% section simulation_analysis_toolbox (end)
-
-\section{Results and Analysis} % (fold)
-\label{sec:results_and_analysis_dynamic}
+\section{Simulation Scenarios and Analysis} % (fold)
+\label{sec:simulation_scenarios_and_analysis}
 Analyze reputation rating update systems proposed by Alisdair and Le Bodic. Compare and contrast. Show that they are initial conditions sensitive.
-% section results_and_analysis (end)
+% section simulation_scenarios_and_analysis (end)
+
 % chapter dynamics_of_network_selection_in_the_digital_marketplace (end)
