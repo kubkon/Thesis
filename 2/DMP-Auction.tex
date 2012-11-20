@@ -355,21 +355,19 @@ Suppose for the time being that $b^*(c_i) = b_{FPA}^*(c_i)$ for every value of t
 	\label{tab:bids_fpa_static}
 \end{table}
 \begin{figure}[h]
-	\caption{The performance of standard FPA bidding strategy, for the values of type, reputation and bid aggregated in Table~\ref{tab:bids_fpa_static}}
 	\includegraphics[width=\figsize]{2/Figures/bids_fpa}
+	\caption{The performance of standard FPA bidding strategy, for the values of type, reputation and bid aggregated in Table~\ref{tab:bids_fpa_static}}
 	\label{fig:bids_fpa_static}
 \end{figure}
 
-\begin{figure}[htp]
-	\caption{The empirical density function of the intersections (10,000 runs and 3 network operators)}
+\begin{figure}[p!]
 	\vspace{0.5cm}
 	\includegraphics[width=\figsize]{2/Figures/hist_N_3}
+	\caption{The empirical density function of the intersections (10,000 runs and 3 network operators)}
 	\label{fig:hist_N_3_static}
-\end{figure}
-
-\begin{figure}[hbp]
-	\caption{The empirical probability distribution associated with the histogram in Figure~\ref{fig:hist_N_3_static}}
+	\vspace{10mm}
 	\includegraphics[width=\figsize]{2/Figures/ecdf_N_3}
+	\caption{The empirical probability distribution associated with the histogram in Figure~\ref{fig:hist_N_3_static}}
 	\label{fig:ecdf_N_3_static}
 \end{figure}
 
@@ -461,9 +459,7 @@ The analysis is conducted in two steps. Firstly, it is assumed that information 
 \label{ssub:complete_information_n_2_static}
 Here, we assume that information is complete; i.e., that each network operator knows their own and their opponent's cost and reputation. In total, there are 7 different bidding scenarios to consider.
 
-\begin{figure}[htp]
-	\caption{Different bidding scenarios for $r_i < r_j$}
-	\label{fig:complete_N_2_1_static}
+\begin{figure}[p!]
 	\vspace{0.5cm}
 	\begin{subfigure}[b]{0.5\textwidth}
 	  \includegraphics[width=2.8in]{2/Figures/complete_N_2_c1}
@@ -486,10 +482,11 @@ Here, we assume that information is complete; i.e., that each network operator k
 	  \caption{$c_i > c_j$ and $\beta(c_i,r_i) \ge \beta(c_j,r_j)$}
 	  \label{fig:complete_N_2_c3_2_static}
 	\end{subfigure}
+	\caption{Different bidding scenarios for $r_i < r_j$}
+	\label{fig:complete_N_2_1_static}
 \end{figure}
 
-\begin{figure}[htp]
-	\caption{Different bidding scenarios for $r_i = r_j$}
+\begin{figure}[p!]
 	\vspace{0.5cm}
 	\begin{subfigure}[b]{0.5\textwidth}
 		\includegraphics[width=2.8in]{2/Figures/complete_N_2_c4}	  
@@ -508,6 +505,7 @@ Here, we assume that information is complete; i.e., that each network operator k
 	  \caption{$c_i > c_j$}
 	  \label{fig:complete_N_2_c6_static}
 	\end{subfigure}
+	\caption{Different bidding scenarios for $r_i = r_j$}
 	\label{fig:complete_N_2_2_static}
 \end{figure}
 
@@ -601,14 +599,13 @@ Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from 
 	\label{tab:pcomp_static}
 \end{table}
 
-\begin{figure}[tp!]
-	\caption{Compound bid plotted against the price weight}
+\begin{figure}[p!]
 	\includegraphics[width=\figsize]{2/Figures/pincomplete_bids_uc}
+	\caption{Compound bid plotted against the price weight}
 	\label{fig:pincomplete_bids_uc_static}
-% \end{figure}
-% \begin{figure}[bp!]
-	\caption{Offered prices (bids) plotted against the price weight}
+	\vspace{10mm}
 	\includegraphics[width=\figsize]{2/Figures/pincomplete_prices_uc}
+	\caption{Offered prices (bids) plotted against the price weight}
 	\label{fig:pincomplete_prices_uc_static}
 \end{figure}
 
@@ -776,18 +773,20 @@ Therefore, for $w < w(c_j)$, the only alternative for network operator $j$ is to
 	\lambda_j = 2(c_j - 1) + \frac{4}{3}\frac{1-w}{w}(r_j-r_i)>0,
 \end{equation*}
 since $w < w(c_j)$ and $r_i<r_j$.
-\begin{figure}[tp!]
-	\caption{Update in bidding strategy for network operator $i$ when $w(c_j) > E[w(C_j)]$}
+
+\begin{figure}[p!]
 	\includegraphics[width=3.5in]{2/Figures/pincomplete_bids_update_i_1}
+	\caption{Update in bidding strategy for network operator $i$ when $w(c_j) > E[w(C_j)]$}
 	\label{fig:pincomplete_bids_update_i_1_static}
-	\caption{Update in bidding strategy for network operator $j$ when $w(c_j) > E[w(C_j)]$}
+	\vspace{10mm}
 	\includegraphics[width=3.5in]{2/Figures/pincomplete_bids_update_j_1}
+	\caption{Update in bidding strategy for network operator $j$ when $w(c_j) > E[w(C_j)]$}
 	\label{fig:pincomplete_bids_update_j_1_static}
 \end{figure}
 
 \begin{figure}[tp!]
-	\caption{Update in bidding strategy for network operator $i$ when $w(c_j) < E[w(C_j)]$}
 	\includegraphics[width=3.5in]{2/Figures/pincomplete_bids_update_i_2}
+	\caption{Update in bidding strategy for network operator $i$ when $w(c_j) < E[w(C_j)]$}
 	\label{fig:pincomplete_bids_update_i_2_static}
 \end{figure}
 
@@ -1013,12 +1012,13 @@ Note that the equilibrium inverse bidding strategy functions are inconvenient to
   \end{enumerate}
 \end{enumerate}
 
-\begin{figure}[tp!]
-	\caption{Compound bid plotted against the price weight}
+\begin{figure}[p!]
 	\includegraphics[width=\figsize]{2/Figures/indirect_bids}
+	\caption{Compound bid plotted against the price weight}
 	\label{fig:indirect_bids_static}
-	\caption{Offered prices (bids) plotted against the price weight}
+	\vspace{10mm}
 	\includegraphics[width=\figsize]{2/Figures/indirect_prices}
+	\caption{Offered prices (bids) plotted against the price weight}
 	\label{fig:indirect_prices_static}
 \end{figure}
 
@@ -1062,10 +1062,11 @@ If the network operators are assumed to submit at least their costs, then, in th
 However, if this assumption is relaxed, then, as showed by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterisation_of_the_equilibrium_static} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarized in Proposition~\ref{prop:inverse_equi_bidding_str_static} as well as Proposition~\ref{prop:pcomp_equi_bidding_str_static} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterize equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str_static} as non-standard, further argue that such equilibria are important and should not be neglected.
 % subsection comparison_of_results_from_direct_and_indirect_approaches (end)
 
-\begin{figure}[tp!]
+\begin{figure}[p!]
   \includegraphics[width=\figsize]{2/Figures/expected_prices}
   \caption{Average prices plotted against the price weight for different pairs of reputation ratings}
   \label{fig:expected_prices_static}
+	\vspace{10mm}
   \includegraphics[width=\figsize]{2/Figures/expected_prices_sensitivity}
   \caption{Sensitivity of the price weight to the expected prices}
   \label{fig:expected_prices_sensitivity_static}

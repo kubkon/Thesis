@@ -84,8 +84,8 @@ The mathematical description of the problem was adapted and translated into a di
 The DES simulation engine used in the study is released under the MIT License, and is available for download on Github: \url{https://github.com/kubkon/des-in-python}. Since the engine is not part of any known simulation package and was written from scratch, it should be validated prior to conducting the simulation study. To this end, the validation stage comprises simulation of a simple first-in first-out (FIFO) network link modeled as an M/M/1 queue, and analysis of steady-state average packet delay in the system (Figure~\ref{fig:mm1_queue_dynamic}). The M/M/1 queue was chosen since it is simple to implement, and the simulation results can directly be verified by comparison with the theoretical prediction.
 
 \begin{figure}[h]
-	\caption{Illustration of M/M/1 queuing model}
 	\includegraphics[width=3in]{3/Figures/mm1_queue}
+	\caption{Illustration of M/M/1 queuing model}
 	\label{fig:mm1_queue_dynamic}
 \end{figure}
 
@@ -123,8 +123,8 @@ The queueing system was simulated with the following parameters: $\mu=50$ packet
 	\label{tab:mm1_simulation_results_dynamic}
 \end{table}
 \begin{figure}[p!]
-	\caption{Comparison of M/M/1 queue simulation results with the theory}
 	\includegraphics[width=\figsize]{3/Figures/mm1_simulation_results}
+	\caption{Comparison of M/M/1 queue simulation results with the theory}
 	\label{fig:mm1_simulation_results_dynamic}
 \end{figure}
 % section simulation_modeling (end)
