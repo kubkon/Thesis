@@ -80,7 +80,7 @@ Note that when considering a single-stage auction game (see Chapter~\ref{cha:net
 The mathematical description of the problem was adapted and translated into a discrete-event system (DES) simulation model and implemented in Python programming language, version 3 (Py3k). Py3k was chosen mainly due to the fact that it is a dynamically-typed language which makes prototyping quicker than in a statically-typed language such as C++. This allows the researcher to focus more on the design and results of the experiment rather than its implementation. Furthermore, Py3k features a set of libraries that further simplify the implementation stage of the DES simulation; for example, `subprocess' module allows the execution of multiple simulation runs in parallel~\cite{Py3kSubprocess}, while `numpy', `scipy', and `matplotlib' modules provide a set of convenience routines for numerical computation and scientific plotting in Py3k~\cite{Numpy, Scipy, Matplotlib}. On the other hand, since Py3k is an interpreted language, it can potentially be slower in execution time and less memory efficient than a compiled language such as C++~\cite{Py3kC++}; however, it does not visibly increase the overall cost of the simulation study since the computer resources are inexpensive.
 
 \subsection{Validation of DES Simulation Engine} % (fold)
-\label{sub:validation_of_des_simulation_engine}
+\label{sub:validation_of_des_simulation_engine_dynamic}
 The DES simulation engine used in the study is released under the MIT License, and is available for download on Github: \url{https://github.com/kubkon/des-in-python}. Since the engine is not part of any known simulation package and was written from scratch, it should be validated prior to conducting the simulation study. To this end, the validation stage comprises simulation of a simple first-in first-out (FIFO) network link modeled as an M/M/1 queue, and analysis of steady-state average packet delay in the system (Figure~\ref{fig:mm1_queue_dynamic}). The M/M/1 queue was chosen since it is simple to implement, and the simulation results can directly be verified by comparison with the theoretical prediction.
 
 \begin{figure}[h]
@@ -100,7 +100,7 @@ Let $\rho = \displaystyle\frac{\lambda}{\mu}$ denote the mean link (or system) u
 	T(\rho) = \frac{1}{\mu(1 - \rho)}.
 \end{equation}
 
-The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps), and $\lambda\in\{5,10,\ldots,45\}$ pps which is equivalent to $\rho\in\{0.1,0.2,\ldots,0.9\}$. The objective of the simulation was to estimate the steady-state mean packet delay, $T(\rho)$, for each value of the mean link utilization, $\rho$. To this end, for each value of $\rho$, the system was simulated for 1 hour, and a simulation run was replicated 100 times with different seeds to the pseudo-random number generator (PRNG). The output of each simulation run constituted a time-series of packet delays in the system. Since the simulation is inherently a nonterminating simulation, the estimation of the steady-state mean packet delay consisted of two steps: 1) removal of the transient (or warm-up) response of the system, and 2) averaging within and across the replications with transient response removed. The removal of the transient response was facilitated through the use of the Welch's method~\cite{LawChapter92007}, and for each value of $\rho$, the transient response covered approximately the initial 2000 packet delay samples.
+The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps), and $\lambda\in\{5,10,\ldots,45\}$ pps which is equivalent to $\rho\in\{0.1,0.2,\ldots,0.9\}$. The objective of the simulation was to estimate the steady-state mean packet delay, $T(\rho)$, for each value of the mean link utilization, $\rho$. To this end, for each value of $\rho$, the system was simulated for 1 hour, and a simulation run was replicated 100 times with different seeds to the pseudo-random number generator (PRNG). In all simulation runs, the buffer was initially empty; i.e., there were no packets in the queue. The output of each simulation run constituted a time-series of packet delays in the system. Since the simulation is inherently a nonterminating simulation, the estimation of the steady-state mean packet delay consisted of two steps: 1)~removal of the transient (or warm-up) response of the system, and 2)~averaging within and across the replications with transient response removed. The removal of the transient response was facilitated through the use of the Welch's method~\cite{LawChapter92007}, and for each value of $\rho$, the transient response covered approximately the initial 2000 packet delay samples.
 
 \begin{table}[p!]
 	\caption{Simulation estimated M/M/1 queue steady-state average packet delay}
@@ -132,14 +132,40 @@ Table~\ref{tab:mm1_simulation_results_dynamic} depicts the estimated steady-stat
 % subsection validation_of_des_simulation_engine (end)
 
 \subsection{Simulation Model of the Digital Marketplace} % (fold)
-\label{sub:simulation_model_of_the_digital_marketplace}
+\label{sub:simulation_model_of_the_digital_marketplace_dynamic}
+
+\subsubsection{High-level Overview} % (fold)
+\label{ssub:high_level_overview_dynamic}
+The DMP is modeled using the object-oriented paradigm such that the entities involved in the DMP are abstracted away except for the network operators and the marketplace itself: Bidder and DMEventHandler classes respectively. When the simulation is running, two types of events are generated by the DMEventHandler class: `\lstinline!SR_EVENT!' and `\lstinline!ST_EVENT!'; `\lstinline!SR_EVENT!' signifies a new service request by a subscriber, and triggers an auction between the network operators; `\lstinline!ST_EVENT!' signifies that a subscriber has finished using a wireless service, and the servicing network operator can recover any resources dedicated to that subscriber, such as the bit-rate required by the service.
+
+In the course of the simulation, the following performance measures are gathered for analysis:
+\begin{itemize}
+	\item the reputation rating history for each network operator
+	\item the number of secured auctions (or service requests) by each network operator
+\end{itemize}
+% subsubsection high_level_overview (end)
+
+\subsubsection{Bidder Class} % (fold)
+\label{ssub:bidder_class_dynamic}
+
+% subsubsection bidder_class (end)
+
+\subsubsection{DMEventHandler Class} % (fold)
+\label{ssub:dmeventhandler_class_dynamic}
+
+% subsubsection dmeventhandler_class (end)
 
 % subsection simulation_model_of_the_digital_marketplace (end)
 % section simulation_modeling (end)
 
 \section{Simulation Scenarios and Analysis} % (fold)
-\label{sec:simulation_scenarios_and_analysis}
+\label{sec:simulation_scenarios_and_analysis_dynamic}
 Analyze reputation rating update systems proposed by Alisdair and Le Bodic. Compare and contrast. Show that they are initial conditions sensitive.
 % section simulation_scenarios_and_analysis (end)
+
+\section{Summary} % (fold)
+\label{sec:summary_dynamic}
+
+% section summary (end)
 
 % chapter dynamics_of_network_selection_in_the_digital_marketplace (end)
