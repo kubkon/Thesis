@@ -140,8 +140,8 @@ The DMP is modeled using the object-oriented paradigm such that the entities inv
 
 In the course of the simulation, the following performance measures are gathered for analysis:
 \begin{itemize}
-	\item the reputation rating history for each network operator---an indicator of the credibility of network operators.
-	\item the number of secured auctions (or service requests) by each network operator---an indicator of the market share between network operators.
+	\item the reputation rating history for each network operator---an indicator of the credibility of network operators over time.
+	\item the number of secured auctions (or service requests) by each network operator---an indicator of the market share between network operators over time.
 \end{itemize}
 
 It is further assumed that there are two network operators competing in the DMP. This allows for the use of the equilibrium bidding strategy functions derived in Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}. The subscribers (and  hence, the price weights and service types) are pseudo-randomly generated.
@@ -154,11 +154,13 @@ As mentioned in the High-level Overview section, the Bidder class is tasked with
 It is assumed that costs do not change over time, but differ only per service type. Therefore, the cost of web-browsing service might be different from an e-mail service, but neither will change in the course of the simulation. Furthermore, the costs per service type may be specified manually before the simulation executes, or pseudo-randomly drawn from a uniform distribution over the discretized interval $[0,1]$ by the simulator otherwise.
 
 Initially, the reputation rating is set to $0.5$ as discussed in Section~\ref{sec:mathematical_description_dynamic}.
+
+Also implements bidding behavior of the network operator (at the moment assumed to be myopic), and the reputation rating update system (described in Mathematical Description section). The sequence: DMEventHandler calls for an auction, network operators (or objects of Bidder type) submit their bids according to the implemented bidding behavior, DMEventHandler elects the winner of the auction, an \lstinline{ST_EVENT} is generated for the winner, reputation rating is updated for the winner according to Equation~\eqref{eq:def_users_satisfaction_bandwidth_dynamic}. FIX:ME
 % subsubsection bidder_class (end)
 
 \subsubsection{DMEventHandler Class} % (fold)
 \label{ssub:dmeventhandler_class_dynamic}
-
+\lstinline{SR_EVENT} exponential interarrival times; \lstinline{ST_EVENT} is scheduled after each \lstinline{SR_EVENT} at a constant interval of 2.5 minutes. Stores possible service request types such as \lstinline{WEB_BROWSING} and \lstinline{EMAIL} with their required bit-rates. Currently, it is assumed that \lstinline{WEB_BROWSING} requires 512 kbps, while \lstinline{EMAIL} requires 256 kbps. DMEventHandler also runs auctions and elects the winner. FIX:ME
 % subsubsection dmeventhandler_class (end)
 
 % subsection simulation_model_of_the_digital_marketplace (end)
