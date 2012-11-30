@@ -157,7 +157,13 @@ It is further assumed that there are two network operators competing in the DMP.
 
 \subsubsection{Bidder Class} % (fold)
 \label{ssub:bidder_class_dynamic}
-As mentioned in the High-level Overview section, the Bidder class is tasked with the representation of a network operator, and it implements the following attributes: costs, current reputation rating, total bit-rate, and currently available bit-rate.
+As mentioned in the High-level Overview section, the Bidder class is tasked with the representation of a network operator. It implements attributes such as costs, current reputation rating, total bit-rate, currently available bit-rate, and subscriber success report list (Figure~\ref{fig:bidder_class_dynamic}). The class also implements the bidding behavior of a network operator, and reputation rating update algorithm. Furthermore, the Bidder class populates subscriber success report list, and updates the currently available bit-rate of a network operator.
+
+\begin{figure}[t]
+	\includegraphics[width=2in]{3/Figures/bidder_class}
+	\caption{Bidder class}
+	\label{fig:bidder_class_dynamic}
+\end{figure}
 
 It is assumed that costs do not change over time, but differ only per service type. Therefore, the cost of web-browsing service might be different from an e-mail service, but neither will change in the course of the simulation. Furthermore, the costs per service type may be specified manually before the simulation executes, or pseudo-randomly drawn from a uniform distribution over the discretized interval $[0,1]$ by the simulator otherwise.
 
@@ -169,6 +175,12 @@ Also implements bidding behavior of the network operator (at the moment assumed 
 \subsubsection{DMEventHandler Class} % (fold)
 \label{ssub:dmeventhandler_class_dynamic}
 \lstinline{SR_EVENT} exponential interarrival times; \lstinline{ST_EVENT} is scheduled after each \lstinline{SR_EVENT} at a constant interval of 2.5 minutes. Stores possible service request types such as \lstinline{WEB_BROWSING} and \lstinline{EMAIL} with their required bit-rates. Currently, it is assumed that \lstinline{WEB_BROWSING} requires 512 kbps, while \lstinline{EMAIL} requires 256 kbps. DMEventHandler also runs auctions and elects the winner. FIX:ME
+
+\begin{figure}[t]
+	\includegraphics[width=2in]{3/Figures/dmeventhandler_class}
+	\caption{DMEventHandler class}
+	\label{fig:dmeventhandler_class_dynamic}
+\end{figure}
 % subsubsection dmeventhandler_class (end)
 
 % subsection simulation_model_of_the_digital_marketplace (end)
