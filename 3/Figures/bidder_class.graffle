@@ -46,14 +46,43 @@
 	<key>Creator</key>
 	<string>Jakub Konka</string>
 	<key>DisplayScale</key>
-	<string>1 0/72 in = 1 0/72 in</string>
+	<string>1 0/72 in = 1.0000 in</string>
 	<key>GraphDocumentVersion</key>
 	<integer>8</integer>
 	<key>GraphicsList</key>
 	<array>
 		<dict>
+			<key>AllowConnections</key>
+			<string>NO</string>
+			<key>AllowLabelDrop</key>
+			<false/>
+			<key>AllowToConnect</key>
+			<false/>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>ID</key>
+			<integer>9</integer>
+			<key>Points</key>
+			<array>
+				<string>{256, 156.75}</string>
+				<string>{550, 157}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>0</string>
+					<key>Legacy</key>
+					<true/>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
 			<key>Bounds</key>
-			<string>{{266, 306.375}, {269, 88}}</string>
+			<string>{{256, 296.625}, {269, 110}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -98,7 +127,7 @@
 \ls1\ilvl0
 \f0\fs36 \cf0 {\listtext	\'95	}implements bidding behavior\
 {\listtext	\'95	}updates reputation rating\
-{\listtext	\'95	}populates success report\
+{\listtext	\'95	}populates subscriber success report list\
 {\listtext	\'95	}updates available bit-rate}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
@@ -117,8 +146,8 @@
 			<integer>7</integer>
 			<key>Points</key>
 			<array>
-				<string>{266, 295.75}</string>
-				<string>{540, 295.5}</string>
+				<string>{256, 286}</string>
+				<string>{550, 286.25}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -135,7 +164,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{266, 176.125}, {183, 110}}</string>
+			<string>{{256, 166.375}, {274, 110}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -182,43 +211,14 @@
 {\listtext	\'95	}reputation rating\
 {\listtext	\'95	}total bit-rate\
 {\listtext	\'95	}available bit-rate\
-{\listtext	\'95	}success report list}</string>
+{\listtext	\'95	}subscriber success report list}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
 		</dict>
 		<dict>
-			<key>AllowConnections</key>
-			<string>NO</string>
-			<key>AllowLabelDrop</key>
-			<false/>
-			<key>AllowToConnect</key>
-			<false/>
-			<key>Class</key>
-			<string>LineGraphic</string>
-			<key>ID</key>
-			<integer>5</integer>
-			<key>Points</key>
-			<array>
-				<string>{266, 165.5}</string>
-				<string>{540, 165.5}</string>
-			</array>
-			<key>Style</key>
-			<dict>
-				<key>stroke</key>
-				<dict>
-					<key>HeadArrow</key>
-					<string>0</string>
-					<key>Legacy</key>
-					<true/>
-					<key>TailArrow</key>
-					<string>0</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
 			<key>Bounds</key>
-			<string>{{266, 129.5}, {274, 277}}</string>
+			<string>{{256, 119.75}, {294, 296.5}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -294,7 +294,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-11-30 15:06:44 +0000</string>
+	<string>2012-12-05 14:57:35 +0000</string>
 	<key>Modifier</key>
 	<string>Jakub Konka</string>
 	<key>NotesVisible</key>

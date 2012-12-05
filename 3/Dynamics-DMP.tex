@@ -165,9 +165,9 @@ As mentioned in the High-level Overview section, the Bidder class is tasked with
 	\label{fig:bidder_class_dynamic}
 \end{figure}
 
-It is assumed that costs do not change over time, but differ only per service type. Therefore, the cost of web-browsing service might be different from an e-mail service, but neither will change in the course of the simulation. Furthermore, the costs per service type may be specified manually before the simulation executes, or pseudo-randomly drawn from a uniform distribution over the discretized interval $[0,1]$ by the simulator otherwise.
+It is assumed that costs do not change over time, but differ only per service type. Therefore, the cost of web-browsing service might be different from an e-mail service, but neither will change in the course of the simulation. Furthermore, the costs per service type may be specified manually before the simulation executes, or pseudo-randomly drawn from a uniform distribution over the discretized interval $[0,1]$ by the simulation software otherwise.
 
-Initially, the reputation rating is set to $0.5$ as discussed in Section~\ref{sec:mathematical_description_dynamic}.
+Initially, the reputation rating is set to $0.5$ for all network operators as discussed in Section~\ref{sec:mathematical_description_dynamic}. Afterwards, for each secured service request by a network operator, the reputation rating is updated according to Equation~\eqref{eq:def_rep_update_lebodic_dynamic}. If a network operator does not secure a service request, then their reputation rating remains constant at that time instance.
 
 Also implements bidding behavior of the network operator (at the moment assumed to be myopic), and the reputation rating update system (described in Mathematical Description section). The sequence: DMEventHandler calls for an auction, network operators (or objects of Bidder type) submit their bids according to the implemented bidding behavior, DMEventHandler elects the winner of the auction, an \lstinline{ST_EVENT} is generated for the winner, reputation rating is updated for the winner according to Equation~\eqref{eq:def_users_satisfaction_bandwidth_dynamic}. FIX:ME
 % subsubsection bidder_class (end)
