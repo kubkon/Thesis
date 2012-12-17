@@ -169,7 +169,7 @@ It is assumed that costs do not change over time, but differ only per service ty
 
 Initially, the reputation rating is set to $0.5$ for all network operators as discussed in Section~\ref{sec:mathematical_description_dynamic}. Afterwards, for each secured service request by a network operator, the reputation rating is updated according to Equation~\eqref{eq:def_rep_update_lebodic_dynamic}. If a network operator does not secure a service request, then their reputation rating remains constant at that instance of time. For example, if network operator $j$ does not secure a service request at time $t_k$, then $r^j_k = r^j_{k-1}$.
 
-The total available bit-rate has to be manually specified before each simulation for all bidders. The currently available bit-rate, on the other hand, is updated automatically as the simulation progresses. Initially, it equals the total available bit-rate. Then, as a network operator secures service requests, it is decreased by an amount equal to the required bit-rate by the service request for the duration of that service; that is, if network operator $j$ secures a service request at time $t_k$, then for $c=2.5$ minutes and provided $t_{k+1}-t_k\le c$, their available bit-rate becomes
+The total available bit-rate has to be manually specified before each simulation for all network operators. The currently available bit-rate, on the other hand, is updated automatically as the simulation progresses. Initially, it equals the total available bit-rate. Then, as a network operator secures service requests, it is decreased by an amount equal to the required bit-rate of the service request for the duration of that service; that is, if network operator $j$ secures service request $s_k$ at time $t_k$, then for $c=2.5$ minutes and provided $t_{k+1}-t_k\le c$, their available bit-rate becomes
 \begin{equation*}
 	z^j_{k+1} =
 	\left\{
@@ -180,9 +180,19 @@ The total available bit-rate has to be manually specified before each simulation
 	\right.
 \end{equation*}
 
-The subscriber success report list is updated automatically as the simulation progresses according to Equation~\eqref{eq:def_users_satisfaction_bandwidth_dynamic}. Therefore, if the available bit-rate by the network operator exceeds the required bit-rate of the service, the subscriber is satisfied, and $\sigma_k^j = 1$ is stored in the subscriber success report list. Otherwise, $\sigma_k^j = 0$ is stored.
+The subscriber success report list is updated automatically as the simulation progresses according to Equation~\eqref{eq:def_users_satisfaction_bandwidth_dynamic}. Therefore, if the available bit-rate of the network operator exceeds the required bit-rate of the service, the subscriber is satisfied, and $\sigma_k^j = 1$ is stored in the subscriber success report list. Otherwise, $\sigma_k^j = 0$ is stored.
 
-Also implements bidding behavior of the network operator (at the moment assumed to be myopic), and the reputation rating update system (described in Mathematical Description section). The sequence: DMEventHandler calls for an auction, network operators (or objects of Bidder type) submit their bids according to the implemented bidding behavior, DMEventHandler elects the winner of the auction, an \lstinline{ST_EVENT} is generated for the winner, reputation rating is updated for the winner according to Equation~\eqref{eq:def_users_satisfaction_bandwidth_dynamic}. FIX:ME
+The Bidder class, by default, assumes that network operators bid myopically; that is, they treat each auction as a one-shot event, and hence, they neglect past as well as future interactions with the other network operators. Although in reality they are likely to bid in a more sophisticated fashion, it is a valid starting point especially in the case of two competing network operators since the analytical solution to a problem of two competing network operators in a one-shot DMP auction exists (see Section~\ref{sec:indirect_approach_static}, Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}). 
+
+The Bidder and the DMEventHandler classes interface according to the following sequence:
+\begin{enumerate}
+	\item \lstinline{SR_EVENT} (and hence, service request with all the relevant parameters) is generated;
+	\item DMEventHandler class calls for an auction;
+	\item an object of Bidder type (and hence, network operators) submit their bids according to the implemented bidding behavior;
+	\item DMEventHandler class elects the winner of the auction;
+	\item \lstinline{ST_EVENT} is generated for the winner;
+	\item reputation rating, available bit-rate, and subscriber success report list are updated accordingly.
+\end{enumerate}
 % subsubsection bidder_class (end)
 
 \subsubsection{DMEventHandler Class} % (fold)
