@@ -5,7 +5,7 @@
 \minitoc
 \vspace{10mm}
 
-The discrete-event system (DES) simulation study outlined in Chapter~\ref{cha:dynamics_of_network_selection_in_the_digital_marketplace} was conducted using software that was developed during this research from scratch in Python programming language, version 3 (Py3k). Py3k was chosen mainly due to the fact that it is a dynamically-typed language which makes prototyping quicker than in a statically-typed language such as C++. This allows the researcher to focus more on the design and results of the experiment rather than its implementation. Furthermore, Py3k features a set of libraries that further simplify the implementation stage of the DES simulation; for example, `subprocess' module allows the execution of multiple simulation runs in parallel~\cite{Py3kSubprocess}, while `numpy', `scipy', and `matplotlib' modules provide a set of convenience routines for numerical computation and scientific plotting in Py3k~\cite{Numpy, Scipy, Matplotlib}. On the other hand, since Py3k is an interpreted language, it can potentially be slower in execution time and less memory efficient than a compiled language such as C++~\cite{Py3kC++}; however, it does not visibly increase the overall cost of the simulation study since the computer resources are inexpensive.
+The discrete-event system (DES) simulation study outlined in Chapter~\ref{cha:dynamics_of_network_selection_in_the_digital_marketplace} was conducted using software that was developed during this research from scratch in Python programming language, version 3 (Py3k). Py3k was chosen mainly due to the fact that it is a dynamically-typed language which makes prototyping quicker than in a statically-typed language such as C++. This allows the researcher to focus more on the design and results of the experiment rather than its implementation. Furthermore, Py3k features a set of libraries that further simplify the implementation stage of the DES simulation; for example, \lstinline{subprocess} module allows the execution of multiple simulation runs in parallel~\cite{Py3kSubprocess}, while \lstinline{numpy}, \lstinline{scipy}, and \lstinline{matplotlib} modules provide a set of convenience routines for numerical computation and scientific plotting in Py3k~\cite{Numpy, Scipy, Matplotlib}. On the other hand, since Py3k is an interpreted language, it can potentially be slower in execution time and less memory efficient than a compiled language such as C++~\cite{Py3kC++}; however, it does not visibly increase the overall cost of the simulation study since the computer resources are inexpensive.
 
 The software is released under the MIT License, and is available for download on Github: \url{https://github.com/kubkon/des-in-python}.
 
@@ -14,18 +14,103 @@ The software is released under the MIT License, and is available for download on
 
 \subsection{High-level Overview}
 \label{sub:high_level_overview_simappendix}
-The simulator is composed of four building blocks: \lstinline{SimulationEngine} class, \lstinline{EventHandler} class, \lstinline{Event} class, and \lstinline{PRNG} class. \lstinline{SimulationEngine} class provides all the core functionality of a DES simulator; that is, it advances the simulation time, and implements the event list. \lstinline{EventHandler} class is an abstract base class (or an interface), and provides an outline of the basic functionality that any proper subclass must implement. In short, it is responsible for generating and handling simulation specific events; for example, customer arrival and departure events in a simulation of an M/M/1 queue. \lstinline{Event} class implements the basic structure of an event used by the simulator. Finally, \lstinline{PRNG} class provides basic pseudo-random number generation routines; i.e., it is a wrapper class for the Py3k `random' module.
+The simulator is composed of four building blocks: \lstinline{SimulationEngine} class, \lstinline{EventHandler} class, \lstinline{Event} class, and \lstinline{PRNG} class. The \lstinline{SimulationEngine} class provides all the core functionality of a DES simulator. It advances the simulation time, and implements the event list. The \lstinline{EventHandler} class is an abstract base class (or an interface), and provides an outline of the basic functionality that any proper subclass must implement. In general, it is responsible for generating and handling simulation specific events; for example, customer arrival and departure events in a simulation of an M/M/1 queue. The \lstinline{Event} class implements basic structure of a generic event used by the simulator. Finally, the \lstinline{PRNG} class provides basic pseudo-random number generation (PRNG) routines, and currently, it is a wrapper class for the Py3k \lstinline{random} module.
 
 \begin{figure}[t]
   \includegraphics[width=3in]{Appendices/Figures/simulation_flow}
-  \caption{The simulation flow}
+  \caption{Simplified simulation flow}
   \label{fig:simulation_flow_simappendix}
 \end{figure}
 
-Figure~\ref{fig:simulation_flow_simappendix} depicts the basic flow of the simulation. Upon the start of the simulation, the \lstinline{SimulationEngine} instance notifies the \lstinline{EventHandler} instance\footnote{Technically, the \lstinline{SimulationEngine} instance notifies an instance of a class that subclasses \lstinline{EventHandler} class; however, to keep the description simple and generic, we shall refer to it as \lstinline{EventHandler} instance.} of the start of the simulation (via a callback mechanism). At this point, the \lstinline{EventHandler} instance should handle it by generating the first event, and passing it to the \lstinline{SimulationEngine} for scheduling. Afterwards, the \lstinline{SimulationEngine} dequeues the next event from the event list, and passes it to the \lstinline{EventHandler}, which should update statistics related to the passed in event, and generate additional events. The process is repeated until there are no events in the event list. When the list becomes empty, the \lstinline{SimulationEngine} notifies the \lstinline{EventHandler} of the stop of the simulation. At this point, the \lstinline{EventHandler} should save/finalize all the statistics relevant to the simulation for further processing and analysis.
+Figure~\ref{fig:simulation_flow_simappendix} depicts the simplified flow of the simulation. Upon the start of the simulation, a \lstinline{SimulationEngine} class instance notifies an \lstinline{EventHandler} class instance\footnote{Technically, a \lstinline{SimulationEngine} class instance notifies an instance of a class that subclasses the \lstinline{EventHandler} class; however, to keep the description simple and generic, we shall refer to it as an \lstinline{EventHandler} class instance.} of the start of the simulation (via a callback mechanism). At this point, the \lstinline{EventHandler} class instance should handle it by generating the first event, and passing it to the \lstinline{SimulationEngine} class instance for scheduling. Afterwards, the \lstinline{SimulationEngine} class instance dequeues the next event from the event list, and passes it to the \lstinline{EventHandler} class instance, which should update statistics related to the passed in event, and generate additional events. The process is repeated until there are no events in the event list. When the list becomes empty, the \lstinline{SimulationEngine} class instance notifies the \lstinline{EventHandler} class instance of the stop of the simulation. At this point, the \lstinline{EventHandler} class instance should save/finalize all the statistics relevant to the simulation for further processing and analysis.
 
 \subsection{SimulationEngine Class}
 \label{sub:simulationengine_class_simappendix}
+As briefly mentioned in Section~\ref{sub:high_level_overview_simappendix}, the \lstinline{SimulationEngine} class provides all the core functionality of a DES simulator. In particular, the class defines the following attributes:
+\begin{itemize}
+  \item \lstinline{self.simulation_time} stores the current simulation time. The simulation time is assumed to be in seconds; thus, \lstinline{self.simulation_time = 1} is equivalent to setting the simulation time to 1 second.
+  \item \lstinline{self.prng} stores a reference to a PRNG. By default, \lstinline{self.prng = PRNG()}; that is, it references an instance of the \lstinline{PRNG} class.
+  \item \lstinline{self.event_handler} stores a reference to an event handler; i.e., an instance of a class that subclasses the \lstinline{EventHandler} class. If \lstinline{self.event_handler} is unassigned in the main simulation script, then an exception is raised.
+\end{itemize}
+
+The basic use of the \lstinline{SimulationEngine} class in the main simulation script is depicted in Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}. In the listing, it is assumed that the definition of the \lstinline{SimulationEngine} class resides in the \lstinline{sim} module which, in turn, is part of the \lstinline{modules} subpackage of the \lstinline{simulator} package (line 1, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}). Furthermore, it is assumed that \lstinline{event_handler} variable was defined somewhere else in the script, and that it is an instance of a class that subclasses the \lstinline{EventHandler} class (line 9, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}).
+\begin{lstlisting}[caption=Excerpt from main simulation script, label=listing:excerpt_from_main_simulation_script_simappendix]
+import simulator.modules.sim as sim
+
+...
+
+### Initialize
+# Create new simulation engine
+se = sim.SimulationEngine()
+# Attach event handler to the simulation engine
+se.event_handler = event_handler
+
+### Simulate
+# Schedule finishing event at 100s
+se.stop(100)
+# Start simulating
+se.start()
+\end{lstlisting}
+The simulation is started by calling the \lstinline{start()} member method of the \lstinline{SimulationEngine} class (line 15, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}). However, it is necessary to call the \lstinline{stop(finish_time)} member method beforehand in order to specify the duration of the simulation (line13, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}).
+
+\begin{lstlisting}[caption=\lstinline{stop(finish_time)} member method of the \lstinline{SimulationEngine} class, label=listing:stop_member_method_simulationengine_simappendix]
+def stop(self, finish_time):
+  """
+  Schedules finishing event
+
+  Arguments:
+  finish_time -- Time of occurrence of the finishing event
+  """
+  # Check if finishing event already scheduled
+  if not self._finish_event_exists:
+    # Set finish time
+    self._finish_time = finish_time
+    # Schedule finishing event
+    self._event_list += [Event(self.END_EVENT, self._finish_time)]
+    self._finish_event_exists = True
+\end{lstlisting}
+
+Listing~\ref{listing:stop_member_method_simulationengine_simappendix} depicts the implementation of the \lstinline{stop(finish_time)} member method, while Listing~\ref{listing:start_member_method_simulationengine_simappendix} presents the implementation of the \lstinline{start()} member method. The \lstinline{stop(finish_time)} method schedules an end event (i.e., appends it to the event list, \lstinline{self._event_list}) for the simulation of duration equal to \lstinline{finish_time} (line 13, Listing~\ref{listing:stop_member_method_simulationengine_simappendix}) if it was not already scheduled by checking the state of the flag member variable \lstinline{self._finish_event_exists} (line 9, Listing~\ref{listing:stop_member_method_simulationengine_simappendix}).
+
+\begin{lstlisting}[caption=\lstinline{start()} member method of the \lstinline{SimulationEngine} class, label=listing:start_member_method_simulationengine_simappendix]
+def start(self):
+  """
+  Starts simulation
+  """
+  # Check if an event handler is attached; if not, throw an error
+  if not self.event_handler:
+    raise Exception("No EventHandler attached!")
+  # Notify of the start of the simulation; event handlers should
+  # generate first event
+  self._notify_start()
+  # Traverse the event list
+  while len(self._event_list) > 0:
+    # Remove the imminent event from the event list
+    imminent = self._event_list.pop()
+    # Advance clock to the imminent event
+    self.simulation_time = imminent.time
+    # Notify of the current event
+    self._notify_event(imminent)
+  # Notify of the end of the simulation
+  self._notify_stop()
+\end{lstlisting}
+
+\begin{lstlisting}[caption=\lstinline{schedule(event)} member method of the \lstinline{SimulationEngine} class, label=listing:schedule_member_method_simulationengine_simappendix]
+def schedule(self, event):
+  """
+  Schedules event (adds it to event list)
+
+  Arguments:
+  event -- Event to be scheduled
+  """
+  # Discard new event if happens after the finishing event
+  if event.time < self._finish_time:
+    # Add the event to the event list
+    self._event_list += [event]
+    # Sort the list in a LIFO style
+    self._event_list.sort(key=lambda x: x.time)
+    self._event_list.reverse()
+\end{lstlisting}
 
 \subsection{EventHandler Class}
 \label{sub:eventhandler_class_simappendix}
