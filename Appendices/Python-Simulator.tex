@@ -26,14 +26,14 @@ Figure~\ref{fig:simulation_flow_simappendix} depicts the simplified flow of the 
 
 \subsection{SimulationEngine Class}
 \label{sub:simulationengine_class_simappendix}
-As briefly mentioned in Section~\ref{sub:high_level_overview_simappendix}, the \lstinline{SimulationEngine} class provides all the core functionality of a DES simulator. In particular, the class defines the following attributes:
+As briefly mentioned in Section~\ref{sub:high_level_overview_simappendix}, the \lstinline{SimulationEngine} class provides all the core functionality of a DES simulator. In particular, the class defines the following properties:
 \begin{itemize}
   \item \lstinline{self.simulation_time} stores the current simulation time. The simulation time is assumed to be in seconds; thus, \lstinline{self.simulation_time = 1} is equivalent to setting the simulation time to 1 second.
   \item \lstinline{self.prng} stores a reference to a PRNG. By default, \lstinline{self.prng = PRNG()}; that is, it references an instance of the \lstinline{PRNG} class.
   \item \lstinline{self.event_handler} stores a reference to an event handler; i.e., an instance of a class that subclasses the \lstinline{EventHandler} class. If \lstinline{self.event_handler} is unassigned in the main simulation script, then an exception is raised.
 \end{itemize}
 
-The basic use of the \lstinline{SimulationEngine} class in the main simulation script is depicted in Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}. In the listing, it is assumed that the definition of the \lstinline{SimulationEngine} class resides in the \lstinline{sim} module which, in turn, is part of the \lstinline{modules} subpackage of the \lstinline{simulator} package (line 1, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}). Furthermore, it is assumed that \lstinline{event_handler} variable was defined somewhere else in the script, and that it is an instance of a class that subclasses the \lstinline{EventHandler} class (line 9, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}).
+The basic use of the \lstinline{SimulationEngine} class in the main simulation script is depicted in Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}. In the listing, it is assumed that the definition of the \lstinline{SimulationEngine} class resides in the \lstinline{sim} module which, in turn, is part of the \lstinline{modules} subpackage of the \lstinline{simulator} package (line 1, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}). Furthermore, it is assumed that \lstinline{event_handler} variable was defined somewhere else in the script, and that it is an instance of a class that subclasses the \lstinline{EventHandler} class (line 9).
 \begin{lstlisting}[caption=Excerpt from main simulation script, label=listing:excerpt_from_main_simulation_script_simappendix]
 import simulator.modules.sim as sim
 
@@ -51,7 +51,7 @@ se.stop(100)
 # Start simulating
 se.start()
 \end{lstlisting}
-The simulation is started by calling the \lstinline{start()} member method of the \lstinline{SimulationEngine} class (line 15, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}). However, it is necessary to call the \lstinline{stop(finish_time)} member method beforehand in order to specify the duration of the simulation (line13, Listing~\ref{listing:excerpt_from_main_simulation_script_simappendix}).
+The simulation is started by calling the \lstinline{start()} member method of the \lstinline{SimulationEngine} class (line 15). However, it is necessary to call the \lstinline{stop(finish_time)} member method beforehand in order to specify the duration of the simulation (line13).
 
 \begin{lstlisting}[caption=\lstinline{stop(finish_time)} member method of the \lstinline{SimulationEngine} class, label=listing:stop_member_method_simulationengine_simappendix]
 def stop(self, finish_time):
@@ -70,7 +70,9 @@ def stop(self, finish_time):
     self._finish_event_exists = True
 \end{lstlisting}
 
-Listing~\ref{listing:stop_member_method_simulationengine_simappendix} depicts the implementation of the \lstinline{stop(finish_time)} member method, while Listing~\ref{listing:start_member_method_simulationengine_simappendix} presents the implementation of the \lstinline{start()} member method. The \lstinline{stop(finish_time)} method schedules an end event (i.e., appends it to the event list, \lstinline{self._event_list}) for the simulation of duration equal to \lstinline{finish_time} (line 13, Listing~\ref{listing:stop_member_method_simulationengine_simappendix}) if it was not already scheduled by checking the state of the flag member variable \lstinline{self._finish_event_exists} (line 9, Listing~\ref{listing:stop_member_method_simulationengine_simappendix}).
+Listing~\ref{listing:stop_member_method_simulationengine_simappendix} depicts the implementation of the \lstinline{stop(finish_time)} member method, while Listing~\ref{listing:start_member_method_simulationengine_simappendix} presents the implementation of the \lstinline{start()} member method. The \lstinline{stop(finish_time)} method schedules an end event (i.e., appends it to the event list, \lstinline{self._event_list}) for the simulation of duration equal to \lstinline{finish_time} (line 13, Listing~\ref{listing:stop_member_method_simulationengine_simappendix}), if it was not already scheduled by checking the state of the flag member variable \lstinline{self._finish_event_exists} (line 9).
+
+The \lstinline{start()} method is responsible for running the simulation in accordance with the flow chart depicted in Figure~\ref{fig:simulation_flow_simappendix}. Therefore, firstly, a check is made whether \lstinline{self.event_handler} property was assigned; failure generates an error in the form of an exception (lines 6-7, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). Next, the method notifies all interested parties (usually instances of classes subclassing the EventHandler class) of the start of the simulation (line 10). The method then traverses the event list, \lstinline{self._event_list}, until it is empty (line 12). The traversal process consists of 3 instructions: 1) dequeueing the most recent (imminent) event from the event list (line 14), 2) advancing the simulation time to the time of the dequeued event (line 16), and 3) notifying all interested parties of the dequeued event (line 18). Finally, when the traversal process finishes (i.e., when the event list becomes empty), the method notifies all interested parties of the stop of the simulation (line 20).
 
 \begin{lstlisting}[caption=\lstinline{start()} member method of the \lstinline{SimulationEngine} class, label=listing:start_member_method_simulationengine_simappendix]
 def start(self):
