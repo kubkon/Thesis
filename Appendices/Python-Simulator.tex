@@ -137,7 +137,11 @@ where \lstinline{se} is assumed to be an instance of the \lstinline{SimulationEn
 
 \subsection{EventHandler Class}
 \label{sub:eventhandler_class_simappendix}
+The \lstinline{EventHandler} class provides an interface for handling events. In Python terminology, this type of a class is known as an abstract base class, and as such, it is largely devoid of any implementation; rather, it leaves the implementation of the specified member methods to its subclasses.
 
+The class provides three abstract member methods that need to be implemented by the subclass: \lstinline{self._handle_start()}, \lstinline{self._handle_stop()}, and \lstinline{self._handle_event(event)}. The implementation of the \lstinline{self._handle_start()} method should provide a routine for handling the start of a simulation (cf. line 10, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). Therefore, at the very least, it should generate the first event specific to the simulation; e.g., the first arrival event in a simulation of an M/M/1 queue. The implementation of the \lstinline{self._handle_stop()} method, on the other hand, should provide a routine for handling the stop of a simulation (cf. line 20, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). For example, it could save gathered statistics to a file. Finally, the implementation of the \lstinline{self._handle_event(event)} method should provide a routine for handling the imminent event, \lstinline{event}, that was dequeued from the event list by the \lstinline{SimulationEngine} instance (cf. line 18, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). Furthermore, it is expected that further generation of events specific to the simulation is performed within this method; e.g., generation of subsequent arrival events in a simulation of an M/M/1 queue.
+
+The constructor method of the \lstinline{EventHandler} class, which is depicted in Listing~\ref{listing:init_method_eventhandler_simappendix}, expects one argument: \lstinline{simulation_engine}, a reference to a \lstinline{SimulationEngine} class instance. The reference is stored for later use by any of the \lstinline{EventHandler} class subclasses via the member variable \lstinline{self._simulation_engine} (line 9, Listing~\ref{listing:init_method_eventhandler_simappendix}). Furthermore, the constructor method of the \lstinline{EventHandler} class uses the reference to register the class (and through the properties of inheritance, any of its subclasses) to receive the notifications provided by the \lstinline{SimulationEngine} class (lines 10-19).
 \begin{lstlisting}[caption=\lstinline{__init__(simulation_engine)} member method of the \lstinline{EventHandler} class, label=listing:init_method_eventhandler_simappendix]
 def __init__(self, simulation_engine):
   """
@@ -158,15 +162,6 @@ def __init__(self, simulation_engine):
   # imminent event
   self._simulation_engine.register_callback(self._handle_event,
     SimulationEngine.EVENT_CALLBACK)
-\end{lstlisting}
-
-\begin{lstlisting}[caption=\lstinline{_handle_start()} member method of the \lstinline{EventHandler} class, label=listing:handle_start_method_eventhandler_simappendix]
-@abstractmethod
-def _handle_start(self):
-  """
-  Abstract method for handling start of the simulation
-  """
-  pass
 \end{lstlisting}
 
 \subsection{Event Class}
