@@ -138,8 +138,56 @@ where \lstinline{se} is assumed to be an instance of the \lstinline{SimulationEn
 \subsection{EventHandler Class}
 \label{sub:eventhandler_class_simappendix}
 
+\begin{lstlisting}[caption=\lstinline{__init__(simulation_engine)} member method of the \lstinline{EventHandler} class, label=listing:init_method_eventhandler_simappendix]
+def __init__(self, simulation_engine):
+  """
+  Constructs EventHandler object
+
+  Arguments:
+  simulation_engine = SimulationEngine instance
+  """
+  # Connect with SimulationEngine
+  self._simulation_engine = simulation_engine
+  # Register callback functions:
+  # start of the simulation
+  self._simulation_engine.register_callback(self._handle_start,
+    SimulationEngine.START_CALLBACK)
+  # stop of the simulation
+  self._simulation_engine.register_callback(self._handle_stop,
+    SimulationEngine.STOP_CALLBACK)
+  # imminent event
+  self._simulation_engine.register_callback(self._handle_event,
+    SimulationEngine.EVENT_CALLBACK)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=\lstinline{_handle_start()} member method of the \lstinline{EventHandler} class, label=listing:handle_start_method_eventhandler_simappendix]
+@abstractmethod
+def _handle_start(self):
+  """
+  Abstract method for handling start of the simulation
+  """
+  pass
+\end{lstlisting}
+
 \subsection{Event Class}
 \label{sub:event_class_simappendix}
+
+\begin{lstlisting}[caption=\lstinline{__init__(identifier, time, **kwargs)} member method of the \lstinline{Event} class, label=listing:init_method_event_simappendix]
+def __init__(self, identifier, time, **kwargs):
+  """
+  Constructs Event instance
+  
+  Arguments:
+  identifier -- ID/type of this event
+  time -- Time of occurring of this event
+
+  Keyword arguments:
+  kwargs -- Optional keyword arguments
+  """
+  self._identifier = identifier
+  self._time = time
+  self._kwargs = kwargs
+\end{lstlisting}
 
 \subsection{PRNG Class}
 \label{sub:prng_class_simappendix}
