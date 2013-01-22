@@ -197,6 +197,29 @@ creates an event with an identifier \lstinline{"Arrival"}, time of occurring 10 
 
 \subsection{PRNG Class}
 \label{sub:prng_class_simappendix}
+The \lstinline{PRNG} class is a wrapper class for the Py3k \lstinline{random} module. The class defines one property, \lstinline{self.seed}, which stores the currently used seed by the PRNG. Furthermore, the class offers generation of pseudo-random numbers coming from two distributions: uniform and exponential. Uniform pseudo-random numbers can be obtained by calling the \lstinline{self.uniform(a, b)} member method. Similarly, pseudo-random numbers coming from an exponential distribution can be obtained by calling the \lstinline{self.expovariate(lambd)} member method. The implementation of both methods is depicted in Listing~\ref{listing:uniform_and_expovariate_methods_prng_simappendix}.
+\begin{lstlisting}[caption=\lstinline{self.uniform(a, b)} and \lstinline{self.expovariate(lambd)} member methods of the \lstinline{PRNG} class, label=listing:uniform_and_expovariate_methods_prng_simappendix]
+def uniform(self, a, b):
+  """
+  Returns a random floating point number N such that
+  a <= N <= b for a <= b and b <= N <= a for b < a
+  
+  Arguments:
+  a -- Lower bound
+  b -- Upper bound
+  """
+  return random.uniform(a, b)
+
+def expovariate(self, lambd):
+  """
+  Returns a random floating point number N drawn
+  from an exponential distribution with parameter lambd (1 / E[X])
+  
+  Arguments:
+  lambd -- Lambda parameter of exponential distribution (1 / E[X])
+  """
+  return random.expovariate(lambd)
+\end{lstlisting}
 
 \section{Validation of the Simulator}
 \label{sec:validation_of_the_simulator_simappendix}
