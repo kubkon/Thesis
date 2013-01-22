@@ -166,7 +166,13 @@ def __init__(self, simulation_engine):
 
 \subsection{Event Class}
 \label{sub:event_class_simappendix}
-
+The \lstinline{Event} class implements basic structure of a generic event used by the simulator. In particular, the class defines the following properties:
+\begin{itemize}
+\item \lstinline{self.identifier} stores the identifier of the event.
+\item \lstinline{self.time} stores the time of occurring of the event. The time should be specified in seconds. 
+\item \lstinline{self.kwargs} stores any number of optional keyword arguments. The optional keyword arguments allow for better code reuse, and make the Event class more adaptible to the needs of a simulated scenario. For example, if the name of the customer was of interest in the simulation of an M/M/1 queue, the arrival/departure events could implement this feature as a keyword argument \lstinline{customer="Name"}.
+\end{itemize}
+The properties are read-only; however, they can be set in the constructor method. The implementation of the constructor method is shown in Listing~\ref{listing:init_method_event_simappendix}.
 \begin{lstlisting}[caption=\lstinline{__init__(identifier, time, **kwargs)} member method of the \lstinline{Event} class, label=listing:init_method_event_simappendix]
 def __init__(self, identifier, time, **kwargs):
   """
@@ -183,6 +189,11 @@ def __init__(self, identifier, time, **kwargs):
   self._time = time
   self._kwargs = kwargs
 \end{lstlisting}
+For example, the following code
+\begin{lstlisting}[nolol, frame=none, numbers=none]
+event = Event("Arrival", 10, customer="Jakub")
+\end{lstlisting}
+creates an event with an identifier \lstinline{"Arrival"}, time of occurring 10 seconds, and an optional keyword argument \lstinline{customer="Jakub"}.
 
 \subsection{PRNG Class}
 \label{sub:prng_class_simappendix}
