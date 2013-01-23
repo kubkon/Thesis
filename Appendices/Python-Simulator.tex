@@ -139,7 +139,7 @@ where \lstinline{se} is assumed to be an instance of the \lstinline{SimulationEn
 \label{sub:eventhandler_class_simappendix}
 The \lstinline{EventHandler} class provides an interface for handling events. In Python terminology, this type of a class is known as an abstract base class, and as such, it is largely devoid of any implementation; rather, it leaves the implementation of the specified member methods to its subclasses.
 
-The class provides three abstract member methods that need to be implemented by the subclass: \lstinline{self._handle_start()}, \lstinline{self._handle_stop()}, and \lstinline{self._handle_event(event)}. The implementation of the \lstinline{self._handle_start()} method should provide a routine for handling the start of a simulation (cf. line 10, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). Therefore, at the very least, it should generate the first event specific to the simulation; e.g., the first arrival event in a simulation of an M/M/1 queue. The implementation of the \lstinline{self._handle_stop()} method, on the other hand, should provide a routine for handling the stop of a simulation (cf. line 20, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). For example, it could save gathered statistics to a file. Finally, the implementation of the \lstinline{self._handle_event(event)} method should provide a routine for handling the imminent event, \lstinline{event}, that was dequeued from the event list by the \lstinline{SimulationEngine} instance (cf. line 18, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). Furthermore, it is expected that further generation of events specific to the simulation is performed within this method; e.g., generation of subsequent arrival events in a simulation of an M/M/1 queue.
+The class provides three abstract member methods that need to be implemented by the subclass: \lstinline{self.handle_start()}, \lstinline{self.handle_stop()}, and \lstinline{self.handle_event(event)}. The implementation of the \lstinline{self.handle_start()} method should provide a routine for handling the start of a simulation (cf. line 10, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). Therefore, at the very least, it should generate the first event specific to the simulation; e.g., the first arrival event in a simulation of an M/M/1 queue. The implementation of the \lstinline{self.handle_stop()} method, on the other hand, should provide a routine for handling the stop of a simulation (cf. line 20, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). For example, it could save gathered statistics to a file. Finally, the implementation of the \lstinline{self.handle_event(event)} method should provide a routine for handling the imminent event, \lstinline{event}, that was dequeued from the event list by the \lstinline{SimulationEngine} instance (cf. line 18, Listing~\ref{listing:start_member_method_simulationengine_simappendix}). Furthermore, it is expected that further generation of events specific to the simulation is performed within this method; e.g., generation of subsequent arrival events in a simulation of an M/M/1 queue.
 
 The constructor method of the \lstinline{EventHandler} class, which is depicted in Listing~\ref{listing:init_method_eventhandler_simappendix}, expects one argument: \lstinline{simulation_engine}, a reference to a \lstinline{SimulationEngine} class instance. The reference is stored for later use by any of the \lstinline{EventHandler} class subclasses via the member variable \lstinline{self._simulation_engine} (line 9, Listing~\ref{listing:init_method_eventhandler_simappendix}). Furthermore, the constructor method of the \lstinline{EventHandler} class uses the reference to register the class (and through the properties of inheritance, any of its subclasses) to receive the notifications provided by the \lstinline{SimulationEngine} class (lines 10-19).
 \begin{lstlisting}[caption=\lstinline{__init__(simulation_engine)} member method of the \lstinline{EventHandler} class, label=listing:init_method_eventhandler_simappendix]
@@ -154,13 +154,13 @@ def __init__(self, simulation_engine):
   self._simulation_engine = simulation_engine
   # Register callback functions:
   # start of the simulation
-  self._simulation_engine.register_callback(self._handle_start,
+  self._simulation_engine.register_callback(self.handle_start,
     SimulationEngine.START_CALLBACK)
   # stop of the simulation
-  self._simulation_engine.register_callback(self._handle_stop,
+  self._simulation_engine.register_callback(self.handle_stop,
     SimulationEngine.STOP_CALLBACK)
   # imminent event
-  self._simulation_engine.register_callback(self._handle_event,
+  self._simulation_engine.register_callback(self.handle_event,
     SimulationEngine.EVENT_CALLBACK)
 \end{lstlisting}
 
@@ -246,22 +246,38 @@ Let $\rho = \displaystyle\frac{\lambda}{\mu}$ denote the mean link (or system) u
 
 \subsection{MM1EventHandler Class}
 \label{sub:mm1eventhandler_class_simappendix}
+The functionality of an M/M/1 queue is provided by the \lstinline{MM1EventHandler} class. The class is a proper subclass of the \lstinline{EventHandler} class, and is responsible for handling and generating events specific to the simulation of an M/M/1 queue; that is, the arrival of a packet into the queue, and the departure of a packet from the queue. Furthermore, the class also keeps track of the number of packets in the queue at any given time, and records the delay incurred by each packet in the system (Figure~\ref{fig:mm1_queue_simappendix}).
+
+The following two properties are defined by the class:
+\begin{itemize}
+  \item \lstinline{self.interarrival_rate} stores the mean interarrival rate, $\lambda$, of packets into the system. The rate is expressed in packets per second.
+  \item \lstinline{self.service_rate} stores the mean service rate, $\mu$, of packets in the system. The rate is expressed in packets per second.
+\end{itemize}
+
+The overriden version of the \lstinline{handle_start()} member method is depicted in Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}. The method is responsible for generating the first arrival event in the simulation (line 5, Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}). Each arrival event is scheduled to occur at time
+\begin{equation*}
+  t = t_0 + \Delta t,
+\end{equation*}
+where $t_0$ is the current simulation time (in case of the first event, $t_0=0$ seconds), and $\Delta t$ is the interarrival time between two packets. As such, $\Delta t$ is a pseudo-random number drawn from the exponential distribution with rate parameter $\lambda$, where $\lambda$ is the mean interarrival rate (or \lstinline{self.interarrival_rate}).
+
 \begin{lstlisting}[caption=\lstinline{handle_start()} and \lstinline{handle_stop()} member methods of the \lstinline{MM1EventHandler} class, label=listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix]
-def _handle_start(self):
+def handle_start(self):
   """
   Overriden method
   """
   self._schedule_arrival_event(self._simulation_engine.simulation_time)
 
-def _handle_stop(self):
+def handle_stop(self):
   """
   Overriden method
   """
   self._save_statistics()
 \end{lstlisting}
 
+The overriden version of the \lstinline{handle_stop()} member method is shown in Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}. The method is responsible for saving statistics (or observed/measured variables) relevant to the objective of the simulation to a file(s) (line 11, Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}). In our case, the method saves the delays that each packet has experienced in the system.
+
 \begin{lstlisting}[caption=\lstinline{handle_event(event)} member method of the \lstinline{MM1EventHandler} class, label=listing:handle_event_method_mm1eventhandler_simappendix]
-def _handle_event(self, event):
+def handle_event(self, event):
   """
   Overriden method
   """
