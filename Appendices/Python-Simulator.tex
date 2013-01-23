@@ -254,13 +254,13 @@ The following two properties are defined by the class:
   \item \lstinline{self.service_rate} stores the mean service rate, $\mu$, of packets in the system. The rate is expressed in packets per second.
 \end{itemize}
 
-The overriden version of the \lstinline{handle_start()} member method is depicted in Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}. The method is responsible for generating the first arrival event in the simulation (line 5, Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}). Each arrival event is scheduled to occur at time
+The implementation of the overriden member method \lstinline{self.handle_start()} is depicted in Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}. The method is responsible for generating the first arrival event in the simulation (line 5, Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}). Each arrival event is scheduled to occur at time
 \begin{equation*}
   t = t_0 + \Delta t,
 \end{equation*}
 where $t_0$ is the current simulation time (in case of the first event, $t_0=0$ seconds), and $\Delta t$ is the interarrival time between two packets. As such, $\Delta t$ is a pseudo-random number drawn from the exponential distribution with rate parameter $\lambda$, where $\lambda$ is the mean interarrival rate (or \lstinline{self.interarrival_rate}).
 
-\begin{lstlisting}[caption=\lstinline{handle_start()} and \lstinline{handle_stop()} member methods of the \lstinline{MM1EventHandler} class, label=listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix]
+\begin{lstlisting}[caption=\lstinline{self.handle_start()} and \lstinline{self.handle_stop()} member methods of the \lstinline{MM1EventHandler} class, label=listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix]
 def handle_start(self):
   """
   Overriden method
@@ -274,9 +274,11 @@ def handle_stop(self):
   self._save_statistics()
 \end{lstlisting}
 
-The overriden version of the \lstinline{handle_stop()} member method is shown in Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}. The method is responsible for saving statistics (or observed/measured variables) relevant to the objective of the simulation to a file(s) (line 11, Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}). In our case, the method saves the delays that each packet has experienced in the system.
+The implementation of the overriden member method \lstinline{self.handle_stop()} is shown in Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}. The method is responsible for saving statistics (or observed/measured variables) relevant to the objective of the simulation to a file(s) (line 11, Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}). In our case, the method saves the delays that each packet has experienced in the system.
 
-\begin{lstlisting}[caption=\lstinline{handle_event(event)} member method of the \lstinline{MM1EventHandler} class, label=listing:handle_event_method_mm1eventhandler_simappendix]
+Listing~\ref{listing:handle_event_method_mm1eventhandler_simappendix} depicts the implementation of the overriden member method \lstinline{self.handle_event(event)}.
+
+\begin{lstlisting}[caption=\lstinline{self.handle_event(event)} member method of the \lstinline{MM1EventHandler} class, label=listing:handle_event_method_mm1eventhandler_simappendix]
 def handle_event(self, event):
   """
   Overriden method
@@ -300,7 +302,15 @@ def handle_event(self, event):
   if not self._is_processing and self._queue_length > 0:
     # Schedule next departure event
     self._schedule_departure_event(event.time)
+    # Set is processing flag to True
+    self._is_processing = True
 \end{lstlisting}
+
+\begin{figure}
+  \includegraphics[width=3.5in]{Appendices/Figures/mm1_handle_event}
+  \caption{Caption missing}
+  \label{fig:mm1_handle_event_simappendix}
+\end{figure}
 
 \subsection{Simulation Results and Analysis}
 \label{sub:simulation_results_and_analysis_simappendix}
