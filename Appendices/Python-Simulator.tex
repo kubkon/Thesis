@@ -250,7 +250,7 @@ The functionality of an M/M/1 queue is provided by the \lstinline{MM1EventHandle
 
 The following two properties are defined by the class:
 \begin{itemize}
-  \item \lstinline{self.interarrival_rate} stores the mean interarrival rate, $\lambda$, of packets into the system. The rate is expressed in packets per second.
+  \item \lstinline{self.interarrival_rate} stores the mean interarrival rate, $\lambda$, of packets in the system. The rate is expressed in packets per second.
   \item \lstinline{self.service_rate} stores the mean service rate, $\mu$, of packets in the system. The rate is expressed in packets per second.
 \end{itemize}
 
@@ -276,7 +276,7 @@ def handle_stop(self):
 
 The implementation of the overriden member method \lstinline{self.handle_stop()} is shown in Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}. The method is responsible for saving statistics (or observed/measured variables) relevant to the objective of the simulation to a file(s) (line 11, Listing~\ref{listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix}). In our case, the method saves the delays that each packet has experienced in the system.
 
-Listing~\ref{listing:handle_event_method_mm1eventhandler_simappendix} depicts the implementation of the overriden member method \lstinline{self.handle_event(event)}.
+Listing~\ref{listing:handle_event_method_mm1eventhandler_simappendix} depicts the implementation of the overriden member method \lstinline{self.handle_event(event)}, while Figure~\ref{fig:mm1_handle_event_simappendix} shows the logical flow of the method in the form of a flow chart.
 
 \begin{lstlisting}[caption=\lstinline{self.handle_event(event)} member method of the \lstinline{MM1EventHandler} class, label=listing:handle_event_method_mm1eventhandler_simappendix]
 def handle_event(self, event):
@@ -308,7 +308,7 @@ def handle_event(self, event):
 
 \begin{figure}
   \includegraphics[width=3.5in]{Appendices/Figures/mm1_handle_event}
-  \caption{Caption missing}
+  \caption{Flow chart of the \lstinline{self.handle_event(event)} member method of the \lstinline{MM1EventHandler} class}
   \label{fig:mm1_handle_event_simappendix}
 \end{figure}
 
