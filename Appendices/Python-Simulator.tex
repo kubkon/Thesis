@@ -231,12 +231,9 @@ Since the simulation engine is not part of any known simulation package and was 
 	\label{fig:mm1_queue_simappendix}
 \end{figure}
 
-\subsection{MM1EventHandler Class}
-\label{sub:mm1eventhandler_class_simappendix}
-
-\subsection{Simulation Results and Analysis}
-\label{sub:simulation_results_and_analysis_simappendix}
-As a quick reminder of basic queueing theory, M/M/1 queue denotes a single-server queueing system with exponential interarrival times and service times, and a FIFO queue discipline. For a proper, more in-depth treatment of queueing theory, see for example~\cite{CassandrasLafortune2008}. Let $\lambda\in\mathbb{Z}_+$ denote the mean interarrival rate, and let $\mu\in\mathbb{Z}_+$ denote the mean service rate such that $0 \le \lambda < \mu$. The steady-state mean packet delay in an M/M/1 queueing system can thus be defined as follows
+\subsection{Brief Overview of the Theory of M/M/1 Queueing}
+\label{sub:brief_overview_of_the_theory_of_mm1_queueing}
+As a quick reminder of basic queueing theory, M/M/1 queue denotes a single-server queueing system with exponential interarrival times and service times, and a FIFO queue discipline\footnote{For a proper, more in-depth treatment of queueing theory, see for example~\cite{CassandrasLafortune2008}.}. Let $\lambda\in\mathbb{Z}_+$ denote the mean interarrival rate, and let $\mu\in\mathbb{Z}_+$ denote the mean service rate such that $0 \le \lambda < \mu$. The steady-state mean packet delay in an M/M/1 queueing system can thus be defined as follows
 \begin{equation}
 	\label{eq:mm1_mean_packet_delay_simappendix}
 	T = \frac{1}{\mu - \lambda},\quad T\in\displaystyle\left[\frac{1}{\mu}, \infty\right).
@@ -246,6 +243,54 @@ Let $\rho = \displaystyle\frac{\lambda}{\mu}$ denote the mean link (or system) u
 	\label{eq:mm1_mean_packet_delay_2_simappendix}
 	T(\rho) = \frac{1}{\mu(1 - \rho)}.
 \end{equation}
+
+\subsection{MM1EventHandler Class}
+\label{sub:mm1eventhandler_class_simappendix}
+\begin{lstlisting}[caption=\lstinline{handle_start()} and \lstinline{handle_stop()} member methods of the \lstinline{MM1EventHandler} class, label=listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix]
+def _handle_start(self):
+  """
+  Overriden method
+  """
+  self._schedule_arrival_event(self._simulation_engine.simulation_time)
+
+def _handle_stop(self):
+  """
+  Overriden method
+  """
+  self._save_statistics()
+\end{lstlisting}
+
+\begin{lstlisting}[caption=\lstinline{handle_event(event)} member method of the \lstinline{MM1EventHandler} class, label=listing:handle_event_method_mm1eventhandler_simappendix]
+def _handle_event(self, event):
+  """
+  Overriden method
+  """
+  # Check event's identifier
+  if event.identifier == MM1EventHandler.ARRIVAL_EVENT:
+    # Increment the queue length
+    self._queue_length += 1
+    # Record event's arrival time (stats)
+    self._arrivals += [event.time]
+    # Schedule next arrival event
+    self._schedule_arrival_event(event.time)
+  if event.identifier == MM1EventHandler.DEPARTURE_EVENT:
+    # Decrement the queue length
+    self._queue_length -= 1
+    # Record event's departure time (stats)
+    self._departures += [event.time]
+    # Set is processing flag to False
+    self._is_processing = False
+  # Service customer if free and queue is not empty
+  if not self._is_processing and self._queue_length > 0:
+    # Schedule next departure event
+    self._schedule_departure_event(event.time)
+\end{lstlisting}
+
+\subsection{Simulation Results and Analysis}
+\label{sub:simulation_results_and_analysis_simappendix}
+The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps) and $\lambda\in\{5,10,\ldots,45\}$ pps, or equivalently $\rho\in\{0.1,0.2,\ldots,0.9\}$. The objective of the simulation was to estimate the steady-state mean packet delay, $T(\rho)$, for each value of the mean link utilization, $\rho$. To this end, for each value of $\rho$, the system was simulated for 1 hour, and a simulation run was replicated 100 times with different seeds to the pseudo-random number generator (PRNG). In all simulation runs, the buffer was initially empty; i.e., there were no packets in the queue. The output of each simulation run constituted a time-series of packet delays in the system. Since the simulation is inherently a nonterminating simulation, the estimation of the steady-state mean packet delay consisted of two steps: 1)~removal of the transient (or warm-up) response of the system, and 2)~averaging within and across the replications with transient response removed. The removal of the transient response was facilitated through the use of the Welch's method~\cite{LawChapter92007}, and for each value of $\rho$, the transient response covered approximately the initial 2000 packet delay samples.
+
+Table~\ref{tab:mm1_simulation_results_simappendix} depicts the estimated steady-state average packet delay for each value of the average link utilization, $\rho$. In all cases, the mean value of the average packet delay closely converges to the theoretical prediction; this conclusion is emphasized in Figure~\ref{fig:mm1_simulation_results_simappendix}. Furthermore, the 95\% confidence interval for the mean of average packet delay does not exceed the factor of $10^{-3}$ for any value of the average link utilization. All in all, this successfully validates the DES simulation engine.
 
 \begin{table}[p!]
 	\caption{Simulation estimated M/M/1 queue steady-state average packet delay}
@@ -272,8 +317,4 @@ Let $\rho = \displaystyle\frac{\lambda}{\mu}$ denote the mean link (or system) u
 	\caption{Comparison of M/M/1 queue simulation results with the theory}
 	\label{fig:mm1_simulation_results_simappendix}
 \end{figure}
-
-The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps), and $\lambda\in\{5,10,\ldots,45\}$ pps which is equivalent to $\rho\in\{0.1,0.2,\ldots,0.9\}$. The objective of the simulation was to estimate the steady-state mean packet delay, $T(\rho)$, for each value of the mean link utilization, $\rho$. To this end, for each value of $\rho$, the system was simulated for 1 hour, and a simulation run was replicated 100 times with different seeds to the pseudo-random number generator (PRNG). In all simulation runs, the buffer was initially empty; i.e., there were no packets in the queue. The output of each simulation run constituted a time-series of packet delays in the system. Since the simulation is inherently a nonterminating simulation, the estimation of the steady-state mean packet delay consisted of two steps: 1)~removal of the transient (or warm-up) response of the system, and 2)~averaging within and across the replications with transient response removed. The removal of the transient response was facilitated through the use of the Welch's method~\cite{LawChapter92007}, and for each value of $\rho$, the transient response covered approximately the initial 2000 packet delay samples.
-
-Table~\ref{tab:mm1_simulation_results_simappendix} depicts the estimated steady-state average packet delay for each value of the average link utilization, $\rho$. In all cases, the mean value of the average packet delay closely converges to the theoretical prediction; this conclusion is emphasized in Figure~\ref{fig:mm1_simulation_results_simappendix}. Furthermore, the 95\% confidence interval for the mean of average packet delay does not exceed the factor of $10^{-3}$ for any value of the average link utilization. All in all, this successfully validates the DES simulation engine.
 
