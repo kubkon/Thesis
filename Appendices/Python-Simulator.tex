@@ -16,7 +16,7 @@ The software is released under the MIT License, and is available for download on
 \label{sub:high_level_overview_simappendix}
 The simulator is composed of four building blocks: \lstinline{SimulationEngine} class, \lstinline{EventHandler} class, \lstinline{Event} class, and \lstinline{PRNG} class. The \lstinline{SimulationEngine} class provides all the core functionality of a DES simulator. It advances the simulation time, and implements the event list. The \lstinline{EventHandler} class is an abstract base class (or an interface), and provides an outline of the basic functionality that any proper subclass must implement. In general, it is responsible for generating and handling simulation specific events; for example, customer arrival and departure events in a simulation of an M/M/1 queue. The \lstinline{Event} class implements basic structure of a generic event used by the simulator. Finally, the \lstinline{PRNG} class provides basic pseudo-random number generation (PRNG) routines, and currently, it is a wrapper class for the Py3k \lstinline{random} module.
 
-\begin{figure}[t]
+\begin{figure}[p]
   \includegraphics[width=3in]{Appendices/Figures/simulation_flow}
   \caption{Simplified simulation flow}
   \label{fig:simulation_flow_simappendix}
@@ -258,7 +258,7 @@ The implementation of the overriden member method \lstinline{self.handle_start()
 \begin{equation*}
   t = t_0 + \Delta t,
 \end{equation*}
-where $t_0$ is the current simulation time (in case of the first event, $t_0=0$ seconds), and $\Delta t$ is the interarrival time between two packets. As such, $\Delta t$ is a pseudo-random number drawn from the exponential distribution with rate parameter $\lambda$, where $\lambda$ is the mean interarrival rate (or \lstinline{self.interarrival_rate}).
+where $t_0$ is the current simulation time (in case of the first event, $t_0=0$ seconds), and $\Delta t$ is the interarrival time between two packets. As such, $\Delta t$ is a pseudo-random number drawn from the exponential distribution with rate parameter $\lambda$, where $\lambda$ is the mean interarrival rate (or \lstinline{self.interarrival_rate})\footnote{The departure events are scheduled in a similar fashion, but with $\Delta t$ being drawn from the exponential distribution with rate parameter $\mu$, where $\mu$ is the mean service rate (or \lstinline{self.service_rate}).}.
 
 \begin{lstlisting}[caption=\lstinline{self.handle_start()} and \lstinline{self.handle_stop()} member methods of the \lstinline{MM1EventHandler} class, label=listing:handle_start_and_handle_stop_methods_mm1eventhandler_simappendix]
 def handle_start(self):
@@ -306,15 +306,19 @@ def handle_event(self, event):
     self._is_processing = True
 \end{lstlisting}
 
-\begin{figure}
+\begin{figure}[p]
   \includegraphics[width=3.5in]{Appendices/Figures/mm1_handle_event}
   \caption{Flow chart of the \lstinline{self.handle_event(event)} member method of the \lstinline{MM1EventHandler} class}
   \label{fig:mm1_handle_event_simappendix}
 \end{figure}
 
+If the identifier of the handled event corresponds to the identifier of an arrival event, then the length of the queue is incremented by 1, and the method schedules next arrival event (lines 5-8, 11-12, Listing~\ref{listing:handle_event_method_mm1eventhandler_simappendix}). Furthermore, the method records the event's time of occurrence which corresponds to the packet's arrival time and is later used to compute the delay of the packet in the system (lines 9-10). If, on the other hand, the event's idenfitier matches the identifier of a departure event, then the length of the queue is decremented by 1, and the state of the server is set to not servicing\footnote{Note that the state of the server is initialized to not servicing when an instance of the \lstinline{MM1EventHandler} class is created.} (lines 14-15, 18-19). Furthermore, the method records the event's time of occurrence which corresponds to the packet's departure time (lines 16-17).
+
+Finally, regardless of the type of the handled event, the method schedules next departure event, and sets the state of the server to servicing if the queue was not empty and the server was not busy; that is, its state was set to not servicing (lines 20-25).
+
 \subsection{Simulation Results and Analysis}
 \label{sub:simulation_results_and_analysis_simappendix}
-The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps) and $\lambda\in\{5,10,\ldots,45\}$ pps, or equivalently $\rho\in\{0.1,0.2,\ldots,0.9\}$. The objective of the simulation was to estimate the steady-state mean packet delay, $T(\rho)$, for each value of the mean link utilization, $\rho$. To this end, for each value of $\rho$, the system was simulated for 1 hour, and a simulation run was replicated 100 times with different seeds to the pseudo-random number generator (PRNG). In all simulation runs, the buffer was initially empty; i.e., there were no packets in the queue. The output of each simulation run constituted a time-series of packet delays in the system. Since the simulation is inherently a nonterminating simulation, the estimation of the steady-state mean packet delay consisted of two steps: 1)~removal of the transient (or warm-up) response of the system, and 2)~averaging within and across the replications with transient response removed. The removal of the transient response was facilitated through the use of the Welch's method~\cite{LawChapter92007}, and for each value of $\rho$, the transient response covered approximately the initial 2000 packet delay samples.
+The queueing system was simulated with the following parameters: $\mu=50$ packets per second (pps) and $\lambda\in\{5,10,\ldots,45\}$ pps, or equivalently $\rho\in\{0.1,0.2,\ldots,0.9\}$. The objective of the simulation was to estimate the steady-state mean packet delay, $T(\rho)$, for each value of the mean link utilization, $\rho$. To this end, for each value of $\rho$, the system was simulated for 1 hour, and a simulation run was replicated 100 times with different seeds to the PRNG. In all simulation runs, the buffer was initially empty; i.e., there were no packets in the queue. The output of each simulation run constituted a time-series of packet delays in the system. Since the simulation is inherently a nonterminating simulation, the estimation of the steady-state mean packet delay consisted of two steps: 1)~removal of the transient (or warm-up) response of the system, and 2)~averaging within and across the replications with transient response removed. The removal of the transient response was facilitated through the use of the Welch's method~\cite{LawChapter92007}, and for each value of $\rho$, the transient response covered approximately the initial 2000 packet delay samples.
 
 Table~\ref{tab:mm1_simulation_results_simappendix} depicts the estimated steady-state average packet delay for each value of the average link utilization, $\rho$. In all cases, the mean value of the average packet delay closely converges to the theoretical prediction; this conclusion is emphasized in Figure~\ref{fig:mm1_simulation_results_simappendix}. Furthermore, the 95\% confidence interval for the mean of average packet delay does not exceed the factor of $10^{-3}$ for any value of the average link utilization. All in all, this successfully validates the DES simulation engine.
 
