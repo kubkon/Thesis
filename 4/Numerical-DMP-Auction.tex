@@ -65,18 +65,7 @@ which leads to the system of nonlinear ordinary differential equations (ODE)
   \label{eq:foc_ode_numerical}
   \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
 \end{equation}
-for $i=1,2,\dotsc,n$, or more succintly, written in a matrix notation
-\begin{equation}
-  \label{eq:foc_ode_matrix_numerical}
-  \nabla\mathbf{\hat{c}} = \mathbf{f}\:^\intercal (\mathbf{s} - \mathbf{r}),
-\end{equation}
-where
-\begin{align*} 
-  &\mathbf{\hat{c}} = (\hat{c}_1(b),\dotsc,\hat{c}_n(b))^\intercal,\\
-  &\mathbf{f} = \left(\frac{1-F_1(\hat{c}_1(b))}{f_1(\hat{c}_1(b))},\dotsc,\frac{1-F_n(\hat{c}_n(b))}{f_n(\hat{c}_n(b))}\right)^\intercal,\\
-  &\mathbf{s} = \frac{1}{n-1}\sum_{i=1}^n\frac{1}{b-\hat{c}_i(b)}\cdot (1,\dotsc,1)^\intercal,\\
-  &\mathbf{r} = \left(\frac{1}{b-\hat{c}_1(b)},\dotsc,\frac{1}{b-\hat{c}_n(b)}\right)^\intercal.
-\end{align*}
+for $i=1,2,\dotsc,n$.
 
 \section{Summary}
 \label{sec:summary_numerical}
