@@ -74,8 +74,8 @@ Firstly, note that under the generic assumptions specified in Section~\ref{sec:p
 \label{prop:regularity_conditions_indirect}
 Let $F_i$ be the distribution function of $\hat{c}_i$ for all $i\in N$. Then,
 \begin{enumerate}
-  \item the support of $F_i$ is an interval ${[(1-w)r_i, (1-w)r_i + w]}$;
-  \item $F_i$ is differentiable over ${((1-w)r_i, (1-w)r_i + w]}$ with a derivative $f_i$ locally bounded away from zero over this interval; and
+  \item the support of $F_i$ is an interval ${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]}$;
+  \item $F_i$ is differentiable over ${(\underline{\hat{c}}_i, \bar{\hat{c}}_i]}$ with a derivative $f_i$ locally bounded away from zero over this interval; and
   \item $F_i$ is atomless.
 \end{enumerate}
 \end{proposition}
@@ -143,11 +143,33 @@ and the upper boundary condition
   \label{eq:foc_ode_upper_boundary_indirect}
   \hat{c}_i(\bar{\hat{b}}) = \bar{\hat{b}}
 \end{equation}
-for all, except possibly one, $i$ between $1$ and $n$. The boundary conditions were derived and characterized by Lebrun~\cite{Lebrun2006} (cf.~Proposition C.5 in~\cite{Lebrun2006}).
+for all, except possibly one, $i$ between $1$ and $n$. The boundary conditions were derived and characterized by Lebrun~\cite{Lebrun2006} (cf.~Proposition C.5 in~\cite{Lebrun2006}), but for completeness we will describe them below.
 
-As pointed out in Section~\ref{sub:indirect_generic_case_static}, Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}, the derivation of a closed-form solution to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} is untractable.
+Let network operator $1$ be characterized by the smallest upper extremity, and network operator $2$ be characterized by the second smallest upper extremity; that is, let $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$. The upper boundary condition in Equation~\eqref{eq:foc_ode_upper_boundary_indirect} depends on the value of the upper bound on bids which is defined as follows (cf.~Definition~1 in~\cite{Lebrun2006})
+\begin{equation}
+  \label{eq:upper_bound_bids_indirect}
+  \bar{\hat{b}} = \max\arg\max_{b\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]}(b - \bar{\hat{c}}_1)\prod_{i>1}\left( 1 - F_i(b) \right).
+\end{equation}
 
-However, even though the equilibrium exists and is unique, the establishment of a closed-form solution in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
+Note that $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$ implies $\underline{\hat{c}}_1 < \underline{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$. Let $J$ be the subset of $N$ such that (cf.~Definition~2 in~\cite{Lebrun2006})
+\begin{equation*}
+  J = \left\{j \middle\vert 1\leq j\leq n \text{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
+\end{equation*}
+$\hat{c}(\underline{\hat{b}})$ is defined as follows (cf.~Definition~3 in~\cite{Lebrun2006})
+\begin{equation}
+  \label{eq:lower_bound_bids_cost_indirect}
+  \hat{c}(\underline{\hat{b}}) = \underline{\hat{b}} + \sfrac{\left(k(\underline{\hat{b}})-1\right)}{\left(\sum_{i=1}^{k(\underline{\hat{b}})} \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}\right)}
+\end{equation}
+for all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, where $k(\underline{\hat{b}})\in\{2,\dotsc,n\}$ such that $\underline{\hat{c}}_{k(\underline{\hat{b}})} < \underline{\hat{b}}$ and
+\begin{equation*}
+  \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i} \leq\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})}},
+\end{equation*}
+and if $\underline{\hat{b}} < \underline{\hat{c}}_{k(\underline{\hat{b}})+1}$
+\begin{equation*}
+  \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})+1}}\leq\frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}.
+\end{equation*}
+
+Recapping, Lebrun~\cite{Lebrun2006} showed that there exists a unique $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, and hence, that there exists a unique solution to the system of ODEs defined in Equation~\eqref{eq:foc_ode_indirect} with boundary conditions defined in Equations~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect}. However, the establishment of a closed-form solution to the system of ODEs in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
 % section indirect_generic_case (end)
 
 \section{Restricted Case $n=2$} % (fold)
@@ -271,10 +293,29 @@ for all $c_i\in[0,1]$, and
 for all $c_j\in[0,1]$.
 Keeping costs and reputation ratings fixed, one can then estimate the equilibrium bidding strategy functions with respect to the price weights by sliding the value of $w\in(0,1)$.
 
-By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:pcomp_direct}. Figure~\ref{fig:indirect_bids_indirect} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:indirect_prices_indirect} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:pcomp_direct} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:indirect_bids_indirect}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:indirect_bids_indirect}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w_c < w < 1$, while network operator 1 for the values of $0 < w < w_c$.
+\begin{table}[t]
+  \caption{An exemplary set of cost-reputation pairs of two network operators}
+  \vspace{0.5cm}
+  \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
+    \hlx{vhv}
+    & \textbf{Cost}, $c_i$ & \textbf{Reputation rating}, $r_i$\\
+    \hlx{vhv}
+    \textbf{Network operator 1} & $0.75$ & $0.25$\\
+    \textbf{Network operator 2} & $0.25$ & $0.75$\\
+    \hlx{vhs}
+  \end{tabular*}
+  \label{tab:example_indirect}
+\end{table}
+
+By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:example_indirect}. Figure~\ref{fig:indirect_bids_indirect} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:indirect_prices_indirect} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:example_indirect} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:indirect_bids_indirect}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:indirect_bids_indirect}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w_c < w < 1$, while network operator 1 for the values of $0 < w < w_c$.
 
 Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (Figure~\ref{fig:indirect_prices_indirect}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0_direct}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1_direct}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
-% section indirect_restricted_case_n_2_ (end)
+% section restricted_case_n_2_indirect (end)
+
+\section{Numerical Solution} % (fold)
+\label{sec:numerical_solution}
+
+% section numerical_solution (end)
 
 \section{Discussion} % (fold)
 \label{sec:discussion_indirect}
