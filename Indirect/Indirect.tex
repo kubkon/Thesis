@@ -51,18 +51,19 @@ In order to avoid ambiguity, we shall refer to $\hat{c}_i$ as costs-hat and $\ha
 
 As a result of this transformation, the costs-hat, $\hat{c}_i$, for each network operator $i$ are distributed over the interval
 \begin{equation*}
-  \hat{c}_i\in [(1-w)r_i, (1-w)r_i + w]
+  \hat{c}_i\in [(1-w)r_i, (1-w)r_i + w]\equiv [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
 \end{equation*}
 since $c_i\in [0,1]$ for all $i\in N$. Note, moreover, that for all $i\in N$
 \begin{equation*}
-  [(1-w)r_i, (1-w)r_i + w] \subset [0,1]
+  [\underline{\hat{c}}_i, \bar{\hat{c}}_i] \subset [0,1]
 \end{equation*}
 since $w\in (0,1)$ and $r_i\in [0,1]$, and in particular, if $w=1$
 \begin{equation*}
-  [(1-w)r_i, (1-w)r_i + w] = [0,1].
+  [\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [0,1].
 \end{equation*}
+Therefore, in terms of costs-hat, the network operators are \emph{ex ante} asymmetric; that is, due to differing domains of costs-hat between the network operators, the probability distributions will have differing supports.
 
-With these results at hand, we can proceed with the analysis of the game.
+With these results at hand, we can proceed with the analysis of the auction.
 
 \section{Generic Case} % (fold)
 \label{sec:generic_case_indirect}
@@ -88,6 +89,63 @@ $\quad$\\
   \item the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs is unique.
 \end{enumerate}
 \end{proposition}
+
+Elaborating further, in equilibrium, the bids of each network operator equal $\hat{b}_i = \hat{b}_i(\hat{c}_i)$, where $\hat{b}_i$ is the equilibrium bidding function. Denote by $\hat{c}_i(\hat{b}_i)\equiv \hat{b}_i^{-1}(\hat{b}_i)$ an inverse equilibrium bidding function for each network operator $i\in N$. Therefore, the expected utility for each network operator $i\in N$ can be written as
+\begin{align*}
+  \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i})
+  &\equiv (\hat{b}_i - \hat{c}_i)P\{\text{winning}\mid\hat{b}_i\}\\
+  &= (\hat{b}_i - \hat{c}_i)Q_i(\hat{b}_i),
+\end{align*}
+where
+\begin{equation*}
+Q_i(\hat{b}_i) = \prod_{j\neq i}\left( 1 - F_j(\hat{c}_j(\hat{b}_i)) \right)
+\end{equation*}
+is the probability that network operator $i$ is the lowest bidder.
+
+The first order condition for maximizing network operator $i$'s expected utility is
+\begin{equation}
+  \label{eq:foc_indirect}
+  \frac{d}{d\hat{b}_i}\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = Q_i(\hat{b}_i) + (\hat{b}_i - \hat{c}_i)\cdot\frac{d}{d\hat{b}_i}Q_i(\hat{b}_i) = 0,
+\end{equation}
+where
+\begin{equation*}
+  \frac{d}{d\hat{b}_i}Q_i(\hat{b}_i) = (-1)\sum_{j\neq i} f_j(\hat{c}_j(\hat{b}_i))\frac{d}{d\hat{b}_i}\hat{c}_j(\hat{b}_i)\prod_{k\neq j} \left( 1 - F_k(\hat{c}_k(\hat{b}_i)) \right).
+\end{equation*}
+
+Noting that in equilibrium $\hat{c}_i = \hat{c}_i(\hat{b}_i)$, letting $\hat{b}_i = b$, and rearranging terms in Equation~\eqref{eq:foc_indirect} yields
+\begin{align}
+  \label{eq:foc_simplified_indirect}
+  \frac{1}{b - \hat{c}_i(b)} 
+  &= \frac{\sum_{j\neq i} f_j(\hat{c}_j(b))\frac{d}{db}\hat{c}_j(b)\prod_{k\neq j} \left( 1 - F_k(\hat{c}_k(b)) \right)}{\prod_{j\neq i} \left( 1 - F_j(\hat{c}_j(b)) \right)}\nonumber \\[2ex]
+  &= \sum_{j\neq i}\frac{f_j(\hat{c}_j(b))}{1 - F_j(\hat{c}_j(b))}\cdot\frac{d}{db}\hat{c}_j(b).
+\end{align}
+Summing Equation~\eqref{eq:foc_simplified_indirect} over all $n$ network operators yields
+\begin{equation}
+  \label{eq:foc_summed_indirect}
+  \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b - \hat{c}_i(b)} = \sum_{i=1}^n \frac{f_i(\hat{c}_i(b))}{1 - F_i(\hat{c}_i(b))}\cdot\frac{d}{db}\hat{c}_i(b).
+\end{equation}
+Subtracting Equation~\eqref{eq:foc_simplified_indirect} from \eqref{eq:foc_summed_indirect} yields 
+\begin{equation*}
+  \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b - \hat{c}_i(b)} - \frac{1}{b - \hat{c}_i(b)} = \frac{f_i(\hat{c}_i(b))}{1 - F_i(\hat{c}_i(b))}\cdot\frac{d}{db}\hat{c}_i(b)
+\end{equation*}
+which leads to the system of nonlinear ordinary differential equations (ODE)
+\begin{equation}
+  \label{eq:foc_ode_indirect}
+  \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
+\end{equation}
+for $i=1,2,\dotsc,n$, with the following lower boundary condition
+\begin{equation}
+  \label{eq:foc_ode_lower_boundary_indirect}
+  \hat{c}_i(\underline{\hat{b}}) = \min\left\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\right\} \quad\text{for all }i\in J
+\end{equation}
+and the upper boundary condition
+\begin{equation}
+  \label{eq:foc_ode_upper_boundary_indirect}
+  \hat{c}_i(\bar{\hat{b}}) = \bar{\hat{b}}
+\end{equation}
+for all, except possibly one, $i$ between $1$ and $n$. The boundary conditions were derived and characterized by Lebrun~\cite{Lebrun2006} (cf.~Proposition C.5 in~\cite{Lebrun2006}).
+
+As pointed out in Section~\ref{sub:indirect_generic_case_static}, Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}, the derivation of a closed-form solution to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} is untractable.
 
 However, even though the equilibrium exists and is unique, the establishment of a closed-form solution in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
 % section indirect_generic_case (end)
@@ -264,68 +322,6 @@ It can be observed that regardless of the values of the reputation ratings, the 
 Furthermore, as the difference $(r_j-r_i)$ increases, the expected prices, $E[p](w,r_i,r_j)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Therefore, it can be hypothesized that the smaller the difference $(r_j-r_i)$, the less (expected) price sensitive the price weight; that is, for any $w_1\in[0,1]$, if $(r^2_j-r^2_i) > (r^1_j-r^1_i)$ for all $r^1_i,r^1_j,r^2_i,r^2_j\in [0,1]$, then $E[p](w_1,r^2_i,r^2_j) \ge E[p](w_1,r^1_i,r^1_j)$ (Figure~\ref{fig:expected_prices_sensitivity_indirect}). In other words, for any expected price, as the difference $(r_j-r_i)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed.
 % subsection subscriber_s_perspective_expected_prices_in_restricted_case (end)
 % section discussion (end)
-
-\section{Bidding Problem Revisited}
-\label{sec:bidding_problem_revisited_numerical}
-Recall the transformed utility function of each network operator $i\in N$
-\begin{equation*}
-  u_i(\hat{b},\hat{c}) = \left\{
-  \begin{array}{l l}
-    \displaystyle\frac{1}{w}\left(\hat{b}_i-\hat{c}_i\right) & \;\text{if } \hat{b}_i < \displaystyle\min_{j\neq i}\hat{b}_j,\\[2ex]
-    0 & \;\text{if } \hat{b}_i > \displaystyle\min_{j\neq i}\hat{b}_j,
-  \end{array}\right.
-\end{equation*}
-where $w\neq 0$, and
-\begin{equation*}
-  \hat{b}_i = wb_i + (1-w)r_i, \quad\text{and}\quad \hat{c}_i = wc_i + (1-w)r_i.
-\end{equation*}
-In equilibrium, the bids of each network operator equal $\hat{b_i} = \hat{b}_i(\hat{c}_i)$, where $\hat{b}_i$ is the equilibrium bidding function. Denote by $\hat{c}_i(\hat{b}_i)\equiv \hat{b}_i^{-1}(\hat{b}_i)$ an inverse equilibrium bidding function for each network operator $i\in N$. Therefore, the expected utility for each network operator $i\in N$ can be written as
-\begin{align*}
-  \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i})
-  &\equiv (\hat{b}_i - \hat{c}_i)P\{\text{winning}\mid\hat{b}_i\}\\
-  &= (\hat{b}_i - \hat{c}_i)Q_i(\hat{b}_i),
-\end{align*}
-where
-\begin{equation*}
-Q_i(\hat{b}_i) = \prod_{j\neq i}\left( 1 - F_j(\hat{c}_j(\hat{b}_i)) \right)
-\end{equation*}
-is the probability that network operator $i$ is the lowest bidder, and $F_j$ is the distribution function of $\hat{c}_j$.
-
-The first order condition for maximizing network operator $i$'s expected utility is
-\begin{equation}
-  \label{eq:foc_numerical}
-  \frac{d}{d\hat{b}_i}\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = Q_i(\hat{b}_i) + (\hat{b}_i - \hat{c}_i)\cdot\frac{d}{d\hat{b}_i}Q_i(\hat{b}_i) = 0,
-\end{equation}
-where
-\begin{equation*}
-  \frac{d}{d\hat{b}_i}Q_i(\hat{b}_i) = (-1)\sum_{j\neq i} f_j(\hat{c}_j(\hat{b}_i))\frac{d}{d\hat{b}_i}\hat{c}_j(\hat{b}_i)\prod_{k\neq j} \left( 1 - F_k(\hat{c}_k(\hat{b}_i)) \right),
-\end{equation*}
-and $f_j\equiv\frac{d}{dx}F_j$ (where $x$ is a dummy variable) is the density function of $\hat{c}_j$.
-
-Noting that in equilibrium $\hat{c}_i = \hat{c}_i(\hat{b}_i)$, letting $\hat{b}_i = b$, and rearranging terms in Equation~\eqref{eq:foc_numerical} yields
-\begin{align}
-  \label{eq:foc_simplified_numerical}
-  \frac{1}{b - \hat{c}_i(b)} 
-  &= \frac{\sum_{j\neq i} f_j(\hat{c}_j(b))\frac{d}{db}\hat{c}_j(b)\prod_{k\neq j} \left( 1 - F_k(\hat{c}_k(b)) \right)}{\prod_{j\neq i} \left( 1 - F_j(\hat{c}_j(b)) \right)}\nonumber \\[2ex]
-  &= \sum_{j\neq i}\frac{f_j(\hat{c}_j(b))}{1 - F_j(\hat{c}_j(b))}\cdot\frac{d}{db}\hat{c}_j(b).
-\end{align}
-Summing Equation~\eqref{eq:foc_simplified_numerical} over all $n$ network operators yields
-\begin{equation}
-  \label{eq:foc_summed_numerical}
-  \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b - \hat{c}_i(b)} = \sum_{i=1}^n \frac{f_i(\hat{c}_i(b))}{1 - F_i(\hat{c}_i(b))}\cdot\frac{d}{db}\hat{c}_i(b).
-\end{equation}
-Subtracting Equation~\eqref{eq:foc_simplified_numerical} from \eqref{eq:foc_summed_numerical} yields 
-\begin{equation*}
-  \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b - \hat{c}_i(b)} - \frac{1}{b - \hat{c}_i(b)} = \frac{f_i(\hat{c}_i(b))}{1 - F_i(\hat{c}_i(b))}\cdot\frac{d}{db}\hat{c}_i(b)
-\end{equation*}
-which leads to the system of nonlinear ordinary differential equations (ODE)
-\begin{equation}
-  \label{eq:foc_ode_numerical}
-  \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
-\end{equation}
-for $i=1,2,\dotsc,n$.
-
-As pointed out in Section~\ref{sub:indirect_generic_case_static}, Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}, the derivation of a closed-form solution to the system of ODEs in Equation~\eqref{eq:foc_ode_numerical} is untractable.
 
 \section{Summary}
 \label{sec:summary_indirect}
