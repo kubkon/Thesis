@@ -26,7 +26,7 @@ In the course of the simulation, the following performance measures are gathered
 	\item the number of secured auctions (or service requests) by each network operator---an indicator of the market share between network operators over time.
 \end{itemize}
 
-It is further assumed that there are two network operators competing in the DMP. This allows for the use of the equilibrium bidding strategy functions derived in Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}. The subscribers (and  hence, the price weights and service types) are pseudo-randomly generated.
+It is further assumed that there are two network operators competing in the DMP. This allows for the use of the equilibrium bidding strategy functions derived in Chapter~\ref{cha:indirect}. The subscribers (and  hence, the price weights and service types) are pseudo-randomly generated.
 
 \subsection{Bidder Class}
 \label{sub:bidder_class_dmappendix}
@@ -55,7 +55,7 @@ The total available bit-rate has to be manually specified before each simulation
 
 The subscriber success report list is updated automatically as the simulation progresses according to Equation~\eqref{eq:def_users_satisfaction_bandwidth_dynamic}. Therefore, if the available bit-rate of the network operator exceeds the required bit-rate of the service, the subscriber is satisfied, and $\sigma_k^j = 1$ is stored in the subscriber success report list. Otherwise, $\sigma_k^j = 0$ is stored.
 
-The Bidder class, by default, assumes that network operators bid myopically; that is, they treat each auction as a one-shot event, and hence, they neglect past as well as future interactions with the other network operators. Although in reality they are likely to bid in a more sophisticated fashion, it is a valid starting point especially in the case of two competing network operators since the analytical solution to a problem of two competing network operators in a one-shot DMP auction exists (see Section~\ref{sec:indirect_approach_static}, Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}). 
+The Bidder class, by default, assumes that network operators bid myopically; that is, they treat each auction as a one-shot event, and hence, they neglect past as well as future interactions with the other network operators. Although in reality they are likely to bid in a more sophisticated fashion, it is a valid starting point especially in the case of two competing network operators since the analytical solution to a problem of two competing network operators in a one-shot DMP auction exists (see Chapter~\ref{cha:indirect}). 
 
 The Bidder and the DMEventHandler classes interface according to the following sequence:
 \begin{enumerate}

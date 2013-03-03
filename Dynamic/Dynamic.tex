@@ -1,6 +1,6 @@
 %!TEX root = /Users/jakubkonka/Thesis/Thesis.tex
-\chapter{Dynamics of Network Selection in the Digital Marketplace} % (fold)
-\label{cha:dynamics_of_network_selection_in_the_digital_marketplace}
+\chapter{Dynamic Analysis of Network Selection Mechanism} % (fold)
+\label{cha:dynamic}
 
 \minitoc
 \vspace{10mm}
@@ -61,7 +61,7 @@ Let $\mathds{1}^j_i$ be an indicator variable for network operator $j$ when serv
     0 &\text{otherwise},
   \end{array}\right.
 \end{equation}
-where $\beta$ is defined as in Equation~\eqref{eq:def_beta_static}; that is,
+where $\beta$ is defined as in Equation~\eqref{eq:def_beta_direct}; that is,
 \begin{equation}
   \label{eq:def_beta_dynamic}
   \beta(s^w_i,b^j_i,r^j_i) = s^w_i b^j_i + (1-s^w_i) r^j_i \quad\text{for all } i=1,\ldots,M \text{ and }j\in N.
@@ -72,7 +72,7 @@ In other words, $\mathds{1}^j_i = 1$ if network operator $j$ secures the service
   u^j_i = \left(b^j_i - c^j_i\right)\mathds{1}^j_i = \left(b^j_i - c^j_i(s_i, z^j_i)\right)\mathds{1}^j_i \quad\text{for all }i,j.
 \end{equation}
 
-Note that when considering a single-stage auction game (see Chapter~\ref{cha:network_selection_mechanism_in_the_digital_marketplace}), the solution to a bidding behavior problem was obtained only in a restricted setting; that is, the number of network operators was restricted to two, and costs were drawn from a uniform distribution over the interval $[0,1]$. The problem was intractable for more than two competing network operators due to the fact that the network operators were asymmetrical. With the added layer of complexity of repeated interactions between the network operators, the problem becomes intractable even in the case of only two network operators, and uniformly distributed costs over the interval $[0,1]$. As described above, the cost of a network operator may vary over time; hence, the problem can be treated as a problem of sequential auctions with bidders with multiunit demand/supply curves, and as explained by Krishna~\cite{Krishna10} and Figliozzi~\emph{et al.}~\cite{FigliozziJaillet2008} this class of problems remains intractable.
+Note that when considering a single-stage auction game, the solution to a bidding behavior problem was obtained only in a restricted setting; that is, the number of network operators was restricted to two, and costs were drawn from a uniform distribution over the interval $[0,1]$. The problem was intractable for more than two competing network operators due to the fact that the network operators were asymmetrical. With the added layer of complexity of repeated interactions between the network operators, the problem becomes intractable even in the case of only two network operators, and uniformly distributed costs over the interval $[0,1]$. As described above, the cost of a network operator may vary over time; hence, the problem can be treated as a problem of sequential auctions with bidders with multiunit demand/supply curves, and as explained by Krishna~\cite{Krishna10} and Figliozzi~\emph{et al.}~\cite{FigliozziJaillet2008} this class of problems remains intractable.
 % section mathematical_description (end)
 
 \section{Simulation Scenarios and Analysis} % (fold)
