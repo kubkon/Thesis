@@ -5,175 +5,6 @@
 \minitoc
 \vspace{10mm}
 
-The world of mobile and wireless communications is becoming increasingly diverse in terms of different wireless access technologies available: in addition to the already established family of technologies (GSM, 3G, and WiFi), the cutting-edge 4G technology, LTE, is gradually being rolled out in many countries including the USA \cite{VerizonLTEUSA}, or is actively being tested for the eventual implementation in the near future in countries such as the UK \cite{BBCLTEUK}. In an environment of such diversity and heterogeneity, where each wireless access technology has its own distinct characteristics, network selection mechanisms provide a more resource efficient way of handling communications services by matching the services' required quality with the characteristics of a particular access technology \cite{HossainBeaubrun09, HossainTalebiFard09}. The importance of such mechanisms is further emphasized by the fact that multimode devices such as smartphones (iPhones, Android phones, BlackBerry phones) and tablets (iPads, Android tablets) currently dominate the market enabling users to connect to many of the available wireless access technologies, including WiFi and 3G.
-
-This diversity combined with the availability of smartphones opens exciting, new possibilities in both the technological and economic sense. The exclusive one-to-one mapping between network operators and subscribers need no longer hold; when requesting a service (e.g., phone call, web browsing, email), the network selection mechanism will be responsible for selecting the network operator and the access technology that best matches the quality requirements of the service. From the subscribers' perspective, this will lead to the ability to seamlessly connect at any time, at any place, and to the technology offering the most optimal quality available for the best price: a paradigm referred to as \emph{Always Best Connected} \cite{ABC03}. From the network operators' perspective, the integration of wireless access technologies will allow for more efficient usage of network resources, and might be the most economic way of providing both universal coverage, and broadband access \cite{HossainBeaubrun09}.
-
-However, there also exists the possibility of a `tussle' since there are many different actors with opposing interests involved \cite{Clark02}. For example, it is in the best interest of subscribers to obtain the highest quality of the service for the lowest price. Network operators, on the other hand, aim to maximize their profit by performing efficient load balancing. Furthermore, the situation may become even more complex should the service provision be separated from the network operators; that is, if the service provision is handled by a separate entity, service provider, while network operators are left with handling of the transport provision \cite{DMBushTussle09}. Therefore, the problem of network selection, which was considered to be technologically difficult, can also be considered to be the problem of economics where communications services, traded on a per service basis, are the electronic goods that are sold to the subscribers.
-
-In this research, we analyze the network selection mechanism proposed in the Digital Marketplace---a market-based framework where network operators compete in a procurement auction-based setting for the right to transport the subscriber's requested service over their infrastructure \cite{DMLeBodic00}. Within this framework, the network selection mechanism is akin to a market selling mechanism where network operators assume the role of the sellers/bidders\footnote{Henceforth, sellers and bidders are used interchangeably unless stated otherwise.} and subscribers are the buyers of the transport services offered by the network operators. In this way, the Digital Marketplace strives to address the tussle between the actors involved, and thus, attempts to address both technological as well as economic constraints of the problem.
-
-We create a simple economic model of the auction, and characterize the equilibrium under generic assumptions about the costs distributions of the network operators. Furthermore, the equilibrium is explicitly derived under more specific assumptions about the model; that is, two network operators and costs drawn from uniform distributions. In this case, we also analyze how the buyer can influence the bidding process in order to choose the network operator who matches their preferences about the service; for example, trading off quality for a lower price.
-
-The rest of this chapter is organized as follows.
-
-\section{Related Literature} % (fold)
-\label{sec:related_literature_direct}
-Over the last decade, several papers have explored the problem of intelligent network selection in heterogeneous wireless access networks. Antoniou et al., and Charlias et al.~model the problem as a noncooperative game between wireless access networks with the aim of obtaining the best possible trade-off between the efficiency and the available capacity of networks, while, at the same time, satisfying the requested quality by the subscribers \cite{Antoniou07, Charilas08}. Ormond et al.~propose an algorithm for cost-oriented and performance-aware network selection that maximizes consumer surplus \cite{OrmondCS106, OrmondCS206}. Niyato et al.~propose two algorithms based on evolutionary game theory for a network selection mechanism which performs intelligent load balancing so that network congestion and performance degradation can be avoided \cite{Niyato09}. Additionally, the same authors model the user churning behavior in heterogeneous wireless access networks using evolutionary game theory \cite{NiyatoHossainConf2008}. Khan et al.~model the problem as a procurement second-price sealed-bid auction where network operators bid for the right to service the subscriber's request \cite{Khan110, Khan210}. Zhu et al.~build upon the work reported in~\cite{Niyato09}, and explore the dynamics of network selection, using Bayesian evolutionary game theory, in an environment where subscribers have only limited (incomplete) information about each others preferences \cite{ZhuNiyato2010}. Finally, Irvine et al.~propose a market-based framework called the Digital Marketplace where network operators compete in a variant of a procurement first-price sealed-bid auction for the right to transport the subscriber's requested service over their infrastructure \cite{DMLeBodic00, DMIrvine01, DMIrvine02}.
-% section related_literature (end)
-
-\section{The Digital Marketplace} % (fold)
-\label{sec:the_digital_marketplace_direct}
-The Digital Marketplace (DMP) is a market-based framework for trading wireless communications services. In its simplest form, there are four main groups of actors involved in the operation of the DMP: \emph{subscribers}, \emph{service providers}, \emph{network operators}, and \emph{market provider}. The subscribers are the end-users of the communications services. Furthermore, they can interact with the network operators either directly or through the service provider. In the former case, they act as the buyer in the DMP, and directly negotiate with the interested network operators. In the latter case, on the other hand, the service provider acts as an intermediary between the subscribers and the network operators, and hence, acts as the buyer during the negotiation process. Lastly, the market provider is tasked with operating the DMP; thus providing common platform for all actors involved. It is left open-ended who should be the market provider; however, one of the following three choices is the most likely: a regulatory body, a consortium of network operators, or a single network operator on behalf of the regulatory body \cite{DMIrvine02}.
-
-The process of negotiation (or the network selection mechanism) in the DMP is based on a procurement first-price sealed-bid auction where the network operators represent the sellers/sellers, and the subscriber or the service provider is the buyer. Unlike in a standard procurement first-price sealed-bid auction, the winning bid is a weighted (convex) combination of both the network operator's monetary bid and their reputation rating; we will refer to it as the \emph{compound bid}. The network operator is elected as the winner of the auction if their compound bid is the lowest in value, and accrues their monetary bid minus the cost of transporting the service. The monetary bid is equivalent to the price of transporting the service by the network operator. The precise definition of the price is left open-ended; one possibility, for example, would be to charge the buyer per unit of bandwidth. The weights in the compound bid are set by the buyer before each auction, and are announced to the network operators. This effectively gives the buyer the freedom to choose any combination ranging from: a low price for the service but also poor quality; to a high quality but for a high price \cite{DMLeBodic00}.
-
-Since the communications services are traded on an individual service level, it might be difficult for the buyer to judge the overall quality of the services supplied by a particular network operator \cite{DMIrvine02}. Therefore, the DMP maintains a reputation rating for each network operator. The reputation rating is directly proportional to the number of services that have prematurely been decommitted in the past by the respective network operator; i.e., the lower the number of the decommitted service requests, the lower the reputation rating \cite{DMLeBodic00}. The reputation of the respective network operator, on the other hand, is inversely proportional to the reputation rating; i.e., the lower the rating, the higher the reputation.
-
-Although the DMP was developed when GSM was widespread and 3G was in its infancy, it can still be adapted to the current scenario where we witness the domination of packet-switched data communications over the traditional circuit-switched cellular telephony \cite{Ericsson2011}.
-% section the_digital_marketplace (end)
-
-\section{Notation and Preliminaries} % (fold)
-\label{sec:notation_and_preliminaries_direct}
-The following notation and concepts are assumed throughout the rest of this chapter.
-
-\subsection{Set Theory} % (fold)
-\label{sub:notation_set_theory_direct}
-Let $A$ be a set defined using the following notation $A = \{x: \mathcal{P}x\}$. This notation is referred to as \emph{set-builder notation} and, in this particular example, the unique set $A$ consists of all $x$ such that the condition $\mathcal{P}x$ is satisfied \cite{Carter2001}. A more concrete example: $B = \{x\in\mathbb{R}: x\ge 0\}$. Here, $B$ is the subset of the real line consisting of all non-negative real numbers; i.e., $B=\mathbb{R}_+$.
-
-Let $f: X\to Y$ be a one-to-one and onto function. Then we call $f$ invertible and denote the inverse of $f$ as $f^{-1}$ with the property that for all $x\in X$ and $y\in Y$, $f(x) = y$ and $f^{-1}(y) = x$.
-% subsection set_theory (end)
-
-\subsection{Probability Theory and Statistics} % (fold)
-\label{sub:notation_probability_direct}
-Let $X$ denote a continuous random variable (r.v.) with the support $[a, b]$, where $a < b$ and $a, b \in\nobreak\mathbb{R}$. By $F_{X}$ we mean a cumulative distribution function of the $X$ r.v.; therefore, for any $x\in\mathbb{R}$, $F_{X}(x) = P\{X \le x\}$, where $P\{X\le x\}$ denotes the probability of the event such that $X\le x$. If $F_{X}$ admits a density function, it shall be denoted by $f_{X} \equiv \frac{d}{dx}F_{X}$. If it is clear from the context which variable is considered random, we shall drop the subscript; that is, $F_{X}\equiv F$.
-
-The expected value of $X$, denoted by $E[X]$, is defined as $E[X] = \int_{-\infty}^{\infty} xdF(x)$. Similarly, if $u$ is a function of $X$, then the expected value of $u(X)$ is defined as $E[u(X)] = \int_{-\infty}^{\infty} u(x)dF(x)$.
-
-Let $X_1, \ldots, X_n$ be independent continuous r.v.s with distribution function $F$ and density function $f\equiv \frac{d}{dx}F$. If we let $X_{i:n}$ denote the $i$th smallest of these r.v.s, then $X_{1:n}, \ldots,X_{n:n}$ are called the \emph{order statistics} \cite{Arnold08,David03}. In the event that the r.v.s are independently and identically distributed (i.i.d.), the distribution of $X_{i:n}$ is
-\begin{equation}
-	\label{eq:iid_cdf_direct}
-	F_{X_{i:n}}(x) = \sum_{k=i}^{n} \binom{n}{k} (F(x))^k (1-F(x))^{n-k},
-\end{equation}
-while the density of $X_{i:n}$ can be obtained by differentiating Equation~\eqref{eq:iid_cdf_direct} with respect to $x$ \cite{Ross10}. Hence,
-\begin{equation}
-	\label{eq:iid_pdf_direct}
-	f_{X_{i:n}}(x) = \frac{n!}{(n-i)!(i-1)!} f(x) (F(x))^{i-1} (1-F(x))^{n-i}.
-\end{equation}
-
-Let $X_1,\ldots,X_n$ be i.i.d.~r.v.s with finite mean $\mu$. Let
-\begin{equation*}
-  \bar{X}(n) = \frac{\sum_{i=1}^n X_i}{n}.
-\end{equation*}
-Then, for sufficiently large $n$, $\bar{X}(n)$ provides a reasonable approximation of $\mu$ \cite{LawChapter42007}. This result is known as the Strong Law of Large Numbers,
-\begin{thm}[Strong Law of Large Numbers]
-$\bar{X}(n)\rightarrow\mu$ with probability $1$ as $n\rightarrow\infty$.
-\end{thm}
-The proof of this theorem can be found in Chung's ``A Course in Probability Theory'' \cite{Chung2001}.
-% subsection notation_probability (end)
-
-\subsection{Optimization Theory} % (fold)
-\label{sub:notation_optimisation_theory_direct}
-The following theorem on nonlinear constrained optimization will also be used in this chapter.
-\begin{thm}[Karush-Kuhn-Tucker Conditions]
-Let $f:\mathbb{R}^n\to\mathbb{R}$ be a concave function, $g_i:\mathbb{R}^n\to\mathbb{R}$ be convex functions for $i=1,\ldots,m$, and $h_j:\mathbb{R}^n\to\mathbb{R}$ be affine functions for $j=1,\ldots,l$. Then $\mathbf{x}^*\in\mathbb{R}^n$ is an optimal point for the following optimization problem:
-\begin{equation*}
-	\left\{
-	\begin{array}{rl}
-		\max &f(x_1,\ldots,x_n)\\
-		\text{subject to} &g_1(x_1,\ldots,x_n)\le 0\\
-		& \vdots\\
-		&g_m(x_1,\ldots,x_n)\le 0\\
-		&h_1(x_1,\ldots,x_n) = 0\\
-		& \vdots\\
-		&h_l(x_1,\ldots,x_n) = 0
-	\end{array}
-	\right.
-\end{equation*}
-if and only if there exist unique multipliers $\bm{\lambda}=(\lambda_1,\ldots,\lambda_m)\ge 0$ and $\bm{\mu}=(\mu_1,\ldots,\mu_l)\in\mathbb{R}$ such that the Lagrangian
-\begin{equation*}
-	L(\mathbf{x},\bm{\lambda},\bm{\mu}) = f(\mathbf{x}) - \sum_{i=1}^m\lambda_i g_i(\mathbf{x}) - \sum_{j=1}^l\mu_j h_j(\mathbf{x})
-\end{equation*}
-is stationary at $(\mathbf{x}^*,\bm{\lambda},\bm{\mu})$, that is,
-\begin{equation*}
-	\nabla L(\mathbf{x}^*,\bm{\lambda},\bm{\mu}) = \nabla f(\mathbf{x}^*) - \sum_{i=1}^m\lambda_i \nabla g_i(\mathbf{x}^*) - \sum_{j=1}^l\mu_j \nabla h_j(\mathbf{x}^*) = \mathbf{0},
-\end{equation*}
-and satisfies the complementary slackness conditions
-\begin{equation*}
-	\lambda_i g_i(\mathbf{x}^*)=0 \quad\text{for } i=1,\ldots,m.
-\end{equation*}
-\end{thm}
-\noindent The proof of this theorem can be found in any literature discussing mathematical optimization theory such as Carter's ``Foundations of Mathematical Economics'' \cite{Carter2001}.
-% subsection notation_optimisation_theory (end)
-
-\subsection{Theory of Games with Incomplete Information} % (fold)
-\label{sub:notation_theory_of_games_with_incomplete_information_direct}
-Let $\Gamma^B = [N, \{S_i\}, \{u_i\},\Theta,F]$ be a \emph{Bayesian game with incomplete information}. Formally, in this type of games, each player $i\in N$ has a utility function $u_i(s_i, s_{-i}, \theta_i)$, where $s_i\in S_i$ denotes player $i$'s action, $s_{-i}\in S_{-i} = \vartimes_{j\neq i}S_j$ denotes actions of all other players different from $i$, and $\theta_i\in\Theta_i$ represents the type of player $i$. Letting $\Theta = \vartimes_{i\in N} \Theta_i$, the joint probability distribution of the $\theta\in\Theta$ is given by $F(\theta)$, which is assumed to be common knowledge among the players\footnote{For more in-depth treatment of the theory of games see for example \cite{Myerson97, Gibbons92, MicroTheory}.}.
-
-In game $\Gamma^B$, a \emph{pure strategy} for player $i$ is a function $\psi_i: \Theta_i\to S_i$, where for each type $\theta_i\in \Theta_i$, $\psi_i(\theta_i)$ specifies the action from the feasible set $S_i$ that type $\theta_i$ would choose. Therefore, player $i$'s pure strategy set $\Psi_i$ is the set of all such functions.
-
-Player $i$'s \emph{expected utility} given a profile of pure strategies $(\psi_1,\ldots,\psi_{|N|})$ is given by
-\begin{equation}
-	\label{eq:def_exp_utility_direct}
-	\tilde{u}_i(\psi_1,\ldots,\psi_{|N|}) = E[u_i(\psi_1(\theta_1),\ldots,\psi_{|N|}(\theta_{|N|}),\theta_i)],
-\end{equation}
-where the expectation is taken over the realizations of the players' types, $\theta\in\Theta$. Now, in game $\Gamma^B$, a strategy profile $(\psi_1^*,\ldots,\psi_{|N|}^*)$ is a \emph{pure-strategy Bayesian Nash equilibrium} if it constitutes a Nash equilibrium of game $\Gamma^N = [N, \{\Psi_i\},\{\tilde{u}_i\}]$; that is, if for each player $i\in N$,
-\begin{equation}
-	\label{eq:def_bayesian_nash_eq_direct}
-	\tilde{u}_i(\psi^*_i,\psi^*_{-i}) \ge \tilde{u}_i(\psi_i,\psi^*_{-i})
-\end{equation}
-for all $\psi_i\in\Psi_i$, where $\tilde{u}_i(\psi_i,\psi_{-i})$ is defined as in Equation~\eqref{eq:def_exp_utility_direct}.
-
-Alternatively, a strategy profile $(\psi_1^*,\ldots,\psi_{|N|}^*)$ constitutes a pure-strategy Bayesian Nash equilibrium in game $\Gamma^B$ if and only if, for all $i\in N$ and all $\hat{\theta}_i\in\Theta_i$ occurring with positive probability
-\begin{equation}
-	\label{eq:prop_bayesian_nash_eq_direct}
-	E[u_i(\psi^*_i(\hat{\theta}_i),\psi^*_{-i}(\theta_{-i}),\hat{\theta}_i)\mid\hat{\theta}_i] \ge
-	E[u_i(s'_i,\psi^*_{-i}(\theta_{-i}),\hat{\theta}_i)\mid\hat{\theta}_i]
-\end{equation}
-for all $s'_i\in S_i$, where the expectation is taken over realizations of the other players' types, $\theta_{-i}$, conditional on player $i$'s realization of his type, $\hat{\theta}_i$. In other words, each type of player $i$ can be thought of as a separate player who maximizes his payoff given his conditional probability distribution over the strategy choices of his rivals.
-% subsection notation_game_theory (end)
-
-\subsection{Auction Theory} % (fold)
-\label{sub:notation_auction_theory_direct}
-It is important to realize that procurement auctions are equivalent to standard auctions in the same setting~\cite{Krishna10}. Therefore, the abundance of results on standard auctions applies to procurement auctions with only certain small conceptual differences; for example, in standard auctions we talk about the maximum bid, while in procurement auctions about the minimum bid. We make use of this fact in this chapter, and provide proofs of only results not already covered in the literature on auctions in general, since if the result is proved in one case (be it for either standard or procurement auctions), it can immediately be adapted to the other case.
-% subsection notation_auction_theory (end)
-
-\subsection{Mechanism Design Theory} % (fold)
-\label{sub:notation_mechanism_design_theory_direct}
-An auction is an example of an allocation mechanism; that is, a system where economic transactions take place and goods are allocated\footnote{For more in-depth treatment of the theory of mechanism design see for example \cite{MechDesign07,Krishna10,HarrisRaviv1981,HarrisTownsend1975,Myerson1979,Myerson1981}.}. Let $(\mathcal{B},\pi,\mu)$ be a mechanism representing any given auction. In this notation: $\mathcal{B}$ is a set of all possible bids; $\pi: \mathcal{B}\to \Delta$ is an \emph{allocation rule}, where $\Delta$ is a set of all probability distributions over the set of bidders $N$; and $\mu:\mathcal{B}\to\mathbb{R}^n$ is a \emph{payment rule} where $n = |N|$. The allocation rule quantifies as a function of all $n$ bids the probability that bidder $i$ receives the good. The payment rule determines as a function of all $n$ bids the expected payment that bidder $i$ must make. For example, if $\mathbf{b}=(b_i,b_{-i})$ is the vector of all bids submitted to the mechanism, the probability that bidder $i$ receives the good is $\pi_i(\mathbf{b})$, while the expected payment is $\mu_i(\mathbf{b})$.
-
-Every mechanism can be viewed as a game with incomplete information between $n$ bidders. For each bidder $i$ we let $b_i(\cdot): \Theta_i \to\mathcal{B}_i$ be the pure strategy where as before $\Theta_i$ is the set of all possible valuations of bidder $i$. The \emph{equilibrium} of the mechanism is hence defined as an $n$-tuple of strategies $(b_i(\cdot),b_{-i}(\cdot))$ if for all $i$ and for all $\theta_i\in\Theta_i$, $b_i(\theta_i)$ maximizes bidder $i$'s expected payoff.
-
-If $\mathcal{B}_i = \Theta_i$ for all $i$, then the mechanism becomes the so-called \emph{direct mechanism}. In a direct mechanism, bidders are effectively submitting their valuations rather than bids to the mechanism. In general, direct mechanisms tend to be smaller and simpler than generic mechanisms, and therefore are easier to analyze while still being able to model the scenario accurately. Formally, a direct mechanism is defined as a tuple $(\mathbf{Q},\mathbf{M})$ with an allocation rule defined as $\mathbf{Q}:\nobreak\Theta\to\Delta$, and a payment rule defined as $\mathbf{M}:\nobreak\Theta\to\mathbb{R}^n$. (Note that in direct mechanism bidders' valuations are directly used to determine the outcome of the mechanism.)
-
-A direct mechanism $(\mathbf{Q},\mathbf{M})$ is said to satisfy \emph{incentive compatibility} (IC) constraint if for all $i\in N$, for all $\theta_i\in\Theta_i$, and for all $\hat{\theta}_i\in\Theta_i$,
-\begin{equation*}
-  \tilde{\tilde{u}}_i(\theta_i) \equiv q_i(\theta_i)\theta_i - m_i(\theta_i)\ge q_i(\hat{\theta}_i)\theta_i - m_i(\hat{\theta}_i),
-\end{equation*}
-where
-\begin{equation*}
-  q_i(\hat{\theta}_i) = E[Q_i(\hat{\theta}_i,\theta_{-i})],
-\end{equation*}
-and
-\begin{equation*}
-  m_i(\hat{\theta}_i) = E[M_i(\hat{\theta}_i, \theta_{-i})].
-\end{equation*}
-In both cases, the expectation is taken over the realizations of all but player $i$ types, $\theta_{-i}\in\Theta_{-i}$.
-
-A direct mechanism $(\mathbf{Q}, \mathbf{M})$ is said to satisfy \emph{individual rationality} (IR) constraint if for all $i\in N$, and for all $\theta_i\in\Theta_i$,
-\begin{equation*}
-  \tilde{\tilde{u}}_i(\theta_i)\ge 0.
-\end{equation*}
-
-In this chapter, we will also make use of the very powerful Revelation Principle theorem due to Myerson which states the link between any generic mechanism and a direct mechanism~\cite{Myerson1979, Krishna10}:
-\begin{thm}[Revelation Principle]
-\label{thm:revelation_principle_direct}
-Given a mechanism and an equilibrium for that mechanism, there exists a direct mechanism in which (1) it is an equilibrium for each buyer to report his or her value truthfully and (2) the outcomes are the same as in the given equilibrium of the original mechanism.
-\end{thm}
-\noindent The proof of this theorem can be found in any literature on mechanism design and/or auctions such as Krishna's ``Auction Theory'' \cite{Krishna10}.
-% subsection notation_mechanism_design_theory (end)
-% section notation_and_preliminaries (end)
-
 \section{Problem Definition and Assumptions} % (fold)
 \label{sec:problem_definition_and_assumptions_direct}
 The formal description of the network selection mechanism employed in the DMP is as follows. The model is a modified version of procurement first-price sealed-bid auction (henceforth, we shall refer to procurement first-price sealed-bid auction as FPA). Thus, formally, it represents a Bayesian game of incomplete information, $\Gamma^B$. There are $n$ network operators who bid for the right to sell their product to the subscriber such that $n = |N|$ where $N$ denotes the set of all network operators.
@@ -217,7 +48,7 @@ The costs $c_i$ for each network operator $i$ are private knowledge. Thus, they 
 	
 The reputation ratings $r_i$ for each network operator $i$ are common knowledge. It is assumed that each $r_i\in [0,1]$ such that the higher the reputation, the lower the rating $r_i$. In earlier work \cite{DMKonkaUbi11}, it was assumed that ratings are private knowledge. However, after analysis, it was concluded that this would contradict its purpose. The reputation of each network operator, in order to be meaningful, must be freely available to everyone, including the competitors of the network operators. For example, in the Amazon.com Marketplace, the buyers have the right to rate the seller they buy from on a scale from one to five (with five being the best), and these ratings are publicly available~\cite{AMAZON}. Similarly, on eBay, the buyers can leave sellers feedback (negative, neutral, or positive) which over time is viewed as reputation, and is also publicly available~\cite{EBAY}.
 	
-The bidding strategy functions $b_i: [0,1]\to\mathbb{R_+}$ are nonnegative in value for all $i$. The aim is to solve the game for pure-strategy Bayesian Nash equilibrium(-a) as defined in Equation~\eqref{eq:def_bayesian_nash_eq_direct}, Section~\ref{sub:notation_theory_of_games_with_incomplete_information_direct}.
+The bidding strategy functions $b_i: [0,1]\to\mathbb{R_+}$ are nonnegative in value for all $i$. The aim is to solve the game for pure-strategy Bayesian Nash equilibrium(-a) as defined in Equation~\eqref{eq:def_bayesian_nash_eq_notation}, Section~\ref{sec:theory_of_games_with_incomplete_information_notation}.
 
 The problem is divided into two cases: generic and restricted case. In the former, no additional assumptions about the game than those already stated in this section will be made, and we will concentrate on finding a symmetric equilibrium. In the latter, on the other hand, the problem will be simplified by considering only two network operators, letting costs be drawn from the uniform distribution, and focusing on (possibly different) bidding strategy functions which are linear functions of cost.
 % section problem_definition_and_assumptions (end)
@@ -247,7 +78,7 @@ Let $C_{1:n-1} = \min_{j\neq i}C_j$ be the lowest order statistic of an i.i.d.~r
 	= &\max_{b_i}\bigg(b_i-c_i\bigg)\left(1 - F_{C}\left(b^{-1}\left(b_i + \frac{1-w}{w}(r_i-\min_{j\neq i}r_j)\right)\right)\right)^{n-1},
 	\label{eq:ode_part2_direct}
 \end{align}
-where we have used the fact that the distribution function of an $i$th order statistic of an i.i.d.~random sample is defined as in Equation~\eqref{eq:iid_cdf_direct}.
+where we have used the fact that the distribution function of an $i$th order statistic of an i.i.d.~random sample is defined as in Equation~\eqref{eq:iid_cdf_notation}.
 
 Finally, recalling that at a symmetric equilibrium $b_i=b(c_i)$ and letting $k=\nobreak\frac{(1-w)}{w}(r_i-\min_{j\neq i}r_j)$, the identity~\eqref{eq:ode_part2_direct} becomes
 \begin{align}
@@ -644,7 +475,7 @@ It turns out that it is in network operator $i$'s best interest to reveal their 
 The direct mechanism $(\mathbf{Q},\mathbf{M})$ where $\mathbf{Q}=(Q_i,Q_j)$ and $\mathbf{M}=(M_i,M_j)$ (with $Q_i$ and $M_i$ defined in Equations~\eqref{eq:pcomp_allocation_rule_direct} and \eqref{eq:pcomp_payment_rule_direct} respectively) satisfies both the IC and IR constraints.
 \end{proposition}
 
-Thirdly, suppose that economic agents are computers who bid on behalf of the network operators. This assumption is reasonable since there currently are estimated 6.1 billion mobile subscribers around the world \cite{Ericsson2011}. In other words, bidding on a per call basis would have to be automated by the network operators in order to make the process manageable. One way of achieving such an automation would be to utilize the concept of a direct mechanism. In a direct mechanism, economic agents submit their costs (which need not be truthful) directly to the mechanism which then computes the bids and chooses the winner on their behalf. By the Revelation Principle (which is stated in Section~\ref{sub:notation_mechanism_design_theory_direct}), we know that for every mechanism and an equilibrium for that mechanism, there exists an incentive compatible direct mechanism which yields the same outcomes as in the given equilibrium of the original mechanism. In our case, the direct mechanism $(\mathbf{Q},\mathbf{M})$ is the direct representation of the DMP variant of an FPA. Since it is incentive compatible, economic agents will not lie about their costs. Since it is individually rational, they will find it beneficial to participate in the mechanism. Therefore, the possibility of one of the network operators bidding below their cost or negatively will not matter to any of the network operators and will not lead to an outcome in which the service is sold for a negative price.
+Thirdly, suppose that economic agents are computers who bid on behalf of the network operators. This assumption is reasonable since there currently are estimated 6.1 billion mobile subscribers around the world \cite{Ericsson2011}. In other words, bidding on a per call basis would have to be automated by the network operators in order to make the process manageable. One way of achieving such an automation would be to utilize the concept of a direct mechanism. In a direct mechanism, economic agents submit their costs (which need not be truthful) directly to the mechanism which then computes the bids and chooses the winner on their behalf. By the Revelation Principle (which is stated in Section~\ref{sec:mechanism_design_theory_notation}), we know that for every mechanism and an equilibrium for that mechanism, there exists an incentive compatible direct mechanism which yields the same outcomes as in the given equilibrium of the original mechanism. In our case, the direct mechanism $(\mathbf{Q},\mathbf{M})$ is the direct representation of the DMP variant of an FPA. Since it is incentive compatible, economic agents will not lie about their costs. Since it is individually rational, they will find it beneficial to participate in the mechanism. Therefore, the possibility of one of the network operators bidding below their cost or negatively will not matter to any of the network operators and will not lead to an outcome in which the service is sold for a negative price.
 
 Nonetheless, the possibility of one of the network operators bidding below their cost or negatively might seem counter-intuitive and irrational. The most straightforward solution is to constrain the original optimization problem in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}; that is, each network operator $i$ tries to solve for all $w\neq 0$
 \begin{align}
@@ -652,7 +483,7 @@ Nonetheless, the possibility of one of the network operators bidding below their
 	&\max_{b_i}E \left[ b_i-c_i \:\middle\vert\: wb_i + (1-w)r_i < w(m_j + n_j C_j) + (1-w)r_j\right]\\
 	&\text{subject to}\quad c_i-b_i\le 0.\nonumber
 \end{align}
-The constraint $c_i-b_i\le 0$ ensures that each network operator bids above or equal to their cost. However, this problem is much more complicated than its unconstrained version in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}. Not only is it necessary to solve the nonlinear constrained optimization problem for each network operator $i$, but also it needs to be done simultaneously \cite{Griffin2011}. To better explore the inherent complexity of the problem, we will apply the Karush-Kuhn-Tucker Conditions theorem (which is stated in Section~\ref{sub:notation_optimisation_theory_direct}), and try to derive the equilibrium bidding strategies for all network operators. But first, note that, since $n_j>0$ ($n_i>0$ for network operator $j$), $E[\cdot \vert \cdot]$ is a concave function of $b_i$ ($b_j$ for network operator $j$). Moreover, the constraint as a function of $b_i$ ($b_j$ for network operator $j$) is affine, and hence convex. Therefore, the Karush-Kuhn-Tucker Conditions are necessary and sufficient conditions for a solution in nonlinear constrained optimization problem to be optimal.
+The constraint $c_i-b_i\le 0$ ensures that each network operator bids above or equal to their cost. However, this problem is much more complicated than its unconstrained version in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}. Not only is it necessary to solve the nonlinear constrained optimization problem for each network operator $i$, but also it needs to be done simultaneously \cite{Griffin2011}. To better explore the inherent complexity of the problem, we will apply the Karush-Kuhn-Tucker Conditions theorem (which is stated in Section~\ref{sec:optimization_theory_notation}), and try to derive the equilibrium bidding strategies for all network operators. But first, note that, since $n_j>0$ ($n_i>0$ for network operator $j$), $E[\cdot \vert \cdot]$ is a concave function of $b_i$ ($b_j$ for network operator $j$). Moreover, the constraint as a function of $b_i$ ($b_j$ for network operator $j$) is affine, and hence convex. Therefore, the Karush-Kuhn-Tucker Conditions are necessary and sufficient conditions for a solution in nonlinear constrained optimization problem to be optimal.
 
 The problem will be approached as follows. First, we will fix the bidding strategy for network operator $j$ and treat the problem as a standard nonlinear constrained optimization problem for network operator $i$. The same stage will be repeated for network operator $j$. Then the results of both stages will be combined together and solved simultaneously. In effect, this will result in derivation of the equilibrium bidding strategies for both network operators.
 

@@ -145,7 +145,7 @@ and the upper boundary condition
 \end{equation}
 for all, except possibly one, $i$ between $1$ and $n$. The boundary conditions were derived and characterized by Lebrun~\cite{Lebrun2006} (cf.~Proposition C.5 in~\cite{Lebrun2006}), but for completeness we will describe them below.
 
-Let network operator $1$ be characterized by the smallest upper extremity, and network operator $2$ be characterized by the second smallest upper extremity; that is, let $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$. The upper boundary condition in Equation~\eqref{eq:foc_ode_upper_boundary_indirect} depends on the value of the upper bound on bids which is defined as follows (cf.~Definition~1 in~\cite{Lebrun2006})
+Let network operator $1$ be characterized by the smallest upper extremity, and network operator $2$ by the second smallest upper extremity; that is, let $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$. The upper boundary condition in Equation~\eqref{eq:foc_ode_upper_boundary_indirect} depends on the value of the upper bound on bids which is defined as follows (cf.~Definition~1 in~\cite{Lebrun2006})
 \begin{equation}
   \label{eq:upper_bound_bids_indirect}
   \bar{\hat{b}} = \max\arg\max_{b\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]}(b - \bar{\hat{c}}_1)\prod_{i>1}\left( 1 - F_i(b) \right).
@@ -153,7 +153,7 @@ Let network operator $1$ be characterized by the smallest upper extremity, and n
 
 Note that $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$ implies $\underline{\hat{c}}_1 < \underline{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$. Let $J$ be the subset of $N$ such that (cf.~Definition~2 in~\cite{Lebrun2006})
 \begin{equation*}
-  J = \left\{j \middle\vert 1\leq j\leq n \text{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
+  J = \left\{j \:\middle\vert\: 1\leq j\leq n \text{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
 \end{equation*}
 $\hat{c}(\underline{\hat{b}})$ is defined as follows (cf.~Definition~3 in~\cite{Lebrun2006})
 \begin{equation}
@@ -169,7 +169,7 @@ and if $\underline{\hat{b}} < \underline{\hat{c}}_{k(\underline{\hat{b}})+1}$
   \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})+1}}\leq\frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}.
 \end{equation*}
 
-Recapping, Lebrun~\cite{Lebrun2006} showed that there exists a unique $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, and hence, that there exists a unique solution to the system of ODEs defined in Equation~\eqref{eq:foc_ode_indirect} with boundary conditions defined in Equations~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect}. However, the establishment of a closed-form solution to the system of ODEs in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
+Recapping, Lebrun~\cite{Lebrun2006} showed that there exists a unique $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, and hence, there exists a unique solution to the system of ODEs defined in Equation~\eqref{eq:foc_ode_indirect} with boundary conditions defined in Equations~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect}. However, the establishment of a closed-form solution to the system of ODEs in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
 % section indirect_generic_case (end)
 
 \section{Restricted Case $n=2$} % (fold)
@@ -312,10 +312,34 @@ By way of example, the equilibrium bidding strategy functions were estimated for
 Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (Figure~\ref{fig:indirect_prices_indirect}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0_direct}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1_direct}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
 % section restricted_case_n_2_indirect (end)
 
-\section{Numerical Solution} % (fold)
-\label{sec:numerical_solution}
+\section{Numerical Analysis} % (fold)
+\label{sec:numerical_analysis_indirect}
+As pointed out in Section~\ref{sec:generic_case_indirect}, the system of ODEs~\eqref{eq:foc_ode_indirect} together with the lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect} does not possess any known closed-form solution. However, it is possible to numerically approximate the solution. See Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent overview of the subject.
 
-% section numerical_solution (end)
+The literature is mostly concerned with asymmetric first-price auctions in which the bidders are characterized by different probability distributions sharing common support; that is, $F_i\neq F_j$ for all $i\neq j, i,j\in N$ with $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [\underline{\hat{c}}, \bar{\hat{c}}]$ for all $i\in N$. This is not true in our case. Therefore, the methods described in Hubbard and Paarsch~\cite{HubbardPaarsch2011} have to be adapted before they can be applied to our problem.
+
+In this section, we shall consider two numerical algorithms: the forward shooting method, and the polynomial projection method, both of which were first proposed by Bajari~\cite{Bajari2001a}. To this end, let $c_i$ be drawn from a uniform distribution as in Section~\ref{sec:restricted_case_n_2_indirect}. This implies that distribution of costs-hats, $\hat{c}_i$, is uniform with supports $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [(1-w)r_i, (1-w)r_i + w]$ for all $i\in N$. Furthermore, we shall concentrate only on cases in which $J=N$; that is, $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$.
+
+\subsection{Forward Shooting Method} % (fold)
+\label{sub:forward_shooting_method_indirect}
+
+% subsection forward_shooting_method_indirect (end)
+
+\subsection{Polynomial Projection Method} % (fold)
+\label{sub:polynomial_projection_method_indirect}
+
+% subsection polynomial_projection_method_indirect (end)
+
+\subsection{Other Methods} % (fold)
+\label{sub:other_methods_indirect}
+
+% subsection other_methods_indirect (end)
+
+\subsection{Limitations} % (fold)
+\label{sub:limitations_indirect}
+
+% subsection limitations (end)
+% section numerical_analysis_indirect (end)
 
 \section{Discussion} % (fold)
 \label{sec:discussion_indirect}
@@ -356,7 +380,7 @@ which is equivalent to Equation~\eqref{eq:standard_fpa_direct} evaluated at $n=2
 
 If, on the other hand, both network operators are characterized by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:inverse_equi_bidding_str_indirect}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
 
-To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sub:notation_probability_direct}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices_indirect} shows the result of the estimation for four pairs of reputation ratings: $(r_i, r_j) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
+To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sec:probability_notation}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices_indirect} shows the result of the estimation for four pairs of reputation ratings: $(r_i, r_j) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
 
 It can be observed that regardless of the values of the reputation ratings, the expected prices, $E[p](w,r_i,r_j)$, are bounded from below by $E[p^*]$ for each price weight; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Hence, it can be concluded that regardless of the values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
 

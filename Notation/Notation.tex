@@ -1,0 +1,145 @@
+%!TEX root = /Users/jakubkonka/Thesis/Thesis.tex
+\chapter{Notation and Preliminaries} % (fold)
+\label{cha:notation}
+
+\minitoc
+\vspace{10mm}
+
+The following notation and concepts are assumed throughout the rest of this thesis.
+
+\section{Set Theory} % (fold)
+\label{sec:set_theory_notation}
+Let $A$ be a set defined using the following notation $A = \{x: \mathcal{P}x\}$. This notation is referred to as \emph{set-builder notation} and, in this particular example, the unique set $A$ consists of all $x$ such that the condition $\mathcal{P}x$ is satisfied \cite{Carter2001}. A more concrete example: $B = \{x\in\mathbb{R}: x\ge 0\}$. Here, $B$ is the subset of the real line consisting of all non-negative real numbers; i.e., $B=\mathbb{R}_+$.
+
+Let $f: X\to Y$ be a one-to-one and onto function. Then we call $f$ invertible and denote the inverse of $f$ as $f^{-1}$ with the property that for all $x\in X$ and $y\in Y$, $f(x) = y$ and $f^{-1}(y) = x$.
+% section set_theory_notation (end)
+
+\section{Probability Theory and Statistics} % (fold)
+\label{sec:probability_notation}
+Let $X$ denote a continuous random variable (r.v.) with the support $[a, b]$, where $a < b$ and $a, b \in\nobreak\mathbb{R}$. By $F_{X}$ we mean a cumulative distribution function of the $X$ r.v.; therefore, for any $x\in\mathbb{R}$, $F_{X}(x) = P\{X \le x\}$, where $P\{X\le x\}$ denotes the probability of the event such that $X\le x$. If $F_{X}$ admits a density function, it shall be denoted by $f_{X} \equiv \frac{d}{dx}F_{X}$. If it is clear from the context which variable is considered random, we shall drop the subscript; that is, $F_{X}\equiv F$.
+
+The expected value of $X$, denoted by $E[X]$, is defined as $E[X] = \int_{-\infty}^{\infty} xdF(x)$. Similarly, if $u$ is a function of $X$, then the expected value of $u(X)$ is defined as $E[u(X)] = \int_{-\infty}^{\infty} u(x)dF(x)$.
+
+Let $X_1, \ldots, X_n$ be independent continuous r.v.s with distribution function $F$ and density function $f\equiv \frac{d}{dx}F$. If we let $X_{i:n}$ denote the $i$th smallest of these r.v.s, then $X_{1:n}, \ldots,X_{n:n}$ are called the \emph{order statistics} \cite{Arnold08,David03}. In the event that the r.v.s are independently and identically distributed (i.i.d.), the distribution of $X_{i:n}$ is
+\begin{equation}
+	\label{eq:iid_cdf_notation}
+	F_{X_{i:n}}(x) = \sum_{k=i}^{n} \binom{n}{k} (F(x))^k (1-F(x))^{n-k},
+\end{equation}
+while the density of $X_{i:n}$ can be obtained by differentiating Equation~\eqref{eq:iid_cdf_notation} with respect to $x$ \cite{Ross10}. Hence,
+\begin{equation}
+	\label{eq:iid_pdf_notation}
+	f_{X_{i:n}}(x) = \frac{n!}{(n-i)!(i-1)!} f(x) (F(x))^{i-1} (1-F(x))^{n-i}.
+\end{equation}
+
+Let $X_1,\ldots,X_n$ be i.i.d.~r.v.s with finite mean $\mu$. Let
+\begin{equation*}
+  \bar{X}(n) = \frac{\sum_{i=1}^n X_i}{n}.
+\end{equation*}
+Then, for sufficiently large $n$, $\bar{X}(n)$ provides a reasonable approximation of $\mu$ \cite{LawChapter42007}. This result is known as the Strong Law of Large Numbers,
+\begin{thm}[Strong Law of Large Numbers]
+$\bar{X}(n)\rightarrow\mu$ with probability $1$ as $n\rightarrow\infty$.
+\end{thm}
+The proof of this theorem can be found in Chung's ``A Course in Probability Theory'' \cite{Chung2001}.
+% section probability_notation (end)
+
+\section{Optimization Theory} % (fold)
+\label{sec:optimization_theory_notation}
+The following theorem on nonlinear constrained optimization will also be used in this chapter.
+\begin{thm}[Karush-Kuhn-Tucker Conditions]
+Let $f:\mathbb{R}^n\to\mathbb{R}$ be a concave function, $g_i:\mathbb{R}^n\to\mathbb{R}$ be convex functions for $i=1,\ldots,m$, and $h_j:\mathbb{R}^n\to\mathbb{R}$ be affine functions for $j=1,\ldots,l$. Then $\mathbf{x}^*\in\mathbb{R}^n$ is an optimal point for the following optimization problem:
+\begin{equation*}
+	\left\{
+	\begin{array}{rl}
+		\max &f(x_1,\ldots,x_n)\\
+		\text{subject to} &g_1(x_1,\ldots,x_n)\le 0\\
+		& \vdots\\
+		&g_m(x_1,\ldots,x_n)\le 0\\
+		&h_1(x_1,\ldots,x_n) = 0\\
+		& \vdots\\
+		&h_l(x_1,\ldots,x_n) = 0
+	\end{array}
+	\right.
+\end{equation*}
+if and only if there exist unique multipliers $\bm{\lambda}=(\lambda_1,\ldots,\lambda_m)\ge 0$ and $\bm{\mu}=(\mu_1,\ldots,\mu_l)\in\mathbb{R}$ such that the Lagrangian
+\begin{equation*}
+	L(\mathbf{x},\bm{\lambda},\bm{\mu}) = f(\mathbf{x}) - \sum_{i=1}^m\lambda_i g_i(\mathbf{x}) - \sum_{j=1}^l\mu_j h_j(\mathbf{x})
+\end{equation*}
+is stationary at $(\mathbf{x}^*,\bm{\lambda},\bm{\mu})$, that is,
+\begin{equation*}
+	\nabla L(\mathbf{x}^*,\bm{\lambda},\bm{\mu}) = \nabla f(\mathbf{x}^*) - \sum_{i=1}^m\lambda_i \nabla g_i(\mathbf{x}^*) - \sum_{j=1}^l\mu_j \nabla h_j(\mathbf{x}^*) = \mathbf{0},
+\end{equation*}
+and satisfies the complementary slackness conditions
+\begin{equation*}
+	\lambda_i g_i(\mathbf{x}^*)=0 \quad\text{for } i=1,\ldots,m.
+\end{equation*}
+\end{thm}
+\noindent The proof of this theorem can be found in any literature discussing mathematical optimization theory such as Carter's ``Foundations of Mathematical Economics'' \cite{Carter2001}.
+% section optimization_theory_notation (end)
+
+\section{Theory of Games with Incomplete Information} % (fold)
+\label{sec:theory_of_games_with_incomplete_information_notation}
+Let $\Gamma^B = [N, \{S_i\}, \{u_i\},\Theta,F]$ be a \emph{Bayesian game with incomplete information}. Formally, in this type of games, each player $i\in N$ has a utility function $u_i(s_i, s_{-i}, \theta_i)$, where $s_i\in S_i$ denotes player $i$'s action, $s_{-i}\in S_{-i} = \vartimes_{j\neq i}S_j$ denotes actions of all other players different from $i$, and $\theta_i\in\Theta_i$ represents the type of player $i$. Letting $\Theta = \vartimes_{i\in N} \Theta_i$, the joint probability distribution of the $\theta\in\Theta$ is given by $F(\theta)$, which is assumed to be common knowledge among the players\footnote{For more in-depth treatment of the theory of games see for example \cite{Myerson97, Gibbons92, MicroTheory}.}.
+
+In game $\Gamma^B$, a \emph{pure strategy} for player $i$ is a function $\psi_i: \Theta_i\to S_i$, where for each type $\theta_i\in \Theta_i$, $\psi_i(\theta_i)$ specifies the action from the feasible set $S_i$ that type $\theta_i$ would choose. Therefore, player $i$'s pure strategy set $\Psi_i$ is the set of all such functions.
+
+Player $i$'s \emph{expected utility} given a profile of pure strategies $(\psi_1,\ldots,\psi_{|N|})$ is given by
+\begin{equation}
+	\label{eq:def_exp_utility_notation}
+	\tilde{u}_i(\psi_1,\ldots,\psi_{|N|}) = E[u_i(\psi_1(\theta_1),\ldots,\psi_{|N|}(\theta_{|N|}),\theta_i)],
+\end{equation}
+where the expectation is taken over the realizations of the players' types, $\theta\in\Theta$. Now, in game $\Gamma^B$, a strategy profile $(\psi_1^*,\ldots,\psi_{|N|}^*)$ is a \emph{pure-strategy Bayesian Nash equilibrium} if it constitutes a Nash equilibrium of game $\Gamma^N = [N, \{\Psi_i\},\{\tilde{u}_i\}]$; that is, if for each player $i\in N$,
+\begin{equation}
+	\label{eq:def_bayesian_nash_eq_notation}
+	\tilde{u}_i(\psi^*_i,\psi^*_{-i}) \ge \tilde{u}_i(\psi_i,\psi^*_{-i})
+\end{equation}
+for all $\psi_i\in\Psi_i$, where $\tilde{u}_i(\psi_i,\psi_{-i})$ is defined as in Equation~\eqref{eq:def_exp_utility_notation}.
+
+Alternatively, a strategy profile $(\psi_1^*,\ldots,\psi_{|N|}^*)$ constitutes a pure-strategy Bayesian Nash equilibrium in game $\Gamma^B$ if and only if, for all $i\in N$ and all $\hat{\theta}_i\in\Theta_i$ occurring with positive probability
+\begin{equation}
+	\label{eq:prop_bayesian_nash_eq_notation}
+	E[u_i(\psi^*_i(\hat{\theta}_i),\psi^*_{-i}(\theta_{-i}),\hat{\theta}_i)\mid\hat{\theta}_i] \ge
+	E[u_i(s'_i,\psi^*_{-i}(\theta_{-i}),\hat{\theta}_i)\mid\hat{\theta}_i]
+\end{equation}
+for all $s'_i\in S_i$, where the expectation is taken over realizations of the other players' types, $\theta_{-i}$, conditional on player $i$'s realization of his type, $\hat{\theta}_i$. In other words, each type of player $i$ can be thought of as a separate player who maximizes his payoff given his conditional probability distribution over the strategy choices of his rivals.
+% section game_theory_notation (end)
+
+\section{Auction Theory} % (fold)
+\label{sec:auction_theory_notation}
+It is important to realize that procurement auctions are equivalent to standard auctions in the same setting~\cite{Krishna10}. Therefore, the abundance of results on standard auctions applies to procurement auctions with only certain small conceptual differences; for example, in standard auctions we talk about the maximum bid, while in procurement auctions about the minimum bid. We make use of this fact in this thesis, and provide proofs of only results not already covered in the literature on auctions in general, since if the result is proved in one case (be it for either standard or procurement auctions), it can immediately be adapted to the other case.
+% section auction_theory_notation (end)
+
+\section{Mechanism Design Theory} % (fold)
+\label{sec:mechanism_design_theory_notation}
+An auction is an example of an allocation mechanism; that is, a system where economic transactions take place and goods are allocated\footnote{For more in-depth treatment of the theory of mechanism design see for example \cite{MechDesign07,Krishna10,HarrisRaviv1981,HarrisTownsend1975,Myerson1979,Myerson1981}.}. Let $(\mathcal{B},\pi,\mu)$ be a mechanism representing any given auction. In this notation: $\mathcal{B}$ is a set of all possible bids; $\pi: \mathcal{B}\to \Delta$ is an \emph{allocation rule}, where $\Delta$ is a set of all probability distributions over the set of bidders $N$; and $\mu:\mathcal{B}\to\mathbb{R}^n$ is a \emph{payment rule} where $n = |N|$. The allocation rule quantifies as a function of all $n$ bids the probability that bidder $i$ receives the good. The payment rule determines as a function of all $n$ bids the expected payment that bidder $i$ must make. For example, if $\mathbf{b}=(b_i,b_{-i})$ is the vector of all bids submitted to the mechanism, the probability that bidder $i$ receives the good is $\pi_i(\mathbf{b})$, while the expected payment is $\mu_i(\mathbf{b})$.
+
+Every mechanism can be viewed as a game with incomplete information between $n$ bidders. For each bidder $i$ we let $b_i(\cdot): \Theta_i \to\mathcal{B}_i$ be the pure strategy where as before $\Theta_i$ is the set of all possible valuations of bidder $i$. The \emph{equilibrium} of the mechanism is hence defined as an $n$-tuple of strategies $(b_i(\cdot),b_{-i}(\cdot))$ if for all $i$ and for all $\theta_i\in\Theta_i$, $b_i(\theta_i)$ maximizes bidder $i$'s expected payoff.
+
+If $\mathcal{B}_i = \Theta_i$ for all $i$, then the mechanism becomes the so-called \emph{direct mechanism}. In a direct mechanism, bidders are effectively submitting their valuations rather than bids to the mechanism. In general, direct mechanisms tend to be smaller and simpler than generic mechanisms, and therefore are easier to analyze while still being able to model the scenario accurately. Formally, a direct mechanism is defined as a tuple $(\mathbf{Q},\mathbf{M})$ with an allocation rule defined as $\mathbf{Q}:\nobreak\Theta\to\Delta$, and a payment rule defined as $\mathbf{M}:\nobreak\Theta\to\mathbb{R}^n$. (Note that in direct mechanism bidders' valuations are directly used to determine the outcome of the mechanism.)
+
+A direct mechanism $(\mathbf{Q},\mathbf{M})$ is said to satisfy \emph{incentive compatibility} (IC) constraint if for all $i\in N$, for all $\theta_i\in\Theta_i$, and for all $\hat{\theta}_i\in\Theta_i$,
+\begin{equation*}
+  \tilde{\tilde{u}}_i(\theta_i) \equiv q_i(\theta_i)\theta_i - m_i(\theta_i)\ge q_i(\hat{\theta}_i)\theta_i - m_i(\hat{\theta}_i),
+\end{equation*}
+where
+\begin{equation*}
+  q_i(\hat{\theta}_i) = E[Q_i(\hat{\theta}_i,\theta_{-i})],
+\end{equation*}
+and
+\begin{equation*}
+  m_i(\hat{\theta}_i) = E[M_i(\hat{\theta}_i, \theta_{-i})].
+\end{equation*}
+In both cases, the expectation is taken over the realizations of all but player $i$ types, $\theta_{-i}\in\Theta_{-i}$.
+
+A direct mechanism $(\mathbf{Q}, \mathbf{M})$ is said to satisfy \emph{individual rationality} (IR) constraint if for all $i\in N$, and for all $\theta_i\in\Theta_i$,
+\begin{equation*}
+  \tilde{\tilde{u}}_i(\theta_i)\ge 0.
+\end{equation*}
+
+In this thesis, we also make use of the very powerful Revelation Principle theorem due to Myerson which states the link between any generic mechanism and a direct mechanism~\cite{Myerson1979, Krishna10}:
+\begin{thm}[Revelation Principle]
+\label{thm:revelation_principle_notation}
+Given a mechanism and an equilibrium for that mechanism, there exists a direct mechanism in which (1) it is an equilibrium for each buyer to report his or her value truthfully and (2) the outcomes are the same as in the given equilibrium of the original mechanism.
+\end{thm}
+\noindent The proof of this theorem can be found in any literature on mechanism design and/or auctions such as Krishna's ``Auction Theory'' \cite{Krishna10}.
+% section mechanism_design_theory_notation (end)
+% chapter notation (end)
