@@ -462,14 +462,14 @@ while $M_i$ is the payment rule defined by
 	\label{eq:pcomp_payment_rule_direct}
 	M_i(c_i,c_j) = Q_i(c_i,c_j)b_i'(c_i).
 \end{equation}
-Suppose network operator $j$ reveals their cost truthfully. The equilibrium payoff function for network operator $i$ characterized by cost $c_i$ but revealing $\hat{c}_i$ is
+Suppose network operator $j$ reveals their cost truthfully. The equilibrium payoff function for network operator $i$ characterized by cost $c_i$ but revealing $c'_i$ is
 \begin{align}
-	\tilde{\tilde{u}}_i(\hat{c}_i) &= E\left[ M_i(\hat{c}_i,C_j) - c_iQ_i(\hat{c}_i,C_j) \right]\nonumber \\
-	&= E\left[ (b_i'(\hat{c}_i)-c_i)Q_i(\hat{c}_i,C_j) \right]\nonumber \\
-	&= E\left[ b_i'(\hat{c}_i)-c_i \:\middle\vert\: \beta(b_i'(\hat{c}_i),r_i) < \beta(b_j'(C_j),r_j) \right].
+	\tilde{\tilde{u}}_i(c'_i) &= E\left[ M_i(c'_i,C_j) - c_iQ_i(c'_i,C_j) \right]\nonumber \\
+	&= E\left[ (b_i'(c'_i)-c_i)Q_i(c'_i,C_j) \right]\nonumber \\
+	&= E\left[ b_i'(c'_i)-c_i \:\middle\vert\: \beta(b_i'(c'_i),r_i) < \beta(b_j'(C_j),r_j) \right].
 	\label{eq:pcomp_expected_utility_direct}
 \end{align}
-It turns out that it is in network operator $i$'s best interest to reveal their cost truthfully as well; i.e., $\hat{c}_i=c_i$. Moreover, both network operators cannot be better off by not participating in the auction; i.e., their equilibrium payoff function is nonnegative, $\tilde{\tilde{u}}_i(c_i)\ge 0$. Formally,
+It turns out that it is in network operator $i$'s best interest to reveal their cost truthfully as well; i.e., $c'_i=c_i$. Moreover, both network operators cannot be better off by not participating in the auction; i.e., their equilibrium payoff function is nonnegative, $\tilde{\tilde{u}}_i(c_i)\ge 0$. Formally,
 \begin{proposition}
 \label{prop:pcomp_direct_mechanism_direct}
 The direct mechanism $(\mathbf{Q},\mathbf{M})$ where $\mathbf{Q}=(Q_i,Q_j)$ and $\mathbf{M}=(M_i,M_j)$ (with $Q_i$ and $M_i$ defined in Equations~\eqref{eq:pcomp_allocation_rule_direct} and \eqref{eq:pcomp_payment_rule_direct} respectively) satisfies both the IC and IR constraints.
@@ -687,17 +687,17 @@ The proof is analogous to the proof of Proposition~2.2 in Krishna~\cite{Krishna1
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:pcomp_equi_bidding_str_direct}]
-Suppose there are two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that network operator 2 follows $b_2'$ equilibrium bidding strategy. We will argue that it is optimal for network operator 1 to follow $b_1'$ equilibrium bidding strategy. First, note that $b_1'$ is strictly increasing and continuous function of cost (similarly is $b_2'$). Suppose that network operator 1 bids an amount $b_1$. Since $b_1'$ is strictly increasing, it is bijective. Therefore, there exists unique cost $\hat{c}_1$ such that $\hat{c}_1 = {b_1'}^{-1}(b_1)$. Network operator 1's expected utility from bidding $b_1'(\hat{c}_1)$ is
+Suppose there are two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that network operator 2 follows $b_2'$ equilibrium bidding strategy. We will argue that it is optimal for network operator 1 to follow $b_1'$ equilibrium bidding strategy. First, note that $b_1'$ is strictly increasing and continuous function of cost (similarly is $b_2'$). Suppose that network operator 1 bids an amount $b_1$. Since $b_1'$ is strictly increasing, it is bijective. Therefore, there exists unique cost $c'_1$ such that $c'_1 = {b_1'}^{-1}(b_1)$. Network operator 1's expected utility from bidding $b_1'(c'_1)$ is
 \begin{align*}
-	&\tilde{u}_1(b_1'(\hat{c}_1), c_1) \\
-	&= E \left[ b_1'(\hat{c}_1) - c_1 \:\middle\vert\: wb_1'(\hat{c}_1) + (1-w)r_1 < wb_2'(c_2) + (1-w)r_2 \right] \\
-	&= \frac{1}{2} \left( 1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) + \hat{c}_1 - 2c_1 \right) \left( 1 - \hat{c}_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) \right).
+	&\tilde{u}_1(b_1'(c'_1), c_1) \\
+	&= E \left[ b_1'(c'_1) - c_1 \:\middle\vert\: wb_1'(c'_1) + (1-w)r_1 < wb_2'(c_2) + (1-w)r_2 \right] \\
+	&= \frac{1}{2} \left( 1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) + c'_1 - 2c_1 \right) \left( 1 - c'_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) \right).
 \end{align*}
 We thus obtain that
 \begin{equation*}
-	\tilde{u}_1(b_1'(c_1), c_1) - \tilde{u}_1(b_1'(\hat{c}_1), c_1) = \frac{1}{2}(c_1-\hat{c}_1)^2 \ge 0
+	\tilde{u}_1(b_1'(c_1), c_1) - \tilde{u}_1(b_1'(c'_1), c_1) = \frac{1}{2}(c_1-c'_1)^2 \ge 0
 \end{equation*}
-regardless of whether $\hat{c}_1\ge c_1$ or $\hat{c}_1 \le c_1$. We have thus argued that if network operator 2 follows $b_2'$, network operator 1 with a cost $c_1$ cannot benefit by bidding anything other than $b_1'(c_1)$. Similar argument can be used to show that it is optimal for network operator 2 to follow $b_2'$ while network operator 1 is following $b_1'$. Hence, $(b_1',b_2')$ constitutes a Bayesian-Nash equilibrium profile.
+regardless of whether $c'_1\ge c_1$ or $c'_1 \le c_1$. We have thus argued that if network operator 2 follows $b_2'$, network operator 1 with a cost $c_1$ cannot benefit by bidding anything other than $b_1'(c_1)$. Similar argument can be used to show that it is optimal for network operator 2 to follow $b_2'$ while network operator 1 is following $b_1'$. Hence, $(b_1',b_2')$ constitutes a Bayesian-Nash equilibrium profile.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:pcomp_negative_bids_direct}]
@@ -741,12 +741,12 @@ we reach a contradiction, and this concludes the proof.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:pcomp_direct_mechanism_direct}]
-Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators participate in the direct mechanism $(\mathbf{Q},\mathbf{M})$. Firstly, we show that the mechanism is incentive compatible. Without loss of generality, suppose that network operator 2 truthfully submits their cost to the mechanism. We argue that it is optimal for network operator 1 to also submit their cost truthfully. Suppose to the contrary; that is, that network operator 1 has an incentive not to reveal their cost truthfully by submitting $\hat{c}_1$. Thus, their expected utility becomes
+Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators participate in the direct mechanism $(\mathbf{Q},\mathbf{M})$. Firstly, we show that the mechanism is incentive compatible. Without loss of generality, suppose that network operator 2 truthfully submits their cost to the mechanism. We argue that it is optimal for network operator 1 to also submit their cost truthfully. Suppose to the contrary; that is, that network operator 1 has an incentive not to reveal their cost truthfully by submitting $c'_1$. Thus, their expected utility becomes
 \begin{align*}
-	&\tilde{\tilde{u}}_1(\hat{c}_1) = E\left[ b_1'(\hat{c}_1) - c_1 \:\middle\vert\: 2b_1'(\hat{c}_1) - 1 + \frac{4}{3}\cdot\frac{1-w}{w}(r_1-r_2) < C_2 \right] \\
-	&= \left(\frac{1}{2} - \frac{1}{3}\cdot\frac{1-w}{w}(r_1-r_2) + \frac{1}{2}\hat{c}_1 - c_1 \right)\left(1 - \hat{c}_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2)\right).
+	&\tilde{\tilde{u}}_1(c'_1) = E\left[ b_1'(c'_1) - c_1 \:\middle\vert\: 2b_1'(c'_1) - 1 + \frac{4}{3}\cdot\frac{1-w}{w}(r_1-r_2) < C_2 \right] \\
+	&= \left(\frac{1}{2} - \frac{1}{3}\cdot\frac{1-w}{w}(r_1-r_2) + \frac{1}{2}c'_1 - c_1 \right)\left(1 - c'_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2)\right).
 \end{align*}
-The first-order condition yields $\hat{c}_1 = c_1$ and the second-order condition is satisfied. Hence, this shows that $(\mathbf{Q},\mathbf{M})$ is incentive compatible.
+The first-order condition yields $c'_1 = c_1$ and the second-order condition is satisfied. Hence, this shows that $(\mathbf{Q},\mathbf{M})$ is incentive compatible.
 
 Secondly, we show that $(\mathbf{Q},\mathbf{M})$ is individually rational. Since the mechanism is incentive compatible, each network operator reveals their cost truthfully. Hence, for all $c_1$
 \begin{align*}
