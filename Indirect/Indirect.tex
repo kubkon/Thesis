@@ -155,19 +155,28 @@ Note that $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq
 \begin{equation*}
   J = \left\{j \:\middle\vert\: 1\leq j\leq n \text{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
 \end{equation*}
-$\hat{c}(\underline{\hat{b}})$ is defined as follows (cf.~Definition~3 in~\cite{Lebrun2006})
+Let $n' = |J|$. Then, $\hat{c}(\underline{\hat{b}})$ is defined as follows (cf.~Definition~3 in~\cite{Lebrun2006})
 \begin{equation}
   \label{eq:lower_bound_bids_cost_indirect}
-  \hat{c}(\underline{\hat{b}}) = \underline{\hat{b}} + \sfrac{\left(k(\underline{\hat{b}})-1\right)}{\left(\sum_{i=1}^{k(\underline{\hat{b}})} \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}\right)}
+  \hat{c}(\underline{\hat{b}}) = \underline{\hat{b}} - \sfrac{\left(k(\underline{\hat{b}})-1\right)}{\left(\sum_{i=1}^{k(\underline{\hat{b}})} \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}\right)}
 \end{equation}
-for all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, where $k(\underline{\hat{b}})\in\{2,\dotsc,n\}$ such that $\underline{\hat{c}}_{k(\underline{\hat{b}})} < \underline{\hat{b}}$ and
+for all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, where there exists one and only one $k(\underline{\hat{b}})\in\{2,\dotsc,n'\}$ (cf.~Lemma~A4.1 in Lebrun~\cite{Lebrun2004}) such that $\underline{\hat{c}}_{k(\underline{\hat{b}})} < \underline{\hat{b}}$ and
 \begin{equation*}
-  \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i} \leq\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})}},
+  \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})}}\leq \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i},
 \end{equation*}
-and if $\underline{\hat{b}} < \underline{\hat{c}}_{k(\underline{\hat{b}})+1}$
+and if $\underline{\hat{c}}_{k(\underline{\hat{b}})+1} < \underline{\hat{b}}$ (and $k(\underline{\hat{b}}) < n'$)
 \begin{equation*}
-  \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})+1}}\leq\frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}.
+  \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i} < \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})+1}}.
 \end{equation*}
+Note that the two inequalities together with Equation~\eqref{eq:lower_bound_bids_cost_indirect} imply
+\begin{equation}
+  \label{eq:bounds_lower_bound_bids_cost_indirect}
+  \begin{array}{lll}
+    &\underline{\hat{c}}_{k(\underline{\hat{b}})} \leq \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_{k(\underline{\hat{b}})+1} &\text{if}\quad k(\underline{\hat{b}}) < n',\\
+    \text{and } 
+    &\underline{\hat{c}}_{k(\underline{\hat{b}})} \leq \hat{c}(\underline{\hat{b}}) &\text{if}\quad k(\underline{\hat{b}}) = n'.
+  \end{array}
+\end{equation}
 
 Recapping, Lebrun~\cite{Lebrun2006} showed that there exists a unique $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, and hence, there exists a unique solution to the system of ODEs defined in Equation~\eqref{eq:foc_ode_indirect} with boundary conditions defined in Equations~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect}. However, the establishment of a closed-form solution to the system of ODEs in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
 % section indirect_generic_case (end)
@@ -318,9 +327,16 @@ As pointed out in Section~\ref{sec:generic_case_indirect}, the system of ODEs~\e
 
 The literature is mostly concerned with asymmetric first-price auctions in which the bidders are characterized by different probability distributions sharing a common support; that is, $F_i(\hat{c})\neq F_j(\hat{c})$ for at least one $i\in N$ such that $i\neq j, j\in N$, and for all $\hat{c}\in [\underline{\hat{c}}, \bar{\hat{c}}]$ where $[\underline{\hat{c}}, \bar{\hat{c}}] = [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for all $i\in N$. This is not true in our case. Therefore, the methods described in Hubbard and Paarsch~\cite{HubbardPaarsch2011} have to be adapted before they can be applied to our problem.
 
-However, both the problems considered in the literature and the problem at hand share a common difficulty: the fact that the common lower bound on bids, $\underline{\hat{b}}$, is unknown \emph{a priori} \cite{HubbardPaarsch2011}. On the other hand, since the common upper bound on bids, $\bar{\hat{b}}$, is known \emph{a priori}, it would seem that any well-known finite-difference method, such as Euler or Runge-Kutta methods, could be applied to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with the upper bound on bids as a starting point (the so-called \emph{terminal value problem}). As shown by Hubbard and Paarsch~\cite{HubbardPaarsch2011}, the system does not satisfy the Lipschitz condition for continuity as we approach the upper bound on bids, $\bar{\hat{b}}$. Therefore, much of the theory of ordinary differential equations no longer applies. In practice, this effectively means that the numerical solution obtained using a finite-difference method applied to the terminal value problem will quickly diverge. FIX:ME Provide a graphical example.
+However, both scenarios, the one considered in the literature and the one at hand, share a common difficulty: the fact that the common lower bound on bids, $\underline{\hat{b}}$, is unknown \emph{a priori} \cite{HubbardPaarsch2011}. On the other hand, since the common upper bound on bids, $\bar{\hat{b}}$, is known \emph{a priori}, it would seem that any well-known finite-difference method, such as Euler or Runge-Kutta methods, could be applied to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with the upper bound on bids as a starting point (the so-called \emph{terminal value problem}). As shown by Hubbard and Paarsch~\cite{HubbardPaarsch2011}, the system does not satisfy the Lipschitz condition for continuity as we approach the upper bound on bids, $\bar{\hat{b}}$. Therefore, much of the theory of ordinary differential equations no longer applies. In practice, this effectively means that the numerical solution obtained using a finite-difference method applied to the terminal value problem will quickly diverge. FIX:ME Provide a graphical example.
 
-In this section, we shall consider two numerical algorithms which overcome the aforementioned problem: the forward shooting method, and the polynomial projection method, both of which were first proposed by Bajari~\cite{Bajari2001a}. To this end, let costs, $c_i$, be drawn from a uniform distribution for all network operators as in Section~\ref{sec:restricted_case_n_2_indirect}. Again, this implies that the distribution of costs-hats, $\hat{c}_i$, is uniform with supports $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [(1-w)r_i, (1-w)r_i + w]$ for all $i\in N$. Furthermore, we shall concentrate only on cases in which $J=N$; that is, $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$.
+In this section, we shall consider two numerical algorithms which overcome the aforementioned problem: the forward shooting method, and the polynomial projection method, both of which were first proposed by Bajari~\cite{Bajari2001a}. To this end, let costs, $c_i$, be drawn from a uniform distribution for all network operators as in Section~\ref{sec:restricted_case_n_2_indirect}. Again, this implies that the distribution of costs-hats, $\hat{c}_i$, is uniform with supports $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [(1-w)r_i, (1-w)r_i + w]$ for all $i\in N$. We shall concentrate only on cases in which $J=N$; that is, $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. Furthermore, we assume that
+\begin{equation*}
+  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in J,
+\end{equation*}
+which, together with~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, implies
+\begin{equation*}
+  k(\underline{\hat{b}}) = n'.
+\end{equation*}
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
