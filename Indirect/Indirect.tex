@@ -67,7 +67,14 @@ With these results at hand, we can proceed with the analysis of the auction.
 
 \section{Generic Case} % (fold)
 \label{sec:generic_case_indirect}
-In the generic case, with arbitrary probability distributions of costs and $n\ge 2$ network operators, recall that: if $w=0$, then Proposition~\ref{prop:special_case_w_0_direct} holds; if $w=1$, then Proposition~\ref{prop:special_case_w_1_direct} holds; and if $r_i=r_j$ for all $i,j\in N$ such that $i\neq j$, then Corollary~\ref{cor:special_case_r_i_r_j_direct} holds. Therefore, it is sufficient to consider only the case when $w\in(0,1)$, and at least one network operator is characterized by a different reputation rating from the other network operators; that is, there exists $i\in N$ such that $r_i\neq r_j$ for all $i\neq j$ and $j\in N$.
+In the generic case, with arbitrary probability distributions of costs and $n\ge 2$ network operators, recall that: if $w=0$, then Proposition~\ref{prop:special_case_w_0_direct} holds; if $w=1$, then Proposition~\ref{prop:special_case_w_1_direct} holds; and if $r_i=r_j$ for all $i,j\in N$ such that $i\neq j$, then Corollary~\ref{cor:special_case_r_i_r_j_direct} holds. Thus, we assume the following.
+\begin{assumptions}
+\label{ass:assumptions_generic_indirect}$\quad$\\
+\begin{enumerate}
+  \item Suppose $w\in(0,1)$.
+  \item Assume that there exists only one network operator characterized by the lowest reputation rating. Without loss of generality, let network operator 1 be characterized by the lowest reputation rating. Furthermore, let network operator 2 be characterized by the second lowest reputation rating, and so on; that is, $r_1 < r_2 \leq \cdots\leq r_n$. Note that, this implies $\underline{\hat{c}}_1 < \underline{\hat{c}}_2 \leq \cdots \leq\underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 < \bar{\hat{c}}_2 \leq\cdots \leq \bar{\hat{c}}_n$.
+\end{enumerate}
+\end{assumptions}
 
 Firstly, note that under the generic assumptions specified in Section~\ref{sec:problem_definition_and_assumptions_direct}, the problem satisfies the following regularity conditions.
 \begin{proposition}[Regularity Conditions]
@@ -80,17 +87,9 @@ Let $F_i$ be the distribution function of $\hat{c}_i$ for all $i\in N$. Then,
 \end{enumerate}
 \end{proposition}
 
-The regularity conditions in Proposition~\ref{prop:regularity_conditions_indirect} correspond to the regularity assumptions on type distributions put forward by Lebrun~\cite{Lebrun2006} (cf. Assumptions~A.1 in~\cite{Lebrun2006}). Therefore, since our problem satisfies Lebrun's assumptions, his results are applicable to our problem, and we conclude that:
-\begin{proposition}[Characterization of the Equilibrium]
-\label{prop:characterisation_of_the_equilibrium_indirect}
-$\quad$\\
-\begin{enumerate}
-  \item There exists a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs, and
-  \item the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs is unique.
-\end{enumerate}
-\end{proposition}
+The regularity conditions in Proposition~\ref{prop:regularity_conditions_indirect} correspond to the regularity assumptions on type distributions put forward by Lebrun~\cite{Lebrun2006} (cf. Assumptions~A.1 in~\cite{Lebrun2006}). Therefore, since our problem satisfies Lebrun's assumptions, his results are applicable to our problem.
 
-Elaborating further, in equilibrium, the bids of each network operator equal $\hat{b}_i = \hat{b}_i(\hat{c}_i)$, where $\hat{b}_i$ is the equilibrium bidding function. Denote by $\hat{c}_i(\hat{b}_i)\equiv \hat{b}_i^{-1}(\hat{b}_i)$ an inverse equilibrium bidding function for each network operator $i\in N$. Therefore, the expected utility for each network operator $i\in N$ can be written as
+In equilibrium, the bids of each network operator equal $\hat{b}_i = \hat{b}_i(\hat{c}_i)$, where $\hat{b}_i$ is the equilibrium bidding function. Denote by $\hat{c}_i(\hat{b}_i)\equiv \hat{b}_i^{-1}(\hat{b}_i)$ an inverse equilibrium bidding function for each network operator $i\in N$. Therefore, the expected utility for each network operator $i\in N$ can be written as
 \begin{align*}
   \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i})
   &\equiv (\hat{b}_i - \hat{c}_i)P\{\text{winning}\mid\hat{b}_i\}\\
@@ -129,11 +128,66 @@ Subtracting Equation~\eqref{eq:foc_simplified_indirect} from \eqref{eq:foc_summe
   \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b - \hat{c}_i(b)} - \frac{1}{b - \hat{c}_i(b)} = \frac{f_i(\hat{c}_i(b))}{1 - F_i(\hat{c}_i(b))}\cdot\frac{d}{db}\hat{c}_i(b)
 \end{equation*}
 which leads to the system of nonlinear ordinary differential equations (ODE)
+\begin{equation*}
+  \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
+\end{equation*}
+for $i=1,2,\dotsc,n$. As we shall see briefly, there exists a unique set of inverse bidding functions that satisfy the system and constitute a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. Firstly, we need to define a few concepts (cf.~Definitions 1, 2 and 3 in Lebrun~\cite{Lebrun2006}).
+
+\begin{define}[Upper bound on bids]
+\label{def:upper_bound_bids_indirect}
+Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then, the upper bound on bids is defined as follows
+\begin{equation}
+  \label{eq:upper_bound_bids_indirect}
+  \bar{\hat{b}} = \min\arg\max_{b\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]}(b - \bar{\hat{c}}_1)\prod_{i>1}\left( 1 - F_i(b) \right).
+\end{equation}
+\end{define}
+
+\begin{define}[Feasible bidders]
+\label{def:feasible_bidders_indirect}
+Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Let $J$ denote the set of feasible bidders. Then, $J$ is a subset of $N$ such that
+\begin{equation*}
+  J = \left\{j \:\middle\vert\: 1\leq j\leq n \text{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
+\end{equation*}
+\end{define}
+
+\begin{define}[Characterization of lower bound on bids]
+\label{def:lower_bound_bids_indirect}
+Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then,
+\begin{enumerate}
+  \item For all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, there exists one and only one\footnote{See Lemma A4.1, Appendix 4 in Lebrun~\cite{Lebrun2004} for proof.} $k(\underline{\hat{b}})\in \{2,\dotsc,n\}$ such that $\underline{\hat{c}}_{k(\underline{\hat{b}})} < \underline{\hat{b}}$ and
+  \begin{equation*}
+    \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})}}\leq \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i},
+  \end{equation*}
+  and if $\underline{\hat{c}}_{k(\underline{\hat{b}})+1} < \underline{\hat{b}}$ (and $k(\underline{\hat{b}}) < n$)
+  \begin{equation*}
+    \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i} < \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})+1}}.
+  \end{equation*}
+  \item For all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, let $\hat{c}(\underline{\hat{b}})$ be defined as follows
+  \begin{equation}
+  \label{eq:lower_bound_bids_cost_indirect}
+    \hat{c}(\underline{\hat{b}}) = \underline{\hat{b}} - \sfrac{\left(k(\underline{\hat{b}})-1\right)}{\left(\sum_{i=1}^{k(\underline{\hat{b}})} \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}\right)}.
+  \end{equation}
+\end{enumerate}
+\end{define}
+\noindent Note that Definition~\ref{def:lower_bound_bids_indirect} implies
+\begin{equation}
+  \label{eq:bounds_lower_bound_bids_cost_indirect}
+  \begin{array}{lll}
+    &\underline{\hat{c}}_{k(\underline{\hat{b}})} \leq \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_{k(\underline{\hat{b}})+1} &\text{if}\quad k(\underline{\hat{b}}) < n,\\
+    \text{and } 
+    &\underline{\hat{c}}_{k(\underline{\hat{b}})} \leq \hat{c}(\underline{\hat{b}}) &\text{if}\quad k(\underline{\hat{b}}) = n.
+  \end{array}
+\end{equation}
+
+With those definitions at hand, we can proceed with the characterization of the equilibrium.
+\begin{proposition}[Characterization of the Equilibrium]
+\label{prop:characterization_of_the_equilibrium_indirect}
+Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then, there exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. In every such equilibrium, network operator $i\in J$ follows a bid function $\hat{b}_i$, for all $i\in N$. Moreover, there exists $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$ such that, for all $i\in J$, there exists a continuous extension of $\hat{b}_i$ to the interval $\left[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\}, \bar{\hat{b}}\right]$ that is differentiable with a strictly positive derivative everywhere over this interval, except possibly at $\underline{\hat{c}}_i$ or when its value is equal to $\bar{\hat{b}}$, and such that the inverse bid functions $\hat{c}_i$ for all $i\in J$ of these extensions, where differentiable, satisfy the following system of differential equations
 \begin{equation}
   \label{eq:foc_ode_indirect}
   \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
 \end{equation}
-for $i=1,2,\dotsc,n$, with the following lower boundary condition
+for all $i\in N$, with the following lower boundary condition
 \begin{equation}
   \label{eq:foc_ode_lower_boundary_indirect}
   \hat{c}_i(\underline{\hat{b}}) = \min\left\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\right\} \quad\text{for all }i\in J
@@ -143,42 +197,10 @@ and the upper boundary condition
   \label{eq:foc_ode_upper_boundary_indirect}
   \hat{c}_i(\bar{\hat{b}}) = \bar{\hat{b}}
 \end{equation}
-for all, except possibly one, $i$ between $1$ and $n$. The boundary conditions were derived and characterized by Lebrun~\cite{Lebrun2006} (cf.~Proposition C.5 in~\cite{Lebrun2006}), but for completeness we will describe them below.
+for all, except possibly one, $i\in N$.
+\end{proposition}
 
-Let network operator $1$ be characterized by the smallest upper extremity, and network operator $2$ by the second smallest upper extremity; that is, let $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$. The upper boundary condition in Equation~\eqref{eq:foc_ode_upper_boundary_indirect} depends on the value of the upper bound on bids which is defined as follows (cf.~Definition~1 in~\cite{Lebrun2006})
-\begin{equation}
-  \label{eq:upper_bound_bids_indirect}
-  \bar{\hat{b}} = \min\arg\max_{b\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]}(b - \bar{\hat{c}}_1)\prod_{i>1}\left( 1 - F_i(b) \right).
-\end{equation}
-
-Note that $\bar{\hat{c}}_1 < \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$ implies $\underline{\hat{c}}_1 < \underline{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$. Let $J$ be the subset of $N$ such that (cf.~Definition~2 in~\cite{Lebrun2006})
-\begin{equation*}
-  J = \left\{j \:\middle\vert\: 1\leq j\leq n \text{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
-\end{equation*}
-Let $n' = |J|$. Then, $\hat{c}(\underline{\hat{b}})$ is defined as follows (cf.~Definition~3 in~\cite{Lebrun2006})
-\begin{equation}
-  \label{eq:lower_bound_bids_cost_indirect}
-  \hat{c}(\underline{\hat{b}}) = \underline{\hat{b}} - \sfrac{\left(k(\underline{\hat{b}})-1\right)}{\left(\sum_{i=1}^{k(\underline{\hat{b}})} \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i}\right)}
-\end{equation}
-for all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, where there exists one and only one $k(\underline{\hat{b}})\in\{2,\dotsc,n'\}$ (cf.~Lemma~A4.1 in Lebrun~\cite{Lebrun2004}) such that $\underline{\hat{c}}_{k(\underline{\hat{b}})} < \underline{\hat{b}}$ and
-\begin{equation*}
-  \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})}}\leq \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i},
-\end{equation*}
-and if $\underline{\hat{c}}_{k(\underline{\hat{b}})+1} < \underline{\hat{b}}$ (and $k(\underline{\hat{b}}) < n'$)
-\begin{equation*}
-  \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i} < \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})+1}}.
-\end{equation*}
-Note that the two inequalities together with Equation~\eqref{eq:lower_bound_bids_cost_indirect} imply
-\begin{equation}
-  \label{eq:bounds_lower_bound_bids_cost_indirect}
-  \begin{array}{lll}
-    &\underline{\hat{c}}_{k(\underline{\hat{b}})} \leq \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_{k(\underline{\hat{b}})+1} &\text{if}\quad k(\underline{\hat{b}}) < n',\\
-    \text{and } 
-    &\underline{\hat{c}}_{k(\underline{\hat{b}})} \leq \hat{c}(\underline{\hat{b}}) &\text{if}\quad k(\underline{\hat{b}}) = n'.
-  \end{array}
-\end{equation}
-
-Recapping, Lebrun~\cite{Lebrun2006} showed that there exists a unique $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, and hence, there exists a unique solution to the system of ODEs defined in Equation~\eqref{eq:foc_ode_indirect} with boundary conditions defined in Equations~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect}. However, the establishment of a closed-form solution to the system of ODEs in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
+Even though we are guaranteed that there exists a unique equilibrium to our problem, the establishment of a closed-form solution to the system of ODEs in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
 % section indirect_generic_case (end)
 
 \section{Restricted Case $n=2$} % (fold)
@@ -430,7 +452,7 @@ and
 for all $x\in [(1-w)r_i, (1-w)r_i + w]$. Therefore, since $F_C$ is differentiable over $(0,1]$ with a derivative $f_C$ locally bounded away from zero over this interval, by extension, $F_i$ is differentiable over $((1-w)r_i, (1-w)r_i + w]$ with a derivative $f_i$ locally bounded away from zero over this interval, and this proves 2). Moreover, since $F_C$ is atomless, by extension, $F_i$ is atomless, and this proves 3).
 \end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:characterisation_of_the_equilibrium_indirect}]
+\begin{proof}[Proof of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}]
 Since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost. Hence, to prove 1) we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf. C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}). But since costs-hat are equivalent to costs, this also proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs.
 
 To prove 2) we note that since $r_i\neq r_j$ for at least one network operator $i\in N$ such that $i\neq j$ and $j\in N$, then either $r_i < r_j$ or $r_i > r_j$. Without loss of generality, assume $r_i < r_j$ which implies that $(1-w)r_i < (1-w)r_j$ for all $w\in (0,1)$. By Theorem~1 in Lebrun~\cite{Lebrun2006}, the additional condition (ii) holds, and hence, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat. But since costs-hat are equivalent to costs, this also proves the uniqueness of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs.
