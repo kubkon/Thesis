@@ -182,12 +182,12 @@ Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then,
 With those definitions at hand, we can proceed with the characterization of the equilibrium.
 \begin{proposition}[Characterization of the Equilibrium]
 \label{prop:characterization_of_the_equilibrium_indirect}
-Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then, there exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. In every such equilibrium, network operator $i\in J$ follows a bid function $\hat{b}_i$, for all $i\in N$. Moreover, there exists $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$ such that, for all $i\in J$, there exists a continuous extension of $\hat{b}_i$ to the interval $\left[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\}, \bar{\hat{b}}\right]$ that is differentiable with a strictly positive derivative everywhere over this interval, except possibly at $\underline{\hat{c}}_i$ or when its value is equal to $\bar{\hat{b}}$, and such that the inverse bid functions $\hat{c}_i$ for all $i\in J$ of these extensions, where differentiable, satisfy the following system of differential equations
+Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then, there exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. In every such equilibrium, network operator $i\in J$ follows a bid function $\hat{b}_i$, for all $1\leq i\leq n$. Moreover, there exists $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$ such that, for all $i\in J$, there exists a continuous extension of $\hat{b}_i$ to the interval $\left[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\}, \bar{\hat{b}}\right]$ that is differentiable with a strictly positive derivative everywhere over this interval, except possibly at $\underline{\hat{c}}_i$ or when its value is equal to $\bar{\hat{b}}$, and such that the inverse bid functions $\hat{c}_i$ for all $i\in J$ of these extensions, where differentiable, satisfy the following system of differential equations
 \begin{equation}
   \label{eq:foc_ode_indirect}
   \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
 \end{equation}
-for all $i\in N$, with the following lower boundary condition
+for all $1\leq i\leq n$, with the following lower boundary condition
 \begin{equation}
   \label{eq:foc_ode_lower_boundary_indirect}
   \hat{c}_i(\underline{\hat{b}}) = \min\left\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\right\} \quad\text{for all }i\in J
@@ -197,10 +197,16 @@ and the upper boundary condition
   \label{eq:foc_ode_upper_boundary_indirect}
   \hat{c}_i(\bar{\hat{b}}) = \bar{\hat{b}}
 \end{equation}
-for all, except possibly one, $i\in N$.
+for all, except possibly one, $1\leq i\leq n$.
 \end{proposition}
 
-Even though we are guaranteed that there exists a unique equilibrium to our problem, the establishment of a closed-form solution to the system of ODEs in a generic setting ($n\ge 2$ network operators and arbitrary cost distribution) is very difficult (if even possible) \cite{Lebrun2006, Krishna10}.
+Since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost, and we immediately deduce the following corollary.
+\begin{corollary}
+\label{cor:characterization_of_the_equilibrium}
+Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs.
+\end{corollary}
+
+Even though we are guaranteed that there exists a unique equilibrium to our problem, the establishment of a closed-form solution to the system of ODEs for $n\ge 2$ network operators and arbitrary cost distribution is very difficult (if possible), and for $n>2$ is not possible \cite{Lebrun2006, Krishna10}.
 % section indirect_generic_case (end)
 
 \section{Restricted Case $n=2$} % (fold)
@@ -345,11 +351,11 @@ Note, furthermore, that since we have explicitly required the network operators 
 
 \section{Numerical Analysis} % (fold)
 \label{sec:numerical_analysis_indirect}
-As pointed out in Section~\ref{sec:generic_case_indirect}, the system of ODEs~\eqref{eq:foc_ode_indirect} together with the lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect} does not possess any known closed-form solution. However, there exists a considerable research base studying methods for numerical approximation of the solution to the system of ODEs in question. See Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent overview of the subject.
+As pointed out in Section~\ref{sec:generic_case_indirect}, the system of ODEs~\eqref{eq:foc_ode_indirect} together with the lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect} does not possess any known closed-form solution in a generic setting, and especially when $n>2$. However, there exists a considerable research base studying methods for numerical approximation of the solution to the system of ODEs in question. See Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent overview of the subject.
 
 The literature is mostly concerned with asymmetric first-price auctions in which the bidders are characterized by different probability distributions sharing a common support; that is, $F_i(\hat{c})\neq F_j(\hat{c})$ for at least one $i\in N$ such that $i\neq j, j\in N$, and for all $\hat{c}\in [\underline{\hat{c}}, \bar{\hat{c}}]$ where $[\underline{\hat{c}}, \bar{\hat{c}}] = [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for all $i\in N$. This is not true in our case. Therefore, the methods described in Hubbard and Paarsch~\cite{HubbardPaarsch2011} have to be adapted before they can be applied to our problem.
 
-However, both scenarios, the one considered in the literature and the one at hand, share a common difficulty: the fact that the common lower bound on bids, $\underline{\hat{b}}$, is unknown \emph{a priori} \cite{HubbardPaarsch2011}. On the other hand, since the common upper bound on bids, $\bar{\hat{b}}$, is known \emph{a priori}, it would seem that any well-known finite-difference method, such as Euler or Runge-Kutta methods, could be applied to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with the upper bound on bids as a starting point (the so-called \emph{terminal value problem}). As shown by Hubbard and Paarsch~\cite{HubbardPaarsch2011}, the system does not satisfy the Lipschitz condition for continuity as we approach the upper bound on bids, $\bar{\hat{b}}$. Therefore, much of the theory of ordinary differential equations no longer applies. In practice, this effectively means that the numerical solution obtained using a finite-difference method applied to the terminal value problem will quickly diverge. FIX:ME Provide a graphical example.
+However, both scenarios (the one considered in the literature and the one at hand) share a common difficulty: the fact that the common lower bound on bids, $\underline{\hat{b}}$, is unknown \emph{a priori} \cite{HubbardPaarsch2011}. On the other hand, since the common upper bound on bids, $\bar{\hat{b}}$, is known \emph{a priori}, it would seem that any well-known finite-difference method, such as Euler or Runge-Kutta methods, could be applied to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with the upper bound on bids as a starting point (the so-called \emph{terminal value problem}). As shown by Hubbard and Paarsch~\cite{HubbardPaarsch2011}, the system does not satisfy the Lipschitz condition for continuity as we approach the upper bound on bids, $\bar{\hat{b}}$. Therefore, much of the theory of ordinary differential equations no longer applies. In practice, this effectively means that the numerical solution obtained using a finite-difference method applied to the terminal value problem will quickly diverge. FIX:ME Provide a graphical example.
 
 In this section, we shall consider two numerical algorithms which overcome the aforementioned problem: the forward shooting method, and the polynomial projection method, both of which were first proposed by Bajari~\cite{Bajari2001a}. To this end, let costs, $c_i$, be drawn from a uniform distribution for all network operators as in Section~\ref{sec:restricted_case_n_2_indirect}. Again, this implies that the distribution of costs-hats, $\hat{c}_i$, is uniform with supports $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [(1-w)r_i, (1-w)r_i + w]$ for all $i\in N$. We shall concentrate only on cases in which $J=N$; that is, $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. Furthermore, we assume that
 \begin{equation*}
@@ -357,8 +363,14 @@ In this section, we shall consider two numerical algorithms which overcome the a
 \end{equation*}
 which, together with~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, implies
 \begin{equation*}
-  k(\underline{\hat{b}}) = n'.
+  k(\underline{\hat{b}}) = n.
 \end{equation*}
+The last assumption simplifies the problem so that it is numerically tractable using (slightly modified) existing numerical methods. More specifically, it reduces the lower boundary boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} to
+\begin{equation}
+  \label{eq:foc_ode_lower_boundary_reduced_indirect}
+  \hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i \quad\text{for all } i\in J.
+\end{equation}
+Without this assumption, as explained by Lebrun~\cite{Lebrun2006}, 
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
@@ -453,9 +465,9 @@ for all $x\in [(1-w)r_i, (1-w)r_i + w]$. Therefore, since $F_C$ is differentiabl
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}]
-Since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost. Hence, to prove 1) we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf. C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}). But since costs-hat are equivalent to costs, this also proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs.
+To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf. C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
 
-To prove 2) we note that since $r_i\neq r_j$ for at least one network operator $i\in N$ such that $i\neq j$ and $j\in N$, then either $r_i < r_j$ or $r_i > r_j$. Without loss of generality, assume $r_i < r_j$ which implies that $(1-w)r_i < (1-w)r_j$ for all $w\in (0,1)$. By Theorem~1 in Lebrun~\cite{Lebrun2006}, the additional condition (ii) holds, and hence, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat. But since costs-hat are equivalent to costs, this also proves the uniqueness of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs.
+To prove uniqueness, we note that since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds, and hence, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:inverse_equi_bidding_str_indirect}]
