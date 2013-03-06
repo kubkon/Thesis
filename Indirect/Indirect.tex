@@ -215,7 +215,8 @@ Even though we are guaranteed that there exists a unique equilibrium to our prob
 
 \section{Restricted Case $n=2$} % (fold)
 \label{sec:restricted_case_n_2_indirect}
-It is possible to explicitly derive the equilibrium bidding strategy functions in a much restricted setting. Let $n=2$ network operators, and assume costs, $c_i$, for both network operators are drawn from the uniform distribution. The utility function becomes
+It is possible to explicitly derive the equilibrium bidding strategy functions in a much restricted setting. Let $n=2$ network operators, and assume costs, $c_i$, for both network operators are drawn from the uniform distribution. Furthermore, let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Without loss of generality, suppose $r_1 < r_2$, which implies $\underline{\hat{c}}_1 < \underline{\hat{c}}_2$ and $\bar{\hat{c}}_1 < 
+\bar{\hat{c}}_2$. The utility function for each $i\in \{1,2\}$
 \begin{equation*}
   u_i(\hat{b},\hat{c}) = \left\{
   \begin{array}{l l}
@@ -224,114 +225,100 @@ It is possible to explicitly derive the equilibrium bidding strategy functions i
     0 & \;\text{if } \hat{b}_i > \hat{b}_j.
   \end{array}\right.
 \end{equation*}
-Without loss of generality, suppose $r_i < r_j$. Since the distribution of costs, $c_i$, for each network operator $i$ is uniform with the support $[0,1]$, Equation~\eqref{eq:cost_hat_indirect} implies that the distribution of costs-hat, $\hat{c}_i$, for each network operator $i$ is uniform with the support~${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]} = {[(1-w)r_i, (1-w)r_i + w]}$. Therefore, the distribution function of costs-hat satisfies the regularity conditions specified in Proposition~\ref{prop:regularity_conditions_indirect}, and by Proposition~\ref{prop:characterisation_of_the_equilibrium_indirect}, we conclude that the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs exists and is unique.
+Since the distribution of costs, $c_i$, for each network operator $i$ is uniform with support $[0,1]$, the distribution of costs-hat, $\hat{c}_i$, for each network operator $i$ is uniform with support~${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]} = {[(1-w)r_i, (1-w)r_i + w]}$. Therefore, the distribution function of costs-hat satisfies the regularity conditions specified in Proposition~\ref{prop:regularity_conditions_indirect}, and by Corollary~\ref{cor:characterization_of_the_equilibrium}, we conclude that the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs exists and is unique.
 
-The derivation of the equilibrium involves three stages: 1) deriving equilibrium inverse bidding strategy functions using the procedure described by Kaplan and Zamir~\cite{KaplanZamir2007}; 2) numerically estimating the equilibrium bidding strategy functions by inverting the inverses; and 3) transforming the problem back to the original domain (from costs-hat and bids-hat back to costs and bids). Since $r_i < r_j$, this implies that $\bar{\hat{c}}_i < \bar{\hat{c}}_j$. It is, moreover, assumed that bids are bounded from above which implies that no network operator wins by bidding more than $\bar{\hat{c}}_j$ (since $\bar{\hat{c}}_i < \bar{\hat{c}}_j$). In particular, in equilibrium, there is no bid higher than $\bar{\hat{c}}_j$. Furthermore, it is assumed that, in equilibrium, a network operator with zero probability of winning bids their cost-hat. (This assumption guarantees both the existence and uniqueness of the equilibrium by Proposition~\ref{prop:characterisation_of_the_equilibrium_indirect}.)
+The derivation of the equilibrium involves three stages: 1) deriving equilibrium inverse bidding strategy functions using the procedure described by Kaplan and Zamir~\cite{KaplanZamir2007}; 2) numerically estimating the equilibrium bidding strategy functions by inverting the inverses; and 3) transforming the problem back to the original domain (from costs-hat and bids-hat back to costs and bids).
 
-If $\bar{\hat{c}}_i \le 2\underline{\hat{c}}_j - \bar{\hat{c}}_j$, then any pure-strategy Bayesian Nash equilibrium must have network operator $i$ always bidding $\underline{\hat{c}}_j$, and hence, always winning the auction at price $\underline{\hat{c}}_j$. This case shall be referred to as trivial. Therefore, in the non-trivial case, we must have $\bar{\hat{c}}_i > 2\underline{\hat{c}}_j - \bar{\hat{c}}_j$ (cf. Lemma~1 in Kaplan and Zamir~\cite{KaplanZamir2007}). In this range, an equilibrium consists of strictly increasing, differentiable bidding strategy functions $\hat{b}_i(\hat{c})$ and $\hat{b}_j(\hat{c})$. Let the inverses of these bidding strategy functions be denoted as $\hat{c}_i(\hat{b})$ with support $[\underline{\hat{b}}_i, \bar{\hat{b}}_i]$, and $\hat{c}_j(\hat{b})$ with support $[\underline{\hat{b}}_j, \bar{\hat{b}}_j]$. As Kaplan and Zamir~\cite{KaplanZamir2007} establish, these supports are identical, and equal to the common support $[\underline{\hat{b}}, \bar{\hat{b}}]$.
-
-Suppose, therefore, that $\bar{\hat{c}}_i > 2\underline{\hat{c}}_j - \bar{\hat{c}}_j$ holds, and consider the optimization problem for network operator $i$
-\begin{align*}
-  &\max_{b} E \left[ b - \hat{c}_i \:\middle\vert\: b < \hat{b}_j \right]\\
-  = &\max_{b} (b - \hat{c}_i)\cdot P\{b < \hat{b}_j\}\\
-  = &\max_{b} (b - \hat{c}_i)\cdot P\{\hat{c}_j(b) < \hat{C}_j\}\\
-  = &\max_{b} (b - \hat{c}_i)(1 - F_j(\hat{c}_j(b)),
-\end{align*}
-where $F_j$ is the distribution function of costs-hat for network operator $j$. The first-order condition yields
-\begin{align}
-  &1 - F_j(\hat{c}_j(b)) - (b - \hat{c}_i)f_j(\hat{c}_j(b))\cdot\frac{d}{db}\hat{c}_j(b) = 0 \nonumber \\
-  \iff &1 - \frac{\hat{c}_j(b) - \underline{\hat{c}}_j}{\bar{\hat{c}}_j - \underline{\hat{c}}_j} = \frac{1}{\bar{\hat{c}}_j - \underline{\hat{c}}_j}(b - \hat{c}_i)\cdot\frac{d}{db}\hat{c}_j(b) \nonumber \\
-  \iff &(\hat{c}_i(b) - b)\cdot\frac{d}{db}\hat{c}_j(b) = \hat{c}_j(b) - \bar{\hat{c}}_j,
-  \label{eq:first_order_bidder_i_indirect}
-\end{align}
-where we have used the facts that $F_j$ is the distribution function of the uniform distribution with the support $[\underline{\hat{c}}_j, \bar{\hat{c}}_j]$, and at an equilibrium $\hat{c}_i = \hat{c}_i(b)$. Similarly, for network operator $j$ we have
+First, note that, by Definition~\ref{def:upper_bound_bids_indirect}, the upper bound on bids is equal to
 \begin{equation}
-  \label{eq:first_order_bidder_j_indirect}
-  (\hat{c}_j(b) - b)\cdot\frac{d}{db}\hat{c}_i(b) = \hat{c}_i(b) - \bar{\hat{c}}_i.
+  \label{eq:upper_bound_bids_restricted_indirect}
+  \bar{\hat{b}} = \min\arg\max_{b\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]} \frac{(b - \bar{\hat{c}}_1)(\bar{\hat{c}}_2 - b)}{\bar{\hat{c}}_2 - \underline{\hat{c}}_2} = \frac{\bar{\hat{c}}_1 + \bar{\hat{c}}_2}{2},
+\end{equation}
+where we have used the fact that $F_2$ is the distribution function of the uniform distribution with the support $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$.
+
+If $\bar{\hat{b}} \leq \underline{\hat{c}}_2 \iff \bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then, by Definition~\ref{def:feasible_bidders_indirect}, network operator 2 is only involved in non-serious bidding. In this case, any pure-strategy Bayesian Nash equilibrium must have network operator 1 always bidding $\underline{\hat{c}}_2$, and hence, always winning the auction at price $\underline{\hat{c}}_2$ \cite{KaplanZamir2007}. We shall refer to this case as trivial. Otherwise, by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}, the inverse equilibrium bidding functions are determined by the system
+\begin{equation}
+  \label{eq:foc_restricted_indirect}
+  \begin{array}{ll}
+  &\left\{
+  \begin{array}{ll}
+    \displaystyle\frac{d}{db}\hat{c}_1(b) &= \displaystyle\frac{\bar{\hat{c}}_1 - \hat{c}_1(b)}{b - \hat{c}_2(b)} \\[2ex]
+    \displaystyle\frac{d}{db}\hat{c}_2(b) &= \displaystyle\frac{\bar{\hat{c}}_2 - \hat{c}_2(b)}{b - \hat{c}_1(b)}
+  \end{array}
+  \right.\\[1cm]
+  &\text{with boundary conditions (cf.~boundary conditions in~\cite{KaplanZamir2007})}\\
+  &\hat{c}_1(\underline{\hat{b}}) = \underline{\hat{c}}_1 \quad\text{and}\quad \hat{c}_1(\bar{\hat{b}}) = \bar{\hat{c}}_1 \quad\text{for network operator 1, and}\\
+  &\hat{c}_2(\underline{\hat{b}}) = \underline{\hat{c}}_2 \quad\text{and}\quad \hat{c}_2(\bar{\hat{b}}) = \bar{\hat{b}} \quad\text{for network operator 2.}
+  \end{array}
 \end{equation}
 
-The following boundary conditions must hold in equilibrium (cf. boundary conditions in Kaplan and Zamir~\cite{KaplanZamir2007}):
-\begin{enumerate}
-  \item $\hat{c}_j(\bar{\hat{b}}) = \bar{\hat{b}}$, (the network operator bids their cost-hat when their probability of winning is zero),
-  \item $\hat{c}_i(\bar{\hat{b}}) = \bar{\hat{c}}_i$, (the maximum cost-hat that gives network operator $i$ a positive probability of winning), and
-  \item $\hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i$ and $\hat{c}_j(\underline{\hat{b}}) = \underline{\hat{c}}_j$ (the lowest bid-hat of each network operator is reached for their lowest cost-hat).
-\end{enumerate}
-Integrating Equations~\eqref{eq:first_order_bidder_i_indirect}~and~\eqref{eq:first_order_bidder_j_indirect} bounded by the aforementioned boundary conditions results in the derivation of the equilibrium inverse bidding strategy functions. The derivation procedure is fully described in Kaplan and Zamir~\cite{KaplanZamir2007}; hence, we only provide the final result.
+Integrating the system in Equation~\eqref{eq:foc_restricted_indirect} bounded by the aforementioned boundary conditions results in the derivation of the equilibrium inverse bidding strategy functions. The derivation procedure is fully described in Kaplan and Zamir~\cite{KaplanZamir2007}; hence, we only provide the final result.
 \begin{proposition}
-\label{prop:inverse_equi_bidding_str_indirect}
-Let there be $n=2$ network operators, and suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in N$. Let for all $i\in N$
-\begin{equation*}
-  \hat{b}_i = wb_i + (1-w)r_i,\quad\text{and}\quad \hat{c}_i = wc_i + (1-w)r_i,
-\end{equation*}
-with
-\begin{equation}
-  \label{eq:cost_hat_bounds_indirect}
-  \underline{\hat{c}}_i = (1-w)r_i,\quad \bar{\hat{c}}_i = (1-w)r_i + w.
-\end{equation}
-Then the equilibrium inverse bidding strategy functions for all $i\in N$ and $w\in (0,1)$ are given by
+\label{prop:equilibrium_restricted_indirect}
+Let there be $n=2$ network operators, and suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in \{1, 2\}$. Furthermore, let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. The equilibrium inverse bidding strategy functions are given by
 \begin{align}
-  \label{eq:inverse_equi_bidding_str_i_indirect}
-  \hat{c}_i(b) &= \bar{\hat{c}}_i + \frac{(\bar{\hat{c}}_j - \bar{\hat{c}}_i)^2}{(\bar{\hat{c}}_j + \bar{\hat{c}}_i - 2b)d_i \exp{\left(\displaystyle\frac{\bar{\hat{c}}_j - \bar{\hat{c}}_i}{\bar{\hat{c}}_j + \bar{\hat{c}}_i - 2b}\right)} + 4(\bar{\hat{c}}_j - b)},\\[2ex]
-  \label{eq:inverse_equi_bidding_str_j_indirect}
-  \hat{c}_j(b) &= \bar{\hat{c}}_j + \frac{(\bar{\hat{c}}_i - \bar{\hat{c}}_j)^2}{(\bar{\hat{c}}_i + \bar{\hat{c}}_j - 2b)d_j \exp{\left(\displaystyle\frac{\bar{\hat{c}}_i - \bar{\hat{c}}_j}{\bar{\hat{c}}_i + \bar{\hat{c}}_j - 2b}\right)} + 4(\bar{\hat{c}}_i - b)},
+  \label{eq:inverse_equi_bidding_str_1_indirect}
+  \hat{c}_1(b) &= \bar{\hat{c}}_1 + \frac{(\bar{\hat{c}}_2 - \bar{\hat{c}}_1)^2}{(\bar{\hat{c}}_2 + \bar{\hat{c}}_1 - 2b)d_1 \exp{\left(\displaystyle\frac{\bar{\hat{c}}_2 - \bar{\hat{c}}_1}{\bar{\hat{c}}_2 + \bar{\hat{c}}_1 - 2b}\right)} + 4(\bar{\hat{c}}_2 - b)},\\[2ex]
+  \label{eq:inverse_equi_bidding_str_2_indirect}
+  \hat{c}_2(b) &= \bar{\hat{c}}_2 + \frac{(\bar{\hat{c}}_1 - \bar{\hat{c}}_2)^2}{(\bar{\hat{c}}_1 + \bar{\hat{c}}_2 - 2b)d_2 \exp{\left(\displaystyle\frac{\bar{\hat{c}}_1 - \bar{\hat{c}}_2}{\bar{\hat{c}}_1 + \bar{\hat{c}}_2 - 2b}\right)} + 4(\bar{\hat{c}}_1 - b)},
 \end{align}
 where
 \begin{align}
-  \label{eq:constant_d_i_indirect}
-  d_i = \frac{\displaystyle\frac{(\bar{\hat{c}}_j - \bar{\hat{c}}_i)^2}{\underline{\hat{c}}_i - \bar{\hat{c}}_i} + 4(\underline{\hat{b}} - \bar{\hat{c}}_j)}{-2(\underline{\hat{b}} - \bar{\hat{b}})} \exp{\left(\displaystyle\frac{\bar{\hat{c}}_j - \bar{\hat{c}}_i}{2(\underline{\hat{b}} - \bar{\hat{b}})}\right)}, \\[2ex]
-  \label{eq:constant_d_j_indirect}
-  d_j = \frac{\displaystyle\frac{(\bar{\hat{c}}_i - \bar{\hat{c}}_j)^2}{\underline{\hat{c}}_j - \bar{\hat{c}}_j} + 4(\underline{\hat{b}} - \bar{\hat{c}}_i)}{-2(\underline{\hat{b}} - \bar{\hat{b}})} \exp{\left(\frac{\bar{\hat{c}}_i - \bar{\hat{c}}_j}{2(\underline{\hat{b}} - \bar{\hat{b}})}\right)},
+  \label{eq:constant_d_1_indirect}
+  d_1 = \frac{\displaystyle\frac{(\bar{\hat{c}}_2 - \bar{\hat{c}}_1)^2}{\underline{\hat{c}}_1 - \bar{\hat{c}}_1} + 4(\underline{\hat{b}} - \bar{\hat{c}}_2)}{-2(\underline{\hat{b}} - \bar{\hat{b}})} \exp{\left(\displaystyle\frac{\bar{\hat{c}}_2 - \bar{\hat{c}}_1}{2(\underline{\hat{b}} - \bar{\hat{b}})}\right)}, \\[2ex]
+  \label{eq:constant_d_2_indirect}
+  d_2 = \frac{\displaystyle\frac{(\bar{\hat{c}}_1 - \bar{\hat{c}}_2)^2}{\underline{\hat{c}}_2 - \bar{\hat{c}}_2} + 4(\underline{\hat{b}} - \bar{\hat{c}}_1)}{-2(\underline{\hat{b}} - \bar{\hat{b}})} \exp{\left(\frac{\bar{\hat{c}}_1 - \bar{\hat{c}}_2}{2(\underline{\hat{b}} - \bar{\hat{b}})}\right)},
 \end{align}
 and
 \begin{equation}
-  \label{eq:bid_bounds_indirect}
-  \underline{\hat{b}} = \frac{\underline{\hat{c}}_i\underline{\hat{c}}_j - \displaystyle\frac{(\bar{\hat{c}}_i + \bar{\hat{c}}_j)^2}{4}}{\underline{\hat{c}}_i - \bar{\hat{c}}_i + \underline{\hat{c}}_j - \bar{\hat{c}}_j},\quad
-  \bar{\hat{b}} = \frac{\bar{\hat{c}}_i + \bar{\hat{c}}_j}{2}.
+  \label{eq:bounds_bid_restricted_indirect}
+  \underline{\hat{b}} = \frac{\underline{\hat{c}}_1\underline{\hat{c}}_2 - \displaystyle\frac{(\bar{\hat{c}}_1 + \bar{\hat{c}}_2)^2}{4}}{\underline{\hat{c}}_1 - \bar{\hat{c}}_1 + \underline{\hat{c}}_2 - \bar{\hat{c}}_2},\quad
+  \bar{\hat{b}} = \frac{\bar{\hat{c}}_1 + \bar{\hat{c}}_2}{2}.
 \end{equation}
 \end{proposition}
-Note that the equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, we would get a particular bid-hat. Since it is difficult (if even possible) to analytically invert the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_i_indirect}~and~\eqref{eq:inverse_equi_bidding_str_j_indirect}, we resort to numerical methods for estimating the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators. Without loss of generality, assume that $r_i < r_j$. The numerical procedure is then as follows.
+Note that the equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, we would get a particular bid-hat. Since it is difficult (if even possible) to analytically invert the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}, we resort to numerical methods for estimating the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators. The numerical procedure is as follows.
 \begin{enumerate}
-  \item For a particular price weight $w$ and reputation ratings $r_i$ and $r_j$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for network operator $i$, and $[\underline{\hat{c}}_j, \bar{\hat{c}}_j]$ for network operator $j$ (Equation~\eqref{eq:cost_hat_bounds_indirect}).
-  \item If $\bar{\hat{c}}_i \le 2\underline{\hat{c}}_j - \bar{\hat{c}}_j$, then the equilibrium is trivial. Network operator $i$ bids the lower endpoint of the cost-hat support of network operator $j$; that is, network operator $i$ bids $\underline{\hat{c}}_j$ for all $\hat{c}\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$. Network operator $j$, on the other hand, bids their cost-hat; that is, network operator $j$ bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_j, \bar{\hat{c}}_j]$.
-  \item If $\bar{\hat{c}}_i > 2\underline{\hat{c}}_j - \bar{\hat{c}}_j$, then the equilibrium is nontrivial. Hence,
+  \item For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2.
+  \item If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$.
+  \item If $\bar{\hat{c}}_1 > 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is nontrivial. Hence,
   \begin{enumerate}
-    \item Calculate the common bids-hat support $[\underline{\hat{b}}, \bar{\hat{b}}]$ (Equation~\eqref{eq:bid_bounds_indirect}).
-    \item For all $\hat{b}\in [\underline{\hat{b}}, \bar{\hat{b}}]$, calculate the corresponding costs-hat for both network operators using Equations~\eqref{eq:inverse_equi_bidding_str_i_indirect}~and~\eqref{eq:inverse_equi_bidding_str_j_indirect}.
-    \item Since by assumption $r_i < r_j$, it follows that $\bar{\hat{c}}_i \le \bar{\hat{c}}_j$, and hence, $\bar{\hat{b}}\le \bar{\hat{c}}_j$. Thus, network operator $j$ bids their cost-hat, $\hat{c}_j(\hat{b}) = \hat{c}_j$  for all $\hat{b}\in [\bar{\hat{b}}, \bar{\hat{c}}_j]$.
+    \item Calculate the common bids-hat support $[\underline{\hat{b}}, \bar{\hat{b}}]$ (Equation~\eqref{eq:bounds_bid_restricted_indirect}).
+    \item For all $\hat{b}\in [\underline{\hat{b}}, \bar{\hat{b}}]$, calculate the corresponding costs-hat for both network operators using Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}.
+    \item Since by assumption $r_1 < r_2$, it follows that $\bar{\hat{c}}_1 \le \bar{\hat{c}}_2$, and hence, $\bar{\hat{b}}\le \bar{\hat{c}}_2$. Thus, network operator 2 bids their cost-hat, $\hat{c}_2(\hat{b}) = \hat{c}_2$  for all $\hat{b}\in [\bar{\hat{b}}, \bar{\hat{c}}_2]$.
   \end{enumerate}
 \end{enumerate}
 
 \begin{figure}[p!]
-  \includegraphics[width=\figsize]{Indirect/Figures/indirect_bids}
+  \includegraphics[width=\figsize]{Indirect/Figures/bids_restricted}
   \caption{Compound bid plotted against the price weight}
-  \label{fig:indirect_bids_indirect}
+  \label{fig:bids_restricted_indirect}
   \vspace{10mm}
-  \includegraphics[width=\figsize]{Indirect/Figures/indirect_prices}
+  \includegraphics[width=\figsize]{Indirect/Figures/prices_restricted}
   \caption{Offered prices (bids) plotted against the price weight}
-  \label{fig:indirect_prices_indirect}
+  \label{fig:prices_restricted_indirect}
 \end{figure}
 
-The result of the steps described above is the tabulation of the costs-hat and their corresponding equilibrium bids-hat for a particular price weight $w$, and reputation ratings $r_i$ and $r_j$ for both network operators, in the ranges $[\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for network operator $i$ and $[\underline{\hat{c}}_j, \bar{\hat{c}}_j]$ for network operator $j$. Denote by
+The result of the steps described above is the tabulation of the costs-hat and their corresponding equilibrium bids-hat for a particular price weight $w$, and reputation ratings $r_1$ and $r_2$ for both network operators, in the ranges $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1 and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2. Denote by
 \begin{equation}
-  \label{eq:equi_bidding_str_i_indirect}
-  \hat{b}_i(\hat{c}_i) = \hat{b}_i \quad\text{for all } \hat{c}_i\in[\underline{\hat{c}}_i, \bar{\hat{c}}_i],
+  \label{eq:equi_bidding_str_1_indirect}
+  \hat{b}_1(\hat{c}_1) = \hat{b}_1 \quad\text{for all } \hat{c}_1\in[\underline{\hat{c}}_1, \bar{\hat{c}}_1],
 \end{equation}
 and
 \begin{equation}
-  \label{eq:equi_bidding_str_j_indirect}
-  \hat{b}_j(\hat{c}_j) = \hat{b}_j \quad\text{for all } \hat{c}_j\in[\underline{\hat{c}}_j, \bar{\hat{c}}_j]
+  \label{eq:equi_bidding_str_2_indirect}
+  \hat{b}_2(\hat{c}_2) = \hat{b}_2 \quad\text{for all } \hat{c}_2\in[\underline{\hat{c}}_2, \bar{\hat{c}}_2]
 \end{equation}
 the resultant equilibrium bidding strategy functions.
 
-The problem can be transformed back into the original domain by substituting Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect} into Equations~\eqref{eq:equi_bidding_str_i_indirect}~and~\eqref{eq:equi_bidding_str_j_indirect}; that is,
+The problem can be transformed back into the original domain by substituting Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect} into Equations~\eqref{eq:equi_bidding_str_1_indirect}~and~\eqref{eq:equi_bidding_str_2_indirect}; that is,
 \begin{equation*}
-  \hat{b}_i(\hat{c}_i) = \hat{b}_i \iff b_i = \displaystyle\frac{\hat{b}_i(wc_i + (1-w)r_i) - (1-w)r_i}{w}
+  \hat{b}_1(\hat{c}_1) = \hat{b}_1 \iff b_1 = \displaystyle\frac{\hat{b}_1(wc_1 + (1-w)r_1) - (1-w)r_1}{w}
 \end{equation*}
-for all $c_i\in[0,1]$, and
+for all $c_1\in[0,1]$, and
 \begin{equation*}
-  \hat{b}_j(\hat{c}_j) = \hat{b}_j \iff b_j = \displaystyle\frac{\hat{b}_j(wc_j + (1-w)r_j) - (1-w)r_j}{w}
+  \hat{b}_2(\hat{c}_2) = \hat{b}_2 \iff b_2 = \displaystyle\frac{\hat{b}_2(wc_2 + (1-w)r_2) - (1-w)r_2}{w}
 \end{equation*}
-for all $c_j\in[0,1]$.
+for all $c_2\in[0,1]$.
 Keeping costs and reputation ratings fixed, one can then estimate the equilibrium bidding strategy functions with respect to the price weights by sliding the value of $w\in(0,1)$.
 
 \begin{table}[t]
@@ -345,12 +332,12 @@ Keeping costs and reputation ratings fixed, one can then estimate the equilibriu
     \textbf{Network operator 2} & $0.25$ & $0.75$\\
     \hlx{vhs}
   \end{tabular*}
-  \label{tab:example_indirect}
+  \label{tab:example_restricted_indirect}
 \end{table}
 
-By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:example_indirect}. Figure~\ref{fig:indirect_bids_indirect} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:indirect_prices_indirect} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:example_indirect} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:indirect_bids_indirect}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:indirect_bids_indirect}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w_c < w < 1$, while network operator 1 for the values of $0 < w < w_c$.
+By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:example_restricted_indirect}. Figure~\ref{fig:bids_restricted_indirect} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:prices_restricted_indirect} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:example_restricted_indirect} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:bids_restricted_indirect}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:bids_restricted_indirect}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w_c < w < 1$, while network operator 1 for the values of $0 < w < w_c$.
 
-Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (Figure~\ref{fig:indirect_prices_indirect}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0_direct}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1_direct}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
+Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (Figure~\ref{fig:prices_restricted_indirect}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0_direct}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1_direct}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
 % section restricted_case_n_2_indirect (end)
 
 \section{Numerical Analysis} % (fold)
@@ -446,9 +433,9 @@ The aim of this section is twofold. First, the results from direct and indirect 
 
 \subsection{Comparison of Results from Direct and Indirect Approaches} % (fold)
 \label{sub:comparison_of_results_from_direct_and_indirect_approaches_indirect}
-If the network operators are assumed to submit at least their costs, then, in the restricted case, Proposition~\ref{prop:pcomp_equi_bidding_str_direct} and Conjecture~\ref{conj:pcomp_max_equi_bidding_str_direct} are ruled out by Proposition~\ref{prop:characterisation_of_the_equilibrium_indirect} combined with Proposition~\ref{prop:inverse_equi_bidding_str_indirect} since the latter establishes an analytical solution to the bidding problem while Proposition~\ref{prop:characterisation_of_the_equilibrium_indirect} makes this solution unique. Furthermore, for the same reason, Proposition~\ref{prop:characterisation_of_the_equilibrium_indirect} and Proposition~\ref{prop:inverse_equi_bidding_str_indirect} prove Conjecture~\ref{conj:special_case_w_1_direct} for $n=2$ network operators and costs drawn from uniform distribution over the interval $[0,1]$ (cf. numerical example in Section~\ref{sec:restricted_case_n_2_indirect}).
+If the network operators are assumed to submit at least their costs, then, in the restricted case, Proposition~\ref{prop:pcomp_equi_bidding_str_direct} and Conjecture~\ref{conj:pcomp_max_equi_bidding_str_direct} are ruled out by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} combined with Proposition~\ref{prop:equilibrium_restricted_indirect} since the latter establishes an analytical solution to the bidding problem while Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} makes this solution unique. Furthermore, for the same reason, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} and Proposition~\ref{prop:equilibrium_restricted_indirect} prove Conjecture~\ref{conj:special_case_w_1_direct} for $n=2$ network operators and costs drawn from uniform distribution over the interval $[0,1]$ (cf. numerical example in Section~\ref{sec:restricted_case_n_2_indirect}).
 
-However, if this assumption is relaxed, then, as showed by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterisation_of_the_equilibrium_indirect} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarized in Proposition~\ref{prop:inverse_equi_bidding_str_indirect} as well as Proposition~\ref{prop:pcomp_equi_bidding_str_direct} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterize equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str_direct} as non-standard, further argue that such equilibria are important and should not be neglected.
+However, if this assumption is relaxed, then, as showed by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarized in Proposition~\ref{prop:equilibrium_restricted_indirect} as well as Proposition~\ref{prop:pcomp_equi_bidding_str_direct} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterize equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str_direct} as non-standard, further argue that such equilibria are important and should not be neglected.
 % subsection comparison_of_results_from_direct_and_indirect_approaches (end)
 
 \begin{figure}[p!]
@@ -463,7 +450,7 @@ However, if this assumption is relaxed, then, as showed by Kaplan and Zamir~\cit
 
 \subsection{Subscriber's Perspective: Expected Prices in Restricted Case} % (fold)
 \label{sub:subscriber_s_perspective_expected_prices_in_restricted_case_indirect}
-Having derived the equilibrium bidding strategy functions in the restricted case, it is possible to examine the expected prices the subscriber will have to pay for different values of the price weight given the reputation ratings of the network operators. We consider only the equilibrium bidding strategy functions in Proposition~\ref{prop:inverse_equi_bidding_str_indirect} since they assume the network operators submit at least their costs. Hence, suppose all of the assumptions of Section~\ref{sec:restricted_case_n_2_indirect} hold; that is, there are two network operators, and costs are uniformly distributed over the interval $[0,1]$. The expected price is equivalent to the expected value of the winning bid; that is, with some abuse of notation
+Having derived the equilibrium bidding strategy functions in the restricted case, it is possible to examine the expected prices the subscriber will have to pay for different values of the price weight given the reputation ratings of the network operators. We consider only the equilibrium bidding strategy functions in Proposition~\ref{prop:equilibrium_restricted_indirect} since they assume the network operators submit at least their costs. Hence, suppose all of the assumptions of Section~\ref{sec:restricted_case_n_2_indirect} hold; that is, there are two network operators, and costs are uniformly distributed over the interval $[0,1]$. The expected price is equivalent to the expected value of the winning bid; that is, with some abuse of notation
 \begin{equation}
   \label{eq:exp_price_def_indirect}
   E[p](w,r_i,r_j) = E[b_i \:\vert\: \arg\min_{i\in N}\beta(w,b_i,r_i)],
@@ -477,7 +464,7 @@ If both network operators have equal reputation ratings, $r = r_i = r_j$ say, th
 \end{equation}
 which is equivalent to Equation~\eqref{eq:standard_fpa_direct} evaluated at $n=2$. In particular, for costs, $c_i$, uniformly distributed over the interval $[0,1]$, $E[p^*] = \frac{2}{3}$.
 
-If, on the other hand, both network operators are characterized by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:inverse_equi_bidding_str_indirect}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
+If, on the other hand, both network operators are characterized by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:equilibrium_restricted_indirect}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
 
 To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sec:probability_notation}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices_indirect} shows the result of the estimation for four pairs of reputation ratings: $(r_i, r_j) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
 
@@ -517,6 +504,6 @@ To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence o
 To prove uniqueness, without loss of generality, let network operator 1 be characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on; that is, let $r_1 \leq r_2 \leq\cdots \leq r_n$. This implies $\underline{\hat{c}}_1 \leq \underline{\hat{c}}_2 \leq\cdots \leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 \leq \bar{\hat{c}}_2 \leq \cdots\leq \bar{\hat{c}}_n$. Since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then at least one inequality is strict. We need to consider two cases: 1) $r_1 < r_2$, and 2) $r_1 = r_2$. When 1) holds, then $\bar{\hat{c}}_1 < \bar{\hat{c}}_2$, implying that the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds. Otherwise, if 2) holds, then the additional condition (iii) in Theorem~1 in Lebrun~\cite{Lebrun2006} is satisfied. Thus, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
 \end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:inverse_equi_bidding_str_indirect}]
+\begin{proof}[Proof of Proposition~\ref{prop:equilibrium_restricted_indirect}]
 The proof is analogous to the proof of Proposition~1 in Kaplan and Zamir~\cite{KaplanZamir2007}.
 \end{proof}
