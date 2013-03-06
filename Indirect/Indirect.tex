@@ -67,12 +67,14 @@ With these results at hand, we can proceed with the analysis of the auction.
 
 \section{Generic Case} % (fold)
 \label{sec:generic_case_indirect}
-In the generic case, with arbitrary probability distributions of costs and $n\ge 2$ network operators, recall that: if $w=0$, then Proposition~\ref{prop:special_case_w_0_direct} holds; if $w=1$, then Proposition~\ref{prop:special_case_w_1_direct} holds; and if $r_i=r_j$ for all $i,j\in N$ such that $i\neq j$, then Corollary~\ref{cor:special_case_r_i_r_j_direct} holds. Thus, we assume the following.
+In the generic case, with arbitrary probability distributions of costs and $n\ge 2$ network operators, recall that: if $w=0$, then Proposition~\ref{prop:special_case_w_0_direct} holds; if $w=1$, then Proposition~\ref{prop:special_case_w_1_direct} holds; and if $r_i=r_j$ for all $i,j\in N$ such that $i\neq j$, then Corollary~\ref{cor:special_case_r_i_r_j_direct} holds. Therefore, it suffices to consider only the case when $w\in (0,1)$, and at least one network operator is characterized by a different reputation rating from the other network operators; that is,
 \begin{assumptions}
-\label{ass:assumptions_generic_indirect}$\quad$\\
+\label{ass:assumptions_generic_indirect}
+Assume that
 \begin{enumerate}
-  \item Suppose $w\in(0,1)$.
-  \item Assume that there exists only one network operator characterized by the lowest reputation rating. Without loss of generality, let network operator 1 be characterized by the lowest reputation rating. Furthermore, let network operator 2 be characterized by the second lowest reputation rating, and so on; that is, $r_1 < r_2 \leq \cdots\leq r_n$. Note that, this implies $\underline{\hat{c}}_1 < \underline{\hat{c}}_2 \leq \cdots \leq\underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 < \bar{\hat{c}}_2 \leq\cdots \leq \bar{\hat{c}}_n$.
+  \item $w\in(0,1)$;
+  \item there exists $i\in N$ such that $r_i\neq r_j$ for all $i\neq j$ and $j\in N$; and
+  \item without loss of generality, let network operator 1 be characterized by the lowest reputation rating; that is, $r_1 \leq r_i$ for all $i\in N$ such that $i\neq 1$. If there exists $j\in N$ such that $j\neq 1$ and $r_1 = r_j$, then we make an additional assumption that there exists $\delta > 0$ such that the distribution function $F_i$ of $\hat{c}_i$ is strictly log-concave over $(\bar{\hat{c}}_1 - \delta, \bar{\hat{c}}_1)\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i)$ for all $i\in N$.
 \end{enumerate}
 \end{assumptions}
 
@@ -467,7 +469,7 @@ for all $x\in [(1-w)r_i, (1-w)r_i + w]$. Therefore, since $F_C$ is differentiabl
 \begin{proof}[Proof of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}]
 To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf. C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
 
-To prove uniqueness, we note that since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds, and hence, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
+To prove uniqueness, without loss of generality, let network operator 1 be characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on; that is, let $r_1 \leq r_2 \leq\cdots \leq r_n$. This implies $\underline{\hat{c}}_1 \leq \underline{\hat{c}}_2 \leq\cdots \leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 \leq \bar{\hat{c}}_2 \leq \cdots\leq \bar{\hat{c}}_n$. Since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then at least one inequality is strict. We need to consider two cases: 1) $r_1 < r_2$, and 2) $r_1 = r_2$. When 1) holds, then $\bar{\hat{c}}_1 < \bar{\hat{c}}_2$, implying that the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds. Otherwise, if 2) holds, then the additional condition (iii) in Theorem~1 in Lebrun~\cite{Lebrun2006} is satisfied. Thus, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:inverse_equi_bidding_str_indirect}]
