@@ -386,12 +386,23 @@ for network operators $j\in J, j\not\in I$, and by the system in Equation~\eqref
 \begin{equation*}
   \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in J.
 \end{equation*}
-Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We can maximize the probability of enforcing this condition reasoning as follows. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Let $d(w,\epsilon) = (1-w)\epsilon$ where $\epsilon = r_n-r_2$. It can easily be verified that $d(w,\epsilon)\equiv (\underline{\hat{c}}_n-\underline{\hat{c}}_2)$. Since we already require $w\in (0.5,1)$, and since $\epsilon\in(0,1]$, then $d(w,\epsilon)\in(0,0.5)$ with $d(w,0)=0$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ can be quantified as follows
-\begin{align*}
-  P\left\{ \underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}}) \right\} &= 1 - P\left\{\underline{\hat{b}}\in(\underline{\hat{c}}_2, \underline{\hat{c}}_n)\right\} = 1 - \frac{d(w,\epsilon)}{\bar{\hat{b}}-\underline{\hat{c}}_2}\\
-  &\geq 1 - \frac{0.5}{\bar{\hat{b}} - \underline{\hat{c}}_2} \geq 1 - \frac{0.5}{\bar{\hat{c}}_1 - \underline{\hat{c}}_2}\\
-  &= 1 - \frac{0.5}{(1-w)(r_1-r_2) + w}.
-\end{align*}
+Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We can maximize the (approximate) probability of enforcing this condition reasoning as follows. Without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ (assuming $\underline{\hat{b}}$ is distributed uniformly over $(\underline{\hat{c}}_2, \bar{\hat{b}})$) can be quantified as follows
+\begin{equation*}
+  P\left\{ \underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}}) \right\} = 1 - P\left\{\underline{\hat{b}}\in(\underline{\hat{c}}_2, \underline{\hat{c}}_n)\right\} = 1 - \frac{\underline{\hat{c}}_n - \underline{\hat{c}}_2}{\bar{\hat{b}}-\underline{\hat{c}}_2} = \frac{\bar{\hat{b}} - \underline{\hat{c}}_n}{\bar{\hat{b}} - \underline{\hat{c}}_2}.
+\end{equation*}
+In particular, for probability of at least $0.9$, we require
+\begin{equation*}
+  \frac{\bar{\hat{b}} - \underline{\hat{c}}_n}{\bar{\hat{b}} - \underline{\hat{c}}_2} \geq 0.9 \iff \bar{\hat{b}}\geq 10\underline{\hat{c}}_n - 9\underline{\hat{c}}_2.
+\end{equation*}
+Since $\bar{\hat{c}}_1\leq \bar{\hat{b}}$ by Definition~\ref{def:upper_bound_bids_indirect}, we may write
+\begin{equation*}
+  \bar{\hat{c}}_1 \geq 10\underline{\hat{c}}_n - 9\underline{\hat{c}}_2 \iff w \geq 1 - \frac{1}{10r_n - 9r_2 - r_1 + 1}.
+\end{equation*}
+Note that, since we assumed $r_1\leq\cdots\leq r_n$ with at least inequality strict, the denominator is always strictly greater than $1$ ($10r_n - 9r_2-r_1+1 > 1$), hence guaranteeing the right-hand side of the inequality to be smaller than $1$. Therefore, we shall concentrate on cases such that
+\begin{equation*}
+  w \in (0.5, 1) \quad\text{and}\quad w \geq 1 - \frac{1}{10r_n - 9r_2 - r_1 + 1}
+\end{equation*}
+for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
