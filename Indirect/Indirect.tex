@@ -359,15 +359,11 @@ Furthermore, note that assumption 3 in Assumptions~\ref{ass:assumptions_generic_
 \end{equation*}
 for all $i\in N$. The resulting set is convex, and since $(\underline{\hat{c}}_n, \bar{\hat{b}})\subset [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for all $i\in N$, this implies that $F_i$ is strictly log-concave over $(\bar{\hat{b}}-\delta, \bar{\hat{b}})\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i)$ for all $i\in N$.
 
-Finally, we assume that
+Finally, we shall concentrate on cases such that
 \begin{equation*}
-  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in J,
+  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in J.
 \end{equation*}
-which, together with~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, implies
-\begin{equation*}
-  k(\underline{\hat{b}}) = n.
-\end{equation*}
-The last assumption simplifies the problem so that it is numerically tractable using (slightly modified) existing numerical methods. More specifically, it reduces the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} to
+This requirement simplifies the problem so that it is numerically tractable using (slightly modified) existing numerical methods. More specifically, it reduces the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} to
 \begin{equation}
   \label{eq:foc_ode_lower_boundary_reduced_indirect}
   \hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i \quad\text{for all } i\in J.
@@ -390,7 +386,12 @@ for network operators $j\in J, j\not\in I$, and by the system in Equation~\eqref
 \begin{equation*}
   \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in J.
 \end{equation*}
-Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We postulate (without proof) that the assumption should be satisfied for $w\in[0.6, 1.0]$ and $r_i\in[0.5, 1.0]$ for all $i\in J$.
+Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We can maximize the probability of enforcing this condition reasoning as follows. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Let $d(w,\epsilon) = (1-w)\epsilon$ where $\epsilon = r_n-r_2$. It can easily be verified that $d(w,\epsilon)\equiv (\underline{\hat{c}}_n-\underline{\hat{c}}_2)$. Since we already require $w\in (0.5,1)$, and since $\epsilon\in(0,1]$, then $d(w,\epsilon)\in(0,0.5)$ with $d(w,0)=0$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ can be quantified as follows
+\begin{align*}
+  P\left\{ \underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}}) \right\} &= 1 - P\left\{\underline{\hat{b}}\in(\underline{\hat{c}}_2, \underline{\hat{c}}_n)\right\} = 1 - \frac{d(w,\epsilon)}{\bar{\hat{b}}-\underline{\hat{c}}_2}\\
+  &\geq 1 - \frac{0.5}{\bar{\hat{b}} - \underline{\hat{c}}_2} \geq 1 - \frac{0.5}{\bar{\hat{c}}_1 - \underline{\hat{c}}_2}\\
+  &= 1 - \frac{0.5}{(1-w)(r_1-r_2) + w}.
+\end{align*}
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
