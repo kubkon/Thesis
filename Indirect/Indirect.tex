@@ -410,7 +410,7 @@ for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least o
 \label{sub:forward_shooting_method_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-The idea behind the forward shooting method is to find the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $[\underline{\hat{c}}_2, \bar{\hat{b}}]$, and verifying whether a numerical solution to the initial value problem
+The idea behind the forward shooting method is to find the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2, \bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:fsm_initial_value_problem_indirect}
   \begin{array}{ll}
@@ -429,6 +429,33 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
   \right\}.
 \end{equation*}
 This specification of the problem is a modified version of the First Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.3 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of bidders' costs.
+
+\begin{algorithm}
+\caption{Forward shooting method}
+\label{alg:forward_shooting_method}
+\begin{algorithmic}
+  \Require{$\epsilon\in\left(0, \bar{\hat{b}} - \underline{\hat{c}}_2\right)$}
+  \Function{forwardShooting}{$low, high$}
+    \State{$guess\gets 0.5\cdot(low + high)$}
+    \If{$high - low < \epsilon$}
+      \State\Return{$guess$}
+    \Else
+      \State{$bids\gets \left[guess, \bar{\hat{b}}\right)$}
+      \State{$(costs_1,costs_2,\dotsc,costs_n)\gets$ solve system in~\eqref{eq:fsm_initial_value_problem_indirect} with $\underline{\hat{b}}' = guess$}
+      \If{$(bids,costs_i)\in S_i$ for all $i\gets [1,\dotsc,n]$}
+        \State\Return{\Call{forwardShooting}{$low, guess$}}
+      \Else
+        \State\Return{\Call{forwardShooting}{$guess, high$}}
+      \EndIf
+    \EndIf
+  \EndFunction
+  \State{$low\gets \underline{\hat{c}}_2$}
+  \State{$high\gets \bar{\hat{b}}$}
+  \State{$\underline{\hat{b}}'\gets$\Call{forwardShooting}{$low, high$}}
+\end{algorithmic}
+\end{algorithm}
+
+
 % subsection forward_shooting_method_indirect (end)
 
 \subsection{Polynomial Projection Method} % (fold)
