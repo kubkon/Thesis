@@ -449,9 +449,7 @@ This specification of the problem is a modified version of the First Algorithm i
       \EndIf
     \EndIf
   \EndFunction
-  \State{$low\gets \underline{\hat{c}}_2$}
-  \State{$high\gets \bar{\hat{b}}$}
-  \State{$\underline{\hat{b}}'\gets$ \Call{forwardShooting}{$low, high$}}
+  \State{$\underline{\hat{b}}'\gets$ \Call{forwardShooting}{$\underline{\hat{c}}_2, \bar{\hat{b}}$}}
 \end{algorithmic}
 \end{algorithm}
 
@@ -459,7 +457,7 @@ The pseudo-code for the forward shooting method is depicted in listing Algorithm
 
 The initial guess supplied to the algorithm is the interval $[\underline{\hat{c}}_2, \bar{\hat{b}}]$. In every iteration, the guessed value for the lower bound on bids is the midpoint of the interval; that is, $guess = 0.5\cdot(low + high)$. The algorithm then uses this value as the new initial condition for the system in~\eqref{eq:fsm_initial_value_problem_indirect}. If the solution to the system lies within the set $S_i$ for all $i\in N$, then $guess$ becomes the new upper endpoint of the interval $LH$; that is, $LH = [low, guess]$. Otherwise, it becomes the new lower endpoint; that is, $LH = [guess, high]$. This procedure is repeated until the length of the interval is smaller than $\epsilon$.
 
-In each step, the system of ODEs in~\eqref{eq:fsm_initial_value_problem_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using a GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4, 5) method, provided by the Haskell package ``hmatrix'' version 0.14.1.0 \cite{GSL, HMATRIX}.
+In each step, the system of ODEs in~\eqref{eq:fsm_initial_value_problem_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4, 5) method, provided by the Haskell package ``hmatrix'' version 0.14.1.0 \cite{GSL, HMATRIX}.
 
 Furthermore, in the implementation of the forward shooting method, we assumed that
 \begin{equation*}
@@ -472,7 +470,7 @@ for all $i\in N$ and $x\in\mathbb{R}$. This assumption reduces the original init
     \hat{c}_i(\underline{\hat{b}}') &= \underline{\hat{c}}_i,
   \end{array}
 \end{equation*}
-and it is there mainly to avoid possible divisions by zero which are not handled well by the GSL library. Situations of this type may arise due to the nature of finite-difference methods, and the fact that the system of ODEs features a fraction
+and it is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. Situations like this may arise due to the nature of finite-difference methods, and the fact that the system of ODEs features a fraction
 \begin{equation*}
   \frac{1 - F_i(x)}{f_i(x)}
 \end{equation*}
