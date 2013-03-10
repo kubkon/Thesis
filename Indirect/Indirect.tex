@@ -512,6 +512,22 @@ In order to verify that the algorithm was implemented correctly, we shall compar
 \subsection{Polynomial Projection Method} % (fold)
 \label{sub:polynomial_projection_method_indirect}
 
+\begin{algorithm}
+\caption{Polynomial projection method}
+\label{alg:polynomial_projection_method}
+\begin{algorithmic}
+  \Function{polyProjection}{$k, totalK, params$}
+    \State{$s$}
+    \If{$k == totalK$}
+      \State\Return{$s$}
+    \Else
+      \State\Return{\Call{polyProjection}{$k', totalK, params'$}}
+    \EndIf
+  \EndFunction
+  \State{$s\gets$ \Call{polyProjection}{$3, 10, params$}}
+\end{algorithmic}
+\end{algorithm}
+
 % subsection polynomial_projection_method_indirect (end)
 
 \subsection{Other Methods} % (fold)
