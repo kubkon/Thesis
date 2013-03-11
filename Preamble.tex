@@ -154,7 +154,19 @@
 
 % Algorithms
 \usepackage[chapter]{algorithm}
-\usepackage{algpseudocode}
+\usepackage[noend]{algpseudocode}
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+\algrenewcommand\alglinenumber[1]{%
+  {\sf\footnotesize\addfontfeatures{Colour=888888}#1}%
+}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\makeatletter
+\newcommand{\StatexIndent}[1][3]{%
+  \setlength\@tempdima{\algorithmicindent}%
+  \Statex\hskip\dimexpr#1\@tempdima\relax%
+}
+\makeatother
 
 % Subfigures
 % \usepackage{subfig}
