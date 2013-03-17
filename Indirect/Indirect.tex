@@ -517,39 +517,79 @@ In order to verify that the algorithm was implemented correctly, the numerically
 
 \subsection{Polynomial Projection Method} % (fold)
 \label{sub:polynomial_projection_method_indirect}
+Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
+
+In this method, we assume that the inverse equilibrium bidding function for each network operator $i\in N$ can be approximated by a $K^{\text{th}}$ order polynomial of the form
+\begin{equation}
+  \label{eq:polynomial_cost_function_indirect}
+  \hat{c}_i(b;\underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i + \sum_{k=1}^K \alpha_{i,k}(b - \underline{\hat{b}})^k,
+\end{equation}
+where $K\in\mathbb{N}_+$ and $K\geq 2$, and $\alpha_i = (\alpha_{i,1},\dotsc,\alpha_{i,K})^T$ is a $K$-tuple of unknown polynomial coefficients such that $\alpha_i\in\mathbb{R}^{K}$.
+
+The idea behind the method is then to employ a nonlinear optimization technique, such as the Nelder-Mead method, to find an approximation to the lower bound on bids and the set of polynomial coefficients that best satisfy the system of ODEs~\eqref{eq:foc_ode_indirect} with lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect} and \eqref{eq:foc_ode_upper_boundary_indirect} in the least squares sense. That is, minimize the least squares objective function
+\begin{equation}
+  \label{eq:least_squares_objective_function_indirect}
+  H(\underline{\hat{b}}, \alpha_1,\dotsc,\alpha_n) = \sum_{i\in N}\sum_{b\in{[\underline{\hat{b}}, \bar{\hat{b}}]}}G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n)^2 + \sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2,
+\end{equation}
+where $G_i$ captures network operator $i$'s first-order condition for profit maximization, and is defined as follows
+\begin{align*}
+  &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\
+  &- \displaystyle\frac{1 - F_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}{f_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right].
+\end{align*}
+Note that $G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n) = 0$ corresponds to the ODE in Equation~\eqref{eq:foc_ode_indirect} for each network operator $i\in N$.
+
+This specification of the problem is a modified version of the Third Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.5 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of bidders' costs.
 
 \begin{algorithm}
 \caption{Polynomial projection method}
 \label{alg:polynomial_projection_method}
 \begin{algorithmic}[1]
-\Require{$k \leq K$ where $K\geq 3$; $\alpha_i\in\mathbb{R}^k$ for all $i\in N$; $\underline{b}\in[\underline{\hat{c}}_2, \bar{\hat{b}}]$}
+\Require{$k \leq K$ where $K\geq 3$; $\alpha_i\in\mathbb{R}^k$ for all $i\in N$; $\underline{b}\in(\underline{\hat{c}}_2, \bar{\hat{b}})$}
 \Ensure{Approximate $\underline{\hat{b}}$; $\alpha_i\in\mathbb{R}^K$ for all $i\in N$}
   \Statex
   \Function{polyProjection}{$k, K, \underline{b}, \alpha_1, \dotsc, \alpha_n$}
     \Let{$bids$}{$[\underline{b}, \bar{\hat{b}}]$}
-    \Let{$(\underline{b}', \alpha'_1, \dotsc, \alpha'_n)$}{minimize (??) with initial values $(\underline{b}, \alpha_1, \dotsc, \alpha_n)$}
+    \Let{$(\underline{b}', \alpha'_1, \dotsc, \alpha'_n)$}{minimize~\eqref{eq:least_squares_objective_function_indirect} with initial values $(\underline{b}, \alpha_1, \dotsc, \alpha_n)$}
     \StatexIndent[6]{ evaluated at points $b\in bids$}
     \If{$k = K$}
       \State\Return{$(\underline{b}', \alpha'_1, \dotsc, \alpha'_n)$}
     \Else
       \Let{$k'$}{$k + 1$}
       \For{$i\gets 1$ to $n$}
-        \Let{$\alpha''_i$}{$(\alpha'^1_i, \dotsc, \alpha'^k_i, 10^{-6})$}
+        \Let{$\alpha''_i$}{$(\alpha'_{i,1}, \dotsc, \alpha'_{i,k}, 10^{-6})$}
       \EndFor
       \State\Return{\Call{polyProjection}{$k', K, \underline{b}', \alpha''_1, \dotsc, \alpha''_n$}}
     \EndIf
   \EndFunction
   \Statex
   \Let{$k$}{$3$}
-  \Let{$K$}{$10$}
+  \Let{$K$}{$8$}
   \For{$i\gets 1$ to $n$}
-    \Let{$\alpha_i$}{$(10^{-6}, 10^{-6}, 10^{-6})$}
+    \Let{$\alpha_i$}{create $k$-tuple of $10^{-2}$}
   \EndFor
   \Let{$\underline{b}$}{$\underline{\hat{c}}_2$}
   \Let{$(\underline{\hat{b}}',\alpha_1,\dotsc,\alpha_n)$}{\Call{polyProjection}{$k, K, \underline{b}, \alpha_1,\dotsc,\alpha_n$}}
 \end{algorithmic}
 \end{algorithm}
 
+The pseudo-code for the polynomial projection method is shown in listing Algorithm~\ref{alg:polynomial_projection_method}. The algorithm aims at refining the solution to the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect} by successively increasing the order of approximating polynomials. In each such iteration, the output from the previous run of the algorithm is used as the input to the next run. That is, suppose $(\underline{b}^k, \alpha_1^k, \dotsc, \alpha_n^k)$ is the output from the algorithm where $k^\text{th}$ order polynomials were used. Then, this output is used as the input (and a starting point for the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect}) to the next stage of the algorithm where $(k+1)^\text{th}$ order polynomials are used. This procedure is repeated until the approximating polynomials are of the desired order. A similar approach is used by Katzwer~\cite{Katzwer2012} in his AuctionSolver software, however, with the difference that he advocates the use of Chebyshev polynomials rather than ordinary polynomials.
+
+In each step of the algorithm, the nonlinear optimization problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimization technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this appendix were obtained using the GSL implementation of the Nelder-Mead method, provided by the Haskell package ``hmatrix'' version 0.14.1.0 \cite{GSL, HMATRIX}.
+
+Furthermore, in the implementation of the polynomial projection method, we made the same simplification as in the implementation of the foward shooting method; that is,
+\begin{equation*}
+  F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\text{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
+\end{equation*}
+for all $i\in N$ and $x\in\mathbb{R}$. This assumption reduces the definition of $G_i$ to
+\begin{align*}
+  &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\
+  &- \displaystyle\left[ \bar{\hat{c}}_i - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\right]\cdot\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right].
+\end{align*}
+Similarly to the case of the forward shooting method, this assumption is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. It is important to realize, however, that by enforcing this assumption, we implicitly assume that the algorithm always operates in the feasible region; that is,
+\begin{equation*}
+  \underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}}) \quad\text{and}\quad \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
+\end{equation*}
+for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since the problem in~\eqref{eq:least_squares_objective_function_indirect} is specified as an unconstrained optimization problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event: the unconstrained optimization problem can be translated into a constrained optimization problem as described here FIX:ME; or a constrained optimization technique, such as the Levenberg-Marquardt method.
 % subsection polynomial_projection_method_indirect (end)
 
 \subsection{Other Methods} % (fold)
