@@ -574,49 +574,53 @@ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, 
 \label{sub:approximation_results_indirect}
 In order to verify that the algorithm was implemented correctly, the numerically approximated equilibrium was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. To this end, let there be $n=2$ network operators such that the reputation rating for network operator 1 equals $r_1=0.25$, and $r_2=0.75$ for network operator 2. Furthermore, let the price weight be set to $w=0.5$. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison. It is clear from the figure that the numerically approximated equilibrium matches the closed-form solution, and therefore, we conclude that the algorithm was implemented correctly. Note, however, that this does not prove that the algorithm will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithm passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then the derived bidding strategies constitute an approximate Bayesian Nash equilibrium.
 
-\begin{figure}[h!]
+\begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_verification}
-  \caption{FIX:ME caption: $w=0.5, r_1 = 0.25, r_2 = 0.75$}
+  \caption{FIX:ME Forward shooting: $w=0.5, r_1 = 0.25, r_2 = 0.75$}
   \label{fig:forward_shooting_verification_indirect}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_verification}
+  \caption{FIX:ME Polynomial projection: $w=0.5, r_1=0.25, r_2=0.75$}
+  \label{fig:polynomial_projection_verification_indirect}
 \end{figure}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3}
-  \caption{FIX:ME caption: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{FIX:ME Forward shooting: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
   \label{fig:forward_shooting_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3_sufficiency}
-  \caption{FIX:ME caption}
+  \caption{FIX:ME Forward shooting sufficiency}
   \label{fig:forward_shooting_3_sufficiency_indirect}
 \end{figure}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4}
-  \caption{FIX:ME caption: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{FIX:ME Forward shooting: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
   \label{fig:forward_shooting_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4_sufficiency}
-  \caption{FIX:ME caption}
+  \caption{FIX:ME Forward shooting sufficiency}
   \label{fig:forward_shooting_4_sufficiency_indirect}
 \end{figure}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3}
-  \caption{FIX:ME caption: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{FIX:ME Polynomial projection: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
   \label{fig:polynomial_projection_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3_sufficiency}
-  \caption{FIX:ME caption}
+  \caption{FIX:ME Polynomial projection sufficiency}
   \label{fig:polynomial_projection_3_sufficiency_indirect}
 \end{figure}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_4}
-  \caption{FIX:ME caption: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{FIX:ME Polynomial projection: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
   \label{fig:polynomial_projection_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_4_sufficiency}
-  \caption{FIX:ME caption}
+  \caption{FIX:ME Polynomial projection sufficiency}
   \label{fig:polynomial_projection_4_sufficiency_indirect}
 \end{figure}
 % subsection approximation_results (end)
