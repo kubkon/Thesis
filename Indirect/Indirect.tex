@@ -432,7 +432,7 @@ This specification of the problem is a modified version of the First Algorithm i
 
 \begin{algorithm}
 \caption{Forward shooting method}
-\label{alg:forward_shooting_method}
+\label{alg:forward_shooting_method_indirect}
 \begin{algorithmic}[1]
 \Require{$\epsilon\in (0, \bar{\hat{b}} - \underline{\hat{c}}_2); low, high\in [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that $low\leq high$}
 \Ensure{Approximation to $\underline{\hat{b}}$}
@@ -459,7 +459,7 @@ This specification of the problem is a modified version of the First Algorithm i
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the forward shooting method is depicted in listing Algorithm~\ref{alg:forward_shooting_method}. For any given tolerance, $\epsilon\in\left(0, \bar{\hat{b}} - \underline{\hat{c}}_2\right)$, the algorithm aims at finding the interval $LH\equiv[low, high]\subseteq [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that (approximately) $\underline{\hat{b}}\in LH$ and $high-low < \epsilon$. The approximation to the lower bound on bids is then found to be $\underline{\hat{b}}' = 0.5\cdot(low + high)$.
+The pseudo-code for the forward shooting method is depicted in listing Algorithm~\ref{alg:forward_shooting_method_indirect}. For any given tolerance, $\epsilon\in\left(0, \bar{\hat{b}} - \underline{\hat{c}}_2\right)$, the algorithm aims at finding the interval $LH\equiv[low, high]\subseteq [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that (approximately) $\underline{\hat{b}}\in LH$ and $high-low < \epsilon$. The approximation to the lower bound on bids is then found to be $\underline{\hat{b}}' = 0.5\cdot(low + high)$.
 
 The initial guess supplied to the algorithm is the interval $[\underline{\hat{c}}_2, \bar{\hat{b}}]$. In every iteration, the guessed value for the lower bound on bids is the midpoint of the interval; that is, $guess = 0.5\cdot(low + high)$. The algorithm then uses this value as the new initial condition for the system in~\eqref{eq:fsm_initial_value_problem_indirect}. If the solution to the system lies within the set $S_i$ for all $i\in N$, then $guess$ becomes the new upper endpoint of the interval $LH$; that is, $LH = [low, guess]$. Otherwise, it becomes the new lower endpoint; that is, $LH = [guess, high]$. This procedure is repeated until the length of the interval is smaller than $\epsilon$.
 
@@ -485,34 +485,6 @@ which is undefined for all $x\in\mathbb{R}$ such that $x < \underline{\hat{c}}_i
   \hat{c}_i(b)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i] \quad\text{for all } i\in N \text{ and } b\in\left[\underline{\hat{b}}', \bar{\hat{b}}\right].
 \end{equation*}
 This, of course, cannot be guaranteed for all choices of $\underline{\hat{b}}'$ made by the algorithm, and therefore, it might skew the final result away from the actual value of the lower bound on bids, $\underline{\hat{b}}$.
-
-\begin{figure}[h!]
-  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_verification}
-  \caption{FIX:ME caption: $w=0.5, r_1 = 0.25, r_2 = 0.75$}
-  \label{fig:forward_shooting_verification_indirect}
-\end{figure}
-
-In order to verify that the algorithm was implemented correctly, the numerically approximated equilibrium was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. To this end, let there be $n=2$ network operators such that the reputation rating for network operator 1 equals $r_1=0.25$, and $r_2=0.75$ for network operator 2. Furthermore, let the price weight be set to $w=0.5$. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison. It is clear from the figure that the numerically approximated equilibrium matches the closed-form solution, and therefore, we conclude that the algorithm was implemented correctly. Note, however, that this does not prove that the algorithm will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithm passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then the derived bidding strategies constitute an approximate Bayesian Nash equilibrium.
-
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3}
-  \caption{FIX:ME caption: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
-  \label{fig:forward_shooting_3_indirect}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3_sufficiency}
-  \caption{FIX:ME caption}
-  \label{fig:forward_shooting_3_sufficiency_indirect}
-\end{figure}
-
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4}
-  \caption{FIX:ME caption: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
-  \label{fig:forward_shooting_4_indirect}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4_sufficiency}
-  \caption{FIX:ME caption}
-  \label{fig:forward_shooting_4_sufficiency_indirect}
-\end{figure}
 % subsection forward_shooting_method_indirect (end)
 
 \subsection{Polynomial Projection Method} % (fold)
@@ -524,33 +496,39 @@ In this method, we assume that the inverse equilibrium bidding function for each
   \label{eq:polynomial_cost_function_indirect}
   \hat{c}_i(b;\underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i + \sum_{k=1}^K \alpha_{i,k}(b - \underline{\hat{b}})^k,
 \end{equation}
-where $K\in\mathbb{N}_+$ and $K\geq 2$, and $\alpha_i = (\alpha_{i,1},\dotsc,\alpha_{i,K})^T$ is a $K$-tuple of unknown polynomial coefficients such that $\alpha_i\in\mathbb{R}^{K}$.
-
-The idea behind the method is then to employ a nonlinear optimization technique, such as the Nelder-Mead method, to find an approximation to the lower bound on bids and the set of polynomial coefficients that best satisfy the system of ODEs~\eqref{eq:foc_ode_indirect} with lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect} and \eqref{eq:foc_ode_upper_boundary_indirect} in the least squares sense. That is, minimize the least squares objective function
+where $K\in\mathbb{N}_+$ and $K\geq 2$, and $\alpha_i = (\alpha_{i,1},\dotsc,\alpha_{i,K})^T$ is a $K$-tuple of unknown polynomial coefficients such that $\alpha_i\in\mathbb{R}^{K}$. The idea behind the method is then to employ a nonlinear optimization technique, such as the Nelder-Mead method, to find an approximation to the lower bound on bids and the set of polynomial coefficients that best satisfy the system of ODEs~\eqref{eq:foc_ode_indirect} with lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect} and \eqref{eq:foc_ode_upper_boundary_indirect} in the least squares sense. That is, minimize the least squares objective function
 \begin{equation}
   \label{eq:least_squares_objective_function_indirect}
-  H(\underline{\hat{b}}, \alpha_1,\dotsc,\alpha_n) = \sum_{i\in N}\sum_{b\in{[\underline{\hat{b}}, \bar{\hat{b}}]}}G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n)^2 + \sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2,
+  H(\underline{\hat{b}}, \alpha_1,\dotsc,\alpha_n) = \sum_{i\in N}\sum_{b\in B}G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n)^2 + |B|\cdot\sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2,
 \end{equation}
-where $G_i$ captures network operator $i$'s first-order condition for profit maximization, and is defined as follows
+where $B=\{\underline{\hat{b}},\dotsc,\bar{\hat{b}}\}$ is a (finite) grid of points uniformly spaced between $\underline{\hat{b}}$ and $\bar{\hat{b}}$, $|B| < \infty$ denotes the cardinality of $B$, and $G_i$ captures network operator $i$'s first-order condition for profit maximization, and is defined as follows
 \begin{align*}
   &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\
   &- \displaystyle\frac{1 - F_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}{f_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right].
 \end{align*}
-Note that $G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n) = 0$ corresponds to the ODE in Equation~\eqref{eq:foc_ode_indirect} for each network operator $i\in N$.
+Note that $G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n) = 0$ corresponds to the ODE in Equation~\eqref{eq:foc_ode_indirect} for each network operator $i\in N$. Furthermore, note that the objective function, $H$, incorporates only the upper boundary condition~\eqref{eq:foc_ode_upper_boundary_indirect}
+\begin{equation*}
+  \sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2.
+\end{equation*}
+The lower boundary condition~\eqref{eq:foc_ode_lower_boundary_indirect} is omitted since it is always satisfied through the definition of the inverse equilibrium bidding function in Equation~\eqref{eq:polynomial_cost_function_indirect}. To see this, recall that the lower boundary condition implies
+\begin{equation*}
+  \underline{\hat{c}}_i - \hat{c}_i(\underline{\hat{b}}; \underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i - \underline{\hat{c}}_i -\sum_{k=1}^K \alpha_{i,k} (\underline{\hat{b}} - \underline{\hat{b}})^2 = 0
+\end{equation*}
+for all $i\in N$. Therefore, it is unnecessary to include the lower boundary condition in the objective function, as it is always equal to $0$.
 
 This specification of the problem is a modified version of the Third Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.5 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of bidders' costs.
 
 \begin{algorithm}
 \caption{Polynomial projection method}
-\label{alg:polynomial_projection_method}
+\label{alg:polynomial_projection_method_indirect}
 \begin{algorithmic}[1]
 \Require{$k \leq K$ where $K\geq 3$; $\alpha_i\in\mathbb{R}^k$ for all $i\in N$; $\underline{b}\in(\underline{\hat{c}}_2, \bar{\hat{b}})$}
 \Ensure{Approximate $\underline{\hat{b}}$; $\alpha_i\in\mathbb{R}^K$ for all $i\in N$}
   \Statex
   \Function{polyProjection}{$k, K, \underline{b}, \alpha_1, \dotsc, \alpha_n$}
-    \Let{$bids$}{$[\underline{b}, \bar{\hat{b}}]$}
+    \Let{$bids$}{$B$}
     \Let{$(\underline{b}', \alpha'_1, \dotsc, \alpha'_n)$}{minimize~\eqref{eq:least_squares_objective_function_indirect} with initial values $(\underline{b}, \alpha_1, \dotsc, \alpha_n)$}
-    \StatexIndent[6]{ evaluated at points $b\in bids$}
+    \StatexIndent[6]{ evaluated at points $b\in B$}
     \If{$k = K$}
       \State\Return{$(\underline{b}', \alpha'_1, \dotsc, \alpha'_n)$}
     \Else
@@ -572,9 +550,9 @@ This specification of the problem is a modified version of the Third Algorithm i
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the polynomial projection method is shown in listing Algorithm~\ref{alg:polynomial_projection_method}. The algorithm aims at refining the solution to the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect} by successively increasing the order of approximating polynomials. In each such iteration, the output from the previous run of the algorithm is used as the input to the next run. That is, suppose $(\underline{b}^k, \alpha_1^k, \dotsc, \alpha_n^k)$ is the output from the algorithm where $k^\text{th}$ order polynomials were used. Then, this output is used as the input (and a starting point for the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect}) to the next stage of the algorithm where $(k+1)^\text{th}$ order polynomials are used. This procedure is repeated until the approximating polynomials are of the desired order. A similar approach is used by Katzwer~\cite{Katzwer2012} in his AuctionSolver software, however, with the difference that he advocates the use of Chebyshev polynomials rather than ordinary polynomials.
+The pseudo-code for the polynomial projection method is shown in listing Algorithm~\ref{alg:polynomial_projection_method_indirect}. The algorithm aims at refining the solution to the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect} by successively increasing the order of approximating polynomials. In each such iteration, the output from the previous run of the algorithm is used as the input to the next run. That is, suppose $(\underline{b}^k, \alpha_1^k, \dotsc, \alpha_n^k)$ is the output from the algorithm where $k^\text{th}$ order polynomials were used. Then, this output is used as the input (and a starting point for the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect}) to the next stage of the algorithm where $(k+1)^\text{th}$ order polynomials are used. This procedure is repeated until the approximating polynomials are of the desired order. A similar approach is used by Katzwer~\cite{Katzwer2012} in his AuctionSolver software, however, with the difference that he advocates the use of Chebyshev polynomials rather than ordinary polynomials.
 
-In each step of the algorithm, the nonlinear optimization problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimization technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this appendix were obtained using the GSL implementation of the Nelder-Mead method, provided by the Haskell package ``hmatrix'' version 0.14.1.0 \cite{GSL, HMATRIX}.
+In each step of the algorithm, the nonlinear optimization problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimization technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this section were obtained using the GSL implementation of the Nelder-Mead method, provided by the Haskell package ``hmatrix'' version 0.14.1.0 \cite{GSL, HMATRIX}.
 
 Furthermore, in the implementation of the polynomial projection method, we made the same simplification as in the implementation of the foward shooting method; that is,
 \begin{equation*}
@@ -583,14 +561,65 @@ Furthermore, in the implementation of the polynomial projection method, we made 
 for all $i\in N$ and $x\in\mathbb{R}$. This assumption reduces the definition of $G_i$ to
 \begin{align*}
   &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\
-  &- \displaystyle\left[ \bar{\hat{c}}_i - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\right]\cdot\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right].
+  &- \displaystyle\left[ \bar{\hat{c}}_i - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\right]\cdot\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right],
 \end{align*}
-Similarly to the case of the forward shooting method, this assumption is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. It is important to realize, however, that by enforcing this assumption, we implicitly assume that the algorithm always operates in the feasible region; that is,
+and it is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. It is important to realize, however, that by enforcing this assumption, we implicitly assume that the algorithm always operates in the feasible region; that is,
 \begin{equation*}
   \underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}}) \quad\text{and}\quad \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
 \end{equation*}
-for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since the problem in~\eqref{eq:least_squares_objective_function_indirect} is specified as an unconstrained optimization problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event: the unconstrained optimization problem can be translated into a constrained optimization problem as described here FIX:ME; or a constrained optimization technique, such as the Levenberg-Marquardt method.
+for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since we treat the minimization problem in~\eqref{eq:least_squares_objective_function_indirect} as an unconstrained optimization problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event, for example, the unconstrained optimization problem can be translated into a constrained optimization problem using a penalty function approach as described in~\cite{AvrielPenalty2003}. Alternatively, a constrained optimization technique, such as the Constrained Optimization BY Linear Approximation (COBYLA) method~\cite{Powell1994}, could be used in place of the Nelder-Mead method.
 % subsection polynomial_projection_method_indirect (end)
+
+\subsection{Approximation Results} % (fold)
+\label{sub:approximation_results_indirect}
+In order to verify that the algorithm was implemented correctly, the numerically approximated equilibrium was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. To this end, let there be $n=2$ network operators such that the reputation rating for network operator 1 equals $r_1=0.25$, and $r_2=0.75$ for network operator 2. Furthermore, let the price weight be set to $w=0.5$. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison. It is clear from the figure that the numerically approximated equilibrium matches the closed-form solution, and therefore, we conclude that the algorithm was implemented correctly. Note, however, that this does not prove that the algorithm will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithm passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then the derived bidding strategies constitute an approximate Bayesian Nash equilibrium.
+
+\begin{figure}[h!]
+  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_verification}
+  \caption{FIX:ME caption: $w=0.5, r_1 = 0.25, r_2 = 0.75$}
+  \label{fig:forward_shooting_verification_indirect}
+\end{figure}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3}
+  \caption{FIX:ME caption: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \label{fig:forward_shooting_3_indirect}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3_sufficiency}
+  \caption{FIX:ME caption}
+  \label{fig:forward_shooting_3_sufficiency_indirect}
+\end{figure}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4}
+  \caption{FIX:ME caption: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \label{fig:forward_shooting_4_indirect}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4_sufficiency}
+  \caption{FIX:ME caption}
+  \label{fig:forward_shooting_4_sufficiency_indirect}
+\end{figure}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3}
+  \caption{FIX:ME caption: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \label{fig:polynomial_projection_3_indirect}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3_sufficiency}
+  \caption{FIX:ME caption}
+  \label{fig:polynomial_projection_3_sufficiency_indirect}
+\end{figure}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_4}
+  \caption{FIX:ME caption: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \label{fig:polynomial_projection_4_indirect}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_4_sufficiency}
+  \caption{FIX:ME caption}
+  \label{fig:polynomial_projection_4_sufficiency_indirect}
+\end{figure}
+% subsection approximation_results (end)
 
 \subsection{Other Methods} % (fold)
 \label{sub:other_methods_indirect}
