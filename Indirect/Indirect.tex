@@ -361,32 +361,32 @@ for all $i\in N$. The resulting set is convex, and since $(\underline{\hat{c}}_n
 
 Finally, we shall concentrate on cases such that
 \begin{equation*}
-  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in J.
+  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in N.
 \end{equation*}
 This requirement simplifies the problem so that it is numerically tractable using (slightly modified) existing numerical methods. More specifically, it reduces the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} to
 \begin{equation}
   \label{eq:foc_ode_lower_boundary_reduced_indirect}
-  \hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i \quad\text{for all } i\in J.
+  \hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i \quad\text{for all } i\in N.
 \end{equation}
 Without this assumption, as explained by Lebrun~\cite{Lebrun2006}, there might exist $i$ such that
 \begin{equation*}
   \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}
 \end{equation*}
-which forces the bid function $\hat{b}_i$ to be extended to the interval $[\hat{c}(\underline{\hat{b}}), \bar{\hat{b}}]$, which is strictly larger than the actual support, truncated at $\bar{\hat{b}}$, $[\underline{\hat{c}}_i, \bar{\hat{b}}]$ of network operator $i$'s cost. This result is somewhat confusing since even though $F_i(\hat{c}_i) = 0$ for all $\hat{c}_i\in [\hat{c}(\underline{\hat{b}}), \underline{\hat{c}}_i]$, $\hat{b}_i(\hat{c}_i)$ is still network operator $i$'s best response for all $\hat{c}_i\in [\hat{c}(\underline{\hat{b}}), \underline{\hat{c}}_i]$. The main difficulty when considering such cases stems from the fact that for all $i\in I$, where $I = \left\{i\in J \:\middle\vert\: \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}} \right\}$, the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} reduces to
+which forces the bid function $\hat{b}_i$ to be extended to the interval $[\hat{c}(\underline{\hat{b}}), \bar{\hat{b}}]$, which is strictly larger than the actual support, truncated at $\bar{\hat{b}}$, $[\underline{\hat{c}}_i, \bar{\hat{b}}]$ of network operator $i$'s cost. This result is somewhat confusing since even though $F_i(\hat{c}_i) = 0$ for all $\hat{c}_i\in [\hat{c}(\underline{\hat{b}}), \underline{\hat{c}}_i]$, $\hat{b}_i(\hat{c}_i)$ is still network operator $i$'s best response for all $\hat{c}_i\in [\hat{c}(\underline{\hat{b}}), \underline{\hat{c}}_i]$. The main difficulty when considering such cases stems from the fact that for all $i\in I$, where $I = \left\{i\in N \:\middle\vert\: \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}} \right\}$, the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} reduces to
 \begin{equation}
   \label{eq:foc_reduced_indirect}
-  0 = \frac{1}{n'-1}\sum_{k=1}^{n'}\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_i(b)}.
+  0 = \frac{1}{n-1}\sum_{k=1}^{n}\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_i(b)}.
 \end{equation}
 As further explained by Lebrun~\cite{Lebrun2006}, the (inverse) equilibrium bidding functions are then determined by
 \begin{equation}
   \label{eq:foc_ode_reduced_indirect}
-  \frac{d}{db}\hat{c}_j(b) = \frac{1 - F_j(\hat{c}_j(b))}{f_j(\hat{c}_j(b))} \left[ \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{\substack{k\in J\\ k\not\in I}}\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_j(b)}\right]
+  \frac{d}{db}\hat{c}_j(b) = \frac{1 - F_j(\hat{c}_j(b))}{f_j(\hat{c}_j(b))} \left[ \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{\substack{k\in N\\ k\not\in I}}\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_j(b)}\right]
 \end{equation}
-for network operators $j\in J, j\not\in I$, and by the system in Equation~\eqref{eq:foc_reduced_indirect} for network operators $i\in I$. Both systems are combined for all $b > \underline{\hat{b}}$ until the common function $\hat{c}_i$, $i\in I$, takes as its value the smallest lower extremity strictly smaller than $\hat{c}(\underline{\hat{b}})$. At the bid where this next smallest lower extremity is reached, the functions $\hat{c}_i$ of the network operators with this lower extremity of their supports are added to the system in Equation~\eqref{eq:foc_ode_reduced_indirect}. This process is repeated until $\hat{c}_i$ for all $i\in J$ are included in~\eqref{eq:foc_ode_reduced_indirect}. This procedure is not easily accommodated by any of the numerical methods described in the literature, or this chapter; hence, the assumption
+for network operators $j\in N, j\not\in I$, and by the system in Equation~\eqref{eq:foc_reduced_indirect} for network operators $i\in I$. Both systems are combined for all $b > \underline{\hat{b}}$ until the common function $\hat{c}_i$, $i\in I$, takes as its value the smallest lower extremity strictly smaller than $\hat{c}(\underline{\hat{b}})$. At the bid where this next smallest lower extremity is reached, the functions $\hat{c}_i$ of the network operators with this lower extremity of their supports are added to the system in Equation~\eqref{eq:foc_ode_reduced_indirect}. This process is repeated until $\hat{c}_i$ for all $i\in N$ are included in~\eqref{eq:foc_ode_reduced_indirect}. This procedure is not easily accommodated by any of the numerical methods described in the literature, or this chapter; hence, the assumption
 \begin{equation*}
-  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in J.
+  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in N.
 \end{equation*}
-Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We can maximize the (approximate) probability of enforcing this condition reasoning as follows. Without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ (assuming $\underline{\hat{b}}$ is distributed uniformly over $(\underline{\hat{c}}_2, \bar{\hat{b}})$) can be quantified as follows
+Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We can maximize the (approximate) probability of enforcing this condition by reasoning as follows. Without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ (assuming $\underline{\hat{b}}$ is distributed uniformly over $(\underline{\hat{c}}_2, \bar{\hat{b}})$) can be quantified as follows
 \begin{equation*}
   P\left\{ \underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}}) \right\} = 1 - P\left\{\underline{\hat{b}}\in(\underline{\hat{c}}_2, \underline{\hat{c}}_n)\right\} = 1 - \frac{\underline{\hat{c}}_n - \underline{\hat{c}}_2}{\bar{\hat{b}}-\underline{\hat{c}}_2} = \frac{\bar{\hat{b}} - \underline{\hat{c}}_n}{\bar{\hat{b}} - \underline{\hat{c}}_2}.
 \end{equation*}
@@ -420,11 +420,11 @@ The idea behind the forward shooting method is to find the best approximation of
 \end{equation}
 for all $i\in N$, lies within a set of permissible functions, $S_i$, such that every element of that set is a function mapping $[\underline{\hat{b}}', \bar{\hat{b}}]$ into $[\underline{\hat{c}}_i, \bar{\hat{c}}_i]$, it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, and each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$; that is,
 \begin{equation*}
-  S_i\equiv\left\{s \:\middle\vert\:
+  S_i\equiv\left\{s_i \:\middle\vert\:
   \begin{array}{l}
-    s: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\underline{\hat{c}}_i, \bar{\hat{c}}_i],\\
-    b_1 < b_2\implies s(b_1) < s(b_2) \text{ for all }b_1,b_2\in [\underline{\hat{b}}', \bar{\hat{b}}),\\
-    s(b) < b \text{ for all }b\in [\underline{\hat{b}}', \bar{\hat{b}})
+    s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\underline{\hat{c}}_i, \bar{\hat{c}}_i],\\
+    b_1 < b_2\implies s_i(b_1) < s_i(b_2) \text{ for all }b_1,b_2\in [\underline{\hat{b}}', \bar{\hat{b}}),\\
+    s_i(b) < b \text{ for all }b\in [\underline{\hat{b}}', \bar{\hat{b}})
   \end{array}
   \right\}.
 \end{equation*}
@@ -567,12 +567,28 @@ and it is there mainly to avoid possible divisions by zero which are not handled
 \begin{equation*}
   \underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}}) \quad\text{and}\quad \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
 \end{equation*}
-for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since we treat the minimization problem in~\eqref{eq:least_squares_objective_function_indirect} as an unconstrained optimization problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event, for example, the unconstrained optimization problem can be translated into a constrained optimization problem using a penalty function approach as described in~\cite{AvrielPenalty2003}. Alternatively, a constrained optimization technique, such as the Constrained Optimization BY Linear Approximation (COBYLA) method~\cite{Powell1994}, could be used in place of the Nelder-Mead method.
+for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since we treat the minimization problem in~\eqref{eq:least_squares_objective_function_indirect} as an unconstrained optimization problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event; for example, the unconstrained optimization problem can be translated into a constrained optimization problem using a penalty function approach as described in~\cite{AvrielPenalty2003}. Alternatively, a constrained optimization technique, such as the Constrained Optimization BY Linear Approximation (COBYLA) method~\cite{Powell1994}, could be used in place of the Nelder-Mead method.
 % subsection polynomial_projection_method_indirect (end)
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In order to verify that the algorithm was implemented correctly, the numerically approximated equilibrium was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. To this end, let there be $n=2$ network operators such that the reputation rating for network operator 1 equals $r_1=0.25$, and $r_2=0.75$ for network operator 2. Furthermore, let the price weight be set to $w=0.5$. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison. It is clear from the figure that the numerically approximated equilibrium matches the closed-form solution, and therefore, we conclude that the algorithm was implemented correctly. Note, however, that this does not prove that the algorithm will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithm passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then the derived bidding strategies constitute an approximate Bayesian Nash equilibrium.
+FIX:ME include parameters used for hmatrix, Haskell.
+
+\begin{table}[t]
+  \caption{Bidding scenario with 2 network operators}
+  \vspace{0.5cm}
+  \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
+    \hlx{vhv}
+    & \textbf{Price weight}, $w$ & \textbf{Reputation rating}, $r_i$\\
+    \hlx{vhv}
+    \textbf{Network operator 1} & \multirow{2}{*}{$0.5$} & $0.25$\\
+    \textbf{Network operator 2} &  & $0.75$\\
+    \hlx{vhs}
+  \end{tabular*}
+  \label{tab:verification_indirect}
+\end{table}
+
+Before analyzing numerical results for more than 2 network operators, both algorithms were tested for correct implementation. To this end, the numerically approximated equilibrium for $n=2$ network operators was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. The parameters for the test bidding scenario are shown in Table~\ref{tab:verification_indirect}. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison for the forward shooting method, while Figure~\ref{fig:polynomial_projection_verification_indirect} for the polynomial projection method. It is clear from Figure~\ref{fig:forward_shooting_verification_indirect} that the result produced by the forward shooting method perfectly matches the (theoretical) closed-form solution. In case of the polynomial projection method, on the other hand, the numerical result approaches the closed-form solution; however, due to the nature of the approximating polynomials, the match is not ideal. The accuracy of the solution could be increased by increasing the order of the approximating polynomials. Nevertheless, we may conclude that both algorithms were implemented correctly.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_verification}
@@ -583,6 +599,23 @@ In order to verify that the algorithm was implemented correctly, the numerically
   \caption{FIX:ME Polynomial projection: $w=0.5, r_1=0.25, r_2=0.75$}
   \label{fig:polynomial_projection_verification_indirect}
 \end{figure}
+
+Note, however, that this does not prove that the algorithms will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithms passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then the derived bidding strategies constitute an approximate Bayesian Nash equilibrium.
+
+\begin{table}[t]
+  \caption{Bidding scenario with 3 network operators}
+  \vspace{0.5cm}
+  \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
+    \hlx{vhv}
+    & \textbf{Price weight}, $w$ & \textbf{Reputation rating}, $r_i$\\
+    \hlx{vhv}
+    \textbf{Network operator 1} & \multirow{3}{*}{$0.75$} & $0.25$\\
+    \textbf{Network operator 2} & & $0.5$\\
+    \textbf{Network operator 3} & & $0.75$\\
+    \hlx{vhs}
+  \end{tabular*}
+  \label{tab:approximation_scenario_3_indirect}
+\end{table}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3}
@@ -595,16 +628,6 @@ In order to verify that the algorithm was implemented correctly, the numerically
 \end{figure}
 
 \begin{figure}[p!]
-  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4}
-  \caption{FIX:ME Forward shooting: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
-  \label{fig:forward_shooting_4_indirect}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4_sufficiency}
-  \caption{FIX:ME Forward shooting sufficiency}
-  \label{fig:forward_shooting_4_sufficiency_indirect}
-\end{figure}
-
-\begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3}
   \caption{FIX:ME Polynomial projection: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
   \label{fig:polynomial_projection_3_indirect}
@@ -612,6 +635,32 @@ In order to verify that the algorithm was implemented correctly, the numerically
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3_sufficiency}
   \caption{FIX:ME Polynomial projection sufficiency}
   \label{fig:polynomial_projection_3_sufficiency_indirect}
+\end{figure}
+
+\begin{table}[t]
+  \caption{Bidding scenario with 4 network operators}
+  \vspace{0.5cm}
+  \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
+    \hlx{vhv}
+    & \textbf{Price weight}, $w$ & \textbf{Reputation rating}, $r_i$\\
+    \hlx{vhv}
+    \textbf{Network operator 1} & \multirow{4}{*}{$0.85$} & $0.2$\\
+    \textbf{Network operator 2} & & $0.4$\\
+    \textbf{Network operator 3} & & $0.6$\\
+    \textbf{Network operator 4} & & $0.8$\\
+    \hlx{vhs}
+  \end{tabular*}
+  \label{tab:approximation_scenario_3_indirect}
+\end{table}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4}
+  \caption{FIX:ME Forward shooting: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \label{fig:forward_shooting_4_indirect}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4_sufficiency}
+  \caption{FIX:ME Forward shooting sufficiency}
+  \label{fig:forward_shooting_4_sufficiency_indirect}
 \end{figure}
 
 \begin{figure}[p!]
