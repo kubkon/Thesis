@@ -677,6 +677,17 @@ Note, however, that this does not prove that the algorithms will provide correct
 
 \section{Extended Numerical Analysis} % (fold)
 \label{sec:extended_numerical_analysis_indirect}
+In this section, the numerical analysis of the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} is extended by considering cases such that
+\begin{equation*}
+  \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}
+\end{equation*}
+for at least one $i\in N$. In other words, we drop the assumption that
+\begin{equation*}
+  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}})
+\end{equation*}
+for all $i\in N$, and hence consider all nontrivial equilibria characterized by Lebrun (see Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}). Note, further, that all remaining assumptions of Section~\ref{sec:numerical_analysis_indirect} hold. To be more specific, we shall concentrate on cases such that $w\in (0.5,1.0)$ for all $r_i\in[0,1], i\in N$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
+
+In what follows, we shall present two numerical algorithms which improve upon the algorithms considered in Section~\ref{sec:numerical_analysis_indirect}: the extended forward shooting method, and the extended forward shooting method and polynomial projection method combined.
 
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
@@ -740,6 +751,12 @@ It can be observed that regardless of the values of the reputation ratings, the 
 
 Furthermore, as the difference $(r_j-r_i)$ increases, the expected prices, $E[p](w,r_i,r_j)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Therefore, it can be hypothesized that the smaller the difference $(r_j-r_i)$, the less (expected) price sensitive the price weight; that is, for any $w_1\in[0,1]$, if $(r^2_j-r^2_i) > (r^1_j-r^1_i)$ for all $r^1_i,r^1_j,r^2_i,r^2_j\in [0,1]$, then $E[p](w_1,r^2_i,r^2_j) \ge E[p](w_1,r^1_i,r^1_j)$ (Figure~\ref{fig:expected_prices_sensitivity_indirect}). In other words, for any expected price, as the difference $(r_j-r_i)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed.
 % subsection subscriber_s_perspective_expected_prices_in_restricted_case (end)
+
+\subsection{Possible Improvements of Numerical Methods} % (fold)
+\label{sub:possible_improvements_of_numerical_methods}
+
+% subsection possible_improvements_of_numerical_methods (end)
+
 % section discussion (end)
 
 \section{Summary}
