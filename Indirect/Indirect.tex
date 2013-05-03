@@ -692,6 +692,51 @@ In what follows, we shall present two numerical algorithms which improve upon th
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
 
+\begin{algorithm}
+\caption{Extended forward shooting method}
+\label{alg:extended_forward_shooting_method_indirect}
+\begin{algorithmic}[1]
+\Require{$\epsilon\in (0, \bar{\hat{b}} - \underline{\hat{c}}_2); low, high\in [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that $low\leq high$}
+\Ensure{Approximation to $\underline{\hat{b}}$}
+  \Statex
+  \Function{extForwardShooting}{$low, high$}
+    \Let{$guess$}{$0.5\cdot(low + high)$}
+    \If{$high - low < \epsilon$}
+      \State\Return{$guess$}
+    \Else
+      \Let{$(k(\underline{\hat{b}}),\hat{c}(\underline{\hat{b}}))$}{\Call{estimateKC}{$\underline{\hat{b}},\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}}
+      \Let{$bids$}{$[guess, \bar{\hat{b}})$}
+      \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:fsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
+      \StatexIndent[8.5]{evaluated at points $b\in bids$}
+      \If{$(bids,costs_i)\in S_i$ for all $i\gets 1$ to $n$}
+        \State\Return{\Call{extForwardShooting}{$low, guess$}}
+      \Else
+        \State\Return{\Call{extForwardShooting}{$guess, high$}}
+      \EndIf
+    \EndIf
+  \EndFunction
+  \Statex
+  \Let{$low$}{$\underline{\hat{c}}_2$}
+  \Let{$high$}{$\bar{\hat{b}}$}
+  \Let{$\underline{\hat{b}}'$}{\Call{extForwardShooting}{$low, high$}}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Function for estimating $k(\underline{\hat{b}})$ and $\hat{c}(\underline{\hat{b}})$}
+\label{alg:function_estimate_k_c_indirect}
+\begin{algorithmic}[1]
+\Require{something}
+\Ensure{else}
+  \Statex
+  \Function{estimateKC}{$\underline{\hat{b}},\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}
+    \For{$k = 2 \to n$}
+      \Let{$\hat{c}(\underline{\hat{b}})$}{compute using~\eqref{eq:lower_bound_bids_cost_indirect} with $k(\underline{\hat{b}}) = k$}
+    \EndFor
+  \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
 % subsection extended_forward_shooting_method_indirect (end)
 
 \subsection{Combined Methods Approach} % (fold)
