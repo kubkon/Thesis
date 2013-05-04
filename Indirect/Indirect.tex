@@ -726,13 +726,19 @@ In what follows, we shall present two numerical algorithms which improve upon th
 \caption{Function for estimating $k(\underline{\hat{b}})$ and $\hat{c}(\underline{\hat{b}})$}
 \label{alg:function_estimate_k_c_indirect}
 \begin{algorithmic}[1]
-\Require{something}
-\Ensure{else}
+\Require{Estimate of $\underline{\hat{b}}$; $\underline{\hat{c}}_i$ for all $i\in N$}
+\Ensure{$k(\underline{\hat{b}})\in \{2,\ldots,n\}$; $\hat{c}(\underline{\hat{b}})$ computed according to~\eqref{eq:lower_bound_bids_cost_indirect}}
   \Statex
   \Function{estimateKC}{$\underline{\hat{b}},\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}
     \For{$k = 2 \to n$}
       \Let{$\hat{c}(\underline{\hat{b}})$}{compute using~\eqref{eq:lower_bound_bids_cost_indirect} with $k(\underline{\hat{b}}) = k$}
+      \If{$k<n$}
+        \If{$\underline{\hat{c}}_k\leq \hat{c}(\underline{\hat{b}})\land\hat{c}(\underline{\hat{b}})<\underline{\hat{c}}_{k+1}$}
+          \State{\textbf{break}}
+        \EndIf
+      \EndIf
     \EndFor
+    \State\Return{$(k,\hat{c}(\underline{\hat{b}}))$}
   \EndFunction
 \end{algorithmic}
 \end{algorithm}
