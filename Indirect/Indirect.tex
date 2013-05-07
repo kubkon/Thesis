@@ -691,6 +691,26 @@ In what follows, we shall present two numerical algorithms which improve upon th
 
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
+Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
+
+The extended forward shooting method extends the forward shooting method by effectively implementing the reasoning behind the bidding extension characterized by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the extended forward shooting method aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
+\begin{equation}
+  \label{eq:efsm_initial_value_problem_indirect}
+  \begin{array}{ll}
+    \displaystyle\frac{d}{db}\hat{c}_i(b) &= \displaystyle\frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_i(b)} \right] \\[2ex]
+    \hat{c}_i(\underline{\hat{b}}') &= \min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}
+  \end{array}
+\end{equation}
+for all $i\in N$, lies within a set of permissible functions, $S_i$, such that every element of that set is a function mapping $[\underline{\hat{b}}',\bar{\hat{b}}]$ into $[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i]$, it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, and each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$; that is,
+\begin{equation*}
+  S_i\equiv\left\{s_i \:\middle\vert\:
+  \begin{array}{l}
+    s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i],\\
+    b_1 < b_2\implies s_i(b_1) < s_i(b_2) \text{ for all }b_1,b_2\in [\underline{\hat{b}}', \bar{\hat{b}}),\\
+    s_i(b) < b \text{ for all }b\in [\underline{\hat{b}}', \bar{\hat{b}})
+  \end{array}
+  \right\}.
+\end{equation*}
 
 \begin{algorithm}
 \caption{Extended forward shooting method}
@@ -704,10 +724,11 @@ In what follows, we shall present two numerical algorithms which improve upon th
     \If{$high - low < \epsilon$}
       \State\Return{$guess$}
     \Else
-      \Let{$(k(\underline{\hat{b}}),\hat{c}(\underline{\hat{b}}))$}{\Call{estimateKC}{$\underline{\hat{b}},\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}}
+      \Let{$(k,\hat{c})$}{\Call{estimateKC}{$guess,\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}}
       \Let{$bids$}{$[guess, \bar{\hat{b}})$}
-      \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:fsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
-      \StatexIndent[8.5]{evaluated at points $b\in bids$}
+      \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:efsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
+      \StatexIndent[8.5]{evaluated at points $b\in bids$, and $k(\underline{\hat{b}}) = k$}
+      \StatexIndent[8.5]{and $\hat{c}(\underline{\hat{b}}) = \hat{c}$}
       \If{$(bids,costs_i)\in S_i$ for all $i\gets 1$ to $n$}
         \State\Return{\Call{extForwardShooting}{$low, guess$}}
       \Else
@@ -742,6 +763,12 @@ In what follows, we shall present two numerical algorithms which improve upon th
   \EndFunction
 \end{algorithmic}
 \end{algorithm}
+
+\begin{figure}[t]
+  \includegraphics[width=\figsize]{Indirect/Figures/lebrun_solution}
+  \caption{FIX:ME Explanation of the Lebrun's proof and the numerical approximation procedure}
+  \label{fig:lebrun_solution_indirect}
+\end{figure}
 
 % subsection extended_forward_shooting_method_indirect (end)
 
