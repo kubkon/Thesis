@@ -774,6 +774,35 @@ Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-co
   \label{fig:lebrun_solution_indirect}
 \end{figure}
 
+In order to describe the customized finite-differences method, suppose there are $n=4$ network operators. The following argument can easily be adapted to the case of $n=3$ or $n>4$ network operators. Furthermore, suppose that
+\begin{equation*}
+  \underline{\hat{c}}_1 < \underline{\hat{c}}_2 < \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_3 < \underline{\hat{c}}_4.
+\end{equation*}
+This is depicted in Figure~\ref{fig:lebrun_solution_indirect}. The method then proceeds as follows.
+\begin{enumerate}
+
+\item Since $\underline{\hat{c}}_1 < \underline{\hat{c}}_2 < \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_3 < \underline{\hat{c}}_4$, then $k(\underline{\hat{b}}) = 2$, and hence, network operators 1 and 2 solve
+\begin{equation}
+  \label{eq:efsm_lebrun_ode_1_indirect}
+  \begin{array}{ll}
+    \displaystyle\frac{d}{db}\hat{c}_i(b) &= \displaystyle\frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{k(\underline{\hat{b}})-1}\sum_{k=1}^{k(\underline{\hat{b}})}\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_i(b)} \right] \\[2ex]
+    \hat{c}_i(\underline{\hat{b}}) &= \underline{\hat{c}}_i
+  \end{array},
+\end{equation}
+while network operators 3 and 4 solve
+\begin{equation}
+  \label{eq:efsm_lebrun_ext_1_indirect}
+  \hat{c}_i(b) = b - \frac{k(\underline{\hat{b}}) - 1}{\sum_{j=1}^{k(\underline{\hat{b}})} \frac{1}{b-\hat{c}_j(b)}}.
+\end{equation}
+The system~\eqref{eq:efsm_lebrun_ode_1_indirect} is solved for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$, and the approximation is then used to solve~\eqref{eq:efsm_lebrun_ext_1_indirect}. However, only bid values such that $\underline{\hat{b}} \leq b\leq b(\underline{\hat{c}}_3)$ are kept $b(\underline{\hat{c}}_3) = \underline{\hat{c}}_3$ maps into network operator's 3 cost-hat (Figure~\ref{fig:lebrun_solution_indirect}).
+
+Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on $k(\underline{\hat{b}})$ and the solution to~\eqref{eq:efsm_lebrun_ode_1_indirect}. Therefore, both network operator 3 and 4 are characterized by the same set of values.
+
+\item Next, $k(\underline{\hat{b}})$ is incremented by $1$ over the previous value, and the procedure in 1) is repeated with this difference that now network operators 1, 2 and 3 solve system~\eqref{eq:efsm_lebrun_ode_1_indirect} while network operator 4 solves~\eqref{eq:efsm_lebrun_ext_1_indirect}. The system~\eqref{eq:efsm_lebrun_ode_1_indirect} is solved for $b\in [b(\underline{\hat{c}}_3), \bar{\hat{b}}]$, but only bid values such that $b(\underline{\hat{c}}_3)\leq b\leq b(\underline{\hat{b}}_4)$ are kept.
+
+\item Finally, all network operators solve the system~\eqref{eq:efsm_lebrun_ode_1_indirect} for bid values $b\in [b(\underline{\hat{c}}_4),\bar{\hat{b}}]$.
+\end{enumerate}
+
 % subsection extended_forward_shooting_method_indirect (end)
 
 \subsection{Combined Methods Approach} % (fold)
