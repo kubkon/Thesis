@@ -743,7 +743,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the extended forward shooting method is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The general flow of the algorithm is exactly the same as for the forward shooting method. The main differences are twofold: the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customized finite-differences method described below (line 8).
+The pseudo-code for the extended forward shooting method is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the forward shooting method. The main differences are twofold: the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customized finite-differences method described below (line 8).
 
 \begin{algorithm}
 \caption{Function for estimating $k(\underline{\hat{b}})$ and $\hat{c}(\underline{\hat{b}})$}
@@ -766,7 +766,7 @@ The pseudo-code for the extended forward shooting method is shown in listing Alg
 \end{algorithmic}
 \end{algorithm}
 
-Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function estimateKC, that estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes an estimate of the lower bound on bid, $\underline{\hat{b}}'$, and the set of lower extremities, $\underline{\hat{c}}_i$ for all $i\in N$. The function then iterates $k$ over $\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and the extended forward shooting method reduces to the forward shooting method.
+Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function estimateKC which estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes as an input an estimate of the lower bound on bid, $\underline{\hat{b}}'$, and the set of lower extremities, $\underline{\hat{c}}_i$ for all $i\in N$. The function then iterates over $k\in\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and the extended forward shooting method reduces to the forward shooting method.
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Indirect/Figures/lebrun_solution}
@@ -778,7 +778,7 @@ In order to describe the customized finite-differences method, suppose there are
 \begin{equation*}
   \underline{\hat{c}}_1 < \underline{\hat{c}}_2 < \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_3 < \underline{\hat{c}}_4.
 \end{equation*}
-This is depicted in Figure~\ref{fig:lebrun_solution_indirect}. The method then proceeds as follows.
+The method comprises three stages as depicted in Figure~\ref{fig:lebrun_solution_indirect}.
 \begin{enumerate}
 
 \item Since $\underline{\hat{c}}_1 < \underline{\hat{c}}_2 < \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_3 < \underline{\hat{c}}_4$, then $k(\underline{\hat{b}}) = 2$, and hence, network operators 1 and 2 solve
@@ -794,14 +794,22 @@ while network operators 3 and 4 solve
   \label{eq:efsm_lebrun_ext_1_indirect}
   \hat{c}_i(b) = b - \frac{k(\underline{\hat{b}}) - 1}{\sum_{j=1}^{k(\underline{\hat{b}})} \frac{1}{b-\hat{c}_j(b)}}.
 \end{equation}
-The system~\eqref{eq:efsm_lebrun_ode_1_indirect} is solved for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$, and the approximation is then used to solve~\eqref{eq:efsm_lebrun_ext_1_indirect}. However, only bid values such that $\underline{\hat{b}} \leq b\leq b(\underline{\hat{c}}_3)$ are kept $b(\underline{\hat{c}}_3) = \underline{\hat{c}}_3$ maps into network operator's 3 cost-hat (Figure~\ref{fig:lebrun_solution_indirect}).
+The system~\eqref{eq:efsm_lebrun_ode_1_indirect} is solved for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$, and the approximation is then used to solve~\eqref{eq:efsm_lebrun_ext_1_indirect}. However, only bid values such that $\underline{\hat{b}} \leq b\leq b(\underline{\hat{c}}_3)$ are kept, where $b(\underline{\hat{c}}_3) = \underline{\hat{c}}_3$ maps into network operator's 3 cost-hat.
 
-Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on $k(\underline{\hat{b}})$ and the solution to~\eqref{eq:efsm_lebrun_ode_1_indirect}. Therefore, both network operator 3 and 4 are characterized by the same set of values.
+Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on $k(\underline{\hat{b}})$ and the solution to~\eqref{eq:efsm_lebrun_ode_1_indirect}. Therefore, both network operator 3 and 4 are characterized by the same set of values (Stage 1, Figure~\ref{fig:lebrun_solution_indirect}).
 
-\item Next, $k(\underline{\hat{b}})$ is incremented by $1$ over the previous value, and the procedure in 1) is repeated with this difference that now network operators 1, 2 and 3 solve system~\eqref{eq:efsm_lebrun_ode_1_indirect} while network operator 4 solves~\eqref{eq:efsm_lebrun_ext_1_indirect}. The system~\eqref{eq:efsm_lebrun_ode_1_indirect} is solved for $b\in [b(\underline{\hat{c}}_3), \bar{\hat{b}}]$, but only bid values such that $b(\underline{\hat{c}}_3)\leq b\leq b(\underline{\hat{b}}_4)$ are kept.
+\item Next, $k(\underline{\hat{b}})$ is incremented by $1$ over the previous value, and the procedure in 1) is repeated with this difference that now network operators 1, 2 and 3 solve system~\eqref{eq:efsm_lebrun_ode_1_indirect} while network operator 4 solves~\eqref{eq:efsm_lebrun_ext_1_indirect}. The system~\eqref{eq:efsm_lebrun_ode_1_indirect} is solved for $b\in [b(\underline{\hat{c}}_3), \bar{\hat{b}}]$, but only bid values such that $b(\underline{\hat{c}}_3)\leq b\leq b(\underline{\hat{b}}_4)$ are kept (Stage 2, Figure~\ref{fig:lebrun_solution_indirect}).
 
-\item Finally, all network operators solve the system~\eqref{eq:efsm_lebrun_ode_1_indirect} for bid values $b\in [b(\underline{\hat{c}}_4),\bar{\hat{b}}]$.
+\item Finally, all network operators solve the system~\eqref{eq:efsm_lebrun_ode_1_indirect} for bid values $b\in [b(\underline{\hat{c}}_4),\bar{\hat{b}}]$ (Stage 3, Figure~\ref{fig:lebrun_solution_indirect}).
 \end{enumerate}
+
+In each stage, the system of ODEs in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GSL implementation of the Embedded-Runge-Kutta-Fehlberg (4, 5) method, provided by the Haskell package ``hmatrix'' version 0.14.1.0~\cite{GSL,HMATRIX}.
+
+Furthermore, similarly to the implementation of forward shooting and polynomial projection methods, we assumed that
+\begin{equation*}
+  F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\text{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
+\end{equation*}
+for all $i\in N$ and $x\in\mathbb{R}$. The discussion of the consequences arising from this simplifying assumption can be found in Section~\ref{sub:forward_shooting_method_indirect}.
 
 % subsection extended_forward_shooting_method_indirect (end)
 
@@ -815,7 +823,7 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/efs_3}
-  \caption{FIX:ME Extended forward shooting: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{FIX:ME Extended forward shooting: $w=0.55, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
   \label{fig:efs_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/efs_3_sufficiency}
@@ -825,7 +833,7 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/combined_3}
-  \caption{FIX:ME Combined: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{FIX:ME Combined: $w=0.55, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
   \label{fig:combined_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/combined_3_sufficiency}
@@ -835,7 +843,7 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/efs_4}
-  \caption{FIX:ME Extended forward shooting: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{FIX:ME Extended forward shooting: $w = 0.55, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
   \label{fig:efs_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/efs_4_sufficiency}
@@ -845,7 +853,7 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/combined_4}
-  \caption{FIX:ME Combined: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{FIX:ME Combined: $w = 0.55, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
   \label{fig:combined_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/combined_4_sufficiency}
