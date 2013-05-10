@@ -691,7 +691,7 @@ In what follows, we shall present two numerical algorithms which improve upon th
 
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
-Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
+Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
 The extended forward shooting method extends the forward shooting method by effectively implementing the reasoning behind the bidding extension characterized by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the extended forward shooting method aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
@@ -815,7 +815,9 @@ for all $i\in N$ and $x\in\mathbb{R}$. The discussion of the consequences arisin
 
 \subsection{Combined Methods Approach} % (fold)
 \label{sub:combined_methods_approach_indirect}
+Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
+The combined methods approach is equivalent to the extended forward shooting method with one difference: the last stage in the customized finite-difference method is solved using the polynomial projection method instead of the standard forward shooting method (Stage 3 in Figure~\ref{fig:lebrun_solution_indirect}). The polynomial projection method should reduce the error in the forward shooting method approximation as $b$ approaches $\bar{\hat{b}}$ and the system of ODEs does not satisfy the Lipschitz condition for continuity.
 % subsection combined_methods_approach_indirect (end)
 
 \subsection{Approximation Results} % (fold)
