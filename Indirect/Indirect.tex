@@ -151,7 +151,7 @@ Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Let $J$ den
 \begin{equation*}
   J = \left\{j \:\middle\vert\: 1\leq j\leq n \text{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
 \end{equation*}
-Further let $n' = |J|$.
+Furthermore, let $n' = |J|$.
 \end{define}
 
 \begin{define}[Characterization of lower bound on bids]
@@ -388,7 +388,7 @@ As further explained by Lebrun~\cite{Lebrun2006}, the (inverse) equilibrium bidd
   \label{eq:foc_ode_reduced_indirect}
   \frac{d}{db}\hat{c}_j(b) = \frac{1 - F_j(\hat{c}_j(b))}{f_j(\hat{c}_j(b))} \left[ \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{\substack{k\in N\\ k\not\in I}}\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_j(b)}\right]
 \end{equation}
-for network operators $j\in N, j\not\in I$, and by the system in Equation~\eqref{eq:foc_reduced_indirect} for network operators $i\in I$. Both systems are combined for all $b > \underline{\hat{b}}$ until the common function $\hat{c}_i$, $i\in I$, takes as its value the smallest lower extremity strictly smaller than $\hat{c}(\underline{\hat{b}})$. At the bid where this next smallest lower extremity is reached, the functions $\hat{c}_i$ of the network operators with this lower extremity of their supports are added to the system in Equation~\eqref{eq:foc_ode_reduced_indirect}. This process is repeated until $\hat{c}_i$ for all $i\in N$ are included in~\eqref{eq:foc_ode_reduced_indirect}. This procedure is not easily accommodated by any of the numerical methods described in the literature, or this chapter; hence, the assumption
+for network operators $j\in N, j\not\in I$, and by the system in Equation~\eqref{eq:foc_reduced_indirect} for network operators $i\in I$. Both systems are combined for all $b > \underline{\hat{b}}$ until the common function $\hat{c}_i$, $i\in I$, takes as its value the smallest lower extremity strictly smaller than $\hat{c}(\underline{\hat{b}})$. At the bid where this next smallest lower extremity is reached, the functions $\hat{c}_i$ of the network operators with this lower extremity of their supports are added to the system in Equation~\eqref{eq:foc_ode_reduced_indirect}. This process is repeated until $\hat{c}_i$ for all $i\in N$ are included in~\eqref{eq:foc_ode_reduced_indirect}. This procedure is not easily accommodated by any of the numerical methods described in the literature\footnote{Section~\ref{sec:extended_numerical_analysis_indirect} extends the numerical analysis of this section by dropping the assumption $\underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}})$ for all $i\in N$.}; hence, the assumption
 \begin{equation*}
   \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\text{for all } i\in N.
 \end{equation*}
@@ -512,7 +512,7 @@ where $B=\{\underline{\hat{b}},\dotsc,\bar{\hat{b}}\}$ is a (finite) grid of poi
   &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\
   &- \displaystyle\frac{1 - F_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}{f_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right].
 \end{align*}
-Note that $G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n) = 0$ corresponds to the ODE in Equation~\eqref{eq:foc_ode_indirect} for each network operator $i\in N$. Furthermore, note that the objective function, $H$, incorporates only the upper boundary condition~\eqref{eq:foc_ode_upper_boundary_indirect}
+Note that $G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n) = 0$ corresponds to the ODE in Equation~\eqref{eq:foc_ode_indirect} for each network operator $i\in N$. Furthermore, note that the objective function, $H$, incorporates only the upper boundary condition~\eqref{eq:foc_ode_upper_boundary_indirect}; that is,
 \begin{equation*}
   \sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2.
 \end{equation*}
@@ -522,7 +522,7 @@ The lower boundary condition~\eqref{eq:foc_ode_lower_boundary_indirect} is omitt
 \end{equation*}
 for all $i\in N$. Therefore, it is unnecessary to include the lower boundary condition in the objective function, as it is always equal to $0$.
 
-This specification of the problem is a modified version of the Third Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.5 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of bidders' costs.
+This specification of the problem is a modified version of the Third Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.5 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of network operators' costs.
 
 \begin{algorithm}
 \caption{Polynomial projection method}
@@ -578,7 +578,7 @@ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, 
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-FIX:ME include parameters used for hmatrix, Haskell.
+In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the forwards shooting method and the polynomial projection method. The implementation details of the algorithms together with the instructions on how to us the Haskell scripts developed during this research work can be found in Appendix~\ref{cha:haskell_numerical_tools}.
 
 \begin{table}[t]
   \caption{Bidding scenario with 2 network operators}
