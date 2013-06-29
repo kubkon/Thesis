@@ -443,25 +443,22 @@ This specification of the problem is a modified version of the First Algorithm i
 \Require{$\epsilon\in (0, \bar{\hat{b}} - \underline{\hat{c}}_2); low, high\in [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that $low\leq high$}
 \Ensure{Approximation to $\underline{\hat{b}}$}
   \Statex
-  \Function{forwardShooting}{$low, high$}
-    \Let{$guess$}{$0.5\cdot(low + high)$}
-    \If{$high - low < \epsilon$}
-      \State\Return{$guess$}
-    \Else
-      \Let{$bids$}{$[guess, \bar{\hat{b}})$}
-      \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:fsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
-      \StatexIndent[8.5]{evaluated at points $b\in bids$}
-      \If{$(bids,costs_i)\in S_i$ for all $i\gets 1$ to $n$}
-        \State\Return{\Call{forwardShooting}{$low, guess$}}
-      \Else
-        \State\Return{\Call{forwardShooting}{$guess, high$}}
-      \EndIf
-    \EndIf
-  \EndFunction
-  \Statex
   \Let{$low$}{$\underline{\hat{c}}_2$}
   \Let{$high$}{$\bar{\hat{b}}$}
-  \Let{$\underline{\hat{b}}'$}{\Call{forwardShooting}{$low, high$}}
+  \Statex
+  \While{$high-low > \epsilon$}
+    \Let{$guess$}{$0.5\cdot(low + high)$}
+    \Let{$bids$}{$[guess, \bar{\hat{b}})$}
+    \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:fsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
+    \StatexIndent[7.5]{evaluated at points $b\in bids$}
+    \If{$(bids,costs_i)\in S_i$ for all $i\gets 1$ to $n$}
+      \Let{$high$}{$guess$}
+    \Else
+      \Let{$low$}{$guess$}
+    \EndIf
+  \EndWhile
+  \Statex
+  \Let{$\underline{\hat{b}}'$}{$0.5\cdot(low + high)$}
 \end{algorithmic}
 \end{algorithm}
 
@@ -531,28 +528,22 @@ This specification of the problem is a modified version of the Third Algorithm i
 \Require{$k \leq K$ where $K\geq 3$; $\alpha_i\in\mathbb{R}^k$ for all $i\in N$; $\underline{b}\in(\underline{\hat{c}}_2, \bar{\hat{b}})$}
 \Ensure{Approximate $\underline{\hat{b}}$; $\alpha_i\in\mathbb{R}^K$ for all $i\in N$}
   \Statex
-  \Function{polyProjection}{$k, K, \underline{b}, \alpha_1, \dotsc, \alpha_n$}
-    \Let{$bids$}{$B$}
-    \Let{$(\underline{b}', \alpha'_1, \dotsc, \alpha'_n)$}{minimize~\eqref{eq:least_squares_objective_function_indirect} with initial values $(\underline{b}, \alpha_1, \dotsc, \alpha_n)$}
-    \StatexIndent[6]{ evaluated at points $b\in B$}
-    \If{$k = K$}
-      \State\Return{$(\underline{b}', \alpha'_1, \dotsc, \alpha'_n)$}
-    \Else
-      \Let{$k'$}{$k + 1$}
-      \For{$i\gets 1$ to $n$}
-        \Let{$\alpha''_i$}{$(\alpha'_{i,1}, \dotsc, \alpha'_{i,k}, 10^{-6})$}
-      \EndFor
-      \State\Return{\Call{polyProjection}{$k', K, \underline{b}', \alpha''_1, \dotsc, \alpha''_n$}}
-    \EndIf
-  \EndFunction
-  \Statex
   \Let{$k$}{$3$}
   \Let{$K$}{$8$}
   \For{$i\gets 1$ to $n$}
     \Let{$\alpha_i$}{create $k$-tuple of $10^{-2}$}
   \EndFor
   \Let{$\underline{b}$}{$\underline{\hat{c}}_2$}
-  \Let{$(\underline{\hat{b}}',\alpha_1,\dotsc,\alpha_n)$}{\Call{polyProjection}{$k, K, \underline{b}, \alpha_1,\dotsc,\alpha_n$}}
+  \Statex
+  \Repeat
+    \Let{$bids$}{$B$}
+    \Let{$(\underline{b}, \alpha_1, \dotsc, \alpha_n)$}{minimize~\eqref{eq:least_squares_objective_function_indirect} with initial values $(\underline{b}, \alpha_1, \dotsc, \alpha_n)$}
+    \StatexIndent[6]{ evaluated at points $b\in B$}
+    \Let{$k$}{$k+1$}
+    \For{$i\gets 1$ to $n$}
+      \Let{$\alpha_i$}{$(\alpha_{i,1}, \dotsc, \alpha_{i,k}, 10^{-6})$}
+    \EndFor
+  \Until{$k\leq K$}
 \end{algorithmic}
 \end{algorithm}
 
@@ -606,7 +597,7 @@ Before analyzing numerical results for more than 2 network operators, both algor
   \label{fig:polynomial_projection_verification_indirect}
 \end{figure}
 
-Note, however, that this does not prove that the algorithms will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithms passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then the derived bidding strategies constitute an approximate Bayesian Nash equilibrium.
+Note, however, that this does not prove that the algorithms will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithms passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then they constitute an approximate Bayesian Nash equilibrium.
 
 In the first examined scenario, there are 3 network operators characterized by reputation ratings as summarized in Table~\ref{tab:approximation_scenario_3_indirect}. Furthermore, the price weight is set to $0.75$. Figures~\ref{fig:forward_shooting_3_indirect}~and~\ref{fig:forward_shooting_3_sufficiency_indirect} depict the results of the approximation generated by the forward shooting method, while Figures~\ref{fig:polynomial_projection_3_indirect}~and~\ref{fig:polynomial_projection_3_sufficiency_indirect} depict the results of the approximation generated by the polynomial projection method. Both approximation methods yield virtually the same estimate of the lower bound on bids, $\underline{\hat{b}}\approx 0.375$. In the forward shooting method case, the approximation flattens out as $b$ approaches $\bar{\hat{b}}$, and therefore, the approximation satisfies the sufficiency only until $b$ reaches a close neighborhood of $\bar{\hat{b}}$. This is due to the fact that the system of ODEs does not satisfy Lipschitz condition for continuity as $b$ approaches $\bar{\hat{b}}$. The polynomial projection method, on the other hand, eliminates this problem entirely, and the approximation satisfies sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$.
 
@@ -729,27 +720,24 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 \Require{$\epsilon\in (0, \bar{\hat{b}} - \underline{\hat{c}}_2); low, high\in [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that $low\leq high$}
 \Ensure{Approximation to $\underline{\hat{b}}$}
   \Statex
-  \Function{extForwardShooting}{$low, high$}
-    \Let{$guess$}{$0.5\cdot(low + high)$}
-    \If{$high - low < \epsilon$}
-      \State\Return{$guess$}
-    \Else
-      \Let{$(k,\hat{c})$}{\Call{estimateKC}{$guess,\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}}
-      \Let{$bids$}{$[guess, \bar{\hat{b}})$}
-      \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:efsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
-      \StatexIndent[8.5]{evaluated at points $b\in bids$, and $k(\underline{\hat{b}}) = k$}
-      \StatexIndent[8.5]{and $\hat{c}(\underline{\hat{b}}) = \hat{c}$}
-      \If{$(bids,costs_i)\in S_i$ for all $i\gets 1$ to $n$}
-        \State\Return{\Call{extForwardShooting}{$low, guess$}}
-      \Else
-        \State\Return{\Call{extForwardShooting}{$guess, high$}}
-      \EndIf
-    \EndIf
-  \EndFunction
-  \Statex
   \Let{$low$}{$\underline{\hat{c}}_2$}
   \Let{$high$}{$\bar{\hat{b}}$}
-  \Let{$\underline{\hat{b}}'$}{\Call{extForwardShooting}{$low, high$}}
+  \Statex
+  \While{$high-low > \epsilon$}
+    \Let{$guess$}{$0.5\cdot(low + high)$}
+    \Let{$(k,\hat{c})$}{\Call{estimateKC}{$guess,\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}}
+    \Let{$bids$}{$[guess, \bar{\hat{b}})$}
+    \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:efsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
+    \StatexIndent[7.5]{evaluated at points $b\in bids$, and $k(\underline{\hat{b}}) = k$}
+    \StatexIndent[7.5]{and $\hat{c}(\underline{\hat{b}}) = \hat{c}$}
+    \If{$(bids,costs_i)\in S_i$ for all $i\gets 1$ to $n$}
+      \Let{$high$}{$guess$}
+    \Else
+      \Let{$low$}{$guess$}
+    \EndIf
+  \EndWhile
+  \Statex
+  \Let{$\underline{\hat{b}}'$}{$0.5\cdot(low + high)$}
 \end{algorithmic}
 \end{algorithm}
 
@@ -917,7 +905,7 @@ In the second examined scenario, there are 4 network operators characterized by 
 
 \section{Discussion} % (fold)
 \label{sec:discussion_indirect}
-The aim of this section is twofold. First, the results from direct and indirect approaches are compared. Second, the prices the subscriber has to pay for each value of the price weight given a tuple of network operators' reputation ratings (in the restricted case) are examined.
+The aim of this section is threefold. First, the results from direct and indirect approaches are compared. Second, the prices the subscriber has to pay for each value of the price weight given a tuple of network operators' reputation ratings (in the restricted case) are examined. Finally, other possible numerical methods are summarized.
 
 \subsection{Comparison of Direct and Indirect Approaches} % (fold)
 \label{sub:comparison_of_direct_and_indirect_approaches_indirect}
@@ -961,10 +949,10 @@ It can be observed that regardless of the values of the reputation ratings, the 
 Furthermore, as the difference $(r_2-r_1)$ increases, the expected prices, $E[p](w,r_1,r_2)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Therefore, it can be hypothesized that the smaller the difference $(r_2-r_1)$, the less (expected) price sensitive the price weight; that is, for any $w_1\in[0,1]$, if $(r^2_2-r^2_1) > (r^1_2-r^1_1)$ for all $r^1_1,r^1_2,r^2_1,r^2_2\in [0,1]$, then $E[p](w_1,r^2_1,r^2_2) \ge E[p](w_1,r^1_1,r^1_2)$ (Figure~\ref{fig:expected_prices_sensitivity_indirect}). In other words, for any expected price, as the difference $(r_2-r_1)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed.
 % subsection subscriber_s_perspective_expected_prices_in_restricted_case (end)
 
-\subsection{Possible Improvements of Numerical Methods} % (fold)
-\label{sub:possible_improvements_of_numerical_methods}
+\subsection{Other Numerical Methods} % (fold)
+\label{sub:other_numerical_methods}
 
-% subsection possible_improvements_of_numerical_methods (end)
+% subsection other_numerical_methods (end)
 
 % section discussion (end)
 
