@@ -13,6 +13,65 @@ This chapter explores whether an auction format represented by the DMP selling m
 \subsection{Mathematical Description} % (fold)
 \label{sub:mathematical_description}
 
+Following the notation of Chapter~\ref{cha:indirect}, let each bidder $i$ be characterized by the utility function
+\begin{equation*}
+    u_i(b,c) = \left\{
+  \begin{array}{l l}
+    b_i-c_i & \;\text{if } b_i < \displaystyle\min_{j\neq i}b_j,\\
+    0 & \;\text{if } b_i > \displaystyle\min_{j\neq i}b_j,
+  \end{array}\right.
+\end{equation*}
+where, as before, $b = (b_1,\ldots,b_n)$, and $c = (c_1,\ldots,c_n)$. In the common priors auction, we assume that each bidder $i$ draws their cost from common support across all bidders; i.e., let
+\begin{equation*}
+  c_i\in [\underline{c}, \bar{c}] \quad\text{for all } i\in N.
+\end{equation*}
+
+Let $F_i$ be the distribution function of $c_i$ for all $i\in N$. Note that the distribution functions between bidders need not be equal, and hence, we are dealing with an asymmetric FPA.
+
+We further assume that
+\begin{assumptions}
+\label{ass:assumptions_common_priors_approximation}
+Assume that
+\begin{enumerate}
+  \item $F_i$ is differentiable over $(\underline{c}, \bar{c}]$ with a derivative $f_i$ locally bound away from zero over this interval;
+  \item $F_i$ is atomless; and
+  \item $F_i(c)>0$ for all $c\in [\underline{c}, \bar{c}]$ and $i\in N$.
+\end{enumerate}
+\end{assumptions}
+These assumptions correspond to Assumptions~A.1 and Theorem~U.1 in Lebrun~\cite{Lebrun2006}.
+
+With these assumptions at hand, as shown by Lebrun~\cite{Lebrun2006}, there exists one and only one pure-strategy Bayesian Nash equilibrium where bidders engage in serious bidding; that is, bid at least their cost. Formally,
+\begin{proposition}[Characterization of the Equilibrium in Common Priors Setting]
+\label{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}
+Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i$, satisfy the following system of differential equations
+\begin{equation*}
+  \frac{d}{db}c_i(b) = \frac{1 - F_i(c_i(b))}{f_i(c_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n \frac{1}{b-c_k(b)} - \frac{1}{b-c_i(b)} \right]
+\end{equation*}
+for all $1\leq i\leq n$, with the following lower boundary condition
+\begin{equation}
+  \label{eq:foc_ode_lower_boundary_approximation}
+  c_i(\underline{b}) = \underline{c}
+\end{equation}
+and the upper boundary condition
+\begin{equation}
+  \label{eq:foc_ode_upper_boundary_approximation}
+  c_i(\bar{c}) = \bar{c}
+\end{equation}
+for all $1\leq i\leq n$.
+\end{proposition}
+
+In effect, Proposition~\ref{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation} is a special case of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. That is, the equilibrium bidding functions still have to satisfy the system of nonlinear ODEs given by Equation~\eqref{eq:foc_ode_indirect}; however, in this case, the lower boundary condition reduces to
+\begin{equation*}
+  c_i(\underline{b}) = \underline{c},
+\end{equation*}
+and the upper boundary condition to
+\begin{equation*}
+  c_i(\bar{c}) = \bar{c},
+\end{equation*}
+i.e., the bids never exceed the upper extremity of the common support range.
+
+It should be noted that, even though the bidding problem is considerably simpler than the original one discussed in this thesis, the closed-form solution exists only in a handful of special cases~\cite{Krishna10,HubbardPaarsch2011}.
+
 % subsection mathematical_description (end)
 
 \subsection{Numerical Solutions} % (fold)
