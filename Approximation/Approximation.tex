@@ -5,13 +5,10 @@
 \minitoc
 \vspace{10mm}
 
-This chapter explores whether an auction format represented by the DMP selling mechanism can be modeled as an asymmetric first-price sealed-bid auction (FPA) with common priors; that is, an auction in which bidders are characterized by different probability distributions sharing a common support. Ideally, if the DMP auction was shown to be a special case of some corresponding common priors auction, then the numerical solution methods presented in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and extensively studied by the economic community, could be employed. Conversely, if the DMP auction format cannot be shown to constitute a special case of the common priors auction, then, provided the expected profits for the bidders in both auction formats differ only slightly, the common priors auction format could still effectively be used to approximate the solution to the DMP auction.
+This chapter explores whether an auction format represented by the DMP selling mechanism can be modeled as an asymmetric first-price sealed-bid auction (FPA) with common priors; that is, an auction in which bidders are characterized by different probability distributions sharing a common support. Ideally, if the DMP auction was shown to be a special case of some corresponding common priors auction, then the numerical solution methods presented in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and extensively studied by the economic community, could be employed. Conversely, if the DMP auction format cannot be shown to constitute a special case of the common priors auction, then, provided the expected profits for the bidders in both auction formats differ only slightly, the common priors auction could still effectively be used to approximate the solution to the DMP auction.
 
-\section{Asymmetric First-Price Auction with Common Priors} % (fold)
-\label{sec:asymmetric_first_price_auction_with_common_priors}
-
-\subsection{Mathematical Description} % (fold)
-\label{sub:mathematical_description}
+\section{Mathematical Description} % (fold)
+\label{sec:mathematical_description_approximation}
 
 Following the notation of Chapter~\ref{cha:indirect}, let each bidder $i$ be characterized by the utility function
 \begin{equation*}
@@ -33,14 +30,12 @@ We further assume that
 \label{ass:assumptions_common_priors_approximation}
 Assume that
 \begin{enumerate}
-  \item $F_i$ is differentiable over $(\underline{c}, \bar{c}]$ with a derivative $f_i$ locally bound away from zero over this interval;
+  \item $F_i$ is differentiable over $(\underline{c}, \bar{c}]$ with a derivative $f_i$ locally bounded away from zero over this interval;
   \item $F_i$ is atomless; and
   \item $F_i(c)>0$ for all $c\in [\underline{c}, \bar{c}]$ and $i\in N$.
 \end{enumerate}
 \end{assumptions}
-These assumptions correspond to Assumptions~A.1 and Theorem~U.1 in Lebrun~\cite{Lebrun2006}.
-
-With these assumptions at hand, as shown by Lebrun~\cite{Lebrun2006}, there exists one and only one pure-strategy Bayesian Nash equilibrium where bidders engage in serious bidding; that is, bid at least their cost. Formally,
+These assumptions correspond to Assumptions~A.1 and Theorem~U.1 in Lebrun~\cite{Lebrun2006}, and, as shown by Lebrun, with these assumptions satisfied, there exists one and only one pure-strategy Bayesian Nash equilibrium where bidders engage in serious bidding; that is, bid at least their cost. Formally,
 \begin{proposition}[Characterization of the Equilibrium in Common Priors Setting]
 \label{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}
 Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i$, satisfy the following system of differential equations
@@ -72,19 +67,69 @@ i.e., the bids never exceed the upper extremity of the common support range.
 
 It should be noted that, even though the bidding problem is considerably simpler than the original one discussed in this thesis, the closed-form solution exists only in a handful of special cases~\cite{Krishna10,HubbardPaarsch2011}.
 
-% subsection mathematical_description (end)
+% section mathematical_description (end)
 
-\subsection{Numerical Solutions} % (fold)
-\label{sub:numerical_solutions}
+\section{Numerical Solutions} % (fold)
+\label{sec:numerical_solutions}
 
-\subsubsection{Forward Shooting Method} % (fold)
-\label{ssub:forward_shooting_method}
+As mentioned in the previous in the previous chapter, however, the problem can be approximated using numerical methods (see Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent discussion). In this chapter, a common priors auction is approximated using the forward shooting method (FSM), but tailored to the problem at hand. The FSM method was chosen due to its relatively low implementation complexity, and the fact that a similar method was used to solve the DMP bidding problem. Therefore, the numerical solutions to the DMP and common priors auctions should be of comparable quality (in terms of the numerical accuracy).
 
-% subsubsection forward_shooting_method (end)
+\subsection{Forward Shooting Method} % (fold)
+\label{sub:forward_shooting_method}
 
-% subsection numerical_solutions (end)
+To briefly recap, the FSM method was first proposed by Bajari~\cite{Bajari2001a} (cf.~Algorithm~1 in \cite{Bajari2001a}). The method aims at finding the best approximation of the lower bound on bids, $\underline{b}$, by successively picking a value from the feasible interval, $(\underline{c}, \bar{c})$, and verifying whether a numerical solution to the initial value problem
 
-% section asymmetric_first_price_auction_with_common_priors (end)
+\begin{equation}
+  \label{eq:fsm_initial_value_problem_approximation}
+  \begin{array}{ll}
+     \displaystyle\frac{d}{db}c_i(b) &= \displaystyle\frac{1 - F_i(c_i(b))}{f_i(c_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n \frac{1}{b-c_k(b)} - \frac{1}{b-c_i(b)} \right]\\[2ex]
+    c_i(\underline{b}) &= \underline{c}
+  \end{array}
+\end{equation}
+
+for all $i\in N$, lies within a set of permissible functions, $S$, such that every element of that set is a function mapping $[\underline{b}, \bar{c}]$ into $[\underline{c}, \bar{c}]$, it is monotonically increasing everywhere except possibly at $\underline{c}$, and each function value is strictly lower than its argument except possibly at $\bar{c}$; that is,
+
+\begin{equation*}
+  S\equiv\left\{s \:\middle\vert\:
+  \begin{array}{l}
+    s: [\underline{b}, \bar{c}]\to [\underline{c}, \bar{c}],\\
+    b_1 < b_2\implies s(b_1) < s(b_2) \text{ for all }b_1,b_2\in [\underline{b}, \bar{c}),\\
+    s(b) < b \text{ for all }b\in [\underline{b}, \bar{c})
+  \end{array}
+  \right\}.
+\end{equation*}
+
+The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_approximation}. Note that the algorithm is almost identical to the FSM version tailored for the DMP auction (cf.~Algorithm~\ref{alg:forward_shooting_method_indirect}), with the only difference being the set $S$, and the search region delimited by $low$ and $high$ variables. Hence, the Reader is referred to Section~\ref{sub:forward_shooting_method_indirect} for an in-depth description of the algorithm.
+
+\begin{algorithm}
+\caption{Forward shooting method (common priors version)}
+\label{alg:forward_shooting_method_approximation}
+\begin{algorithmic}[1]
+\Require{$\epsilon\in (0, \bar{c} - \underline{c}); low, high\in [\underline{c}, \bar{c}]$ such that $low\leq high$}
+\Ensure{Approximation to $\underline{b}$}
+  \Statex
+  \Let{$low$}{$\underline{c}$}
+  \Let{$high$}{$\bar{c}$}
+  \Statex
+  \While{$high-low > \epsilon$}
+    \Let{$guess$}{$0.5\cdot(low + high)$}
+    \Let{$bids$}{$[guess, \bar{c})$}
+    \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:fsm_initial_value_problem_approximation} with initial value $\underline{b} = guess$}
+    \StatexIndent[7.5]{evaluated at points $b\in bids$}
+    \If{$(bids,costs_i)\in S$ for all $i\gets 1$ to $n$}
+      \Let{$high$}{$guess$}
+    \Else
+      \Let{$low$}{$guess$}
+    \EndIf
+  \EndWhile
+  \Statex
+  \Let{$\underline{b}$}{$0.5\cdot(low + high)$}
+\end{algorithmic}
+\end{algorithm}
+
+% subsection forward_shooting_method (end)
+
+% section numerical_solutions (end)
 
 \section{Network Selection Mechanism Cast into Common Priors Setting} % (fold)
 \label{sec:network_selection_mechanism_cast_into_common_priors_setting}
