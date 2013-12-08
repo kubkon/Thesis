@@ -99,7 +99,7 @@ for all $i\in N$, lies within a set of permissible functions, $S$, such that eve
   \right\}.
 \end{equation*}
 
-The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_approximation}. Note that the algorithm is almost identical to the FSM version tailored for the DMP auction (cf.~Algorithm~\ref{alg:forward_shooting_method_indirect}), with the only difference being the set $S$, and the search region delimited by $low$ and $high$ variables. Hence, the Reader is referred to Section~\ref{sub:forward_shooting_method_indirect} for an in-depth description of the algorithm.
+The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_approximation}. Note that the algorithm is almost identical to the FSM version tailored to the DMP auction (cf.~Algorithm~\ref{alg:forward_shooting_method_indirect}), with only differences being the definition of the set of permissible functions, $S$, and the algorithm's search region delimited by $low$ and $high$ variables. Hence, we omit the discussion of the algorithm and refer the Reader to Section~\ref{sub:forward_shooting_method_indirect}.
 
 \begin{algorithm}
 \caption{Forward shooting method (common priors version)}
@@ -127,7 +127,43 @@ The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_sh
 \end{algorithmic}
 \end{algorithm}
 
+Similarly to the implementation of the FSM algorithm for the DMP auction, this version of the algorithm uses the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4,5) method.
+
 % subsection forward_shooting_method (end)
+
+\subsection{Verification} % (fold)
+\label{sub:verification}
+
+Before proceeding with the modeling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterized by a truncated normal distribution but with different parameters (Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common range of costs such that $c_i\in [2,8]$.
+
+\begin{table}[t]
+  \caption{Test bidding scenario}
+  \vspace{0.5cm}
+  \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
+    \hlx{vhv}
+    & \textbf{Mean}, $\mu_i$ & \textbf{Standard deviation}, $\sigma_i$\\
+    \hlx{vhv}
+    \textbf{Bidder 1} & $4$ & $1.5$\\
+    \textbf{Bidder 2} & $5$ & $1.5$\\
+    \textbf{Bidder 3} & $6$ & $1.5$\\
+    \hlx{vhs}
+  \end{tabular*}
+  \label{tab:verification_approximation}
+\end{table}
+
+Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numerically approximated solution to the problem. It is clear that the approximation agrees with that of Bajari's~\cite{Bajari2001a}. Furthermore, in Figure~\ref{fig:fsm_common_priors_verification_sufficiency_approximation}, the numerical solution is verified whether it satisfies the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each bidder is a best response to the bidding strategies of the remaining bidders. As expected, the solution satisfies the sufficiency condition, and hence, we conclude that the algorithm was implemented correctly.
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Approximation/Figures/fsm_common_priors_verification}
+  \caption{FIX:ME FSM Common Priors verification}
+  \label{fig:fsm_common_priors_verification_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/fsm_common_priors_verification_sufficiency}
+  \caption{FIX:ME FSM Common Priors verification}
+  \label{fig:fsm_common_priors_verification_sufficiency_approximation}
+\end{figure}
+
+% subsection verification (end)
 
 % section numerical_solutions (end)
 
