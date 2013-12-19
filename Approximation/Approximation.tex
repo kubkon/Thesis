@@ -20,7 +20,7 @@ Following the notation of Chapter~\ref{cha:indirect}, let each bidder $i$ be cha
 \end{equation*}
 where, as before, $b = (b_1,\ldots,b_n)$, and $c = (c_1,\ldots,c_n)$. In the common priors auction, we assume that each bidder $i$ draws their cost from common support across all bidders; i.e., let
 \begin{equation*}
-  c_i\in [\underline{c}, \bar{c}] \quad\text{for all } i\in N.
+  c_i\in [\underline{c}, \bar{c}] \quad\text{for all } i\in N \text{ such that } [\underline{c}, \bar{c}]\subseteq [0, 1].
 \end{equation*}
 
 Let $F_i$ be the distribution function of $c_i$ for all $i\in N$. Note that the distribution functions between bidders need not be equal, and hence, we are dealing with an asymmetric FPA.
@@ -38,7 +38,7 @@ Assume that
 These assumptions correspond to Assumptions~A.1 and Theorem~U.1 in Lebrun~\cite{Lebrun2006}, and, as shown by Lebrun, with these assumptions satisfied, there exists one and only one pure-strategy Bayesian Nash equilibrium where bidders engage in serious bidding; that is, bid at least their cost. Formally,
 \begin{proposition}[Characterization of the Equilibrium in Common Priors Setting]
 \label{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}
-Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i$, satisfy the following system of differential equations
+Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i\equiv b_i^{-1}$, satisfy the following system of differential equations
 \begin{equation*}
   \frac{d}{db}c_i(b) = \frac{1 - F_i(c_i(b))}{f_i(c_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n \frac{1}{b-c_k(b)} - \frac{1}{b-c_i(b)} \right]
 \end{equation*}
@@ -65,14 +65,14 @@ and the upper boundary condition to
 \end{equation*}
 i.e., the bids never exceed the upper extremity of the common support range.
 
-It should be noted that, even though the bidding problem is considerably simpler than the original one discussed in this thesis, the closed-form solution exists only in a handful of special cases~\cite{Krishna10,HubbardPaarsch2011}.
+It should be noted that, even though the bidding problem is considerably simpler than the original one discussed in this thesis, it still involves finding the lower bound on bids, and hence, the closed-form solution exists only in a handful of special cases~\cite{Krishna10,HubbardPaarsch2011}.
 
 % section mathematical_description (end)
 
 \section{Numerical Solutions} % (fold)
 \label{sec:numerical_solutions}
 
-As mentioned in the previous in the previous chapter, however, the problem can be approximated using numerical methods (see Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent discussion). In this chapter, a common priors auction is approximated using the forward shooting method (FSM), but tailored to the problem at hand. The FSM method was chosen due to its relatively low implementation complexity, and the fact that a similar method was used to solve the DMP bidding problem. Therefore, the numerical solutions to the DMP and common priors auctions should be of comparable quality (in terms of the numerical accuracy).
+As already mentioned in the previous chapter, however, the problem can be approximated using numerical methods (see Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent discussion). In this chapter, a common priors auction is approximated using the forward shooting method (FSM), but tailored to the problem at hand. The FSM method was chosen due to its relatively low implementation complexity, and the fact that a similar method was used to solve the DMP bidding problem. Therefore, the numerical solutions to the DMP and common priors auctions should be of comparable quality (in terms of the numerical accuracy).
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method}
@@ -127,14 +127,14 @@ The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_sh
 \end{algorithmic}
 \end{algorithm}
 
-Similarly to the implementation of the FSM algorithm for the DMP auction, this version of the algorithm uses the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4,5) method.
+Similarly to the implementation of the FSM algorithm for the DMP auction, the approximation results presented in this chapter have been derived using the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4,5) method.
 
 % subsection forward_shooting_method (end)
 
 \subsection{Verification} % (fold)
 \label{sub:verification}
 
-Before proceeding with the modeling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterized by a truncated normal distribution but with different parameters (Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common range of costs such that $c_i\in [2,8]$.
+Before proceeding with the modeling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterized by a truncated normal distribution but with different mean and standard deviation parameters (Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common range of costs, $c_i\in [2,8]$.
 
 \begin{table}[t]
   \caption{Test bidding scenario}
