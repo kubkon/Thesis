@@ -65,7 +65,7 @@ and the upper boundary condition to
 \end{equation*}
 i.e., the bids never exceed the upper extremity of the common support range.
 
-It should be noted that, even though the bidding problem is considerably simpler than the original one discussed in this thesis, it still involves finding the lower bound on bids, and hence, the closed-form solution exists only in a handful of special cases~\cite{Krishna10,HubbardPaarsch2011}.
+It should be noted that, even though the bidding problem is considerably simpler than the original one discussed in this thesis (cf.~Chapter~\ref{cha:indirect}), it still involves finding the lower bound on bids, and hence, the closed-form solution exists only in a handful of special cases~\cite{Krishna10,HubbardPaarsch2011}.
 
 % section mathematical_description (end)
 
@@ -151,7 +151,7 @@ Before proceeding with the modeling and analysis, the FSM algorithm was tested f
   \label{tab:verification_approximation}
 \end{table}
 
-Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numerically approximated solution to the problem. It is clear that the approximation agrees with that of Bajari's~\cite{Bajari2001a}. Furthermore, in Figure~\ref{fig:fsm_common_priors_verification_sufficiency_approximation}, the numerical solution is verified whether it satisfies the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each bidder is a best response to the bidding strategies of the remaining bidders. As expected, the solution satisfies the sufficiency condition, and hence, we conclude that the algorithm was implemented correctly.
+Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numerically approximated solution to the problem. It is clear that the approximation agrees with that of Bajari's~\cite{Bajari2001a} (cf.~Figure~1 in \cite{Bajari2001a}). Furthermore, in Figure~\ref{fig:fsm_common_priors_verification_sufficiency_approximation}, the numerical solution is verified whether it satisfies the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each bidder is a best response to the bidding strategies of the remaining bidders. As expected, the solution satisfies the sufficiency condition, and hence, we conclude that the algorithm was implemented correctly.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/fsm_common_priors_verification}
@@ -168,7 +168,34 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 % section numerical_solutions (end)
 
 \section{Network Selection Mechanism Cast into Common Priors Setting} % (fold)
-\label{sec:network_selection_mechanism_cast_into_common_priors_setting}
+\label{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}
+In this section, we discuss the results of approximating the DMP auction with a common priors auction. To this end, we firstly model the DMP auction as a common priors auction where bidders are characterized by costs distributed according to a truncated normal distribution. Secondly, the model is altered in the sense that the bidders are now characterized by a truncated skew-normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n>2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
+
+\begin{figure}[t]
+  \includegraphics[width=\figsize]{Approximation/Figures/dmp_to_common_priors}
+  \caption{FIX:ME DMP auction cast to common priors auction}
+  \label{fig:dmp_to_common_priors_approximation}
+\end{figure}
+
+\subsection{Truncated Normal Distribution} % (fold)
+\label{sub:truncated_normal_distribution_approximation}
+
+% subsection truncated_normal_distribution (end)
+
+\subsection{Truncated Skew-Normal Distribution} % (fold)
+\label{sub:truncated_skew_normal_distribution_approximation}
+
+% subsection truncated_skew_normal_distribution (end)
+
+\subsection{Methodology} % (fold)
+\label{sub:methodology_approximation}
+
+% subsection methodology (end)
+
+\subsection{Results} % (fold)
+\label{sub:results_approximation}
+
+% subsection results (end)
 
 % section network_selection_mechanism_cast_into_common_priors_setting (end)
 
