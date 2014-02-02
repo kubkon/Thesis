@@ -171,11 +171,28 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 \label{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}
 In this section, we discuss the results of approximating the DMP auction with a common priors auction. To this end, we firstly model the DMP auction as a common priors auction where bidders are characterized by costs distributed according to a truncated normal distribution. Secondly, the model is altered in the sense that the bidders are now characterized by a truncated skew-normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n>2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
 
+Before proceeding with the discussion, however, we first provide a conceptual overview of the approach taken to approximate the DMP auction with a common priors one. Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$ draws their cost\footnote{In order to ease the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$.} from a uniform distribution with the support
+\begin{equation*}
+  [(1-w)r_i, (1-w)r_i + w] = [\underline{c}_i, \bar{c}_i] \subset [0,1]
+\end{equation*}
+Therefore, in the general case, unless the bidders are characterized by the same reputation rating, that is $r_i=r_j$ for all $i,j\in N$, their distributions' supports will not overlap; i.e.,
+\begin{equation*}
+  [\underline{c}_i,\bar{c}_i] \neq [\underline{c}_j,\bar{c}_j], \quad i\neq j \text{ and } i,j\in N.
+\end{equation*}
+
+Recall further that, in a common priors auction, every bidder is characterized by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support\footnote{FIX:ME Proof?} is
+\begin{equation*}
+  \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subseteq [0,1].
+\end{equation*}
+All that remains is to then select a family of distributions which captures the numerical ranges of the original supports as close as possible.
+
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Approximation/Figures/dmp_to_common_priors}
   \caption{FIX:ME DMP auction cast to common priors auction}
   \label{fig:dmp_to_common_priors_approximation}
 \end{figure}
+
+To provide an illustrative example, let there be 2 bidders such that $\underline{c}_1 < \underline{c}_2 < \bar{c}_1 < \bar{c}_2$. Each bidder is therefore characterized by a uniform distribution, $\mathcal{U}_i$. One possible way of casting this scenario into common priors setting is to model the distributions of both bidders as truncated normal distributions, $\mathcal{N}_i$, truncated to the interval $[\underline{c}_1, \bar{c}_2]$, and with differing mean and standard deviation parameters. This is depicted in Figure~\ref{fig:dmp_to_common_priors_approximation}.
 
 \subsection{Truncated Normal Distribution} % (fold)
 \label{sub:truncated_normal_distribution_approximation}
