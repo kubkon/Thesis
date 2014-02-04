@@ -205,7 +205,7 @@ The truncated normal distribution is characterized by the following probability 
     0 & \;\text{otherwise},
   \end{array}\right.
 \end{equation}
-where $a,b\in\mathbb{R}$ such that $a < b$, $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\sigma^2\geq 0$ is the variance (or squared scale)~\cite{JohnsonNormal1994,Cohen1991}.
+where $a,b\in\mathbb{R}$ such that $a < b$, $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\sigma^2\geq 0$ is the variance (or scale)~\cite{JohnsonNormal1994,Cohen1991}.
 
 It is important to note that technically $f$ is not a pdf since it does not integrate to one. It can be transformed (or standardized) into a valid pdf, however, if it is scaled by an appropriate scaling factor~\cite{Cohen1991}; that is, let
 \begin{equation*}
@@ -219,19 +219,68 @@ be the pdf of normal distribution. Then,
 integrates to one, and represents the pdf of the truncated normal distribution. That said, note that the denominator in the expression~\eqref{eq:valid_pdf_truncated_normal_approximation} is a real, positive number, and therefore, it has no impact on the results of the FSM algorithm (Algorithm~\ref{alg:forward_shooting_method_approximation}). This is in agreement with Bajari~\cite{Bajari2001a}, and in what follows, all of the truncated distributions are left unscaled (i.e., not standardized).
 
 \begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
-  \caption{FIX:ME}
-  \label{fig:test_truncated_normal_bids_approximation}
-  \vspace{10mm}
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_pdfs}
   \caption{FIX:ME}
   \label{fig:test_truncated_normal_pdfs_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
+  \caption{FIX:ME}
+  \label{fig:test_truncated_normal_bids_approximation}
 \end{figure}
+
+Before moving on to discussing truncated skew-normal distribution, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common priors setting where bidders are characterized by truncated normal distributions. Firstly, we note that the supports for both bidders are
+\begin{equation*}
+  [\underline{c}_1, \bar{c}_1] = [0.125, 0.625]
+\end{equation*}
+for bidder 1, and
+\begin{equation*}
+  [\underline{c}_2, \bar{c}_2] = [0.375, 0.875]
+\end{equation*}
+for bidder 2, while the common support is given by
+\begin{equation*}
+  [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
+\end{equation*}
+Secondly, we need to specify distribution specific parameters (mean and standard deviation) for each bidder. Since the aim is to approximate the original distributions of both bidders, pick the midpoints of the original supports as means for both bidders, that is,
+\begin{equation*}
+  \mu_i = \underline{c}_i + \frac{\bar{c}_i - \underline{c}_i}{2} = \underline{c}_i + \frac{w}{2},
+\end{equation*}
+and let the standard deviations be equal to the quarter of the length of the original supports, that is,
+\begin{equation*}
+  \sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
+\end{equation*}
+
+\begin{table}[t]
+  \caption{FIX:ME}
+  \vspace{0.5cm}
+  \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
+    \hlx{vhv}
+    & \textbf{Mean}, $\mu_i$ & \textbf{Standard deviation}, $\sigma_i$\\
+    \hlx{vhv}
+    \textbf{Bidder 1} & $0.375$ & $0.125$\\
+    \textbf{Bidder 2} & $0.625$ & $0.125$\\
+    \hlx{vhs}
+  \end{tabular*}
+  \label{tab:test_truncated_normal_params_approximation}
+\end{table}
+
+Table~\ref{tab:test_truncated_normal_params_approximation} summarized the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
+
+Figure~\ref{fig:test_truncated_normal_bids_approximation} depicts the resultant equilibrium bidding strategies for both bidders.
 
 % subsection truncated_normal_distribution (end)
 
 \subsection{Truncated Skew-Normal Distribution} % (fold)
 \label{sub:truncated_skew_normal_distribution_approximation}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Approximation/Figures/test_skew_normal_pdfs}
+  \caption{FIX:ME}
+  \label{fig:test_skew_normal_pdfs_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/test_skew_normal_bids}
+  \caption{FIX:ME}
+  \label{fig:test_skew_normal_bids_approximation}
+\end{figure}
 
 % subsection truncated_skew_normal_distribution (end)
 
