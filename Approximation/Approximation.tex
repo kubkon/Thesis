@@ -182,7 +182,7 @@ Therefore, in the general case, unless the bidders are characterized by the same
 
 Recall further that, in a common priors auction, every bidder is characterized by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support\footnote{To see this, recall that, for any given $w\in (0,1)$, assuming $r_1\leq\cdots\leq r_n$ with at least one inequality strict, it follows $\underline{c}_1\leq\cdots\leq\underline{c}_n$ and $\bar{c}_1\leq\cdots\leq\bar{c}_n$ with at least one inequality strict. If we further let $C_i = [\underline{c}_i, \bar{c}_i]$ then $C = \bigcup_{i\in N} C_i$ is the smallest set containing all sets $C_i$ for all $i\in N$. Since $C_i$ is closed for all $i\in N$, it follows that $C$ is closed, and $C = [\underline{c}, \bar{c}]$ such that $\underline{c} \leq \underline{c}_i$ and $\bar{c}_i\leq \bar{c}$ for all $i\in N$, which is equivalent to $[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}]$.} is
 \begin{equation*}
-  \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subseteq [0,1].
+  \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subset [0,1].
 \end{equation*}
 All that remains is to then select a family of distributions which captures the numerical ranges of the original supports as closely as possible.
 
@@ -205,18 +205,18 @@ The truncated normal distribution is characterized by the following probability 
     0 & \;\text{otherwise},
   \end{array}\right.
 \end{equation}
-where $a,b\in\mathbb{R}$ such that $a < b$, $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\sigma^2\geq 0$ is the variance (or squared scale).
+where $a,b\in\mathbb{R}$ such that $a < b$, $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\sigma^2\geq 0$ is the variance (or squared scale)~\cite{JohnsonNormal1994,Cohen1991}.
 
-It is important to notice that technically $f$ is not a pdf since it does not integrate to one. It can be transformed into a valid pdf, however, if it is scaled by an appropriate scaling factor; that is, let
+It is important to note that technically $f$ is not a pdf since it does not integrate to one. It can be transformed (or standardized) into a valid pdf, however, if it is scaled by an appropriate scaling factor~\cite{Cohen1991}; that is, let
 \begin{equation*}
-  g(x; \mu, \sigma^2) = \displaystyle\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\}
+  g(x; \mu, \sigma^2) = \displaystyle\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\} \quad\text{ for all } x\in\mathbb{R}
 \end{equation*}
-for all $x\in\mathbb{R}$. Then,
+be the pdf of normal distribution. Then,
 \begin{equation}
   \label{eq:valid_pdf_truncated_normal_approximation}
   \displaystyle\frac{f(x;\mu, \sigma^2)}{\int_{-\infty}^b g(x;\mu,\sigma^2)dx - \int_{-\infty}^a g(x;\mu,\sigma^2)dx}
 \end{equation}
-integrates to one, and represents the pdf of the truncated normal distribution. That said, note that the denominator in the expression~\eqref{eq:valid_pdf_truncated_normal_approximation} is a real, positive number, and therefore it has no impact on the results of the FSM algorithm (Algorithm~\ref{alg:forward_shooting_method_approximation}). This is in agreement with Bajari~\cite{Bajari2001a}, and in what follows, all of the truncated distributions are left unscaled.
+integrates to one, and represents the pdf of the truncated normal distribution. That said, note that the denominator in the expression~\eqref{eq:valid_pdf_truncated_normal_approximation} is a real, positive number, and therefore, it has no impact on the results of the FSM algorithm (Algorithm~\ref{alg:forward_shooting_method_approximation}). This is in agreement with Bajari~\cite{Bajari2001a}, and in what follows, all of the truncated distributions are left unscaled (i.e., not standardized).
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
