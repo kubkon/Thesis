@@ -1,19 +1,24 @@
-all:
-	xelatex Thesis.tex
-	bibtex -terse Thesis
-	xelatex Thesis.tex
-	xelatex Thesis.tex
+LATEX = xelatex
+BIBTEX = bibtex
+THESIS = Thesis
 
-full:
-	xelatex Thesis.tex
-	bibtex -terse MyPublications
-	bibtex -terse Thesis
-	xelatex Thesis.tex
-	xelatex Thesis.tex
+.PHONY: all
+all: $(THESIS).pdf
 
-show: Thesis.pdf
-	open Thesis.pdf
+.PHONY: show
+show: $(THESIS).pdf
+	open $(THESIS).pdf
 
+$(THESIS).pdf: $(THESIS).tex $(THESIS).bbl
+	$(LATEX) $(THESIS).tex
+	$(LATEX) $(THESIS).tex
+
+$(THESIS).bbl: $(THESIS).tex $(THESIS).bib MyPublications.bib
+	$(LATEX) $(THESIS).tex
+	$(BIBTEX) -terse $(THESIS)
+	$(BIBTEX) -terse MyPublications
+
+.PHONY: clean
 clean:
 	find . -type f -name  '*.aux' -print0 | xargs -0 rm
 	find . -type f -name  '*.bbl' -print0 | xargs -0 rm
