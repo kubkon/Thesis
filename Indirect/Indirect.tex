@@ -466,7 +466,7 @@ The pseudo-code for the forward shooting method is depicted in listing Algorithm
 
 The initial guess supplied to the algorithm is the interval $[\underline{\hat{c}}_2, \bar{\hat{b}}]$. In every iteration, the guessed value for the lower bound on bids is the midpoint of the interval; that is, $guess = 0.5\cdot(low + high)$. The algorithm then uses this value as the new initial condition for the system in~\eqref{eq:fsm_initial_value_problem_indirect}. If the solution to the system lies within the set $S_i$ for all $i\in N$, then $guess$ becomes the new upper endpoint of the interval $LH$; that is, $LH = [low, guess]$. Otherwise, it becomes the new lower endpoint; that is, $LH = [guess, high]$. This procedure is repeated until the length of the interval is smaller than $\epsilon$.
 
-In each step, the system of ODEs in~\eqref{eq:fsm_initial_value_problem_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4, 5) method, provided by the Haskell package ``hmatrix'' version 0.14.1.0 \cite{GSL, HMATRIX}.
+In each step, the system of ODEs in~\eqref{eq:fsm_initial_value_problem_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
 Furthermore, in the implementation of the forward shooting method, we assumed that
 \begin{equation*}
@@ -549,7 +549,7 @@ This specification of the problem is a modified version of the Third Algorithm i
 
 The pseudo-code for the polynomial projection method is shown in listing Algorithm~\ref{alg:polynomial_projection_method_indirect}. The algorithm aims at refining the solution to the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect} by successively increasing the order of approximating polynomials. In each such iteration, the output from the previous run of the algorithm is used as the input to the next run. That is, suppose $(\underline{b}^k, \alpha_1^k, \dotsc, \alpha_n^k)$ is the output from the algorithm where $k^\text{th}$ order polynomials were used. Then, this output is used as the input (and a starting point for the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect}) to the next stage of the algorithm where $(k+1)^\text{th}$ order polynomials are used. This procedure is repeated until the approximating polynomials are of the desired order. A similar approach is used by Katzwer~\cite{Katzwer2012} in his AuctionSolver software, however, with the difference that he advocates the use of Chebyshev polynomials rather than ordinary polynomials.
 
-In each step of the algorithm, the nonlinear optimization problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimization technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this section were obtained using the GSL implementation of the Nelder-Mead method, provided by the Haskell package ``hmatrix'' version 0.14.1.0 \cite{GSL, HMATRIX}.
+In each step of the algorithm, the nonlinear optimization problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimization technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this section were obtained using the GSL implementation of the Nelder-Mead method~\cite{GSL}.
 
 Furthermore, in the implementation of the polynomial projection method, we made the same simplification as in the implementation of the foward shooting method; that is,
 \begin{equation*}
@@ -569,7 +569,7 @@ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, 
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the forward shooting method and the polynomial projection method. The implementation details of the algorithms together with the instructions on how to us the Haskell scripts developed during this research work can be found in Appendix~\ref{cha:haskell_numerical_tools}.
+In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the forward shooting method and the polynomial projection method. The implementation details of the algorithms together with the instructions on how to us the Cython scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
 
 \begin{table}[t]
   \caption{Bidding scenario with 2 network operators}
@@ -801,7 +801,7 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 \item[Stage 3] Finally, all network operators solve the system~\eqref{eq:efsm_lebrun_ode_1_indirect} for bid values $b\in [\hat{b}_4(\underline{\hat{c}}_4),\bar{\hat{b}}]$ (Stage 3, Figure~\ref{fig:lebrun_solution_indirect}).
 \end{description}
 
-In each stage, the system of ODEs in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GSL implementation of the Embedded-Runge-Kutta-Fehlberg (4, 5) method, provided by the Haskell package ``hmatrix'' version 0.14.1.0~\cite{GSL,HMATRIX}.
+In each stage, the system of ODEs in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GSL implementation of the Embedded-Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
 Furthermore, similarly to the implementation of forward shooting and polynomial projection methods, in the implementation of extended forward shooting method, we assumed that
 \begin{equation*}
@@ -820,7 +820,7 @@ The combined methods approach is equivalent to the extended forward shooting met
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the extended forward shooting method and the combined methods approach. The implementation details of the algorithms together with the instructions on how to us the Haskell scripts developed during this research work can be found in Appendix~\ref{cha:haskell_numerical_tools}.
+In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the extended forward shooting method and the combined methods approach. The implementation details of the algorithms together with the instructions on how to us the Cython scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
 
 Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, both the extended forward shooting method and combined methods approach were tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, we omit the discussion of the verification results in this section.
 
