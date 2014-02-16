@@ -569,7 +569,7 @@ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, 
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the forward shooting method and the polynomial projection method. The implementation details of the algorithms together with the instructions on how to us the Cython scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
+In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the forward shooting method and the polynomial projection method. The implementation details of the algorithms together with the instructions on how to us the Python scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
 
 \begin{table}[t]
   \caption{Bidding scenario with 2 network operators}
@@ -717,7 +717,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 \caption{Extended forward shooting method}
 \label{alg:extended_forward_shooting_method_indirect}
 \begin{algorithmic}[1]
-\Require{$\epsilon\in (0, \bar{\hat{b}} - \underline{\hat{c}}_2); low, high\in [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that $low\leq high$}
+\Require{$\epsilon\in (0, \bar{\hat{b}} - \underline{\hat{c}}_2)$; $low, high\in [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that $low\leq high$; $p\in (0, 0.1)$}
 \Ensure{Approximation to $\underline{\hat{b}}$}
   \Statex
   \Let{$low$}{$\underline{\hat{c}}_2$}
@@ -726,7 +726,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
   \While{$high-low > \epsilon$}
     \Let{$guess$}{$0.5\cdot(low + high)$}
     \Let{$(k,\hat{c})$}{\Call{estimateKC}{$guess,\underline{\hat{c}}_1,\ldots,\underline{\hat{c}}_n$}}
-    \Let{$bids$}{$[guess, \bar{\hat{b}})$}
+    \Let{$bids$}{$[guess, \bar{\hat{b}}-p)$}
     \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:efsm_initial_value_problem_indirect} with initial value $\underline{\hat{b}}' = guess$}
     \StatexIndent[7.5]{evaluated at points $b\in bids$, and $k(\underline{\hat{b}}) = k$}
     \StatexIndent[7.5]{and $\hat{c}(\underline{\hat{b}}) = \hat{c}$}
@@ -762,7 +762,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the extended forward shooting method is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the forward shooting method. The main differences are twofold: the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customized finite-differences method described below (line 8).
+The pseudo-code for the extended forward shooting method is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the forward shooting method. The main differences are threefold: the algorithm requires an additional input parameter $p\in(0, 0.1)$; the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customized finite-differences method described below (line 8). The parameter $p$ is there to aid the algorithm at converging to the most likely solution to the bidding problem. That is, due to the complexity of the analysed system of ODEs, and the fact that the system does not satisfy the Lipschitz condition for continuity as $\hat{b}$ approaches $\bar{\hat{b}}$, it is necessary to reduce the range of feasible bids by a small amount, $p$, at the upper extremity, $\bar{\hat{b}} - p$ (line 6). Full explanation and analysis of the problem of convergence is given in Appendix~\ref{cha:numerical_software}.
 
 Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function estimateKC which estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes as an input an estimate of the lower bound on bids, $\underline{\hat{b}}'$, and the set of lower extremities $\{\underline{\hat{c}}_i\}$ for all $i\in N$. The function then iterates over $k\in\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and the extended forward shooting method to the forward shooting method.
 
@@ -820,7 +820,7 @@ The combined methods approach is equivalent to the extended forward shooting met
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the extended forward shooting method and the combined methods approach. The implementation details of the algorithms together with the instructions on how to us the Cython scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
+In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the extended forward shooting method and the combined methods approach. The implementation details of the algorithms together with the instructions on how to us the Python scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
 
 Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, both the extended forward shooting method and combined methods approach were tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, we omit the discussion of the verification results in this section.
 
