@@ -353,7 +353,7 @@ However, both scenarios (the one considered in the literature and the one at han
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Indirect/Figures/lipschitz}
-  \caption{FIX:ME Lipschitz violation}
+  \caption{Violation of Lipschitz condition leads to divergent numerical solution}
   \label{fig:lipschitz_indirect}
 \end{figure}
 
@@ -416,7 +416,7 @@ for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least o
 \label{sub:forward_shooting_method_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-The idea behind the forward shooting method is to find the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2, \bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
+The idea behind the forward shooting method (FSM) is to find the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2, \bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:fsm_initial_value_problem_indirect}
   \begin{array}{ll}
@@ -462,13 +462,13 @@ This specification of the problem is a modified version of the First Algorithm i
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the forward shooting method is depicted in listing Algorithm~\ref{alg:forward_shooting_method_indirect}. For any given tolerance, $\epsilon\in\left(0, \bar{\hat{b}} - \underline{\hat{c}}_2\right)$, the algorithm aims at finding the interval $LH\equiv[low, high]\subseteq [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that (approximately) $\underline{\hat{b}}\in LH$ and $high-low < \epsilon$. The approximation to the lower bound on bids is then found to be $\underline{\hat{b}}' = 0.5\cdot(low + high)$.
+The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_indirect}. For any given tolerance, $\epsilon\in\left(0, \bar{\hat{b}} - \underline{\hat{c}}_2\right)$, the algorithm aims at finding the interval $LH\equiv[low, high]\subseteq [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that (approximately) $\underline{\hat{b}}\in LH$ and $high-low < \epsilon$. The approximation to the lower bound on bids is then found to be $\underline{\hat{b}}' = 0.5\cdot(low + high)$.
 
 The initial guess supplied to the algorithm is the interval $[\underline{\hat{c}}_2, \bar{\hat{b}}]$. In every iteration, the guessed value for the lower bound on bids is the midpoint of the interval; that is, $guess = 0.5\cdot(low + high)$. The algorithm then uses this value as the new initial condition for the system in~\eqref{eq:fsm_initial_value_problem_indirect}. If the solution to the system lies within the set $S_i$ for all $i\in N$, then $guess$ becomes the new upper endpoint of the interval $LH$; that is, $LH = [low, guess]$. Otherwise, it becomes the new lower endpoint; that is, $LH = [guess, high]$. This procedure is repeated until the length of the interval is smaller than $\epsilon$.
 
 In each step, the system of ODEs in~\eqref{eq:fsm_initial_value_problem_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
-Furthermore, in the implementation of the forward shooting method, we assumed that
+Furthermore, in the implementation of the FSM, we assumed that
 \begin{equation*}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\text{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
 \end{equation*}
@@ -494,7 +494,7 @@ This, of course, cannot be guaranteed for all choices of $\underline{\hat{b}}'$ 
 \label{sub:polynomial_projection_method_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-In this method, we assume that the inverse equilibrium bidding function for each network operator $i\in N$ can be approximated by a $K^{\text{th}}$ order polynomial of the form
+In the polynomial projection method (PPM), we assume that the inverse equilibrium bidding function for each network operator $i\in N$ can be approximated by a $K^{\text{th}}$ order polynomial of the form
 \begin{equation}
   \label{eq:polynomial_cost_function_indirect}
   \hat{c}_i(b;\underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i + \sum_{k=1}^K \alpha_{i,k}(b - \underline{\hat{b}})^k,
@@ -547,11 +547,11 @@ This specification of the problem is a modified version of the Third Algorithm i
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the polynomial projection method is shown in listing Algorithm~\ref{alg:polynomial_projection_method_indirect}. The algorithm aims at refining the solution to the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect} by successively increasing the order of approximating polynomials. In each such iteration, the output from the previous run of the algorithm is used as the input to the next run. That is, suppose $(\underline{b}^k, \alpha_1^k, \dotsc, \alpha_n^k)$ is the output from the algorithm where $k^\text{th}$ order polynomials were used. Then, this output is used as the input (and a starting point for the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect}) to the next stage of the algorithm where $(k+1)^\text{th}$ order polynomials are used. This procedure is repeated until the approximating polynomials are of the desired order. A similar approach is used by Katzwer~\cite{Katzwer2012} in his AuctionSolver software, however, with the difference that he advocates the use of Chebyshev polynomials rather than ordinary polynomials, which are better suited to the least squares optimization problem~\cite{HubbardPaarsch2011, MasonApproximation2003}.
+The pseudo-code for the PPM is shown in listing Algorithm~\ref{alg:polynomial_projection_method_indirect}. The algorithm aims at refining the solution to the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect} by successively increasing the order of approximating polynomials. In each such iteration, the output from the previous run of the algorithm is used as the input to the next run. That is, suppose $(\underline{b}^k, \alpha_1^k, \dotsc, \alpha_n^k)$ is the output from the algorithm where $k^\text{th}$ order polynomials were used. Then, this output is used as the input (and a starting point for the minimization problem in Equation~\eqref{eq:least_squares_objective_function_indirect}) to the next stage of the algorithm where $(k+1)^\text{th}$ order polynomials are used. This procedure is repeated until the approximating polynomials are of the desired order. A similar approach is used by Katzwer~\cite{Katzwer2012} in his AuctionSolver software, however, with the difference that he advocates the use of Chebyshev polynomials rather than ordinary polynomials, which are better suited to the least squares optimization problem~\cite{HubbardPaarsch2011, MasonApproximation2003}.
 
 In each step of the algorithm, the nonlinear optimization problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimization technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this section were obtained using the GSL implementation of the Nelder-Mead\footnote{For a brief overview of the most basic implementation of the Nelder-Mead simplex method, see for example~\cite{KonkaNMSimplex2013}.} method~\cite{GSL}.
 
-Furthermore, in the implementation of the polynomial projection method, we made the same simplification as in the implementation of the foward shooting method; that is,
+Furthermore, in the implementation of the PPM, we made the same simplification as in the implementation of the foward shooting method; that is,
 \begin{equation*}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\text{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
 \end{equation*}
@@ -569,7 +569,7 @@ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, 
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the forward shooting method and the polynomial projection method. The implementation details of the algorithms together with the instructions on how to us the Python scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
+In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the FSM and the PPM methods. The implementation details of all the algorithms presented in this chapter, unless stated otherwise, can be found in Appendix~\ref{cha:numerical_software}.
 
 \begin{table}[t]
   \caption{Bidding scenario with 2 network operators}
@@ -585,21 +585,21 @@ In this subsection, we present the approximation results for two bidding scenari
   \label{tab:verification_indirect}
 \end{table}
 
-Before analyzing numerical results for more than 2 network operators, both algorithms were tested for correct implementation. To this end, the numerically approximated equilibrium for $n=2$ network operators was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. The parameters for the test bidding scenario are shown in Table~\ref{tab:verification_indirect}. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison for the forward shooting method, while Figure~\ref{fig:polynomial_projection_verification_indirect} for the polynomial projection method. It is clear from both figure that the results produced by both methods agrees with the (theoretical) closed-form solution. Hence, we may conclude that both algorithms were implemented correctly.
+Before analyzing numerical results for more than 2 network operators, both algorithms were tested for correct implementation. To this end, the numerically approximated equilibrium for $n=2$ network operators was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. The parameters for the test bidding scenario are shown in Table~\ref{tab:verification_indirect}. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison for the FSM, while Figure~\ref{fig:polynomial_projection_verification_indirect} for the PPM. It is clear from both figure that the results produced by both methods agrees with the (theoretical) closed-form solution. Hence, we may conclude that both algorithms were implemented correctly.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_verification}
-  \caption{FIX:ME Forward shooting: $w=0.5, r_1 = 0.25, r_2 = 0.75$}
+  \caption{FSM solution to the bidding problem characterized by: $w=0.5$, $r_1 = 0.25$, and $r_2 = 0.75$ agreeing with the closed-form solution}
   \label{fig:forward_shooting_verification_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_verification}
-  \caption{FIX:ME Polynomial projection: $w=0.5, r_1=0.25, r_2=0.75$}
+  \caption{PPM solution to the bidding problem characterized by: $w=0.5$, $r_1 = 0.25$, and $r_2 = 0.75$ agreeing with the closed-form solution}
   \label{fig:polynomial_projection_verification_indirect}
 \end{figure}
 
 Note, however, that this does not prove that the algorithms will provide correct results for any number of network operators. On the contrary, it merely means that the implementation of the algorithms passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then they constitute an approximate Bayesian Nash equilibrium.
 
-In the first examined scenario, there are 3 network operators characterized by reputation ratings as summarized in Table~\ref{tab:approximation_scenario_3_indirect}. Furthermore, the price weight is set to $0.75$. Figures~\ref{fig:forward_shooting_3_indirect}~and~\ref{fig:forward_shooting_3_sufficiency_indirect} depict the results of the approximation generated by the FSM method, while Figures~\ref{fig:polynomial_projection_3_indirect}~and~\ref{fig:polynomial_projection_3_sufficiency_indirect} depict the results of the approximation generated by the PPM method. Both approximation methods yield virtually the same estimate of the lower bound on bids, $\underline{\hat{b}}\approx 0.375$. In the FSM case, the approximation diverges in the very near proximity of $\bar{\hat{b}}$, and therefore, the approximation satisfies the sufficiency only until $b$ reaches a close neighbourhood of $\bar{\hat{b}}$. This is due to the fact that the system of ODEs does not satisfy Lipschitz condition for continuity as $b$ approaches $\bar{\hat{b}}$. The polynomial projection method, on the other hand, eliminates this problem entirely, and the approximation satisfies sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$.
+In the first examined scenario, there are 3 network operators characterized by reputation ratings as summarized in Table~\ref{tab:approximation_scenario_3_indirect}. Furthermore, the price weight is set to $0.75$. Figures~\ref{fig:forward_shooting_3_indirect}~and~\ref{fig:forward_shooting_3_sufficiency_indirect} depict the results of the approximation generated by the FSM method, while Figures~\ref{fig:polynomial_projection_3_indirect}~and~\ref{fig:polynomial_projection_3_sufficiency_indirect} depict the results of the approximation generated by the PPM method. Both approximation methods yield virtually the same estimate of the lower bound on bids, $\underline{\hat{b}}\approx 0.375$. In the FSM case, the approximation diverges in the very near proximity of $\bar{\hat{b}}$, and therefore, the approximation satisfies the sufficiency only until $b$ reaches a close neighbourhood of $\bar{\hat{b}}$. This is due to the fact that the system of ODEs does not satisfy Lipschitz condition for continuity as $b$ approaches $\bar{\hat{b}}$. The PPM method, on the other hand, eliminates this problem entirely, and the approximation satisfies sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$.
 
 \begin{table}[t]
   \caption{Bidding scenario with 3 network operators}
@@ -618,21 +618,21 @@ In the first examined scenario, there are 3 network operators characterized by r
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3}
-  \caption{FIX:ME Forward shooting: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{FSM solution to the bidding problem characterized by: $w=0.75$, $r_1 = 0.25$, $r_2 = 0.5$, and $r_3 = 0.75$}
   \label{fig:forward_shooting_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3_sufficiency}
-  \caption{FIX:ME Forward shooting sufficiency}
+  \caption{FSM solution satisfies the sufficiency condition for all~$\hat{b}$ except~$\hat{b}$'s in the close neighborhood of~$\bar{\hat{b}}$}
   \label{fig:forward_shooting_3_sufficiency_indirect}
 \end{figure}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3}
-  \caption{FIX:ME Polynomial projection: $w=0.75, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{PPM solution to the bidding problem characterized by: $w=0.75$, $r_1 = 0.25$, $r_2 = 0.5$, and $r_3 = 0.75$}
   \label{fig:polynomial_projection_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_3_sufficiency}
-  \caption{FIX:ME Polynomial projection sufficiency}
+  \caption{PPM solution satisfies the sufficiency condition for all~$\hat{b}$}
   \label{fig:polynomial_projection_3_sufficiency_indirect}
 \end{figure}
 
@@ -656,21 +656,21 @@ In the second examined scenario, there are 4 network operators characterized by 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4}
-  \caption{FIX:ME Forward shooting: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{FSM solution to the bidding problem characterized by: $w=0.85$, $r_1 = 0.2$, $r_2 = 0.4$, $r_3 = 0.6$, and $r_4=0.8$}
   \label{fig:forward_shooting_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4_sufficiency}
-  \caption{FIX:ME Forward shooting sufficiency}
+  \caption{FSM solution satisfies the sufficiency condition for all~$\hat{b}$ except~$\hat{b}$'s in the close neighborhood of~$\bar{\hat{b}}$}
   \label{fig:forward_shooting_4_sufficiency_indirect}
 \end{figure}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_4}
-  \caption{FIX:ME Polynomial projection: $w = 0.85, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{PPM solution to the bidding problem characterized by: $w=0.85$, $r_1 = 0.2$, $r_2 = 0.4$, $r_3 = 0.6$, and $r_4=0.8$}
   \label{fig:polynomial_projection_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/polynomial_projection_4_sufficiency}
-  \caption{FIX:ME Polynomial projection sufficiency}
+  \caption{PPM solution satisfies the sufficiency condition for all~$\hat{b}$}
   \label{fig:polynomial_projection_4_sufficiency_indirect}
 \end{figure}
 % subsection approximation_results (end)
@@ -694,7 +694,7 @@ In what follows, we shall present two numerical algorithms which improve upon th
 \label{sub:extended_forward_shooting_method_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-The extended forward shooting method extends the forward shooting method by effectively implementing the reasoning behind the bidding extension characterized by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the extended forward shooting method aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
+The extended forward shooting method (EFSM) extends the FSM method by effectively implementing the reasoning behind the bidding extension characterized by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the EFSM aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:efsm_initial_value_problem_indirect}
   \begin{array}{ll}
@@ -762,9 +762,9 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the extended forward shooting method is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the forward shooting method. The main differences are threefold: the algorithm requires an additional input parameter $p\in(0, 0.1)$; the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customized finite-differences method described below (line 8). The parameter $p$ is there to aid the algorithm at converging to the most likely solution to the bidding problem. That is, due to the complexity of the analysed system of ODEs, and the fact that the system does not satisfy the Lipschitz condition for continuity as $\hat{b}$ approaches $\bar{\hat{b}}$, it is necessary to reduce the range of feasible bids by a small amount, $p$, at the upper extremity, $\bar{\hat{b}} - p$ (line 6). Full explanation and analysis of the problem of convergence is given in Appendix~\ref{cha:numerical_software}.
+The pseudo-code for the EFSM is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the FSM. The main differences are threefold: the algorithm requires an additional input parameter $p\in(0, 0.1)$; the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customized finite-differences method described below (line 8). The parameter $p$ is there to aid the algorithm at converging to the most likely solution to the bidding problem. That is, due to the complexity of the analysed system of ODEs, and the fact that the system does not satisfy the Lipschitz condition for continuity as $\hat{b}$ approaches $\bar{\hat{b}}$, it is necessary to reduce the range of feasible bids by a small amount, $p$, at the upper extremity, $\bar{\hat{b}} - p$ (line 6). Full explanation and analysis of the problem of convergence is given in Appendix~\ref{cha:numerical_software}.
 
-Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function estimateKC which estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes as an input an estimate of the lower bound on bids, $\underline{\hat{b}}'$, and the set of lower extremities $\{\underline{\hat{c}}_i\}$ for all $i\in N$. The function then iterates over $k\in\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and the extended forward shooting method to the forward shooting method.
+Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function estimateKC which estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes as an input an estimate of the lower bound on bids, $\underline{\hat{b}}'$, and the set of lower extremities $\{\underline{\hat{c}}_i\}$ for all $i\in N$. The function then iterates over $k\in\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and the EFSM to the forward shooting method.
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Indirect/Figures/lebrun_solution}
@@ -803,7 +803,7 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 
 In each stage, the system of ODEs in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GSL implementation of the Embedded-Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
-Furthermore, similarly to the implementation of forward shooting and polynomial projection methods, in the implementation of extended forward shooting method, we assumed that
+Furthermore, similarly to the implementation of the FSM and PPM methods, in the implementation of EFSM, we assumed that
 \begin{equation*}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\text{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
 \end{equation*}
@@ -815,16 +815,16 @@ for all $i\in N$ and $x\in\mathbb{R}$. The discussion of the consequences arisin
 \label{sub:combined_methods_approach_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-The combined methods approach is equivalent to the extended forward shooting method with one difference: the last stage in the customized finite-difference method is solved using the polynomial projection method instead of the standard forward shooting method (Stage 3 in Figure~\ref{fig:lebrun_solution_indirect}). The polynomial projection method should reduce the error in the approximation generated by the forward shooting method as $b$ approaches $\bar{\hat{b}}$, where the system of ODEs does not satisfy the Lipschitz condition for continuity.
+The combined methods approach (CMA) is equivalent to EFSM with one difference: the last stage in the customized finite-difference method is solved using the PPM method instead of the standard FSM method (Stage 3 in Figure~\ref{fig:lebrun_solution_indirect}). PPM should reduce the error in the approximation generated by FSM as $b$ approaches $\bar{\hat{b}}$, where the system of ODEs does not satisfy the Lipschitz condition for continuity.
 % subsection combined_methods_approach_indirect (end)
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the extended forward shooting method and the combined methods approach. The implementation details of the algorithms together with the instructions on how to us the Python scripts developed during this research work can be found in Appendix~\ref{cha:numerical_software}.
+In this subsection, we present the approximation results for two bidding scenarios using both algorithms: EFSM and CMA.
 
-Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, both the extended forward shooting method and combined methods approach were tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, we omit the discussion of the verification results in this section.
+Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, both EFSM and CMA were tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, we omit the discussion of the verification results in this section.
 
-In the first examined scenario, there are 3 network operators characterized by reputation ratings as summarized in Table~\ref{tab:approximation_scenario_ext_3_indirect}. Furthermore, the price weight is set to $0.55$. Figures~\ref{fig:efs_3_indirect}~and~\ref{fig:efs_3_sufficiency_indirect} depict the results of the approximation generated by the extended forward shooting method, while Figures~\ref{fig:combined_3_indirect}~and~\ref{fig:combined_3_sufficiency_indirect} depict the results of the approximation generated by the combined methods approach. Since the combined methods approach is an improvement over the extended forward shooting method for $b$ in the close neighbourhood of $\bar{\hat{b}}$, both methods yield the same estimate of the lower bound on bids, $\underline{\hat{b}}\approx 0.41$. Furthermore, the approximations generated by both methods satisfy the sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$.
+In the first examined scenario, there are 3 network operators characterized by reputation ratings summarized in Table~\ref{tab:approximation_scenario_ext_3_indirect}. Furthermore, the price weight is set to $0.55$, and the convergence parameter, $p$, is set to $0.001058$. Figures~\ref{fig:efs_3_indirect}~and~\ref{fig:efs_3_sufficiency_indirect} depict the results of the approximation generated by the EFSM method, while Figures~\ref{fig:combined_3_indirect}~and~\ref{fig:combined_3_sufficiency_indirect} depict the results of the approximation generated by the CMA method. Both methods yield the same estimate of the lower bound on bids, $\underline{\hat{b}}\approx 0.407$, and satisfy the sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$.
 
 \begin{table}[t]
   \caption{Bidding scenario with 3 network operators}
@@ -843,7 +843,7 @@ In the first examined scenario, there are 3 network operators characterized by r
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/efs_3}
-  \caption{FIX:ME Extended forward shooting: $w=0.55, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{FIX:ME Extended forward shooting: $p=0.001058, w=0.55, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
   \label{fig:efs_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/efs_3_sufficiency}
@@ -853,7 +853,7 @@ In the first examined scenario, there are 3 network operators characterized by r
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/combined_3}
-  \caption{FIX:ME Combined: $w=0.55, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
+  \caption{FIX:ME Combined: $p=0.001058, w=0.55, r_1 = 0.25, r_2 = 0.5, r_3 = 0.75$}
   \label{fig:combined_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/combined_3_sufficiency}
@@ -861,7 +861,7 @@ In the first examined scenario, there are 3 network operators characterized by r
   \label{fig:combined_3_sufficiency_indirect}
 \end{figure}
 
-In the second examined scenario, there are 4 network operators characterized by reputation ratings as summarized in Table~\ref{tab:approximation_scenario_ext_4_indirect}. Furthermore, the price weight is set to $0.55$. Figures~\ref{fig:efs_4_indirect}~and~\ref{fig:efs_4_sufficiency_indirect} depict the results for the approximation generated by the extended forward shooting method, while Figures~\ref{fig:combined_4_indirect}~and~\ref{fig:combined_4_sufficiency_indirect} depict the results of the approximation generated by the combined methods approach. In both cases, the estimate of the lower bound on bids is $\underline{\hat{b}}\approx 0.365$. In the extended forward shooting method case, the approximation satisfies the sufficiency only until $b$ reaches a close neighborhood of $\bar{\hat{b}}$, which again is due to the fact that the system of ODEs does not satisfy the Lipschitz condition for continuity as $b$ approaches $\bar{\hat{b}}$. The combined methods approach, on the other hand, eliminates this problem since it uses the polynomial projection method to appromixate the solution in the close neighborhood of $\bar{\hat{b}}$ (cf.~Stage 3 in Figure~\ref{fig:lebrun_solution_indirect}). Nevertheless, even in the combined methods approach, the approximation satisfies the sufficiency only approximately in that neighborhood. The most likely explanation is the fact that
+In the second examined scenario, there are 4 network operators characterized by reputation ratings summarized in Table~\ref{tab:approximation_scenario_ext_4_indirect}. Furthermore, the price weight is set to $0.55$, and the convergence parameter, $p$, is set to $0.001064$. Figures~\ref{fig:efs_4_indirect}~and~\ref{fig:efs_4_sufficiency_indirect} depict the results for the approximation generated by EFSM, while Figures~\ref{fig:combined_4_indirect}~and~\ref{fig:combined_4_sufficiency_indirect} depict the results of the approximation generated by CMA. In both cases, the estimate of the lower bound on bids is $\underline{\hat{b}}\approx 0.353$, and both methods satisfy the sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$.
 
 \begin{table}[t]
   \caption{Bidding scenario with 4 network operators}
@@ -881,7 +881,7 @@ In the second examined scenario, there are 4 network operators characterized by 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/efs_4}
-  \caption{FIX:ME Extended forward shooting: $w = 0.55, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{FIX:ME Extended forward shooting: $p=0.001064, w = 0.55, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
   \label{fig:efs_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/efs_4_sufficiency}
@@ -891,13 +891,15 @@ In the second examined scenario, there are 4 network operators characterized by 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/combined_4}
-  \caption{FIX:ME Combined: $w = 0.55, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
+  \caption{FIX:ME Combined: $p=0.001064, w = 0.55, r_1 = 0.2, r_2 = 0.4, r_3 = 0.6, r_4 = 0.8$}
   \label{fig:combined_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/combined_4_sufficiency}
   \caption{FIX:ME Combined sufficiency}
   \label{fig:combined_4_sufficiency_indirect}
 \end{figure}
+
+FIX:ME point out that the quality of numerical solutions generated by both methods is very similar.
 
 % subsection approximation_results_indirect (end)
 
@@ -951,7 +953,7 @@ Furthermore, as the difference $(r_2-r_1)$ increases, the expected prices, $E[p]
 
 \subsection{Other Numerical Methods} % (fold)
 \label{sub:other_numerical_methods}
-
+FIX:ME quickly summarize other existing numerical methods: Chebyshev polynomials, etc.
 % subsection other_numerical_methods (end)
 
 % section discussion (end)
