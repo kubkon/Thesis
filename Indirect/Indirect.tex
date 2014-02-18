@@ -953,7 +953,25 @@ Furthermore, as the difference $(r_2-r_1)$ increases, the expected prices, $E[p]
 
 \subsection{Other Numerical Methods} % (fold)
 \label{sub:other_numerical_methods}
-FIX:ME quickly summarize other existing numerical methods: Chebyshev polynomials, etc.
+The methods discussed in this chapter could be further improved upon. In particular, the PPM method would potentially yield more accurate results if Chebyshev polynomials were employed in place of regular polynomials since they are better suited to least squares optimization~\cite{Hubbard2011,MasonApproximation2003}. That is, the inverse equilibrium bidding function in Equation~\eqref{eq:polynomial_cost_function_indirect} can be approximated using Chebyshev polynomials as follows
+\begin{equation*}
+  \displaystyle\hat{c}_i(b;\underline{\hat{b}},\alpha_i) = \sum_{k=0}^K \alpha_{i,k} T_k\left(x(b;\underline{\hat{b}})\right)
+\end{equation*}
+for all $i\in N$. Here, $T_k$ denotes $k^{\textrm{th}}$ Chebyshev polynomial of the first kind defined recursively by
+\begin{align*}
+  T_0(x) &= 1\\
+  T_1(x) &= x\\
+  T_{k+1}(x) &= 2xT_k(x) - T_{k-1}(x), \qquad k=1,\ldots,K-1
+\end{align*}
+and $x(b;\underline{\hat{b}})\in [-1,1]$ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$. The set $B$ consists of $T = |B|$ points such that
+\begin{equation*}
+  b_t = \frac{\bar{\hat{b}} + \underline{\hat{b}} + (\bar{\hat{b}} - \underline{\hat{b}})x_t}{2}, \qquad t = 1,\ldots,T
+\end{equation*}
+where
+\begin{equation*}
+  \displaystyle x(b_t;\bar{\hat{b}}) \equiv x_t = cos\left(\frac{2t-1}{2T}\pi\right).
+\end{equation*}
+The grid generated this way has the property of minimizing the interpolation error when approximating a function.
 % subsection other_numerical_methods (end)
 
 % section discussion (end)
