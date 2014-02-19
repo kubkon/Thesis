@@ -1,5 +1,5 @@
 %!TEX root = /Users/jakubkonka/Thesis/Thesis.tex
-\chapter{FIX:ME Approximating...}
+\chapter{Casting Network Selection Mechanism into Common Priors Setting}
 \label{cha:approximation}
 
 \minitoc
@@ -54,6 +54,7 @@ and the upper boundary condition
 \end{equation}
 for all $1\leq i\leq n$.
 \end{proposition}
+\noindent The formal proof of Proposition~\ref{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation} as well as any other proposition (unless stated otherwise) included in this chapter is given in Section~\ref{sec:proofs_approximation}.
 
 In effect, Proposition~\ref{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation} is a special case of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. That is, the equilibrium bidding functions still have to satisfy the system of nonlinear ODEs given by Equation~\eqref{eq:foc_ode_indirect}; however, in this case, the lower boundary condition reduces to
 \begin{equation*}
@@ -72,13 +73,12 @@ It should be noted that, even though the bidding problem is considerably simpler
 \section{Numerical Solutions} % (fold)
 \label{sec:numerical_solutions}
 
-As already mentioned in the previous chapter, however, the problem can be approximated using numerical methods (see Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent discussion). In this chapter, a common priors auction is approximated using the forward shooting method (FSM), but tailored to the problem at hand. The FSM method was chosen due to its relatively low implementation complexity, and the fact that a similar method was used to solve the DMP bidding problem. Therefore, the numerical solutions to the DMP and common priors auctions should be of comparable quality (in terms of the numerical accuracy).
+As already mentioned in the previous chapter, however, the problem can be approximated using numerical methods (see Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent discussion). In this chapter, a common priors auction is approximated using the forward shooting method (FSM), but tailored to the problem at hand. The FSM method was chosen due to its relatively low implementation complexity, and the fact that a similar method was used to solve the DMP bidding problem. Therefore, the numerical solutions to the DMP and common priors auctions should be of comparable quality (in terms of the numerical accuracy and stability).
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method}
 
 To briefly recap, the FSM method was first proposed by Bajari~\cite{Bajari2001a} (cf.~Algorithm~1 in \cite{Bajari2001a}). The method aims at finding the best approximation of the lower bound on bids, $\underline{b}$, by successively picking a value from the feasible interval, $(\underline{c}, \bar{c})$, and verifying whether a numerical solution to the initial value problem
-
 \begin{equation}
   \label{eq:fsm_initial_value_problem_approximation}
   \begin{array}{ll}
@@ -86,9 +86,7 @@ To briefly recap, the FSM method was first proposed by Bajari~\cite{Bajari2001a}
     c_i(\underline{b}) &= \underline{c}
   \end{array}
 \end{equation}
-
 for all $i\in N$, lies within a set of permissible functions, $S$, such that every element of that set is a function mapping $[\underline{b}, \bar{c}]$ into $[\underline{c}, \bar{c}]$, it is monotonically increasing everywhere except possibly at $\underline{c}$, and each function value is strictly lower than its argument except possibly at $\bar{c}$; that is,
-
 \begin{equation*}
   S\equiv\left\{s \:\middle\vert\:
   \begin{array}{l}
@@ -169,7 +167,7 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 
 \section{Network Selection Mechanism Cast into Common Priors Setting} % (fold)
 \label{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}
-In this section, we discuss the results of approximating the DMP auction with a common priors auction. To this end, we firstly model the DMP auction as a common priors auction where bidders are characterized by costs distributed according to a truncated normal distribution. Secondly, the model is altered in the sense that the bidders are now characterized by a truncated skew-normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n>2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
+In this section, we discuss the results of approximating the DMP auction with a common priors auction. To this end, we firstly model the DMP auction as a common priors auction where bidders are characterized by costs distributed according to a truncated normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n>2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
 
 Before proceeding with the discussion, however, we first provide a conceptual overview of the approach taken to approximate the DMP auction with a common priors one. Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$ draws their cost\footnote{In order to ease the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$.} from a uniform distribution with the support
 \begin{equation*}
@@ -269,21 +267,6 @@ Figure~\ref{fig:test_truncated_normal_bids_approximation} depicts the resultant 
 
 % subsection truncated_normal_distribution (end)
 
-\subsection{Truncated Skew-Normal Distribution} % (fold)
-\label{sub:truncated_skew_normal_distribution_approximation}
-
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/test_skew_normal_pdfs}
-  \caption{FIX:ME}
-  \label{fig:test_skew_normal_pdfs_approximation}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Approximation/Figures/test_skew_normal_bids}
-  \caption{FIX:ME}
-  \label{fig:test_skew_normal_bids_approximation}
-\end{figure}
-
-% subsection truncated_skew_normal_distribution (end)
-
 \subsection{Methodology} % (fold)
 \label{sub:methodology_approximation}
 
@@ -300,3 +283,10 @@ Figure~\ref{fig:test_truncated_normal_bids_approximation} depicts the resultant 
 \label{sec:summary_approximation}
 
 % section summary_approximation (end)
+
+\section{Proofs} % (fold)
+\label{sec:proofs_approximation}
+\begin{proof}[Proof of Proposition~\ref{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}]
+The proposition is just a restatement of the Theorems C.1 Characterization of the Equilibria and U.1 Uniqueness of the Equilibrium in Lebrun~\cite{Lebrun2006}, and hence, we refer the Reader to that paper for proofs.
+\end{proof}
+% section proofs (end)
