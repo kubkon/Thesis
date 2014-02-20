@@ -169,7 +169,9 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 \label{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}
 In this section, we discuss the results of approximating the DMP auction with a common priors auction. To this end, we firstly model the DMP auction as a common priors auction where bidders are characterized by costs distributed according to a truncated normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n>2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
 
-Before proceeding with the discussion, however, we first provide a conceptual overview of the approach taken to approximate the DMP auction with a common priors one. Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$ draws their cost\footnote{In order to ease the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$.} from a uniform distribution with the support
+\subsection{Modeling using Truncated Normal Distribution} % (fold)
+\label{sub:modeling_using_truncated_normal_distribution_approximation}
+Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$ draws their cost\footnote{In order to ease the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$.} from a uniform distribution with the support
 \begin{equation*}
   [(1-w)r_i, (1-w)r_i + w] = [\underline{c}_i, \bar{c}_i] \subset [0,1]
 \end{equation*}
@@ -192,29 +194,27 @@ All that remains is to then select a family of distributions which captures the 
 
 To provide an illustrative example, let there be 2 bidders such that $\underline{c}_1 < \underline{c}_2 < \bar{c}_1 < \bar{c}_2$. Each bidder is characterized by a uniform distribution, $\mathcal{U}_i$. One possible way of casting this scenario into common priors setting is to model the distributions of both bidders as truncated normal distributions, $\mathcal{N}_i$, truncated to the interval $[\underline{c}_1, \bar{c}_2]$, and with differing mean and standard deviation parameters. This is depicted in Figure~\ref{fig:dmp_to_common_priors_approximation}.
 
-\subsection{Truncated Normal Distribution} % (fold)
-\label{sub:truncated_normal_distribution_approximation}
-The truncated normal distribution is characterized by the following probability density function (pdf)
+In order to describe the truncated normal distribution, firstly recall the probability density function (pdf) of standard normal distribution
+\begin{equation}
+  \label{eq:pdf_standard_normal_approximation}
+  \displaystyle\phi(x) = \frac{1}{\sqrt{2\pi}} \exp\left\{-\frac{1}{2}x^2\right\},
+\end{equation}
+and cumulative distribution function (cdf)
+\begin{equation}
+  \label{eq:cdf_standard_normal_approximation}
+  \displaystyle\Phi(x) = \int_{-\infty}^{x}\phi(x)dx = \frac{1}{2}\left[ 1 + \erf\left(\frac{x}{\sqrt{2}}\right) \right]
+\end{equation}
+for all $x\in\mathbb{R}$. The pdf of the truncated normal distribution, truncated to the interval $x\in[a,b]$, can then be described in terms of the pdf of the standard normal distribution as follows
 \begin{equation}
   \label{eq:pdf_truncated_normal_approximation}
-  f(x; \mu, \sigma^2) = \left\{
-  \begin{array}{l l}
-    \displaystyle\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\} & \;\text{if } a\leq x\leq b,\\[2ex]
-    0 & \;\text{otherwise},
-  \end{array}\right.
+  \displaystyle f(x; \mu, \sigma, a, b) = \frac{\frac{1}{\sigma}\phi\left(\frac{x-\mu}{\sigma}\right)}{\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}
 \end{equation}
-where $a,b\in\mathbb{R}$ such that $a < b$, $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\sigma^2\geq 0$ is the variance (or scale)~\cite{JohnsonNormal1994,Cohen1991}.
-
-It is important to note that technically $f$ is not a pdf since it does not integrate to one. It can be transformed (or standardized) into a valid pdf, however, if it is scaled by an appropriate scaling factor~\cite{Cohen1991}; that is, let
-\begin{equation*}
-  g(x; \mu, \sigma^2) = \displaystyle\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\} \quad\text{ for all } x\in\mathbb{R}
-\end{equation*}
-be the pdf of normal distribution. Then,
+where $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\sigma^2\geq 0$ is the variance (or squared scale)~\cite{JohnsonNormal1994,Cohen1991}. Similarly, the cdf of the truncated normal distribution can be defined as follows
 \begin{equation}
-  \label{eq:valid_pdf_truncated_normal_approximation}
-  \displaystyle\frac{f(x;\mu, \sigma^2)}{\int_{-\infty}^b g(x;\mu,\sigma^2)dx - \int_{-\infty}^a g(x;\mu,\sigma^2)dx}
+  \label{eq:cdf_truncated_normal_approximation}
+  \displaystyle F(x; \mu, \sigma, a, b) = \int_{-\infty}^{x}f(x;\mu,\sigma,a,b)dx
+  = \frac{\Phi\left(\frac{x-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}{\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}.
 \end{equation}
-integrates to one, and represents the pdf of the truncated normal distribution. That said, note that the denominator in the expression~\eqref{eq:valid_pdf_truncated_normal_approximation} is a real, positive number, and therefore, it has no impact on the results of the FSM algorithm (Algorithm~\ref{alg:forward_shooting_method_approximation}). This is in agreement with Bajari~\cite{Bajari2001a}, and in what follows, all of the truncated distributions are left unscaled (i.e., not standardized).
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_pdfs}
@@ -226,7 +226,7 @@ integrates to one, and represents the pdf of the truncated normal distribution. 
   \label{fig:test_truncated_normal_bids_approximation}
 \end{figure}
 
-Before moving on to discussing truncated skew-normal distribution, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common priors setting where bidders are characterized by truncated normal distributions. Firstly, we note that the supports for both bidders are
+Before moving on to discussing the methodology for quantifying the accuracy of the approximations, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common priors setting where bidders are characterized by truncated normal distributions. Firstly, we note that the supports for both bidders are
 \begin{equation*}
   [\underline{c}_1, \bar{c}_1] = [0.125, 0.625]
 \end{equation*}
@@ -238,7 +238,7 @@ for bidder 2, while the common support is given by
 \begin{equation*}
   [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
 \end{equation*}
-Secondly, we need to specify distribution specific parameters (mean and standard deviation) for each bidder. Since the aim is to approximate the original distributions of both bidders, pick the midpoints of the original supports as means for both bidders, that is,
+Secondly, we need to specify distribution specific parameters (mean and standard deviation) for each bidder. Since the aim is to approximate the original distributions of both bidders, we pick the midpoints of the original supports as means for both bidders, that is,
 \begin{equation*}
   \mu_i = \underline{c}_i + \frac{\bar{c}_i - \underline{c}_i}{2} = \underline{c}_i + \frac{w}{2},
 \end{equation*}
@@ -261,19 +261,16 @@ and let the standard deviations be equal to the quarter of the length of the ori
   \label{tab:test_truncated_normal_params_approximation}
 \end{table}
 
-Table~\ref{tab:test_truncated_normal_params_approximation} summarized the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
+Table~\ref{tab:test_truncated_normal_params_approximation} summarized the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation},and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
+% subsection modelling (end)
 
-Figure~\ref{fig:test_truncated_normal_bids_approximation} depicts the resultant equilibrium bidding strategies for both bidders.
-
-% subsection truncated_normal_distribution (end)
-
-\subsection{Methodology} % (fold)
-\label{sub:methodology_approximation}
+\subsection{Methodology for Quantifying Accuracy of the Approximations} % (fold)
+\label{sub:methodology_for_quantifying_accuracy_of_the_approximations_approximation}
 
 % subsection methodology (end)
 
-\subsection{Results} % (fold)
-\label{sub:results_approximation}
+\subsection{Results of Approximations} % (fold)
+\label{sub:results_of_approximations_approximation}
 
 % subsection results (end)
 
