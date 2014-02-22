@@ -277,26 +277,16 @@ The most straightforward way of comparing the approximation with the \emph{bench
 \end{equation}
 for all $i\in N$ where $b_i$ is the equilibrium bidding function.
 
-It is important to note that expected utility is a function of cost. Thus, in order to quantify this comparison methodology, in our case, it is equivalent to measuring the difference (or distance/distortion) between two curves (two expected utility functions). This can be accomplished by adopting the Kolmogorov-Smirnov (K-S) statistic used in the statistical test for testing whether a random sample comes from a reference probability distribution, known as the Kolmogorov-Smirnov test. Recall that the K-S statistic is defined by
+It is important to note that expected utility is a function of cost. Thus, quantifying this comparison methodology is equivalent to measuring the difference (or distance/distortion) between two curves (two expected utility functions). This can be accomplished by adopting the Kolmogorov-Smirnov (K-S) statistic used in the statistical test for testing whether a random sample comes from a reference probability distribution, known as the Kolmogorov-Smirnov test. Recall that the K-S statistic is defined by
 \begin{equation*}
   D = \sup_x |G(x) - F(x)|
 \end{equation*}
-where $F(x)$ is the cdf of the reference probability distribution, $G(x)$ is the cdf of the random sample, and $x$ comes from the (common) domain of both functions. For the purpose of our comparison, we shall replace the supremum with maximum, and cdf functions with expected utility functions from both auctions for the corresponding bidder; that is,
+where $F(x)$ is the cdf of the reference probability distribution, $G(x)$ is the cdf of the random sample, and $x$ comes from the (common) domain of both functions. For the purpose of our comparison, we shall replace the cdf functions with expected utility functions from both auctions for the corresponding bidder, and the supremum with maximum since the expected utility functions are bounded; that is,
 \begin{equation}
   \label{eq:k_s_statistic_approximation}
   \displaystyle D = \max_{c_i\in \mathscr{D}(\Pi_i^\textrm{DMP})} \left\vert\Pi_i^{\textrm{CP}}(c_i) - \Pi_i^{\textrm{DMP}}(c_i)\right\vert
 \end{equation}
 for all $i\in N$, where $\mathscr{D}$ denotes the domain of a function\footnote{The domain of the expected utility function for the CP auction will always contain (be the superset) of the corresponding domain for the DMP auction; that is, $\mathscr{D}(\Pi_i^\textrm{DMP})\subseteq\mathscr{D}(\Pi_i^\textrm{CP})$ (cf.~Equation~\eqref{eq:domain_common_priors_approximation})}.
-
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/test_dm_exp_utilities}
-  \caption{FIX:ME}
-  \label{fig:test_dm_exp_utilities_approximation}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Approximation/Figures/test_common_priors_exp_utilities}
-  \caption{FIX:ME}
-  \label{fig:test_common_priors_exp_utilities_approximation}
-\end{figure}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_1}
@@ -308,6 +298,7 @@ for all $i\in N$, where $\mathscr{D}$ denotes the domain of a function\footnote{
   \label{fig:test_compare_bidder_2_approximation}
 \end{figure}
 
+Before presenting the results of approximations, consider the numerical example from the previous section. Figure~\ref{fig:test_compare_bidder_1_approximation} depicts the expected utility function for bidder 1 for both auctions, and similarly, Figure~\ref{fig:test_compare_bidder_2_approximation} for bidder 2. The K-S statistic for bidder 1 is equal to, $D=0.018272$, while bidder 2, $D=0.014327$. It is worth noting that the domains for the expected utility functions for both auctions for a particular bidder are equal. Furthermore, due to the nature of the FSM method for both types of auction, the generated solutions are described in terms of a discrete set points, and therefore, they do not necessarily have to match (between the auctions). Hence, in the implementation of the described methodology, the generated set of expected utilities is interpolated before the K-S statistics are evaluated (see Appendix~\ref{cha:numerical_software}).
 % subsection methodology (end)
 
 \subsection{Results of Approximations} % (fold)
