@@ -168,7 +168,7 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 
 \section{Network Selection Mechanism Cast into Common Priors Setting} % (fold)
 \label{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}
-In this section, we discuss the results of approximating the DMP auction with a common priors auction. To this end, we firstly model the DMP auction as a common priors auction where bidders are characterized by costs distributed according to a truncated normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n>2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
+In this section, we discuss the results of approximating the DMP auction with a common priors (CP) auction. To this end, we firstly model the DMP auction as a CP auction where bidders are characterized by costs distributed according to a truncated normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n\geq 2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
 
 \subsection{Modeling using Truncated Normal Distribution} % (fold)
 \label{sub:modeling_using_truncated_normal_distribution_approximation}
@@ -181,7 +181,7 @@ Therefore, in the general case, unless the bidders are characterized by the same
   [\underline{c}_i,\bar{c}_i] \neq [\underline{c}_j,\bar{c}_j], \quad i\neq j \text{ and } i,j\in N.
 \end{equation*}
 
-Recall further that, in a common priors auction, every bidder is characterized by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support\footnote{To see this, recall that, for any given $w\in (0,1)$, assuming $r_1\leq\cdots\leq r_n$ with at least one inequality strict, it follows $\underline{c}_1\leq\cdots\leq\underline{c}_n$ and $\bar{c}_1\leq\cdots\leq\bar{c}_n$ with at least one inequality strict. If we further let $C_i = [\underline{c}_i, \bar{c}_i]$ then $C = \bigcup_{i\in N} C_i$ is the smallest set containing all sets $C_i$ for all $i\in N$. Since $C_i$ is closed for all $i\in N$, it follows that $C$ is closed, and $C = [\underline{c}, \bar{c}]$ such that $\underline{c} \leq \underline{c}_i$ and $\bar{c}_i\leq \bar{c}$ for all $i\in N$, which is equivalent to $[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}]$.} is
+Recall further that, in a CP auction, every bidder is characterized by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support\footnote{To see this, recall that, for any given $w\in (0,1)$, assuming $r_1\leq\cdots\leq r_n$ with at least one inequality strict, it follows $\underline{c}_1\leq\cdots\leq\underline{c}_n$ and $\bar{c}_1\leq\cdots\leq\bar{c}_n$ with at least one inequality strict. If we further let $C_i = [\underline{c}_i, \bar{c}_i]$ then $C = \bigcup_{i\in N} C_i$ is the smallest set containing all sets $C_i$ for all $i\in N$. Since $C_i$ is closed for all $i\in N$, it follows that $C$ is closed, and $C = [\underline{c}, \bar{c}]$ such that $\underline{c} \leq \underline{c}_i$ and $\bar{c}_i\leq \bar{c}$ for all $i\in N$, which is equivalent to $[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}]$.} is
 \begin{equation}
   \label{eq:domain_common_priors_approximation}
   \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subset [0,1].
@@ -190,7 +190,7 @@ All that remains is to then select a family of distributions which captures the 
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Approximation/Figures/dmp_to_common_priors}
-  \caption{FIX:ME DMP auction cast to common priors auction}
+  \caption{FIX:ME DMP auction cast to CP auction}
   \label{fig:dmp_to_common_priors_approximation}
 \end{figure}
 
@@ -263,25 +263,25 @@ and let the standard deviations be equal to the quarter of the length of the ori
   \label{tab:test_truncated_normal_params_approximation}
 \end{table}
 
-Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation},and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
+Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
 % subsection modelling (end)
 
 \subsection{Methodology for Quantifying Accuracy of the Approximations} % (fold)
 \label{sub:methodology_for_quantifying_accuracy_of_the_approximations_approximation}
 There are two fundamental questions that need to be addressed when it comes to quantifying accuracy of the approximations. First, how can we compare the predictions (in terms of the equilibrium bidding strategies) produced by both auction types, and second, how such a comparison can be quantified to allow for a programmatic treatment of the problem (thus, removing the possibility of human error when visually comparing the results).
 
-The most straightforward way of comparing the approximation with the \emph{benchmark} (original, DMP) auction is to compare the expected profits (or utilities) for all bidders. This can be accomplished by applying the expected value operator to the utility function (Equation~\eqref{eq:utility_approximation}) for each bidder; that is, we define the expected utility as
+The most straightforward way of comparing the results generated by the approximation (CP) auction with those generated by the \emph{benchmark} (DMP) auction is to compare the expected profits (or utilities) for all bidders. We define the expected utility as
 \begin{equation}
   \label{eq:expected_utility_approximation}
   \Pi_i(c_i) \equiv E[u_i(b,c)] = (b_i(c_i) - c_i)\cdot P\{\textrm{winning}\:\vert\: b_i(c_i)\}
 \end{equation}
 for all $i\in N$ where $b_i$ is the equilibrium bidding function.
 
-It is important to note that expected utility is a function of cost. Thus, quantifying this comparison methodology is equivalent to measuring the difference (or distance/distortion) between two curves (two expected utility functions). This can be accomplished by adopting the Kolmogorov-Smirnov (K-S) statistic used in the statistical test for testing whether a random sample comes from a reference probability distribution, known as the Kolmogorov-Smirnov test. Recall that the K-S statistic is defined by
+It is important to note that expected utility is a function of cost. Thus, quantifying this comparison methodology is equivalent to measuring the difference (or distance/distortion) between two curves (two expected utility functions). This can be accomplished by adopting the Kolmogorov-Smirnov (K-S) statistic used in the statistical test, known as the Kolmogorov-Smirnov test, which is used to test whether a random sample comes from a reference probability distribution. Recall that the K-S statistic is defined by
 \begin{equation*}
   D = \sup_x |G(x) - F(x)|
 \end{equation*}
-where $F(x)$ is the cdf of the reference probability distribution, $G(x)$ is the cdf of the random sample, and $x$ comes from the (common) domain of both functions. For the purpose of our comparison, we shall replace the cdf functions with expected utility functions from both auctions for the corresponding bidder, and the supremum with maximum since the expected utility functions are bounded; that is,
+where $F(x)$ is the cdf of the reference probability distribution, $G(x)$ is the cdf of the random sample, and $x$ comes from the (common) domain of both functions. For the purpose of our comparison, we shall replace the cdf functions with expected utility functions for the corresponding bidders from both CP and DMP auctions, and the supremum with maximum since the expected utility functions are bounded; that is,
 \begin{equation}
   \label{eq:k_s_statistic_approximation}
   \displaystyle D = \max_{c_i\in \mathscr{D}(\Pi_i^\textrm{DMP})} \left\vert\Pi_i^{\textrm{CP}}(c_i) - \Pi_i^{\textrm{DMP}}(c_i)\right\vert
@@ -298,7 +298,7 @@ for all $i\in N$, where $\mathscr{D}$ denotes the domain of a function\footnote{
   \label{fig:test_compare_bidder_2_approximation}
 \end{figure}
 
-Before presenting the results of approximations, consider the numerical example from the previous section. Figure~\ref{fig:test_compare_bidder_1_approximation} depicts the expected utility function for bidder 1 for both auctions, and similarly, Figure~\ref{fig:test_compare_bidder_2_approximation} for bidder 2. The K-S statistic for bidder 1 is equal to, $D=0.018272$, while bidder 2, $D=0.014327$. It is worth noting that the domains for the expected utility functions for both auctions for a particular bidder are equal. Furthermore, due to the nature of the FSM method for both types of auction, the generated solutions are described in terms of a discrete set points, and therefore, they do not necessarily have to match (between the auctions). Hence, in the implementation of the described methodology, the generated set of expected utilities is interpolated before the K-S statistics are evaluated (see Appendix~\ref{cha:numerical_software}).
+Before presenting the results of approximations, consider the numerical example from the previous section. Figure~\ref{fig:test_compare_bidder_1_approximation} depicts the expected utility function for bidder 1 for both auctions, and similarly, Figure~\ref{fig:test_compare_bidder_2_approximation} for bidder 2. The K-S statistic for bidder 1 is equal to, $D=0.018272$, while bidder 2, $D=0.014327$. It is worth noting that the domains for the expected utility functions of each bidder in both auctions are equal. Furthermore, due to the nature of the FSM method, the generated solutions are described in terms of a discrete set points, and therefore, in the implementation of the described methodology, the generated set of expected utilities is interpolated before the K-S statistics are evaluated (see Appendix~\ref{cha:numerical_software} for more details on the implementation of the described methodology).
 % subsection methodology (end)
 
 \subsection{Results of Approximations} % (fold)
