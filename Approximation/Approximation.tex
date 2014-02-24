@@ -170,6 +170,12 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 \label{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}
 In this section, we discuss the results of approximating the DMP auction with a common priors (CP) auction. To this end, we firstly model the DMP auction as a CP auction where bidders are characterized by costs distributed according to a truncated normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n\geq 2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
 
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Approximation/Figures/dmp_to_common_priors}
+  \caption{FIX:ME DMP auction cast to CP auction}
+  \label{fig:dmp_to_common_priors_approximation}
+\end{figure}
+
 \subsection{Modeling using Truncated Normal Distribution} % (fold)
 \label{sub:modeling_using_truncated_normal_distribution_approximation}
 Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$ draws their cost\footnote{In order to ease the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$.} from a uniform distribution with the support
@@ -187,12 +193,6 @@ Recall further that, in a CP auction, every bidder is characterized by a distrib
   \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subset [0,1].
 \end{equation}
 All that remains is to then select a family of distributions which captures the numerical ranges of the original supports as closely as possible.
-
-\begin{figure}[t]
-  \includegraphics[width=\figsize]{Approximation/Figures/dmp_to_common_priors}
-  \caption{FIX:ME DMP auction cast to CP auction}
-  \label{fig:dmp_to_common_priors_approximation}
-\end{figure}
 
 To provide an illustrative example, let there be 2 bidders such that $\underline{c}_1 < \underline{c}_2 < \bar{c}_1 < \bar{c}_2$. Each bidder is characterized by a uniform distribution, $\mathcal{U}_i$. One possible way of casting this scenario into common priors setting is to model the distributions of both bidders as truncated normal distributions, $\mathcal{N}_i$, truncated to the interval $[\underline{c}_1, \bar{c}_2]$, and with differing mean and standard deviation parameters. This is depicted in Figure~\ref{fig:dmp_to_common_priors_approximation}.
 
@@ -248,6 +248,7 @@ and let the standard deviations be equal to the quarter of the length of the ori
 \begin{equation*}
   \sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
 \end{equation*}
+FIX:ME explain why; it is based on the shape of the normal distribution and the fact that we want $4\sigma = w$.
 
 \begin{table}[t]
   \caption{FIX:ME}
@@ -265,6 +266,16 @@ and let the standard deviations be equal to the quarter of the length of the ori
 
 Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
 % subsection modelling (end)
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_1}
+  \caption{FIX:ME}
+  \label{fig:test_compare_bidder_1_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_2}
+  \caption{FIX:ME}
+  \label{fig:test_compare_bidder_2_approximation}
+\end{figure}
 
 \subsection{Methodology for Quantifying Accuracy of the Approximations} % (fold)
 \label{sub:methodology_for_quantifying_accuracy_of_the_approximations_approximation}
@@ -284,21 +295,20 @@ It is important to note that expected utility is a function of cost. Thus, quant
 where $F(x)$ is the cdf of the reference probability distribution, $G(x)$ is the cdf of the random sample, and $x$ comes from the (common) domain of both functions. For the purpose of our comparison, we shall replace the cdf functions with expected utility functions for the corresponding bidders from both CP and DMP auctions, and the supremum with maximum since the expected utility functions are bounded; that is,
 \begin{equation}
   \label{eq:k_s_statistic_approximation}
-  \displaystyle D = \max_{c_i\in \mathscr{D}(\Pi_i^\textrm{DMP})} \left\vert\Pi_i^{\textrm{CP}}(c_i) - \Pi_i^{\textrm{DMP}}(c_i)\right\vert
+  \displaystyle D_i = \max_{c_i\in \mathscr{D}(\Pi_i^\textrm{DMP})} \left\vert\Pi_i^{\textrm{CP}}(c_i) - \Pi_i^{\textrm{DMP}}(c_i)\right\vert
 \end{equation}
 for all $i\in N$, where $\mathscr{D}$ denotes the domain of a function\footnote{The domain of the expected utility function for the CP auction will always contain (be the superset) of the corresponding domain for the DMP auction; that is, $\mathscr{D}(\Pi_i^\textrm{DMP})\subseteq\mathscr{D}(\Pi_i^\textrm{CP})$ (cf.~Equation~\eqref{eq:domain_common_priors_approximation})}.
 
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_1}
-  \caption{FIX:ME}
-  \label{fig:test_compare_bidder_1_approximation}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_2}
-  \caption{FIX:ME}
-  \label{fig:test_compare_bidder_2_approximation}
-\end{figure}
+Before presenting the results of approximations, consider the numerical example from the previous section. Figure~\ref{fig:test_compare_bidder_1_approximation} depicts the expected utility function for bidder 1 for both auctions, and similarly, Figure~\ref{fig:test_compare_bidder_2_approximation} for bidder 2. The K-S statistic for bidder 1 is equal to, $D_1=0.018272$, while bidder 2, $D_2=0.014327$. It is worth noting that the domains for the expected utility functions of each bidder in both auctions are equal. Furthermore, due to the nature of the FSM method, the generated solutions are described in terms of a discrete set points, and therefore, in the implementation of the described methodology, the generated set of expected utilities is interpolated before the K-S statistics are evaluated (see Appendix~\ref{cha:numerical_software} for more details on the implementation of the described methodology).
 
-Before presenting the results of approximations, consider the numerical example from the previous section. Figure~\ref{fig:test_compare_bidder_1_approximation} depicts the expected utility function for bidder 1 for both auctions, and similarly, Figure~\ref{fig:test_compare_bidder_2_approximation} for bidder 2. The K-S statistic for bidder 1 is equal to, $D=0.018272$, while bidder 2, $D=0.014327$. It is worth noting that the domains for the expected utility functions of each bidder in both auctions are equal. Furthermore, due to the nature of the FSM method, the generated solutions are described in terms of a discrete set points, and therefore, in the implementation of the described methodology, the generated set of expected utilities is interpolated before the K-S statistics are evaluated (see Appendix~\ref{cha:numerical_software} for more details on the implementation of the described methodology).
+It is difficult to judge by the value of the K-S statistic how erroneous the approximation for each bidder is. For instance, in the numerical example discussed in the previous paragraph, even though the K-S statistics for each bidder are close in value, the statistic itself does not capture its value relative to the benchmark expected utility's range of values for the bidder; that is, the range of the expected utility for bidder 1 in the benchmark (DMP) auction goes from approximately $0.05$ to $0.38$ (cf.~Figure~\ref{fig:test_compare_bidder_1_approximation}), while for bidder 2 from $0$ to $0.07$ (cf.~Figure~\ref{fig:test_compare_bidder_2_approximation}). It is, therefore, clear that, even though the K-S statistics are close in value, the approximation error for bidder 1 is much smaller than for bidder 2. To account for this fact, we define the relative error of the approximation as
+\begin{equation}
+  \label{eq:relative_error_approximation}
+  \epsilon_i = \frac{D_i}{\bar{\pi}_i^{\textrm{DMP}} - \underline{\pi}_i^{\textrm{DMP}}}
+\end{equation}
+for all $i\in N$, where $\Pi_i^{\textrm{DMP}}(c_i)\in [\underline{\pi}_i^{\textrm{DMP}}, \bar{\pi}_i^{\textrm{DMP}}]$ for all $c_i\in \mathscr{D}(\Pi_i^{\textrm{DMP}})$.
+
+For the K-S statistic values in the numerical example discussed in the previous paragraph, the percentage relative error for bidder 1 is $\epsilon_1\approx 5.54\%$, while for bidder 2 $\epsilon_2\approx 20.47\%$. Clearly, $\epsilon_2 > \epsilon_1$, thus, capturing the error in approximation for both bidders accurately.
 % subsection methodology (end)
 
 \subsection{Results of Approximations} % (fold)
