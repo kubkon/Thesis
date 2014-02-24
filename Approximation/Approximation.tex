@@ -218,16 +218,6 @@ where $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\si
   = \frac{\Phi\left(\frac{x-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}{\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}.
 \end{equation}
 
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_pdfs}
-  \caption{FIX:ME}
-  \label{fig:test_truncated_normal_pdfs_approximation}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
-  \caption{FIX:ME}
-  \label{fig:test_truncated_normal_bids_approximation}
-\end{figure}
-
 Before moving on to discussing the methodology for quantifying the accuracy of the approximations, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common priors setting where bidders are characterized by truncated normal distributions. Firstly, we note that the supports for both bidders are
 \begin{equation*}
   [\underline{c}_1, \bar{c}_1] = [0.125, 0.625]
@@ -240,6 +230,13 @@ for bidder 2, while the common support is given by
 \begin{equation*}
   [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
 \end{equation*}
+
+\begin{figure}[t]
+  \includegraphics[width=\figsize]{Approximation/Figures/modelling_params}
+  \caption{FIX:ME}
+  \label{fig:modelling_params_approximation}
+\end{figure}
+
 Secondly, we need to specify distribution specific parameters (mean and standard deviation) for each bidder. Since the aim is to approximate the original distributions of both bidders, we pick the midpoints of the original supports as means for both bidders, that is,
 \begin{equation*}
   \mu_i = \underline{c}_i + \frac{\bar{c}_i - \underline{c}_i}{2} = \underline{c}_i + \frac{w}{2},
@@ -248,9 +245,9 @@ and let the standard deviations be equal to the quarter of the length of the ori
 \begin{equation*}
   \sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
 \end{equation*}
-FIX:ME explain why; it is based on the shape of the normal distribution and the fact that we want $4\sigma = w$.
+The choice of the parameters is motivated by the shape of the normal distribution, and the fact that, with this choice of parameters, the probability of at least $95.4\%$ is assigned to the interval $[\underline{c}_i, \bar{c}_i]$ which corresponds to the interval $[\mu_i - 2\sigma_i, \mu_i + 2\sigma_i]$; and therefore, minimising the probability density outside the interval $[\underline{c}_i, \bar{c}_i]$, and effectively immitating uniform distribution with support $[\underline{c}_i, \bar{c}_i]$. This is depicted in Figure~\ref{fig:modelling_params_approximation} as a shaded region under the bell curve.
 
-\begin{table}[t]
+\begin{table}[b]
   \caption{FIX:ME}
   \vspace{0.5cm}
   \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
@@ -263,6 +260,16 @@ FIX:ME explain why; it is based on the shape of the normal distribution and the 
   \end{tabular*}
   \label{tab:test_truncated_normal_params_approximation}
 \end{table}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_pdfs}
+  \caption{FIX:ME}
+  \label{fig:test_truncated_normal_pdfs_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
+  \caption{FIX:ME}
+  \label{fig:test_truncated_normal_bids_approximation}
+\end{figure}
 
 Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
 % subsection modelling (end)
