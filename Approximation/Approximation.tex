@@ -311,7 +311,7 @@ Before presenting the results of approximations, consider the numerical example 
 It is difficult to judge by the value of the K-S statistic how erroneous the approximation for each bidder is. For instance, in the numerical example discussed in the previous paragraph, even though the K-S statistics for each bidder are close in value, the statistic itself does not capture its value relative to the benchmark expected utility's range of values for the bidder; that is, the range of the expected utility for bidder 1 in the benchmark (DMP) auction goes from approximately $0.05$ to $0.38$ (cf.~Figure~\ref{fig:test_compare_bidder_1_approximation}), while for bidder 2 from $0$ to $0.07$ (cf.~Figure~\ref{fig:test_compare_bidder_2_approximation}). It is, therefore, clear that, even though the K-S statistics are close in value, the approximation error for bidder 1 is much smaller than for bidder 2. To account for this fact, we define the relative error of the approximation as
 \begin{equation}
   \label{eq:relative_error_approximation}
-  \epsilon_i = \frac{D_i}{\bar{\pi}_i^{\textrm{DMP}} - \underline{\pi}_i^{\textrm{DMP}}}
+  \epsilon_i = \frac{D_i}{|\bar{\pi}_i^{\textrm{DMP}} - \underline{\pi}_i^{\textrm{DMP}}|}
 \end{equation}
 for all $i\in N$, where $\Pi_i^{\textrm{DMP}}(c_i)\in [\underline{\pi}_i^{\textrm{DMP}}, \bar{\pi}_i^{\textrm{DMP}}]$ for all $c_i\in \mathscr{D}(\Pi_i^{\textrm{DMP}})$.
 
@@ -321,8 +321,92 @@ For the K-S statistic values in the numerical example discussed in the previous 
 \subsection{Results of Approximations} % (fold)
 \label{sub:results_of_approximations_approximation}
 
-% subsection results (end)
+\subsubsection{$n=2$ Bidders} % (fold)
+\label{ssub:n_2_bidders_approximation}
 
+\begin{figure}[p!]
+  \vspace{0.5cm}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_025_075}
+    \caption{FIX:ME $r_1=0.25$ and $r_2=0.75$}
+    \label{fig:compare_2_bidders_025_075_approximation}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_015_075}
+    \caption{FIX:ME $r_1=0.15$ and $r_2=0.75$}
+    \label{fig:compare_2_bidders_015_075_approximation}
+  \end{subfigure}
+  \vspace{0.5cm}\\
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_050_075}
+    \caption{FIX:ME $r_1=0.5$ and $r_2=0.75$}
+    \label{fig:compare_2_bidders_050_075_approximation}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_070_075}
+    \caption{FIX:ME $r_1=0.7$ and $r_2=0.75$}
+    \label{fig:compare_2_bidders_070_075_approximation}
+  \end{subfigure}
+  \caption{FIX:ME}
+  \label{fig:compare_2_bidders_approximation}
+\end{figure}
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders_070_075_outlier}
+  \caption{FIX:ME}
+  \label{fig:compare_2_bidders_070_075_outlier_approximation}
+\end{figure}
+
+% subsection n_2_bidders_approximation (end)
+
+\subsubsection{$n=3$ Bidders} % (fold)
+\label{ssub:n_3_bidders_approximation}
+
+\begin{figure}[p!]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_050_075}
+    \caption{FIX:ME $r_1=0.25$, $r_2=0.5$, and $r_3=0.75$ FSM}
+    \label{fig:compare_3_bidders_025_050_075_fsm_approximation}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_050_075_ppm}
+    \caption{FIX:ME $r_1=0.25$, $r_2=0.5$, and $r_3=0.75$ PPM}
+    \label{fig:compare_3_bidders_025_050_075_ppm_approximation}
+  \end{subfigure}
+  \caption{FIX:ME}
+  \label{fig:compare_3_bidders_025_050_075_approximation}
+
+  \setcounter{subfigure}{0}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_070_075}
+    \caption{FIX:ME $r_1=0.25$, $r_2=0.7$, and $r_3=0.75$ FSM}
+    \label{fig:compare_3_bidders_025_070_075_fsm_approximation}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_070_075_ppm}
+    \caption{FIX:ME $r_1=0.25$, $r_2=0.7$, and $r_3=0.75$ PPM}
+    \label{fig:compare_3_bidders_025_070_075_ppm_approximation}
+  \end{subfigure}
+  \caption{FIX:ME}
+  \label{fig:compare_3_bidders_025_070_075_approximation}
+
+  \setcounter{subfigure}{0}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_065_070_075}
+    \caption{FIX:ME $r_1=0.65$, $r_2=0.7$, and $r_3=0.75$ FSM}
+    \label{fig:compare_3_bidders_065_070_075_fsm_approximation}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_065_070_075_ppm}
+    \caption{FIX:ME $r_1=0.65$, $r_2=0.7$, and $r_3=0.75$ PPM}
+    \label{fig:compare_3_bidders_065_070_075_ppm_approximation}
+  \end{subfigure}
+  \caption{FIX:ME}
+  \label{fig:compare_3_bidders_065_070_075_approximation}
+\end{figure}
+
+% subsection n_3_bidders_approximation (end)
+% subsection results (end)
 % section network_selection_mechanism_cast_into_common_priors_setting (end)
 
 \section{Summary} % (fold)
