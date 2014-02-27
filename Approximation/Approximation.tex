@@ -324,18 +324,19 @@ This section presents the results of approximating the DMP auction with CP aucti
 
 \subsubsection{$n=2$ Bidders} % (fold)
 \label{ssub:n_2_bidders_approximation}
+We consider 4 bidding scenarios where bidder 2 is always characterized by fixed reputation rating of $r_2=0.75$, while bidder 1's reputation rating assumes values $r_1\in\{0.15, 0.25, 0.5, 0.7\}$. Figure~\ref{fig:compare_2_bidders_approximation} depicts the results of the approximations.
 
 \begin{figure}[p!]
   \vspace{0.5cm}
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_025_075}
-    \caption{FIX:ME $r_1=0.25$ and $r_2=0.75$}
-    \label{fig:compare_2_bidders_025_075_approximation}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_015_075}
     \caption{FIX:ME $r_1=0.15$ and $r_2=0.75$}
     \label{fig:compare_2_bidders_015_075_approximation}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_025_075}
+    \caption{FIX:ME $r_1=0.25$ and $r_2=0.75$}
+    \label{fig:compare_2_bidders_025_075_approximation}
   \end{subfigure}
   \vspace{0.5cm}\\
   \begin{subfigure}[b]{0.5\textwidth}
@@ -352,12 +353,17 @@ This section presents the results of approximating the DMP auction with CP aucti
   \label{fig:compare_2_bidders_approximation}
 \end{figure}
 
+In all cases, the percentage relative error is below $10\%$ for bidder 1, and below $25\%$ for bidder 2. Furthermore, for $r_1=0.7$ and $r_2=0.75$, the percentage relative error is below $8\%$ for both bidders. In fact, as the difference between $r_1$ and $r_2$ decreases, the shape of the percentage relative error curves, as a function of price weight, flattens out. The most likely explanation for this is the fact that as the difference between the reputation ratings decreases, the overlap between the supports for both bidders, $[\underline{c}_1, \bar{c}_1]$ and $[\underline{c}_2, \bar{c}_2]$, increases; thus, approaching the common priors setting closer and closer, to eventually reach a symmetric first-price sealed-bid auction for equal reputation ratings (cf.~Corollary~\ref{cor:special_case_r_i_r_j_direct}, Section~\ref{sub:special_case_r_i_r_j_direct}, Chapter~\ref{cha:direct}).
+
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders_070_075_outlier}
   \caption{FIX:ME}
   \label{fig:compare_2_bidders_070_075_outlier_approximation}
 \end{figure}
 
+It is worth noting that, in Figure~\ref{fig:compare_2_bidders_070_075_approximation}, there is an outlier at $w\approx 0.5125$ for bidder 1---their percentage relative error jumps from $6\%$ to almost $22\%$ to fall back again to $6\%$. This is due to the fact that the DMP version of the FSM method becomes numerically unstable near the upper bound on bids. This is a direct consequence of the problem not satisfying the Lipschitz condition of continuity (cf.~FIX:ME) for bid values approaching the upper bound on bids. As a result, the K-S statistic is incorrectly computed. Figure~\ref{fig:compare_2_bidders_070_075_outlier_approximation} depicts the expected utilities for bidder 1 in both DMP and CP auctions, and the associated, incorrectly computed, K-S statistic. Note that there is a considerable spike in the expected utility for the DMP bidder near the upper extremity of their support which is directly responsible for the outlier in Figure~\ref{fig:compare_2_bidders_070_075_approximation}.
+
+All things considered, in the 2 bidders' case, approximating DMP auction with the CP auction does not yield small enough percentage relative error to consider it a viable alternative to solving the original, DMP auction. In fact, as presented next, the results are even less promising for 3 bidders.
 % subsection n_2_bidders_approximation (end)
 
 \subsubsection{$n=3$ Bidders} % (fold)
