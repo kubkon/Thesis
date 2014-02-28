@@ -133,7 +133,7 @@ Similarly to the implementation of the FSM algorithm for the DMP auction, the ap
 \subsection{Verification} % (fold)
 \label{sub:verification}
 
-Before proceeding with the modeling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterized by a truncated normal distribution but with different mean and standard deviation parameters (Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common range of costs, $c_i\in [2,8]$.
+Before proceeding with the modelling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterized by a truncated normal distribution but with different mean and standard deviation parameters (Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common range of costs, $c_i\in [2,8]$.
 
 \begin{table}[t]
   \caption{Test bidding scenario}
@@ -176,7 +176,7 @@ In this section, we discuss the results of approximating the DMP auction with a 
   \label{fig:dmp_to_common_priors_approximation}
 \end{figure}
 
-\subsection{Modeling using Truncated Normal Distribution} % (fold)
+\subsection{Modelling using Truncated Normal Distribution} % (fold)
 \label{sub:modeling_using_truncated_normal_distribution_approximation}
 Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$ draws their cost\footnote{In order to ease the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$.} from a uniform distribution with the support
 \begin{equation*}
@@ -245,7 +245,7 @@ and let the standard deviations be equal to the quarter of the length of the ori
 \begin{equation*}
   \sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
 \end{equation*}
-The choice of the parameters is motivated by the shape of the normal distribution~\cite{JohnsonNormal1994}, and the fact that, with this choice of parameters, the probability of at least $0.95$ of drawing cost from the interval $[\underline{c}_i, \bar{c}_i]$ (which corresponds to the interval $[\mu_i - 2\sigma_i, \mu_i + 2\sigma_i]$) is achieved; and therefore, minimising the probability of drawing cost from outside the interval $[\underline{c}_i, \bar{c}_i]$, and effectively immitating uniform distribution with support $[\underline{c}_i, \bar{c}_i]$. This is depicted in Figure~\ref{fig:modelling_params_approximation} as a shaded region under the bell curve.
+The choice of the parameters is motivated by the shape of the normal distribution~\cite{JohnsonNormal1994}, and the fact that, with this choice of parameters, the probability of at least $0.95$ of drawing cost from the interval $[\underline{c}_i, \bar{c}_i]$ (which corresponds to the interval $[\mu_i - 2\sigma_i, \mu_i + 2\sigma_i]$) is achieved; and therefore, minimising the probability of drawing cost from outside the interval $[\underline{c}_i, \bar{c}_i]$, and effectively imitating uniform distribution with support $[\underline{c}_i, \bar{c}_i]$. This is depicted in Figure~\ref{fig:modelling_params_approximation} as a shaded region under the bell curve.
 
 \begin{table}[b]
   \caption{FIX:ME}
@@ -271,7 +271,7 @@ The choice of the parameters is motivated by the shape of the normal distributio
   \label{fig:test_truncated_normal_bids_approximation}
 \end{figure}
 
-Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centered around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
+Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centred around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
 % subsection modelling (end)
 
 \begin{figure}[p!]

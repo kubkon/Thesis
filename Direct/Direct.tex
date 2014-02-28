@@ -41,7 +41,7 @@ In order to simplify the notation, it is assumed throughout the rest of this cha
 \begin{equation*}
   \beta(b_i, r_i) = wb_i + (1-w)r_i\quad\text{for all } i\in N.
 \end{equation*}
-Note, however, that this assumption could potentially lead to a situation where n.o.s manipulate the knowledge of $w$ to increase their profits by overcharging the subscriber. Therefore, in order to circumvent such an eventuality, the subscriber would only consider offers such that
+Note, however, that this assumption could potentially lead to a situation where network operators manipulate the knowledge of $w$ to increase their profits by overcharging the subscriber. Therefore, in order to circumvent such an eventuality, the subscriber would only consider offers such that
 \begin{equation}
 	\label{eq:subscribers_valuation_direct}
 	v\geq wb_i + (1-w)r_i \quad\text{for all } i\in N
@@ -204,7 +204,7 @@ Suppose for the time being that $b^*(c_i) = b_{FPA}^*(c_i)$ for every value of t
 	\label{fig:ecdf_N_3_direct}
 \end{figure}
 
-Table~\ref{tab:bids_fpa_direct} and Figure~\ref{fig:bids_fpa_direct} depict a particular output from the simulation for $n=3$ network operators. In this particular example, for $w\in (0.65, 1]$, network operator 1 who is characterized by the lowest cost of all three network operators, wins the auction; that is, the network operator 1's compound bid is the lowest. At $w=0.65$, an intersection occurs of network operator 1's and 3's compound bids, and after that network operator 3 becomes the winner. If the simulation was repeated $r$ times, and the intersection was to fall within a close neighborhood of $w=0.65$ in the vast majority of cases, then $b^*$ could quite likely be an equilibrium bidding strategy in the interval $w\in (0.65, 1]$. This is predicated on the fact that, as $w\rightarrow 1$, the offered price dominates the value of the compound bid; that is, the offered price is weighted more than the reputation rating (Equation~\eqref{eq:def_beta_direct}).
+Table~\ref{tab:bids_fpa_direct} and Figure~\ref{fig:bids_fpa_direct} depict a particular output from the simulation for $n=3$ network operators. In this particular example, for $w\in (0.65, 1]$, network operator 1 who is characterized by the lowest cost of all three network operators, wins the auction; that is, the network operator 1's compound bid is the lowest. At $w=0.65$, an intersection occurs of network operator 1's and 3's compound bids, and after that network operator 3 becomes the winner. If the simulation was repeated $r$ times, and the intersection was to fall within a close neighbourhood of $w=0.65$ in the vast majority of cases, then $b^*$ could quite likely be an equilibrium bidding strategy in the interval $w\in (0.65, 1]$. This is predicated on the fact that, as $w\rightarrow 1$, the offered price dominates the value of the compound bid; that is, the offered price is weighted more than the reputation rating (Equation~\eqref{eq:def_beta_direct}).
 
 The methodology is as follows:
 \begin{enumerate}
@@ -215,7 +215,7 @@ The methodology is as follows:
 	\item Repeat $r$ number of times.
 \end{enumerate}
 
-The case when $r=10,000$ runs, and $n=3$ network operators is depicted in the two figures: Figure~\ref{fig:hist_N_3_direct} shows the empirical density function of the intersections; and Figure~\ref{fig:ecdf_N_3_direct} depicts the empirical distribution function of the intersections. The probability of an intersection occurring equals $P\{I=1\} = 0.67$. It can be concluded from the figures that, on average, intersections occur at $\bar{w}=0.6$, which represents the mean of the distribution. However, the peak observed in a close neighborhood of $\bar{w}$ is not significant enough to conclude that bidding according to $b^*$ is the best strategy one can take for $w\in (\bar{w},1]$.
+The case when $r=10,000$ runs, and $n=3$ network operators is depicted in the two figures: Figure~\ref{fig:hist_N_3_direct} shows the empirical density function of the intersections; and Figure~\ref{fig:ecdf_N_3_direct} depicts the empirical distribution function of the intersections. The probability of an intersection occurring equals $P\{I=1\} = 0.67$. It can be concluded from the figures that, on average, intersections occur at $\bar{w}=0.6$, which represents the mean of the distribution. However, the peak observed in a close neighbourhood of $\bar{w}$ is not significant enough to conclude that bidding according to $b^*$ is the best strategy one can take for $w\in (\bar{w},1]$.
 
 A more formal argument goes as follows. Figure~\ref{fig:ecdf_N_3_direct} depicts the probability that an intersection has occurred within an interval $(-\infty,w]$ given that an intersection has occurred, $I=1$; that is, if the former event is denoted by $W$, then the figure describes $P\{W\in(-\infty, w] \mid I=1\}$. From this, the probability of winning for network operator $i$ (as defined in the listing above) given any $w$ is
 \begin{align}
@@ -346,7 +346,7 @@ Figure~\ref{fig:complete_N_2_1_direct} shows the first 4 cases for which $r_i < 
 
 If $c_i = c_j$, arguing in the similar manner as previously, network operator $i$'s optimal bidding strategy would be to bid $b_i = c_j + \frac{1-w}{w}(r_j-r_i) - \epsilon$ where $\epsilon>0$ is very small; while network operator $j$ should bid $b_j = c_j$ (Figure~\ref{fig:complete_N_2_c2_direct}).
 
-If $c_i > c_j$, there are two cases to consider. If $\beta(c_i,r_i)<\beta(c_j,r_j)$, then network operator $i$ still has some room for maneuver, and should find it optimal to bid $b_i = c_j + \frac{1-w}{w}(r_j-r_i) - \epsilon$ where $\epsilon>0$ is very small; while network operator $j$ to bid $b_j=c_j$ (Figure~\ref{fig:complete_N_2_c3_1_direct}). If $\beta(c_i,r_i)\ge \beta(c_j,r_j)$, on the other hand, the roles are reversed, and network operator $j$ should find it optimal to bid $b_j = c_i + \frac{1-w}{w}(r_i-r_j) - \epsilon$ where $\epsilon>0$ is very small; while network operator $i$ to bid $b_i = c_i$ (Figure~\ref{fig:complete_N_2_c3_2_direct}).
+If $c_i > c_j$, there are two cases to consider. If $\beta(c_i,r_i)<\beta(c_j,r_j)$, then network operator $i$ still has some room for manoeuvre, and should find it optimal to bid $b_i = c_j + \frac{1-w}{w}(r_j-r_i) - \epsilon$ where $\epsilon>0$ is very small; while network operator $j$ to bid $b_j=c_j$ (Figure~\ref{fig:complete_N_2_c3_1_direct}). If $\beta(c_i,r_i)\ge \beta(c_j,r_j)$, on the other hand, the roles are reversed, and network operator $j$ should find it optimal to bid $b_j = c_i + \frac{1-w}{w}(r_i-r_j) - \epsilon$ where $\epsilon>0$ is very small; while network operator $i$ to bid $b_i = c_i$ (Figure~\ref{fig:complete_N_2_c3_2_direct}).
 
 Figure~\ref{fig:complete_N_2_2_direct} depicts the remaining 3 cases for which $r_i=r_j$. If $c_i < c_j$, network operator $i$'s optimal bidding strategy would be to bid $b_i = c_j - \epsilon$ where $\epsilon>0$ is very small; while network operator $j$ should bid $b_j = c_j$ (Figure~\ref{fig:complete_N_2_c4_direct}).
 

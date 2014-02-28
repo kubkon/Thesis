@@ -553,7 +553,7 @@ The pseudo-code for the PPM is shown in listing Algorithm~\ref{alg:polynomial_pr
 
 In each step of the algorithm, the nonlinear optimization problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimization technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this section were obtained using the GSL implementation of the Nelder-Mead\footnote{For a brief overview of the most basic implementation of the Nelder-Mead simplex method, see for example~\cite{KonkaNMSimplex2013}.} method~\cite{GSL}.
 
-Furthermore, in the implementation of the PPM, we made the same simplification as in the implementation of the foward shooting method; that is,
+Furthermore, in the implementation of the PPM, we made the same simplification as in the implementation of the forward shooting method; that is,
 \begin{equation*}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\text{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
 \end{equation*}
@@ -624,7 +624,7 @@ In the first examined scenario, there are 3 network operators characterized by r
   \label{fig:forward_shooting_3_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_3_sufficiency}
-  \caption{FSM solution satisfies the sufficiency condition for all~$\hat{b}$ except~$\hat{b}$'s in the close neighborhood of~$\bar{\hat{b}}$}
+  \caption{FSM solution satisfies the sufficiency condition for all~$\hat{b}$ except~$\hat{b}$'s in the close neighbourhood of~$\bar{\hat{b}}$}
   \label{fig:forward_shooting_3_sufficiency_indirect}
 \end{figure}
 
@@ -662,7 +662,7 @@ In the second examined scenario, there are 4 network operators characterized by 
   \label{fig:forward_shooting_4_indirect}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_4_sufficiency}
-  \caption{FSM solution satisfies the sufficiency condition for all~$\hat{b}$ except~$\hat{b}$'s in the close neighborhood of~$\bar{\hat{b}}$}
+  \caption{FSM solution satisfies the sufficiency condition for all~$\hat{b}$ except~$\hat{b}$'s in the close neighbourhood of~$\bar{\hat{b}}$}
   \label{fig:forward_shooting_4_sufficiency_indirect}
 \end{figure}
 
@@ -946,7 +946,7 @@ which is equivalent to Equation~\eqref{eq:standard_fpa_direct} evaluated at $n=2
 
 If, on the other hand, both network operators are characterized by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:equilibrium_restricted_indirect}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
 
-To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretized interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sec:probability_notation}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices_indirect} shows the result of the estimation for four pairs of reputation ratings: $(r_1, r_2) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
+To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretised interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sec:probability_notation}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices_indirect} shows the result of the estimation for four pairs of reputation ratings: $(r_1, r_2) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
 
 It can be observed that regardless of the values of the reputation ratings, the expected prices, $E[p](w,r_1,r_2)$, are bounded from below by $E[p^*]$ for each price weight; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Hence, it can be concluded that regardless of the values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
 
@@ -1011,7 +1011,7 @@ for all $x\in [(1-w)r_i, (1-w)r_i + w]$. Therefore, since $F_C$ is differentiabl
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}]
-To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf. C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
+To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf.~C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
 
 To prove uniqueness, without loss of generality, let network operator 1 be characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on; that is, let $r_1 \leq r_2 \leq\cdots \leq r_n$. This implies $\underline{\hat{c}}_1 \leq \underline{\hat{c}}_2 \leq\cdots \leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 \leq \bar{\hat{c}}_2 \leq \cdots\leq \bar{\hat{c}}_n$. Since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then at least one inequality is strict. We need to consider two cases: 1) $r_1 < r_2$, and 2) $r_1 = r_2$. When 1) holds, then $\bar{\hat{c}}_1 < \bar{\hat{c}}_2$, implying that the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds. Otherwise, if 2) holds, then the additional condition (iii) in Theorem~1 in Lebrun~\cite{Lebrun2006} is satisfied. Thus, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
 \end{proof}
