@@ -5,12 +5,12 @@
 \minitoc
 \vspace{10mm}
 
-This chapter explores whether an auction format represented by the DMP selling mechanism can be modeled as an asymmetric first-price sealed-bid auction (FPA) with common priors; that is, an auction in which bidders are characterized by different probability distributions sharing a common support. Ideally, if the DMP auction was shown to be a special case of some corresponding common priors auction, then the numerical solution methods presented in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and extensively studied by the economic community, could be employed. Conversely, if the DMP auction format cannot be shown to constitute a special case of the common priors auction, then, provided the expected profits for the bidders in both auction formats differ only slightly, the common priors auction could still effectively be used to approximate the solution to the DMP auction.
+This chapter explores whether an auction format represented by the DMP selling mechanism can be modeled as an asymmetric first-price sealed-bid auction (FPA) with common priors; that is, an auction in which bidders are characterised by different probability distributions sharing a common support. Ideally, if the DMP auction was shown to be a special case of some corresponding common priors auction, then the numerical solution methods presented in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and extensively studied by the economic community, could be employed. Conversely, if the DMP auction format cannot be shown to constitute a special case of the common priors auction, then, provided the expected profits for the bidders in both auction formats differ only slightly, the common priors auction could still effectively be used to approximate the solution to the DMP auction.
 
 \section{Mathematical Description} % (fold)
 \label{sec:mathematical_description_approximation}
 
-Following the notation of Chapter~\ref{cha:indirect}, let each bidder $i$ be characterized by the utility function
+Following the notation of Chapter~\ref{cha:indirect}, let each bidder $i$ be characterised by the utility function
 \begin{equation}
   \label{eq:utility_approximation}
     u_i(b,c) = \left\{
@@ -133,7 +133,7 @@ Similarly to the implementation of the FSM algorithm for the DMP auction, the ap
 \subsection{Verification} % (fold)
 \label{sub:verification}
 
-Before proceeding with the modelling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterized by a truncated normal distribution but with different mean and standard deviation parameters (Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common range of costs, $c_i\in [2,8]$.
+Before proceeding with the modelling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterised by a truncated normal distribution but with different mean and standard deviation parameters (Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common range of costs, $c_i\in [2,8]$.
 
 \begin{table}[t]
   \caption{Test bidding scenario}
@@ -168,7 +168,7 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 
 \section{Network Selection Mechanism Cast into Common Priors Setting} % (fold)
 \label{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}
-In this section, we discuss the results of approximating the DMP auction with a common priors (CP) auction. To this end, we firstly model the DMP auction as a CP auction where bidders are characterized by costs distributed according to a truncated normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n\geq 2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
+In this section, we discuss the results of approximating the DMP auction with a common priors (CP) auction. To this end, we firstly model the DMP auction as a CP auction where bidders are characterised by costs distributed according to a truncated normal distribution. Then, the methodology used to quantify the accuracy of approximations is outlined. Lastly, the results of approximation for different bidding scenarios ($n\geq 2$ bidders, varying price weight, $w$, and reputations, $r_i$ for all $i\in N$, etc.) are presented and discussed.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/dmp_to_common_priors}
@@ -182,19 +182,19 @@ Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$
 \begin{equation*}
   [(1-w)r_i, (1-w)r_i + w] = [\underline{c}_i, \bar{c}_i] \subset [0,1]
 \end{equation*}
-Therefore, in the general case, unless the bidders are characterized by the same reputation rating, that is $r_i=r_j$ for all $i,j\in N$, their distributions' supports will not overlap fully; i.e.,
+Therefore, in the general case, unless the bidders are characterised by the same reputation rating, that is $r_i=r_j$ for all $i,j\in N$, their distributions' supports will not overlap fully; i.e.,
 \begin{equation*}
   [\underline{c}_i,\bar{c}_i] \neq [\underline{c}_j,\bar{c}_j], \quad i\neq j \text{ and } i,j\in N.
 \end{equation*}
 
-Recall further that, in a CP auction, every bidder is characterized by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support\footnote{To see this, recall that, for any given $w\in (0,1)$, assuming $r_1\leq\cdots\leq r_n$ with at least one inequality strict, it follows $\underline{c}_1\leq\cdots\leq\underline{c}_n$ and $\bar{c}_1\leq\cdots\leq\bar{c}_n$ with at least one inequality strict. If we further let $C_i = [\underline{c}_i, \bar{c}_i]$ then $C = \bigcup_{i\in N} C_i$ is the smallest set containing all sets $C_i$ for all $i\in N$. Since $C_i$ is closed for all $i\in N$, it follows that $C$ is closed, and $C = [\underline{c}, \bar{c}]$ such that $\underline{c} \leq \underline{c}_i$ and $\bar{c}_i\leq \bar{c}$ for all $i\in N$, which is equivalent to $[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}]$.} is
+Recall further that, in a CP auction, every bidder is characterised by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support\footnote{To see this, recall that, for any given $w\in (0,1)$, assuming $r_1\leq\cdots\leq r_n$ with at least one inequality strict, it follows $\underline{c}_1\leq\cdots\leq\underline{c}_n$ and $\bar{c}_1\leq\cdots\leq\bar{c}_n$ with at least one inequality strict. If we further let $C_i = [\underline{c}_i, \bar{c}_i]$ then $C = \bigcup_{i\in N} C_i$ is the smallest set containing all sets $C_i$ for all $i\in N$. Since $C_i$ is closed for all $i\in N$, it follows that $C$ is closed, and $C = [\underline{c}, \bar{c}]$ such that $\underline{c} \leq \underline{c}_i$ and $\bar{c}_i\leq \bar{c}$ for all $i\in N$, which is equivalent to $[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}]$.} is
 \begin{equation}
   \label{eq:domain_common_priors_approximation}
   \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subset [0,1].
 \end{equation}
 All that remains is to then select a family of distributions which captures the numerical ranges of the original supports as closely as possible.
 
-To provide an illustrative example, let there be 2 bidders such that $\underline{c}_1 < \underline{c}_2 < \bar{c}_1 < \bar{c}_2$. Each bidder is characterized by a uniform distribution, $\mathcal{U}_i$. One possible way of casting this scenario into common priors setting is to model the distributions of both bidders as truncated normal distributions, $\mathcal{N}_i$, truncated to the interval $[\underline{c}_1, \bar{c}_2]$, and with differing mean and standard deviation parameters. This is depicted in Figure~\ref{fig:dmp_to_common_priors_approximation}.
+To provide an illustrative example, let there be 2 bidders such that $\underline{c}_1 < \underline{c}_2 < \bar{c}_1 < \bar{c}_2$. Each bidder is characterised by a uniform distribution, $\mathcal{U}_i$. One possible way of casting this scenario into common priors setting is to model the distributions of both bidders as truncated normal distributions, $\mathcal{N}_i$, truncated to the interval $[\underline{c}_1, \bar{c}_2]$, and with differing mean and standard deviation parameters. This is depicted in Figure~\ref{fig:dmp_to_common_priors_approximation}.
 
 In order to describe the truncated normal distribution, firstly recall the probability density function (pdf) of standard normal distribution
 \begin{equation}
@@ -218,7 +218,7 @@ where $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\si
   = \frac{\Phi\left(\frac{x-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}{\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}.
 \end{equation}
 
-Before moving on to discussing the methodology for quantifying the accuracy of the approximations, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common priors setting where bidders are characterized by truncated normal distributions. Firstly, we note that the supports for both bidders are
+Before moving on to discussing the methodology for quantifying the accuracy of the approximations, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common priors setting where bidders are characterised by truncated normal distributions. Firstly, we note that the supports for both bidders are
 \begin{equation*}
   [\underline{c}_1, \bar{c}_1] = [0.125, 0.625]
 \end{equation*}
@@ -324,7 +324,7 @@ This section presents the results of approximating the DMP auction with CP aucti
 
 \subsubsection{$n=2$ Bidders} % (fold)
 \label{ssub:n_2_bidders_approximation}
-We consider 4 bidding scenarios where bidder 2 is always characterized by fixed reputation rating of $r_2=0.75$, while bidder 1's reputation rating assumes values $r_1\in\{0.15, 0.25, 0.5, 0.7\}$. Figure~\ref{fig:compare_2_bidders_approximation} depicts the results of the approximations.
+We consider 4 bidding scenarios where bidder 2 is always characterised by fixed reputation rating of $r_2=0.75$, while bidder 1's reputation rating assumes values $r_1\in\{0.15, 0.25, 0.5, 0.7\}$. Figure~\ref{fig:compare_2_bidders_approximation} depicts the results of the approximations.
 
 \begin{figure}[p!]
   \vspace{0.5cm}
@@ -353,7 +353,7 @@ We consider 4 bidding scenarios where bidder 2 is always characterized by fixed 
   \label{fig:compare_2_bidders_approximation}
 \end{figure}
 
-In all cases, the percentage relative error is below $10\%$ for bidder 1, and below $25\%$ for bidder 2. Furthermore, for $r_1=0.7$ and $r_2=0.75$, the percentage relative error is below $8\%$ for both bidders. In fact, as the difference between $r_1$ and $r_2$ decreases, the shape of the percentage relative error curves, as a function of price weight, flattens out. The most likely explanation for this is the fact that as the difference between the reputation ratings decreases, the overlap between the supports for both bidders, $[\underline{c}_1, \bar{c}_1]$ and $[\underline{c}_2, \bar{c}_2]$, increases; thus, approaching the common priors setting closer and closer, to eventually reach a symmetric first-price sealed-bid auction for equal reputation ratings (cf.~Corollary~\ref{cor:special_case_r_i_r_j_direct}, Section~\ref{sub:special_case_r_i_r_j_direct}, Chapter~\ref{cha:direct}).
+In all cases, the percentage relative error is below $10\%$ for bidder 1, and below $25\%$ for bidder 2. Furthermore, for $r_1=0.7$ and $r_2=0.75$, the percentage relative error is below $8\%$ for both bidders. In fact, as the difference between $r_1$ and $r_2$ decreases, the shape of the percentage relative error curves, as a function of price weight, flattens out. The most likely explanation for this is the fact that as the difference between the reputation ratings decreases, the overlap between the supports for both bidders, $[\underline{c}_1, \bar{c}_1]$ and $[\underline{c}_2, \bar{c}_2]$, increases; thus, approaching the common priors setting closer and closer, to eventually reach a symmetric first-price sealed-bid auction for equal reputation ratings (cf.~Corollary~\ref{cor:special_case_r_i_r_j_direct}, Section~\ref{sub:special_case_r_i_r_j_direct}).
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders_070_075_outlier}
@@ -361,50 +361,54 @@ In all cases, the percentage relative error is below $10\%$ for bidder 1, and be
   \label{fig:compare_2_bidders_070_075_outlier_approximation}
 \end{figure}
 
-It is worth noting that, in Figure~\ref{fig:compare_2_bidders_070_075_approximation}, there is an outlier at $w\approx 0.5125$ for bidder 1---their percentage relative error jumps from $6\%$ to almost $22\%$ to fall back again to $6\%$. This is due to the fact that the DMP version of the FSM method becomes numerically unstable near the upper bound on bids. This is a direct consequence of the problem not satisfying the Lipschitz condition of continuity (cf.~FIX:ME) for bid values approaching the upper bound on bids. As a result, the K-S statistic is incorrectly computed. Figure~\ref{fig:compare_2_bidders_070_075_outlier_approximation} depicts the expected utilities for bidder 1 in both DMP and CP auctions, and the associated, incorrectly computed, K-S statistic. Note that there is a considerable spike in the expected utility for the DMP bidder near the upper extremity of their support which is directly responsible for the outlier in Figure~\ref{fig:compare_2_bidders_070_075_approximation}.
+It is worth noting that, in Figure~\ref{fig:compare_2_bidders_070_075_approximation}, there is an outlier at $w\approx 0.5125$ for bidder 1---their percentage relative error jumps from $6\%$ to almost $22\%$ to fall back again to $6\%$. This is due to the fact that the DMP version of the FSM method becomes numerically unstable near the upper bound on bids. This is a direct consequence of the problem not satisfying the Lipschitz condition for continuity (cf.~Section~\ref{sec:numerical_analysis_indirect}) for bid values approaching the upper bound on bids. As a result, the K-S statistic is incorrectly computed. Figure~\ref{fig:compare_2_bidders_070_075_outlier_approximation} depicts the expected utilities for bidder 1 in both DMP and CP auctions, and the associated, incorrectly computed, K-S statistic. Note that there is a considerable spike in the expected utility for the DMP bidder near the upper extremity of their support which is directly responsible for the outlier in Figure~\ref{fig:compare_2_bidders_070_075_approximation}.
 
 All things considered, in the 2 bidders' case, approximating DMP auction with the CP auction does not yield small enough percentage relative error to consider it a viable alternative to solving the original, DMP auction. In fact, as presented next, the results are even less promising for 3 bidders.
 % subsection n_2_bidders_approximation (end)
 
 \subsubsection{$n=3$ Bidders} % (fold)
 \label{ssub:n_3_bidders_approximation}
+We consider 3 bidding scenarios where bidder 3 is always characterised by fixed reputation rating of $r_3=0.75$, while we vary reputation ratings of bidders 1 and 2: $r_1=0.25$ and $r_2=0.5$ (Figure~\ref{fig:compare_3_bidders_025_050_075_approximation}); $r_1=0.25$ and $r_2=0.7$ (Figure~\ref{fig:compare_3_bidders_025_070_075_approximation}); and $r_1=0.65$ and $r_2=0.75$ (Figure~\ref{fig:compare_3_bidders_065_070_075_approximation}). In what follows, the numerically derived equilibrium bidding strategies to the DMP auction are generated by both FSM and PPM methods.
 
 \begin{figure}[p!]
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_050_075}
+    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_050_075}
     \caption{FIX:ME $r_1=0.25$, $r_2=0.5$, and $r_3=0.75$ FSM}
     \label{fig:compare_3_bidders_025_050_075_fsm_approximation}
   \end{subfigure}
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_050_075_ppm}
+    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_050_075_ppm}
     \caption{FIX:ME $r_1=0.25$, $r_2=0.5$, and $r_3=0.75$ PPM}
     \label{fig:compare_3_bidders_025_050_075_ppm_approximation}
   \end{subfigure}
   \caption{FIX:ME}
   \label{fig:compare_3_bidders_025_050_075_approximation}
+\end{figure}
 
+\begin{figure}[p!]
   \setcounter{subfigure}{0}
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_070_075}
+    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_070_075}
     \caption{FIX:ME $r_1=0.25$, $r_2=0.7$, and $r_3=0.75$ FSM}
     \label{fig:compare_3_bidders_025_070_075_fsm_approximation}
   \end{subfigure}
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_025_070_075_ppm}
+    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_070_075_ppm}
     \caption{FIX:ME $r_1=0.25$, $r_2=0.7$, and $r_3=0.75$ PPM}
     \label{fig:compare_3_bidders_025_070_075_ppm_approximation}
   \end{subfigure}
   \caption{FIX:ME}
   \label{fig:compare_3_bidders_025_070_075_approximation}
+\end{figure}
 
-  \setcounter{subfigure}{0}
+\begin{figure}[p!]
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_065_070_075}
+    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_065_070_075}
     \caption{FIX:ME $r_1=0.65$, $r_2=0.7$, and $r_3=0.75$ FSM}
     \label{fig:compare_3_bidders_065_070_075_fsm_approximation}
   \end{subfigure}
   \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=2.8in]{Approximation/Figures/compare_3_bidders_065_070_075_ppm}
+    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_065_070_075_ppm}
     \caption{FIX:ME $r_1=0.65$, $r_2=0.7$, and $r_3=0.75$ PPM}
     \label{fig:compare_3_bidders_065_070_075_ppm_approximation}
   \end{subfigure}
@@ -412,6 +416,7 @@ All things considered, in the 2 bidders' case, approximating DMP auction with th
   \label{fig:compare_3_bidders_065_070_075_approximation}
 \end{figure}
 
+Firstly, it should be noted that, for the first two bidding scenarios, the FSM method generates noisy output (Figures~\ref{fig:compare_3_bidders_025_050_075_fsm_approximation} and~\ref{fig:compare_3_bidders_025_070_075_fsm_approximation}). This is in contrast to very clean output generated by the PPM method (Figures~\ref{fig:compare_3_bidders_025_050_075_ppm_approximation} and~\ref{fig:compare_3_bidders_025_070_075_ppm_approximation}). The most likely explanation is that, as discussed in Section~\ref{sub:approximation_results_indirect}, the FSM is inherently susceptible to the fact that the system of nonlinear ODEs does not satisfy the Lipschitz condition for continuity (which is especially true for $n>2$ bidders), and hence, the algorithm might not fully converge to the true solution of the system.
 % subsection n_3_bidders_approximation (end)
 % subsection results (end)
 % section network_selection_mechanism_cast_into_common_priors_setting (end)
