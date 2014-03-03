@@ -7,7 +7,7 @@
 
 \section{Problem Definition and Assumptions} % (fold)
 \label{sec:problem_definition_and_assumptions_direct}
-The formal description of the network selection mechanism employed in the DMP is as follows. The model is a modified version of procurement first-price sealed-bid auction (henceforth, we shall refer to procurement first-price sealed-bid auction as FPA). Thus, formally, it represents a Bayesian game of incomplete information, $\Gamma^B$. There are $n$ network operators who bid for the right to sell their product to the subscriber such that $n = |N|$ where $N$ denotes the set of all network operators.
+The formal description of the network selection mechanism employed in the Digital Marketplace (DMP) is as follows. The model is a modified version of procurement first-price sealed-bid auction (henceforth, we shall refer to procurement first-price sealed-bid auction as FPA). Thus, formally, it represents a Bayesian game of incomplete information, $\Gamma^B$. There are $n$ network operators who bid for the right to sell their product to the subscriber such that $n = |N|$ where $N$ denotes the set of all network operators.
 
 Let $\beta : \mathbb{R}_+\times [0,1] \to \mathbb{R}_+$, defined by
 \begin{equation}
@@ -50,7 +50,7 @@ where $v\in (0,1]$ is the subscriber's valuation, and it is private knowledge~\c
 	
 Following the standard assumptions from the auction literature~\cite{Krishna10}, the set of network operators, $N$, is finite and the network operators are risk neutral; that is, they seek to maximize their expected profits. Furthermore, the subscriber is risk neutral and does not have any budget constraints; that is, the subscriber is prepared to accept any offer from the network operators.
 
-The costs $c_i$ for each network operator $i$ are private knowledge. Thus, they are particular realizations of the r.v.s $C_i$ for each $i$. Furthermore, it is assumed that each $C_i$ is i.i.d. over the interval $[0,1]$ according to some continuous (and atomless) probability distribution which admits a distribution function $F_{C}$ and an associated density function $f_{C}$ such that $f_C$ is locally bounded away from zero over the interval $[0,1]$. In order to keep the specification fairly generic, we do not explicitly decompose the costs into the underlying components such as interconnection charges, infrastructure fixed costs, etc. We refer the Reader to~\cite{Njoroge2009,LeCadre2009,HauBrenner2009} for an in-depth coverage of the problem. Furthermore, we recognize that various network operators will have different architecture, topology, infrastructure, etc., and that this impacts cost to support the service. In order to capture the variation in costs, we employ an i.i.d.~random variable to assign a cost to a particular network operator at the time of the service request. This further aids generality of the results presented in this research.
+The costs $c_i$ for each network operator $i$ are private knowledge. Thus, they are particular realizations of the random variables (r.v.s) $C_i$ for each $i$. Furthermore, it is assumed that each $C_i$ is identically and idenpendently distributed (i.i.d.) over the interval $[0,1]$ according to some continuous (and atomless) probability distribution which admits a distribution function $F_{C}$ and an associated density function $f_{C}$ such that $f_C$ is locally bounded away from zero over the interval $[0,1]$. In order to keep the specification fairly generic, we do not explicitly decompose the costs into the underlying components such as interconnection charges, infrastructure fixed costs, etc. We refer the Reader to~\cite{Njoroge2009,LeCadre2009,HauBrenner2009} for an in-depth coverage of the problem. Furthermore, we recognize that various network operators will have different architecture, topology, infrastructure, etc., and that this impacts cost to support the service. In order to capture the variation in costs, we employ an i.i.d.~random variable to assign a cost to a particular network operator at the time of the service request. This further aids generality of the results presented in this research.
 
 The reputation ratings $r_i$ for each network operator $i$ are common knowledge. It is assumed that each $r_i\in [0,1]$ such that the higher the reputation, the lower the rating $r_i$. In earlier work \cite{DMKonkaUbi11}, it was assumed that ratings are private knowledge. However, after analysis, it was concluded that this would contradict its purpose. The reputation of each network operator, in order to be meaningful, must be freely available to everyone, including the competitors of the network operators. For example, in the Amazon.com Marketplace, the buyers have the right to rate the seller they buy from on a scale from one to five (with five being the best), and these ratings are publicly available~\cite{AMAZON}. Similarly, on eBay, the buyers can leave sellers feedback (negative, neutral, or positive) which over time is viewed as reputation, and is also publicly available~\cite{EBAY}.
 	
@@ -290,7 +290,7 @@ The analysis is conducted in two steps. Firstly, it is assumed that information 
 
 \subsection{Complete Information} % (fold)
 \label{sub:complete_information_n_2_direct}
-Here, we assume that information is complete; i.e., that each network operator knows their own and their opponent's cost and reputation. In total, there are 7 different bidding scenarios to consider.
+Here, we assume that information is complete; i.e., that each network operator knows their own and their opponent's cost and reputation rating. In total, there are 7 different bidding scenarios to consider.
 
 \begin{figure}[p!]
 	\vspace{0.5cm}
@@ -367,7 +367,7 @@ Hence, when dealing with incomplete information, we will exploit these results b
 
 \subsection{Incomplete Information} % (fold)
 \label{sub:incomplete_information_n_2_direct}
-Here, we assume the standard case; that is, that reputation values for both network operators are known at the time of bidding; however, their costs are private knowledge. Suppose that the network operators use a strategy function $b_i: [0,1]\to\mathbb{R}$ defined by the rule
+Here, we assume the standard case; that is, that reputation rating values for both network operators are known at the time of bidding; however, their costs are private knowledge. Suppose that the network operators use a strategy function $b_i: [0,1]\to\mathbb{R}$ defined by the rule
 \begin{equation}
 	\label{eq:pcomp_bidding_str_direct}
 	b_i(c_i) = m_i + n_i c_i,\quad\text{for all } m_i\in\mathbb{R},n_i>0,
@@ -668,6 +668,10 @@ Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from 
 
 \section{Summary} % (fold)
 \label{sec:summary_direct}
+In this chapter, we have formally defined a game-theoretical model for the DMP auction. It was further shown that for the price weight of $w=1$, and equal reputation ratings for all bidders, $r_i=r_j$ for all $i\neq j$, the DMP auction reduces to the standard, symmetric FPA (Proposition~\ref{prop:special_case_w_1_direct} and Corollary~\ref{cor:special_case_r_i_r_j_direct}). Thus, standard results from the auction literature apply.
+
+For the price weight of $w=0$, however, it was shown that the network operators will engage in abnormally high bidding (Proposition~\ref{prop:special_case_w_0_direct}). Hence, charging the buyer the maximum they are prepared to pay for the service.
+
 
 % section summary_direct (end)
 

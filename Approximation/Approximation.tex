@@ -154,11 +154,11 @@ Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numeri
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/fsm_common_priors_verification}
-  \caption{FIX:ME FSM Common Priors verification}
+  \caption{FSM solution to the test common priors bidding problem}
   \label{fig:fsm_common_priors_verification_approximation}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Approximation/Figures/fsm_common_priors_verification_sufficiency}
-  \caption{FIX:ME FSM Common Priors verification}
+  \caption{FSM solution satisfies sufficiency condition for an equilibrium}
   \label{fig:fsm_common_priors_verification_sufficiency_approximation}
 \end{figure}
 
@@ -172,7 +172,7 @@ In this section, we discuss the results of approximating the DMP auction with a 
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/dmp_to_common_priors}
-  \caption{FIX:ME DMP auction cast to CP auction}
+  \caption{Mapping probability distributions from the DMP auction into truncated normal distributions with common support}
   \label{fig:dmp_to_common_priors_approximation}
 \end{figure}
 
@@ -190,7 +190,7 @@ Therefore, in the general case, unless the bidders are characterised by the same
 Recall further that, in a CP auction, every bidder is characterised by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support\footnote{To see this, recall that, for any given $w\in (0,1)$, assuming $r_1\leq\cdots\leq r_n$ with at least one inequality strict, it follows $\underline{c}_1\leq\cdots\leq\underline{c}_n$ and $\bar{c}_1\leq\cdots\leq\bar{c}_n$ with at least one inequality strict. If we further let $C_i = [\underline{c}_i, \bar{c}_i]$ then $C = \bigcup_{i\in N} C_i$ is the smallest set containing all sets $C_i$ for all $i\in N$. Since $C_i$ is closed for all $i\in N$, it follows that $C$ is closed, and $C = [\underline{c}, \bar{c}]$ such that $\underline{c} \leq \underline{c}_i$ and $\bar{c}_i\leq \bar{c}$ for all $i\in N$, which is equivalent to $[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}]$.} is
 \begin{equation}
   \label{eq:domain_common_priors_approximation}
-  \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subset [0,1].
+  [a,b] = \displaystyle\left[\min_{i\in N}\{\underline{c}_i\}, \max_{i\in N}\{\bar{c}_i\}\right] \subset [0,1].
 \end{equation}
 All that remains is to then select a family of distributions which captures the numerical ranges of the original supports as closely as possible.
 
@@ -228,12 +228,12 @@ for bidder 1, and
 \end{equation*}
 for bidder 2, while the common support is given by
 \begin{equation*}
-  [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
+  [a,b] = [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
 \end{equation*}
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Approximation/Figures/modelling_params}
-  \caption{FIX:ME}
+  \caption{Choosing parameters for the truncated normal distributions of the bidders}
   \label{fig:modelling_params_approximation}
 \end{figure}
 
@@ -245,10 +245,10 @@ and let the standard deviations be equal to the quarter of the length of the ori
 \begin{equation*}
   \sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
 \end{equation*}
-The choice of the parameters is motivated by the shape of the normal distribution~\cite{JohnsonNormal1994}, and the fact that, with this choice of parameters, the probability of at least $0.95$ of drawing cost from the interval $[\underline{c}_i, \bar{c}_i]$ (which corresponds to the interval $[\mu_i - 2\sigma_i, \mu_i + 2\sigma_i]$) is achieved; and therefore, minimising the probability of drawing cost from outside the interval $[\underline{c}_i, \bar{c}_i]$, and effectively imitating uniform distribution with support $[\underline{c}_i, \bar{c}_i]$. This is depicted in Figure~\ref{fig:modelling_params_approximation} as a shaded region under the bell curve.
+The choice of the parameters is motivated by the shape of the normal distribution, and the fact that, with this choice of parameters, the probability of at least $0.95$ of drawing cost from the interval $[\underline{c}_i, \bar{c}_i]$ (which corresponds to the interval $[\mu_i - 2\sigma_i, \mu_i + 2\sigma_i]$) is achieved~\cite{JohnsonNormal1994}; and therefore, minimising the probability of drawing cost from outside the interval $[\underline{c}_i, \bar{c}_i]$, and effectively imitating uniform distribution with support $[\underline{c}_i, \bar{c}_i]$. This is depicted in Figure~\ref{fig:modelling_params_approximation} as a shaded region under the bell curve.
 
 \begin{table}[b]
-  \caption{FIX:ME}
+  \caption{Numerical values of the chosen truncated normal distribution parameters}
   \vspace{0.5cm}
   \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c}
     \hlx{vhv}
@@ -263,15 +263,15 @@ The choice of the parameters is motivated by the shape of the normal distributio
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_pdfs}
-  \caption{FIX:ME}
+  \caption{Pdfs of the truncated normal distributions from the CP bidding problem characterised by: $a=0.125$, $b=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
   \label{fig:test_truncated_normal_pdfs_approximation}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
-  \caption{FIX:ME}
+  \caption{FSM solution to the CP bidding problem characterised by: $a=0.125$, $b=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
   \label{fig:test_truncated_normal_bids_approximation}
 \end{figure}
 
-Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders.. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centred around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
+Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centred around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
 % subsection modelling (end)
 
 \begin{figure}[p!]
