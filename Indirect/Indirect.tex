@@ -209,7 +209,7 @@ The intuition behind the upper boundary condition in Equation~\eqref{eq:foc_ode_
 
 Since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost, and we immediately deduce the following corollary.
 \begin{corollary}
-\label{cor:characterization_of_the_equilibrium}
+\label{cor:characterization_of_the_equilibrium_indirect}
 Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs.
 \end{corollary}
 
@@ -228,7 +228,7 @@ It is possible to explicitly derive the equilibrium bidding strategy functions i
     0 & \;\text{if } \hat{b}_i > \hat{b}_j.
   \end{array}\right.
 \end{equation*}
-Since the distribution of costs, $c_i$, for each network operator $i$ is uniform with support $[0,1]$, the distribution of costs-hat, $\hat{c}_i$, for each network operator $i$ is uniform with support~${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]} = {[(1-w)r_i, (1-w)r_i + w]}$. Therefore, the distribution function of costs-hat satisfies the regularity conditions specified in Proposition~\ref{prop:regularity_conditions_indirect}, and by Corollary~\ref{cor:characterization_of_the_equilibrium}, we conclude that the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs exists and is unique.
+Since the distribution of costs, $c_i$, for each network operator $i$ is uniform with support $[0,1]$, the distribution of costs-hat, $\hat{c}_i$, for each network operator $i$ is uniform with support~${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]} = {[(1-w)r_i, (1-w)r_i + w]}$. Therefore, the distribution function of costs-hat satisfies the regularity conditions specified in Proposition~\ref{prop:regularity_conditions_indirect}, and by Corollary~\ref{cor:characterization_of_the_equilibrium_indirect}, we conclude that the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs exists and is unique.
 
 The derivation of the equilibrium involves three stages: 1) deriving equilibrium inverse bidding strategy functions using the procedure described by Kaplan and Zamir~\cite{KaplanZamir2007}; 2) numerically estimating the equilibrium bidding strategy functions by inverting the inverses; and 3) transforming the problem back to the original domain (from costs-hat and bids-hat back to costs and bids).
 
@@ -987,6 +987,11 @@ The cost functions defined this way should potentially yield more accurate as we
 
 \section{Summary}
 \label{sec:summary_indirect}
+In this chapter, the bidding problem with symmetric cost distributions, as presented in Chapter~\ref{cha:direct}, was transformed into a bidding problem with asymmetric cost distributions. Following the transformation, we formally characterised the equilibrium bidding strategies for the generic case of $n$ network operators; that is, it was shown that the pure strategy Bayesian Nash equilibrium exists and is unique (Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} and Corollary~\ref{cor:characterization_of_the_equilibrium_indirect}).
+
+When restricted to $n=2$ network operators, the equilibrium bidding strategies were analytically derived. Furthermore, for the case of $n\geq 2$ network operators, we proposed four numerical algorithms for approximating the equilibrium bidding strategies: FSM (Algorithm~\ref{alg:forward_shooting_method_indirect}, PPM (Algorithm~\ref{alg:polynomial_projection_method_indirect}), EFSM (Algorithm~\ref{alg:extended_forward_shooting_method_indirect}), and CMA (Section~\ref{sub:combined_methods_approach_indirect}). The algorithms were verified for correct implementation, and, for each approximated scenario, the derived equilibrium bidding strategies were tested for sufficiency condition for a pure strategy Bayesian Nash equilibrium.
+
+Finally, the results of the formal analyses presented in both Chapters~\ref{cha:direct} and~\ref{cha:indirect} were compared. Moreover, the expected prices for the buyer in the restricted case $n=2$ were characterised, and possible improvements to the numerical algorithm were proposed.
 
 \section{Proofs}
 \label{sec:proofs_indirect}
