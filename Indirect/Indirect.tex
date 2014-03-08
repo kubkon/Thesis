@@ -58,7 +58,7 @@ for all $i\in N$. In fact, we note that the pure-strategy Bayesian Nash equilibr
 \label{prop:equivalence_of_utilities_indirect}
 Suppose $(\hat{b}_1^*, \ldots, \hat{b}_n^*)$ is a pure-strategy Bayesian Nash equilibrium profile for an auction with the utility function
 \begin{equation*}
-  \hat{u}_i(\hat{b},\hat{c}) = \left\{
+  \hat{u}_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \left\{
   \begin{array}{l l}
     \displaystyle\left(\hat{b}_i-\hat{c}_i\right) & \;\textrm{if}\quad\hat{b}_i < \displaystyle\min_{j\neq i}\hat{b}_j,\\[2ex]
     0 & \;\textrm{if}\quad\hat{b}_i > \displaystyle\min_{j\neq i}\hat{b}_j.
@@ -66,7 +66,7 @@ Suppose $(\hat{b}_1^*, \ldots, \hat{b}_n^*)$ is a pure-strategy Bayesian Nash eq
 \end{equation*}
 Then, the same profile constitutes an equilibrium for an auction with the utility fuction
 \begin{equation*}
-  u_i(\hat{b}_i, \hat{c}_i) = \frac{1}{w}\cdot \hat{u}_i(\hat{b},\hat{c}).
+  u_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \frac{1}{w}\cdot \hat{u}_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}).
 \end{equation*}
 \end{proposition}
 \noindent The formal proof of Proposition~\ref{prop:equivalence_of_utilities_indirect} as well as any other proposition (unless stated otherwise) included in this chapter is given in Section~\ref{sec:proofs_indirect}.
@@ -1021,17 +1021,17 @@ Finally, the results of the formal analyses presented in both Chapters~\ref{cha:
 \begin{proof}[Proof of Proposition~\ref{prop:equivalence_of_utilities_indirect}]
 Let
 \begin{equation*}
-  \displaystyle\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \hat{u}_i(\hat{b}, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\}
+  \displaystyle\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \hat{u}_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
 \end{equation*}
 and
 \begin{equation*}
-  \displaystyle\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = u_i(\hat{b}, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\}.
+  \displaystyle\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = u_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
 \end{equation*}
-$\hat\Pi_i$ and $\Pi_i$ are therefore expected value of the utility functions $\hat{u}_i$ and $u_i$ respectively. By definition of the pure-strategy Bayesian Nash equilibrium~\cite{Gibbons92}, for all $i$ and $\hat{c}_i$,
+be the expected utilities corresponding to utility functions $\hat{u}_i$ and $u_i$ respectively. By definition of the pure-strategy Bayesian Nash equilibrium~\cite{Gibbons92}, for all $i$ and $\hat{c}_i$,
 \begin{equation*}
   \hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
 \end{equation*}
-for all $\hat{b}_i$. Multiplying both sides of the inequality by $\frac{1}{w} > 0$ yields, for all $i$ and $\hat{c}_i$
+for all $\hat{b}_i$. Since $w\in(0,1)$, we may multiply both sides of the inequality by $\frac{1}{w} > 0$, which yields, for all $i$ and $\hat{c}_i$
 \begin{align*}
   &\frac{1}{w}\hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \frac{1}{w}\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i}) \\
   \iff &\frac{1}{w}\hat{u}_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq \frac{1}{w}\hat{u}_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\
