@@ -274,11 +274,11 @@ Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numeri
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_1}
-  \caption{Expected utility functions for bidder 1 for CP and DMP auctions, and the estimated K-S statistic}
+  \caption{Expected utility functions for bidder 1 for CP and DMP auctions}
   \label{fig:test_compare_bidder_1_approximation}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_2}
-  \caption{Expected utility functions for bidder 2 for CP and DMP auctions, and the estimated K-S statistic}
+  \caption{Expected utility functions for bidder 2 for CP and DMP auctions}
   \label{fig:test_compare_bidder_2_approximation}
 \end{figure}
 
@@ -306,6 +306,21 @@ for all $i\in N$ where $b_i$ is the equilibrium bidding function. The ex-ante ex
 for all $i\in N$ where $F_i$ is distribution function of costs for bidder $i$. In other words, the ex-ante expected utility can be thought of as the average expected utility for each bidder for each considered bidding scenario, and it follows from the definition of ex-ante expected payments in a standard first-price auction put forward by Krishna~\cite{Krishna10} (cf.~Section 2.4 Revenue Comparison in~\cite{Krishna10}).
 
 Before presenting the results of approximations, consider the numerical example from the previous section. Figure~\ref{fig:test_compare_bidder_1_approximation} depicts the expected utility function for bidder 1 for both auctions, and similarly, Figure~\ref{fig:test_compare_bidder_2_approximation} for bidder 2. The K-S statistic for bidder 1 is equal to, $D_1=0.018272$, while bidder 2, $D_2=0.014327$. It is worth noting that the domains for the expected utility functions of each bidder in both auctions are equal. Furthermore, due to the nature of the FSM method, the generated solutions are described in terms of a discrete set points, and therefore, in the implementation of the described methodology, the generated set of expected utilities is interpolated before the K-S statistics are evaluated (see Appendix~\ref{cha:numerical_software} for more details on the implementation of the described methodology).
+
+\begin{table}[t]
+  \caption{FIX:ME}
+  \vspace{0.5cm}
+  \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c c}
+    \hlx{vhv}
+    & \textbf{Expected}   & \multicolumn{2}{c}{\textbf{Ex-ante expected utility}, $\Pi_i$}\\
+    & \textbf{price}, $p$ & \textbf{Bidder 1} & \textbf{Bidder 2}\\
+    \hlx{vhv}
+    \textbf{DMP} & $0.580$ & $0.214$ & $0.014$\\
+    \textbf{CP} & $0.571$ & $0.203$ & $0.006$\\
+    \hlx{vhs}
+  \end{tabular*}
+  \label{tab:test_results_approximation}
+\end{table}
 
 It is difficult to judge by the value of the K-S statistic how erroneous the approximation for each bidder is. For instance, in the numerical example discussed in the previous paragraph, even though the K-S statistics for each bidder are close in value, the statistic itself does not capture its value relative to the benchmark expected utility's range of values for the bidder; that is, the range of the expected utility for bidder 1 in the benchmark (DMP) auction extends from approximately $0.05$ to $0.38$ (cf.~Figure~\ref{fig:test_compare_bidder_1_approximation}), while for bidder 2 from $0$ to $0.07$ (cf.~Figure~\ref{fig:test_compare_bidder_2_approximation}). It is, therefore, clear that, even though the K-S statistics are close in value, the approximation error for bidder 1 is much smaller than for bidder 2. To account for this fact, we define the relative error of the approximation as
 \begin{equation}
