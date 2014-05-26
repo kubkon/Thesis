@@ -118,11 +118,12 @@ Assume that
 \end{assumptions}
 
 In equilibrium, the bids of each network operator equal $\hat{b}_i = \hat{b}_i(\hat{c}_i)$, where $\hat{b}_i$ is the equilibrium bidding function. Denote by $\hat{c}_i(\hat{b}_i)\equiv \hat{b}_i^{-1}(\hat{b}_i)$ an inverse equilibrium bidding function for each network operator $i\in N$. Therefore, the expected utility for each network operator $i\in N$ can be written as
-\begin{align*}
+\begin{align}
+  \label{eq:def_expected_utility_indirect}
   \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i})
-  &\equiv (\hat{b}_i - \hat{c}_i)P\{\textrm{winning}\mid\hat{b}_i\}\\
+  &\equiv (\hat{b}_i - \hat{c}_i)P\{\textrm{winning}\mid\hat{b}_i\}\\ \nonumber
   &= (\hat{b}_i - \hat{c}_i)Q_i(\hat{b}_i),
-\end{align*}
+\end{align}
 where
 \begin{equation*}
 Q_i(\hat{b}_i) = \prod_{j\neq i}\left( 1 - F_j(\hat{c}_j(\hat{b}_i)) \right)

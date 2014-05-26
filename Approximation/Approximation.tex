@@ -7,6 +7,10 @@
 
 This chapter explores whether an auction format represented by the DMP selling mechanism can be modelled as an asymmetric FPA with common priors; that is, an auction in which bidders are characterised by different probability distributions sharing common support. Ideally, if the DMP auction was shown to be a special case of some corresponding common priors auction, then the numerical solution methods presented in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and extensively studied by the economic community, could be employed. Conversely, if the DMP auction format cannot be shown to constitute a special case of the common priors auction, then, provided the expected profits for the bidders in both auction formats differ only slightly, the common priors auction could still effectively be used to approximate the solution to the DMP auction.
 
+This would allow network operators to consider a simpler bidding problem for which there are many well-defined numerical solutions. As a result, presented with a DMP auction, network operators could bid according to the equilibrium bidding strategies of the corresponding CP auction while approximately retaining the probability of winning if bidding according to the equilibrium bidding strategies of the DMP auction. Hence, avoiding the need to solve a more complex problem of deriving equilibrium bidding strategies in the DMP auction.
+
+This chapter is organised as follows. 
+
 \section{Mathematical Description} % (fold)
 \label{sec:mathematical_description_approximation}
 
@@ -272,16 +276,6 @@ The choice of the parameters is motivated by the shape of the normal distributio
 Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centred around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
 % subsection modelling (end)
 
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_1}
-  \caption{Expected utility functions for bidder 1 for CP and DMP auctions}
-  \label{fig:test_compare_bidder_1_approximation}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Approximation/Figures/test_compare_bidder_2}
-  \caption{Expected utility functions for bidder 2 for CP and DMP auctions}
-  \label{fig:test_compare_bidder_2_approximation}
-\end{figure}
-
 \subsection{Methodology for Quantifying Accuracy of the Approximations} % (fold)
 \label{sub:methodology_for_quantifying_accuracy_of_the_approximations_approximation}
 There are two fundamental questions that need to be addressed when it comes to quantifying accuracy of the approximations. First, how can we compare the predictions (in terms of the equilibrium bidding strategies) produced by both auction types, and second, how such a comparison can be quantified to allow for a programmatic treatment of the problem (thus, removing the possibility of human error when visually comparing the results). We shall consider two metrics: buyer's expected price, and ex-ante expected utility for each bidder. In this way, we obtain an indicator of how better off (or worse off) is the buyer and each of the bidders; that is, we consider all agents involved in the auction.
@@ -291,21 +285,19 @@ The buyer's expected price is equivalent to the expected value of the winning bi
   \label{eq:expected_price_approximation}
   p \equiv E[b_i(c_i) \:\vert\: b_i(c_i) < \min_{j\neq i} b_j(c_j)],
 \end{equation}
-where $b_i$ is the equilibrium bidding function for all $i\in N$. Since an analytical derivation of the closed-form solution is not straightforward, similarly to the analysis presented in Section~\ref{sub:subscriber_s_perspective_expected_prices_in_restricted_case_n_2_indirect}, we resort to numerical estimation of the buyer's expected price. That is, for each considered bidding scenario, the costs for each bidder are pseudo-randomly drawn from an appropriate distribution (uniform for DMP auction, and trunacted normal for CP auction), the corresponding equilibrium bids are computed, and the minimum is chosen as the winning bid (price). This procedure is repeated 10,000 times, yielding 10,000 i.i.d.~observations of the price which are then averaged to give an estimate of the expected price (consequence of the Strong Law of Large Numbers; Section~\ref{sec:probability}). It should be noted that FIX:ME
+where $b_i$ is the equilibrium bidding function for all $i\in N$. Since an analytical derivation of the closed-form solution is not straightforward, similarly to the analysis presented in Section~\ref{sub:subscriber_s_perspective_expected_prices_in_restricted_case_n_2_indirect}, we resort to numerical estimation of the buyer's expected price. That is, for each considered bidding scenario, the costs for each bidder are pseudo-randomly drawn from uniform distribution, the corresponding equilibrium bids are computed, and the minimum is chosen as the winning bid (price). This procedure is repeated 10,000 times, yielding 10,000 i.i.d.~observations of the price which are then averaged to give an estimate of the expected price (consequence of the Strong Law of Large Numbers; Section~\ref{sec:probability}).
 
-In order to define the bidder's ex-ante expected utility, we first define the bidder's expected utility as
+In order to define the bidder's ex-ante expected utility, we restate here, with some abuse of notation, the expected utility function for each bidder $i\in N$ as defined in Equation~\eqref{eq:def_expected_utility_indirect}, Chapter~\ref{cha:indirect}:
 \begin{equation}
   \label{eq:expected_utility_approximation}
-  \Pi_i(c_i) \equiv E[u_i(b,c)] = (b_i(c_i) - c_i)\cdot P\{b_i(c_i) < \min_{j\neq i} b_j(c_j)\}
+  \Pi_i(c_i) \equiv (b_i(c_i) - c_i)\cdot \prod_{j\neq i} \left( 1 - F_j(b_j^{-1}(b_i(c_i))) \right)
 \end{equation}
-for all $i\in N$ where $b_i$ is the equilibrium bidding function. The ex-ante expected utility is then equivalent to the expected value of the expected utility; that is,
+where $b_i$ is the equilibrium bidding function, and $F_i$ is the distribution function of costs for bidder $i$. The ex-ante expected utility is then equivalent to the expected value of the expected utility; that is,
 \begin{equation}
   \label{eq:ex_ante_expected_utility_approximation}
   \Pi_i \equiv E[\Pi_i(c_i)] = \int_{\underline{c}_i}^{\bar{c}_i} \Pi_i(t)dF_i(t)
 \end{equation}
-for all $i\in N$ where $F_i$ is distribution function of costs for bidder $i$. In other words, the ex-ante expected utility can be thought of as the average expected utility for each bidder for each considered bidding scenario, and it follows from the definition of ex-ante expected payments in a standard first-price auction put forward by Krishna~\cite{Krishna10} (cf.~Section 2.4 Revenue Comparison in~\cite{Krishna10}). It is important to notice that the domain of the expected utility function, $\Pi_i$, for the CP auction will always contain (be the superset) of the corresponding domain for the DMP auction (cf.~Equation~\eqref{eq:domain_common_priors_approximation}). Therefore, we constraint the FIX:ME
-
-Before presenting the results of approximations, consider the numerical example from the previous section. Table~\ref{tab:test_results_approximation} presents the resulting expected prices and ex-ante expected utilities for both bidders for both auctions, while Figure~\ref{fig:test_compare_bidder_1_approximation} depicts the expected utility function for bidder 1 for both auctions, and similarly, Figure~\ref{fig:test_compare_bidder_2_approximation} for bidder 2. It is worth noting that the domains for the expected utility functions of each bidder in both auctions are equal. Furthermore, due to the nature of the FSM method, the generated solutions are described in terms of a discrete set points, and therefore, in the implementation of the described methodology, the generated set of expected utilities is interpolated before the K-S statistics are evaluated (see Appendix~\ref{cha:numerical_software} for more details on the implementation of the described methodology).
+for all $i\in N$. In other words, the ex-ante expected utility can be thought of as the average expected utility for each bidder for each considered bidding scenario, and it follows from the definition of ex-ante expected payments in a standard first-price auction put forward by Krishna~\cite{Krishna10} (cf.~Section 2.4 Revenue Comparison in~\cite{Krishna10}).
 
 \begin{table}[t]
   \caption{FIX:ME}
@@ -322,18 +314,19 @@ Before presenting the results of approximations, consider the numerical example 
   \label{tab:test_results_approximation}
 \end{table}
 
-It is difficult to judge by the value of the K-S statistic how erroneous the approximation for each bidder is. For instance, in the numerical example discussed in the previous paragraph, even though the K-S statistics for each bidder are close in value, the statistic itself does not capture its value relative to the benchmark expected utility's range of values for the bidder; that is, the range of the expected utility for bidder 1 in the benchmark (DMP) auction extends from approximately $0.05$ to $0.38$ (cf.~Figure~\ref{fig:test_compare_bidder_1_approximation}), while for bidder 2 from $0$ to $0.07$ (cf.~Figure~\ref{fig:test_compare_bidder_2_approximation}). It is, therefore, clear that, even though the K-S statistics are close in value, the approximation error for bidder 1 is much smaller than for bidder 2. To account for this fact, we define the relative error of the approximation as
+By way of example, consider the numerical example from the previous section. Table~\ref{tab:test_results_approximation} presents the resulting expected prices and ex-ante expected utilities for both bidders for both auctions. It is difficult to judge by the values of expected prices and ex-ante expected utilities how erroneous the approximation for each bidder is. To account for this fact, we define the relative error in expected prices as
 \begin{equation}
   \label{eq:relative_error_price_approximation}
   \eta_p = \left|\frac{p^{DMP} - p^{CP}}{p^{DMP}}\right|
 \end{equation}
+and the relative error in ex-ante expected utilities as
 \begin{equation}
   \label{eq:relative_error_utility_approximation}
   \eta_{\Pi_i} = \left|\frac{\Pi_i^{DMP} - \Pi_i^{CP}}{\Pi_i^{DMP}}\right|
 \end{equation}
-for all $i\in N$, where $\Pi_i^{\textrm{DMP}}(c_i)\in [\underline{\pi}_i^{\textrm{DMP}}, \bar{\pi}_i^{\textrm{DMP}}]$ for all $c_i\in \mathscr{D}(\Pi_i^{\textrm{DMP}})$.
+for all $i\in N$, where $p^{DMP}$ and $p^{CP}$ denote the expected prices for DMP and CP auction respectively, and $\Pi_i^{DMP}$ and $\Pi_i^{CP}$ denote the ex-ante expected utilities for bidder $i$ for DMP and CP auction respectively.
 
-For the K-S statistic values in the numerical example discussed in the previous paragraph, the percentage relative error for bidder 1 is $\epsilon_1\approx 5.54\%$, while for bidder 2 $\epsilon_2\approx 20.47\%$. Clearly, $\epsilon_2 > \epsilon_1$, thus, capturing the error in approximation for both bidders accurately.
+For the values of expected prices and ex-ante expected utilities depicted in Table~\ref{tab:test_results_approximation}, the (percentage) relative errors are summarised in Table~\ref{tab:test_relative_errors_approximation}.
 
 \begin{table}[t]
   \caption{FIX:ME}
@@ -347,7 +340,7 @@ For the K-S statistic values in the numerical example discussed in the previous 
     \textbf{error, $\eta\cdot 100\%$} & & & \\
     \hlx{vhs}
   \end{tabular*}
-  \label{tab:test_results_approximation}
+  \label{tab:test_relative_errors_approximation}
 \end{table}
 % subsection methodology (end)
 
