@@ -346,14 +346,14 @@ for all $i\in N$, where $p^{DMP}$ and $p^{CP}$ denote the expected prices for DM
 \label{sec:approximation_results_approximation}
 This section presents the results of approximating the DMP auction with CP auction. We analyse the results for two bidding scenarios: with $n=2$ and $n=3$ bidders respectively. The procedure for generating the approximation results was as follows:
 \begin{enumerate}
-\item For each chosen value of price weight, generate 100 reputation ratings pairs, $(r_1, r_2)$, in case of 2 bidders, and triples, $(r_1, r_2, r_3)$, in case of 3 bidders. Each $r_i$ for each bidder $i$ is drawn from a uniform distribution over the range $(0,1)$. Furthermore, it should be pointed out that reputation ratings have to be unique; if $(r_1,r_2)$, then $r_1\neq r_2$ \footnote{FIX:ME why they cannot be equal?}, and also if $r=(r_1,r_2)$ and $g=(g_1,g_2)$ are two consecutively generated reputation rating pairs then we require $r \neq g$. \footnote{The same applies to the case of 3 bidders where 100 reputation ratings triples instead of pairs are generated.}.
+\item For each chosen value of price weight, generate 100 reputation ratings pairs, $(r_1, r_2)$, in case of 2 bidders, and triples, $(r_1, r_2, r_3)$, in case of 3 bidders. Each $r_i$ for each bidder $i$ is drawn from a uniform distribution over the range $(0,1)$. Furthermore, it should be noted that reputation ratings have to be unique\footnote{By Assumptions~\ref{ass:assumptions_generic_indirect}, there exists at least one $r_i\neq r_j$ for all $1\leq i,j\leq n$ such that $i\neq j$. This immediately rules out the possibility of bidders having equal reputation ratings in case of 2 bidders. In case of 3 or more bidders, Assumptions~\ref{ass:assumptions_generic_indirect} permit for 2 or more bidders (but not all) to be characterised by equal reputation ratings. In order to keep the analysis numerically tractable, however, we do not consider bidding scenarios with bidders characterised by equal reputation ratings in case of 3 or more bidders.}: if $(r_1,r_2)$, then $r_1\neq r_2$; and if $r=(r_1,r_2)$ and $g=(g_1,g_2)$ are two consecutively generated reputation rating pairs (or triples in case of 3 bidders), then we require $r \neq g$.
 \item For each reputation ratings pair/triple, evaluate relative errors in expected price and ex-ante expected utility per bidder.
-\item Evaluate mean relative errors in expected price and ex-ante expected utility per bidder, and associated 95\% confidence interval. The confidence interval for the mean is computed using the formula described in~\cite{LawChapter42007}; that is, given a random sample of size $n$ with unknown mean and standard deviation, the confidence interval is defined as
+\item Evaluate mean relative errors in expected price and ex-ante expected utility per bidder, and associated 95\% confidence intervals. The confidence interval for the mean is computed using the formula described in~\cite{LawChapter42007}; that is, given a random sample of size $n$ with unknown mean and standard deviation, the confidence interval is defined as
 \begin{equation*}
   \text{ci}\equiv\bar{X}\pm t_{\frac{\alpha}{2},n-1}\frac{s}{\sqrt{n}},
 \end{equation*}
 where $\bar{X}$ is the sample mean, $s$ is the sample standard deviation, and $t_{\frac{\alpha}{2}, n-1}$ is the upper $\frac{1-\alpha}{2}$ critical value for the \emph{t}-distribution with $n-1$ degrees of freedom. It is worth noting that for 95\% confidence interval, $\alpha=0.05$.
-\item Repeat for price weight values ranging from $0.55$ to $0.99$. FIX:ME why this range?.
+\item Repeat for price weight values ranging from $0.55$ to $0.99$\footnote{Since we consider only feasible bidders, we require that $w\in(0.5,1)$ which was shown to be sufficient to warrant feasible bidding in Section~\ref{sec:numerical_analysis_indirect}.}.
 \end{enumerate}
 It is worth noting that the bidding scenario with 3 bidders requires the use of EFSM method (cf.~assumptions of Section~\ref{sec:numerical_analysis_indirect}).
 
@@ -361,10 +361,14 @@ It is worth noting that the bidding scenario with 3 bidders requires the use of 
 \label{sub:n_2_bidders_approximation}
 Figure~\ref{fig:compare_2_bidders_approximation}
 
-\begin{figure}[t]
+\begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders}
-  \caption{FIX:ME}
+  \caption{Approximation results for 2 bidders}
   \label{fig:compare_2_bidders_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_3_bidders}
+  \caption{Approximation results for 3 bidders}
+  \label{fig:compare_3_bidders_approximation}
 \end{figure}
 % subsection n_2_bidders_approximation (end)
 
@@ -372,11 +376,6 @@ Figure~\ref{fig:compare_2_bidders_approximation}
 \label{sub:n_3_bidders_approximation}
 Figure~\ref{fig:compare_3_bidders_approximation}
 
-\begin{figure}[t]
-  \includegraphics[width=\figsize]{Approximation/Figures/compare_3_bidders}
-  \caption{FIX:ME}
-  \label{fig:compare_3_bidders_approximation}
-\end{figure}
 % subsection n_3_bidders_approximation (end)
 
 \subsection{Discussion} % (fold)
