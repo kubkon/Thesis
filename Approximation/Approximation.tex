@@ -324,9 +324,7 @@ and the relative error in ex-ante expected utilities as
   \label{eq:relative_error_utility_approximation}
   \eta_{\Pi_i} = \left|\frac{\Pi_i^{DMP} - \Pi_i^{CP}}{\Pi_i^{DMP}}\right|
 \end{equation}
-for all $i\in N$, where $p^{DMP}$ and $p^{CP}$ denote the expected prices for DMP and CP auction respectively, and $\Pi_i^{DMP}$ and $\Pi_i^{CP}$ denote the ex-ante expected utilities for bidder $i$ for DMP and CP auction respectively.
-
-For the values of expected prices and ex-ante expected utilities depicted in Table~\ref{tab:test_results_approximation}, the (percentage) relative errors are summarised in Table~\ref{tab:test_relative_errors_approximation}.
+for all $i\in N$, where $p^{DMP}$ and $p^{CP}$ denote the expected prices for DMP and CP auction respectively, and $\Pi_i^{DMP}$ and $\Pi_i^{CP}$ denote the ex-ante expected utilities for bidder $i$ for DMP and CP auction respectively. For the values of expected prices and ex-ante expected utilities depicted in Table~\ref{tab:test_results_approximation}, the (percentage) relative errors are summarised in Table~\ref{tab:test_relative_errors_approximation}.
 
 \begin{table}[t]
   \caption{FIX:ME}
@@ -344,112 +342,46 @@ For the values of expected prices and ex-ante expected utilities depicted in Tab
 \end{table}
 % subsection methodology (end)
 
-\subsection{Results of Approximations} % (fold)
-\label{sub:results_of_approximations_approximation}
-This section presents the results of approximating the DMP auction with CP auction. We analyse the results for two bidding scenarios: with $n=2$ and $n=3$ bidders respectively. In both scenarios, the reputation ratings are kept fixed for all the bidders as we slide across the price weight values: $w\in[0.5, 0.99]$ and $w\in[0.75,0.99]$ for the first and second bidding scenario respectively. Therefore, we concentrate on scenarios that do not require the use of the extended forward shooting method (cf.~assumptions of Section~\ref{sec:numerical_analysis_indirect}).
+\section{Approximation Results} % (fold)
+\label{sec:approximation_results_approximation}
+This section presents the results of approximating the DMP auction with CP auction. We analyse the results for two bidding scenarios: with $n=2$ and $n=3$ bidders respectively. The procedure for generating the approximation results was as follows:
+\begin{enumerate}
+\item For each chosen value of price weight, generate 100 reputation ratings pairs, $(r_1, r_2)$, in case of 2 bidders, and triples, $(r_1, r_2, r_3)$, in case of 3 bidders. Each $r_i$ for each bidder $i$ is drawn from a uniform distribution over the range $(0,1)$. Furthermore, it should be pointed out that reputation ratings have to be unique; if $(r_1,r_2)$, then $r_1\neq r_2$ \footnote{FIX:ME why they cannot be equal?}, and also if $r=(r_1,r_2)$ and $g=(g_1,g_2)$ are two consecutively generated reputation rating pairs then we require $r \neq g$. \footnote{The same applies to the case of 3 bidders where 100 reputation ratings triples instead of pairs are generated.}.
+\item For each reputation ratings pair/triple, evaluate relative errors in expected price and ex-ante expected utility per bidder.
+\item Evaluate mean relative errors in expected price and ex-ante expected utility per bidder, and associated 95\% confidence interval. The confidence interval for the mean is computed using the formula described in~\cite{LawChapter42007}; that is, given a random sample of size $n$ with unknown mean and standard deviation, the confidence interval is defined as
+\begin{equation*}
+  \text{ci}\equiv\bar{X}\pm t_{\frac{\alpha}{2},n-1}\frac{s}{\sqrt{n}},
+\end{equation*}
+where $\bar{X}$ is the sample mean, $s$ is the sample standard deviation, and $t_{\frac{\alpha}{2}, n-1}$ is the upper $\frac{1-\alpha}{2}$ critical value for the \emph{t}-distribution with $n-1$ degrees of freedom. It is worth noting that for 95\% confidence interval, $\alpha=0.05$.
+\item Repeat for price weight values ranging from $0.55$ to $0.99$. FIX:ME why this range?.
+\end{enumerate}
+It is worth noting that the bidding scenario with 3 bidders requires the use of EFSM method (cf.~assumptions of Section~\ref{sec:numerical_analysis_indirect}).
 
-\subsubsection{$n=2$ Bidders} % (fold)
-\label{ssub:n_2_bidders_approximation}
-We consider 4 bidding scenarios where bidder 2 is always characterised by fixed reputation rating of $r_2=0.75$, while bidder 1's reputation rating assumes values $r_1\in\{0.15, 0.25, 0.5, 0.7\}$. Figure~\ref{fig:compare_2_bidders_approximation} depicts the results of the approximations.
+\subsection{$n=2$ Bidders} % (fold)
+\label{sub:n_2_bidders_approximation}
+Figure~\ref{fig:compare_2_bidders_approximation}
 
-\begin{figure}[p!]
-  \vspace{0.5cm}
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_015_075}
-    \caption{$r_1=0.15$ and $r_2=0.75$}
-    \label{fig:compare_2_bidders_015_075_approximation}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_025_075}
-    \caption{$r_1=0.25$ and $r_2=0.75$}
-    \label{fig:compare_2_bidders_025_075_approximation}
-  \end{subfigure}
-  \vspace{0.5cm}\\
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_050_075}
-    \caption{$r_1=0.5$ and $r_2=0.75$}
-    \label{fig:compare_2_bidders_050_075_approximation}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_2_bidders_070_075}
-    \caption{$r_1=0.7$ and $r_2=0.75$}
-    \label{fig:compare_2_bidders_070_075_approximation}
-  \end{subfigure}
-  \caption{Percentage relative errors for the scenario with $n=2$ bidders, price weight values ranging $w\in[0.5,0.99]$, and varying reputation ratings}
+\begin{figure}[t]
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders}
+  \caption{FIX:ME}
   \label{fig:compare_2_bidders_approximation}
 \end{figure}
-
-In all cases, the percentage relative error is below $10\%$ for bidder 1, and below $25\%$ for bidder 2. Furthermore, for $r_1=0.7$ and $r_2=0.75$, the percentage relative error is below $8\%$ for both bidders. In fact, as the difference between $r_1$ and $r_2$ decreases, the shape of the percentage relative error curves, as a function of price weight, flattens out. The most likely explanation for this is the fact that as the difference between the reputation ratings decreases, the overlap between the supports for both bidders, $[\underline{c}_1, \bar{c}_1]$ and $[\underline{c}_2, \bar{c}_2]$, increases; thus, approaching the common priors setting closer and closer, to eventually reach a symmetric first-price sealed-bid auction for equal reputation ratings (cf.~Corollary~\ref{cor:special_case_r_i_r_j_direct}, Section~\ref{sub:special_case_r_i_r_j_direct}).
-
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders_070_075_outlier}
-  \caption{Explanation of the outlier for bidder 1 in Figure~\ref{fig:compare_2_bidders_070_075_approximation}}
-  \label{fig:compare_2_bidders_070_075_outlier_approximation}
-\end{figure}
-
-It is worth noting that, in Figure~\ref{fig:compare_2_bidders_070_075_approximation}, there is an outlier at $w\approx 0.5125$ for bidder 1---their percentage relative error jumps from $6\%$ to almost $22\%$ to fall back again to $6\%$. This is due to the fact that the DMP version of the FSM method becomes numerically unstable near the upper bound on bids. This is a direct consequence of the problem not satisfying the Lipschitz condition for continuity (cf.~Section~\ref{sec:numerical_analysis_indirect}) for bid values approaching the upper bound on bids, and as a result, the K-S statistic is incorrectly computed. Figure~\ref{fig:compare_2_bidders_070_075_outlier_approximation} depicts the expected utilities for bidder 1 for both DMP and CP auctions, and the associated, incorrectly computed, K-S statistic. Note that there is a considerable spike in the expected utility for the DMP bidder near the upper extremity of their support which is directly responsible for the outlier in Figure~\ref{fig:compare_2_bidders_070_075_approximation}.
 % subsection n_2_bidders_approximation (end)
 
-\subsubsection{$n=3$ Bidders} % (fold)
-\label{ssub:n_3_bidders_approximation}
-We consider 3 bidding scenarios where bidder 3 is always characterised by fixed reputation rating of $r_3=0.75$, while we vary reputation ratings of bidders 1 and 2: $r_1=0.25$ and $r_2=0.5$ (Figure~\ref{fig:compare_3_bidders_025_050_075_approximation}); $r_1=0.25$ and $r_2=0.7$ (Figure~\ref{fig:compare_3_bidders_025_070_075_approximation}); and $r_1=0.65$ and $r_2=0.75$ (Figure~\ref{fig:compare_3_bidders_065_070_075_approximation}). In what follows, the numerically derived equilibrium bidding strategies to the DMP auction are generated by both FSM and PPM methods.
+\subsection{$n=3$ Bidders} % (fold)
+\label{sub:n_3_bidders_approximation}
+Figure~\ref{fig:compare_3_bidders_approximation}
 
-\begin{figure}[p!]
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_050_075}
-    \caption{FSM}
-    \label{fig:compare_3_bidders_025_050_075_fsm_approximation}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_050_075_ppm}
-    \caption{PPM}
-    \label{fig:compare_3_bidders_025_050_075_ppm_approximation}
-  \end{subfigure}
-  \caption{Percentage relative errors for the scenario with $n=3$ bidders characterised by reputation ratings $r_1=0.25$, $r_2=0.5$, and $r_3=0.75$, where DMP auction is solved numerically using FSM and PPM methods respectively}
-  \label{fig:compare_3_bidders_025_050_075_approximation}
+\begin{figure}[t]
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_3_bidders}
+  \caption{FIX:ME}
+  \label{fig:compare_3_bidders_approximation}
 \end{figure}
-
-\begin{figure}[p!]
-  \setcounter{subfigure}{0}
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_070_075}
-    \caption{FSM}
-    \label{fig:compare_3_bidders_025_070_075_fsm_approximation}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_025_070_075_ppm}
-    \caption{PPM}
-    \label{fig:compare_3_bidders_025_070_075_ppm_approximation}
-  \end{subfigure}
-  \caption{Percentage relative errors for the scenario with $n=3$ bidders characterised by reputation ratings $r_1=0.25$, $r_2=0.7$, and $r_3=0.75$, where DMP auction is solved numerically using FSM and PPM methods respectively}
-  \label{fig:compare_3_bidders_025_070_075_approximation}
-\end{figure}
-
-\begin{figure}[p!]
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_065_070_075}
-    \caption{FSM}
-    \label{fig:compare_3_bidders_065_070_075_fsm_approximation}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.5\textwidth}
-    \includegraphics[width=3in]{Approximation/Figures/compare_3_bidders_065_070_075_ppm}
-    \caption{PPM}
-    \label{fig:compare_3_bidders_065_070_075_ppm_approximation}
-  \end{subfigure}
-  \caption{Percentage relative errors for the scenario with $n=3$ bidders characterised by reputation ratings $r_1=0.65$, $r_2=0.7$, and $r_3=0.75$, where DMP auction is solved numerically using FSM and PPM methods respectively}
-  \label{fig:compare_3_bidders_065_070_075_approximation}
-\end{figure}
-
-Firstly, it should be noted that, for all bidding scenarios, the FSM method generates relatively noisy output, with the second bidding scenario being the noisiest (Figures~\ref{fig:compare_3_bidders_025_050_075_fsm_approximation} through to~\ref{fig:compare_3_bidders_065_070_075_fsm_approximation}). This is in contrast to very clean output generated by the PPM method to all bidding scenarios but the last one (Figures~\ref{fig:compare_3_bidders_025_050_075_ppm_approximation} through to~\ref{fig:compare_3_bidders_065_070_075_ppm_approximation}). The most likely explanation for the noisy output from the FSM method is due to, as discussed in Section~\ref{sub:approximation_results_indirect}, the FSM being inherently susceptible to the fact that the system of nonlinear ODEs does not satisfy the Lipschitz condition for continuity (which is especially true for $n>2$ bidders), and hence, the algorithm might not fully converge to the true solution of the system. This problem is eliminated entirely by the PPM method; still, however, in the last bidding scenario, the output is quite noisy.
-
-Secondly, it is clear from the figures that, for all cases, the percentage relative error is below $13\%$ for bidder 1, and below $30\%$ for bidders 2 \& 3. Furthermore, as the price weight tends to 1 in all cases, the percentage relative error curves for all bidders converge to the same value of approximately $13\%$.
 % subsection n_3_bidders_approximation (end)
 
-\subsubsection{Discussion} % (fold)
-\label{ssub:discussion_approximation}
-All things considered, in the 2 bidders' case, approximating DMP auction with the CP auction does not yield small enough percentage relative error for both bidders to consider it a viable alternative to solving the original, DMP auction (maximum of $10\%$ for bidder 1, and $25\%$ for bidder 2). The results are even less promising for 3 bidders (maximum of $13\%$ for bidder 1, and $30\%$ for bidders 2 and 3).
+\subsection{Discussion} % (fold)
+\label{sub:discussion_approximation}
 
-It should be noted, however, that the results presented in this section do not fully disqualify the CP auction as a valid approximation of the DMP auction. With a different choice of the distribution parameters ($\mu_i$ and $\sigma_i$ for all $i\in N$), or even distribution themselves (e.g., truncated skew-normal distributions could be considered in place of truncated normal distributions), better results may be achieved.
 % subsection discussion (end)
 % subsection results (end)
 % section network_selection_mechanism_cast_into_common_priors_setting (end)
