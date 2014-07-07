@@ -285,7 +285,7 @@ The buyer's expected price is equivalent to the expected value of the winning bi
   \label{eq:expected_price_approximation}
   p \equiv E[b_i(c_i) \:\vert\: b_i(c_i) < \min_{j\neq i} b_j(c_j)],
 \end{equation}
-where $b_i$ is the equilibrium bidding function for all $i\in N$. Since an analytical derivation of the closed-form solution is not straightforward, similarly to the analysis presented in Section~\ref{sub:subscriber_s_perspective_expected_prices_in_restricted_case_n_2_indirect}, we resort to numerical estimation of the buyer's expected price. That is, for each considered bidding scenario, the costs for each bidder are pseudo-randomly drawn from uniform distribution, the corresponding equilibrium bids are computed, and the minimum is chosen as the winning bid (price). This procedure is repeated 10,000 times, yielding 10,000 i.i.d.~observations of the price which are then averaged to give an estimate of the expected price (consequence of the Strong Law of Large Numbers; Section~\ref{sec:probability}).
+where $b_i$ is the equilibrium bidding function for all $i\in N$. Since an analytical derivation of the closed-form solution is not straightforward, similarly to the analysis presented in Section~\ref{sub:subscriber_s_perspective_expected_prices_in_restricted_case_n_2_indirect}, we resort to numerical estimation of the buyer's expected price. That is, for each considered bidding scenario, the costs for each bidder are pseudo-randomly drawn from uniform distribution, the corresponding equilibrium bids are computed, and the minimum is chosen as the winning bid (price). This procedure is repeated 1000 times, yielding 1000 i.i.d.~observations of the price which are then averaged to give an estimate of the expected price (consequence of the Strong Law of Large Numbers; Section~\ref{sec:probability}).
 
 In order to define the bidder's ex-ante expected utility, we restate here, with some abuse of notation, the expected utility function for each bidder $i\in N$ as defined in Equation~\eqref{eq:def_expected_utility_indirect}, Chapter~\ref{cha:indirect}:
 \begin{equation}
@@ -359,16 +359,16 @@ It is worth noting that the bidding scenario with 3 bidders requires the use of 
 
 \subsection{$n=2$ Bidders} % (fold)
 \label{sub:n_2_bidders_approximation}
-Figure~\ref{fig:compare_2_bidders_approximation}
+The approximation results for 2 bidders are depicted in Figure~\ref{fig:compare_2_bidders_approximation}. It is worth observing that as the price weight increases, the confidence intervals for the mean relative errors decrease. This is a direct consequence of the fact that as the price weight $w\to 1$, the actual values of the reputation ratings of the bidders do not significantly influence the mean relative errors in expected price and ex-ante expected utilities for both bidders\footnote{To see this, recall from Equation~\eqref{eq:domain_common_priors_approximation} the common support $[\min_i{\underline{c}_i}, \max_i{\bar{c}_i}]=[(1-w)\min_i{r_i}, (1-w)\max_i{r_i} + w]$. As $w\to 1$, this reduces to $[\lim_{w\to 1}(1-w)\min_i{r_i}, \lim_{w\to 1}(1-w)\max_i{r_i} + w] = [0,1]$. Hence, as the price weight increases, the less significant the effect of the reputation ratings on the common support.}. On the other hand, however, as the price weight increases, the mean relative errors also increase. This is due to the fact that, as $w\to 1$, the supports of both bidders begin to overlap to high degree, and hence, the bidding scenario is more akin to a CP auction where both bidders are characterised by uniform distributions. Therefore, a CP auction with bidders characterised by truncated normal distributions is not a good approximation to the DMP auction. This is depicted in Figure~\ref{fig:dmp_cp_w_1_approximation}.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders}
   \caption{Approximation results for 2 bidders}
   \label{fig:compare_2_bidders_approximation}
   \vspace{10mm}
-  \includegraphics[width=\figsize]{Approximation/Figures/compare_3_bidders}
-  \caption{Approximation results for 3 bidders}
-  \label{fig:compare_3_bidders_approximation}
+  \includegraphics[width=\figsize]{Approximation/Figures/dmp_cp_w_1}
+  \caption{Approximation results for 2 bidders}
+  \label{fig:dmp_cp_w_1_approximation}
 \end{figure}
 % subsection n_2_bidders_approximation (end)
 
@@ -376,6 +376,11 @@ Figure~\ref{fig:compare_2_bidders_approximation}
 \label{sub:n_3_bidders_approximation}
 Figure~\ref{fig:compare_3_bidders_approximation}
 
+\begin{figure}[t!]
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_3_bidders}
+  \caption{Approximation results for 3 bidders}
+  \label{fig:compare_3_bidders_approximation}
+\end{figure}
 % subsection n_3_bidders_approximation (end)
 
 \subsection{Discussion} % (fold)
