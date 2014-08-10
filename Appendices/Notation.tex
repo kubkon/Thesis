@@ -5,7 +5,7 @@
 \minitoc
 \vspace{10mm}
 
-This chapter introduces mathematical notation used in this thesis. Furthermore, it provides an overview of the more important mathematical concepts necessary to understand the work reported in this thesis.
+This chapter, firstly, introduces mathematical notation used in this thesis. It then provides an overview of the more important mathematical concepts necessary to understand the work reported in this thesis.
 
 \section{Notation} % (fold)
 \label{sec:notation_notation}
@@ -80,7 +80,7 @@ Player $i$'s \emph{expected utility} given a profile of pure strategies $(\psi_1
 	\label{eq:def_exp_utility_notation}
 	\tilde{u}_i(\psi_1,\ldots,\psi_{|N|}) = E[u_i(\psi_1(\theta_1),\ldots,\psi_{|N|}(\theta_{|N|}),\theta_i)],
 \end{equation}
-where the expectation is taken over the realizations of the players' types, $\theta\in\Theta$. Now, in game $\Gamma^B$, a strategy profile $(\psi_1^*,\ldots,\psi_{|N|}^*)$ is a \emph{pure-strategy Bayesian Nash equilibrium} if it constitutes a Nash equilibrium of game $\Gamma^N = [N, \{\Psi_i\},\{\tilde{u}_i\}]$; that is, if for each player $i\in N$,
+where the expectation is taken over the realisations of the players' types, $\theta\in\Theta$. Now, in game $\Gamma^B$, a strategy profile $(\psi_1^*,\ldots,\psi_{|N|}^*)$ is a \emph{pure-strategy Bayesian Nash equilibrium} if it constitutes a Nash equilibrium of game $\Gamma^N = [N, \{\Psi_i\},\{\tilde{u}_i\}]$; that is, if for each player $i\in N$,
 \begin{equation}
 	\label{eq:def_bayesian_nash_eq_notation}
 	\tilde{u}_i(\psi^*_i,\psi^*_{-i}) \ge \tilde{u}_i(\psi_i,\psi^*_{-i})
@@ -93,21 +93,21 @@ Alternatively, a strategy profile $(\psi_1^*,\ldots,\psi_{|N|}^*)$ constitutes a
 	E[u_i(\psi^*_i(\hat{\theta}_i),\psi^*_{-i}(\theta_{-i}),\hat{\theta}_i)\mid\hat{\theta}_i] \ge
 	E[u_i(s'_i,\psi^*_{-i}(\theta_{-i}),\hat{\theta}_i)\mid\hat{\theta}_i]
 \end{equation}
-for all $s'_i\in S_i$, where the expectation is taken over realizations of the other players' types, $\theta_{-i}$, conditional on player $i$'s realization of his type, $\hat{\theta}_i$. In other words, each type of player $i$ can be thought of as a separate player who maximizes his payoff given his conditional probability distribution over the strategy choices of his rivals.
+for all $s'_i\in S_i$, where the expectation is taken over realisations of the other players' types, $\theta_{-i}$, conditional on player $i$'s realisation of his type, $\hat{\theta}_i$. In other words, each type of player $i$ can be thought of as a separate player who maximises his payoff given his conditional probability distribution over the strategy choices of his rivals.
 % subsubsection static_games_with_incomplete_information_notation (end)
 
 \subsubsection{Auction Theory} % (fold)
 \label{ssub:auction_theory_notation}
-It is important to realize that procurement auctions are equivalent to standard auctions in the same setting~\cite{Krishna10}. Therefore, the abundance of results on standard auctions applies to procurement auctions with only certain small conceptual differences; for example, in standard auctions we talk about the maximum bid, while in procurement auctions about the minimum bid. We make use of this fact in this thesis, and provide proofs of only results not already covered in the literature on auctions in general, since if the result is proved in one case (be it for either standard or procurement auctions), it can immediately be adapted to the other case.
+It is important to realise that procurement auctions are equivalent to standard auctions in the same setting~\cite{Krishna10}. Therefore, the abundance of results on standard auctions applies to procurement auctions with only certain small conceptual differences; for example, in standard auctions we talk about the maximum bid, while in procurement auctions about the minimum bid. We make use of this fact in this thesis, and provide proofs of only results not already covered in the literature on auctions in general, since if the result is proved in one case (be it for either standard or procurement auctions), it can immediately be adapted to the other case.
 % subsubsection auction_theory_notation (end)
 
 \subsubsection{Mechanism Design Theory} % (fold)
 \label{ssub:mechanism_design_theory_notation}
 An auction is an example of an allocation mechanism; that is, a system where economic transactions take place and goods are allocated\footnote{For more in-depth treatment of the theory of mechanism design see for example \cite{MechDesign07,Krishna10,HarrisRaviv1981,HarrisTownsend1975,Myerson1979,Myerson1981}.}. Let $(\mathcal{B},\pi,\mu)$ be a mechanism representing any given auction. In this notation: $\mathcal{B}$ is a set of all possible bids; $\pi: \mathcal{B}\to \Delta$ is an \emph{allocation rule}, where $\Delta$ is a set of all probability distributions over the set of bidders $N$; and $\mu:\mathcal{B}\to\mathbb{R}^n$ is a \emph{payment rule} where $n = |N|$. The allocation rule quantifies as a function of all $n$ bids the probability that bidder $i$ receives the good. The payment rule determines as a function of all $n$ bids the expected payment that bidder $i$ must make. For example, if $\mathbf{b}=(b_i,b_{-i})$ is the vector of all bids submitted to the mechanism, the probability that bidder $i$ receives the good is $\pi_i(\mathbf{b})$, while the expected payment is $\mu_i(\mathbf{b})$.
 
-Every mechanism can be viewed as a game with incomplete information between $n$ bidders. For each bidder $i$ we let $b_i(\cdot): \Theta_i \to\mathcal{B}_i$ be the pure strategy where as before $\Theta_i$ is the set of all possible valuations of bidder $i$. The \emph{equilibrium} of the mechanism is hence defined as an $n$-tuple of strategies $(b_i(\cdot),b_{-i}(\cdot))$ if for all $i$ and for all $\theta_i\in\Theta_i$, $b_i(\theta_i)$ maximizes bidder $i$'s expected payoff.
+Every mechanism can be viewed as a game with incomplete information between $n$ bidders. For each bidder $i$ we let $b_i(\cdot): \Theta_i \to\mathcal{B}_i$ be the pure strategy where as before $\Theta_i$ is the set of all possible valuations of bidder $i$. The \emph{equilibrium} of the mechanism is hence defined as an $n$-tuple of strategies $(b_i(\cdot),b_{-i}(\cdot))$ if for all $i$ and for all $\theta_i\in\Theta_i$, $b_i(\theta_i)$ maximises bidder $i$'s expected payoff.
 
-If $\mathcal{B}_i = \Theta_i$ for all $i$, then the mechanism becomes the so-called \emph{direct mechanism}. In a direct mechanism, bidders are effectively submitting their valuations rather than bids to the mechanism. In general, direct mechanisms tend to be smaller and simpler than generic mechanisms, and therefore are easier to analyze while still being able to model the scenario accurately. Formally, a direct mechanism is defined as a tuple $(\mathbf{Q},\mathbf{M})$ with an allocation rule defined as $\mathbf{Q}:\nobreak\Theta\to\Delta$, and a payment rule defined as $\mathbf{M}:\nobreak\Theta\to\mathbb{R}^n$. (Note that in direct mechanism bidders' valuations are directly used to determine the outcome of the mechanism.)
+If $\mathcal{B}_i = \Theta_i$ for all $i$, then the mechanism becomes the so-called \emph{direct mechanism}. In a direct mechanism, bidders are effectively submitting their valuations rather than bids to the mechanism. In general, direct mechanisms tend to be smaller and simpler than generic mechanisms, and therefore are easier to analyse while still being able to model the scenario accurately. Formally, a direct mechanism is defined as a tuple $(\mathbf{Q},\mathbf{M})$ with an allocation rule defined as $\mathbf{Q}:\nobreak\Theta\to\Delta$, and a payment rule defined as $\mathbf{M}:\nobreak\Theta\to\mathbb{R}^n$. Note that in direct mechanism bidders' valuations are directly used to determine the outcome of the mechanism.
 
 A direct mechanism $(\mathbf{Q},\mathbf{M})$ is said to satisfy \emph{incentive compatibility} (IC) constraint if for all $i\in N$, for all $\theta_i\in\Theta_i$, and for all $\hat{\theta}_i\in\Theta_i$,
 \begin{equation*}
@@ -121,7 +121,7 @@ and
 \begin{equation*}
   m_i(\hat{\theta}_i) = E[M_i(\hat{\theta}_i, \theta_{-i})].
 \end{equation*}
-In both cases, the expectation is taken over the realizations of all but player $i$ types, $\theta_{-i}\in\Theta_{-i}$.
+In both cases, the expectation is taken over the realisations of all but player $i$ types, $\theta_{-i}\in\Theta_{-i}$.
 
 A direct mechanism $(\mathbf{Q}, \mathbf{M})$ is said to satisfy \emph{individual rationality} (IR) constraint if for all $i\in N$, and for all $\theta_i\in\Theta_i$,
 \begin{equation*}
@@ -141,7 +141,7 @@ For proof of this theorem, we refer the Reader to Krishna's ``Auction Theory'' \
 
 \subsection{Optimisation Theory} % (fold)
 \label{sub:optimisation_theory_notation}
-The following theorem on nonlinear constrained optimisation will also be used in this chapter.
+The following theorem on nonlinear constrained optimisation is also be used in this thesis.
 \begin{thm}[Karush-Kuhn-Tucker Conditions]
 Let $f:\mathbb{R}^n\to\mathbb{R}$ be a concave function, $g_i:\mathbb{R}^n\to\mathbb{R}$ be convex functions for $i=1,\ldots,m$, and $h_j:\mathbb{R}^n\to\mathbb{R}$ be affine functions for $j=1,\ldots,l$. Then $\mathbf{x}^*\in\mathbb{R}^n$ is an optimal point for the following optimisation problem:
 \begin{equation*}
