@@ -5,11 +5,13 @@
 \minitoc
 \vspace{10mm}
 
-This chapter formally defines the network selection mechanism in the Digital Marketplace (DMP), and casts it into the framework of game theory. The mechanism is then direcly analysed for certain special cases.
+This chapter formally defines the network selection mechanism in the Digital Marketplace (DMP), and casts it into the framework of game theory. The mechanism is then direcly analysed in 3 special cases: 1) when only reputation ratings of the network operators decide on the winning network operator, 2) when only the monetary bids of the network operators matter in the selection of the winner, and finally, 3) when all network operators are characterised by the same reputation rating. In essence, those special cases correspond to the extremes of the studied bidding problem, and in all those cases, the equilibrium bidding strategies are derived.
+
+The chapter then concludes with the analysis of the mechanism in a restricted case with only 2 network operators, for which the equilibrium bidding strategies are derived. They are shown, however, to be suboptimal as they allow the network operators to submit a negative monetary bid.
 
 \section{Problem Definition and Assumptions} % (fold)
 \label{sec:problem_definition_and_assumptions_direct}
-The formal description of the network selection mechanism employed in the DMP is as follows. The model is a modified version of procurement first-price sealed-bid auction (henceforth, we shall refer to procurement first-price sealed-bid auction as FPA). Thus, formally, it represents a Bayesian game of incomplete information, $\Gamma^B$. There are $n$ network operators who bid for the right to sell their product to the subscriber such that $n = |N|$ where $N$ denotes the set of all network operators.
+The formal description of the network selection mechanism employed in the DMP is as follows. The model is a modified version of procurement first-price sealed-bid auction (henceforth, we shall refer to procurement first-price sealed-bid auction as FPA). Thus, formally, it represents a Bayesian game of incomplete information, $\Gamma^B$\footnote{See Appendix~\ref{cha:notation} for the definition of a Bayesian game, and any other game theoretical and mathematical concepts used in this chapter.}. There are $n$ network operators who bid for the right to sell their product to the subscriber such that $n = |N|$ where $N$ denotes the set of all network operators.
 
 Let $\beta : \mathbb{R}_+\times [0,1] \to \mathbb{R}_+$, defined by
 \begin{equation}
