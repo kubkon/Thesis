@@ -449,6 +449,8 @@ To conclude, in the rest of this section, we shall concentrate on cases such tha
 \end{equation*}
 for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
+In what follows, we outline the inner workings of the FSM and PPM methods, and present the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using both algorithms.
+
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
@@ -606,7 +608,7 @@ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, 
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: the FSM and the PPM methods. The implementation details of all the algorithms presented in this chapter, unless stated otherwise, can be found in Appendix~\ref{cha:numerical_software}.
+In this subsection, we present the approximation results for two bidding scenarios with 3 and 4 network operators. The implementation details of the algorithms presented in this chapter, unless stated otherwise, can be found in Appendix~\ref{cha:numerical_software}.
 
 \begin{table}[t]
   \caption{Bidding scenario with 2 network operators}
@@ -622,7 +624,7 @@ In this subsection, we present the approximation results for two bidding scenari
   \label{tab:verification_indirect}
 \end{table}
 
-Before analyzing numerical results for more than 2 network operators, both algorithms were tested for correct implementation. To this end, the numerically approximated equilibrium for $n=2$ network operators was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. The parameters for the test bidding scenario are shown in Table~\ref{tab:verification_indirect}. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison for the FSM, while Figure~\ref{fig:polynomial_projection_verification_indirect} for the PPM. It is clear from Figure~\ref{fig:forward_shooting_verification_indirect} that the result produced by FSM matches the (theoretical) closed-form solution perfectly. In case of PPM, on the other hand, the numerical result approaches the closed-form solution; however, due to the nature of the approximating polynomials, the match is not ideal. The accuracy of the solution could be increased by increasing the order of the approximating polynomials, or by utilizing a basis of approximating functions which is better suited to the least squares optimization, for example, employing Chebyshev polynomials in place of the polynomials in Equation~\eqref{eq:polynomial_cost_function_indirect}~\cite{HubbardPaarsch2011, MasonApproximation2003}. Nevertheless, we may conclude that both algorithms were implemented correctly.
+Before analyzing numerical results, both algorithms were tested for correct implementation. To this end, the numerically approximated equilibrium for $n=2$ network operators was compared with the closed-form solution derived in Proposition~\ref{prop:equilibrium_restricted_indirect}, Section~\ref{sec:restricted_case_n_2_indirect}. The parameters for the test bidding scenario are shown in Table~\ref{tab:verification_indirect}. Figure~\ref{fig:forward_shooting_verification_indirect} depicts the results of the comparison for the FSM, while Figure~\ref{fig:polynomial_projection_verification_indirect} for the PPM. It is clear from Figure~\ref{fig:forward_shooting_verification_indirect} that the result produced by FSM matches the (theoretical) closed-form solution perfectly. In case of PPM, on the other hand, the numerical result approaches the closed-form solution; however, due to the nature of the approximating polynomials, the match is not ideal. The accuracy of the solution could be increased by increasing the order of the approximating polynomials, or by utilizing a basis of approximating functions which is better suited to the least squares optimization, for example, employing Chebyshev polynomials in place of the polynomials in Equation~\eqref{eq:polynomial_cost_function_indirect}~\cite{HubbardPaarsch2011, MasonApproximation2003}. Nevertheless, we may conclude that both algorithms were implemented correctly.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/forward_shooting_verification}
@@ -710,28 +712,22 @@ In the second examined scenario, there are 4 network operators characterized by 
   \caption{PPM solution satisfies the sufficiency condition for all~$\hat{b}$}
   \label{fig:polynomial_projection_4_sufficiency_indirect}
 \end{figure}
+
+In this section, the FSM and PPM numerical algorithms were described, and two exemplary bidding scenarios were analysed for which the equilibrium bidding strategies were generated using the aforementioned algorithms. It should be noted, however, that one of the key assumptions of this section was $\underline{\hat{c}}_i\leq \hat{c}(\underline{\hat{b}})$ for all network operators $i\in N$, which restricted the choice of the price weight and the reputation ratings to a set satisfying $w\geq 1 - \sfrac{1}{(10r_n - 9r_2 - r_1 + 1)}$. In the following section, we relax that assumption by allowing cases such that $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one network operator $i\in N$. In other words, we consider all nontrivial equilibria characterised by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. Furthermore, we present two numerical algorithms which are able to generate equilibrium bidding strategies under the relaxed assumption.
 % subsection approximation_results (end)
 % section numerical_analysis_indirect (end)
 
 \section{Extended Numerical Analysis} % (fold)
 \label{sec:extended_numerical_analysis_indirect}
-In this section, the numerical analysis of the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} is extended by considering cases such that
-\begin{equation*}
-  \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}
-\end{equation*}
-for at least one $i\in N$. In other words, we drop the assumption that
-\begin{equation*}
-  \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}})
-\end{equation*}
-for all $i\in N$, and hence consider all nontrivial equilibria characterized by Lebrun~\cite{Lebrun2006} (see Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}). Note, further, that all the remaining assumptions of Section~\ref{sec:numerical_analysis_indirect} hold. To be more specific, we shall concentrate on cases such that $w\in (0.5,1.0)$ for all $r_i\in[0,1], i\in N$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
+Suppose $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one $i\in N$, and let all the remaining assumptions of Section~\ref{sec:numerical_analysis_indirect} hold. To be more specific, let $w\in (0.5,1.0)$ for all $r_i\in[0,1], i\in N$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
-In what follows, we shall present two numerical algorithms which improve upon the algorithms considered in Section~\ref{sec:numerical_analysis_indirect}: the extended forward shooting method, and the combined methods approach.
+In what follows, we shall present two numerical algorithms which improve upon the algorithms considered in Section~\ref{sec:numerical_analysis_indirect}: the extended forward shooting method (EFSM), and the combined methods approach (CMA). Furthermore, we analyse the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using both algorithms.
 
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-The extended forward shooting method (EFSM) extends the FSM method by effectively implementing the reasoning behind the bidding extension characterized by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the EFSM aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
+The EFSM method extends the FSM method by effectively implementing the reasoning behind the bidding extension characterized by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the EFSM aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:efsm_initial_value_problem_indirect}
   \begin{array}{ll}
@@ -801,7 +797,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 
 The pseudo-code for the EFSM is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the FSM. The main differences are twofold: the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customized finite-differences method described below (line 8).
 
-Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function estimateKC which estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes as an input an estimate of the lower bound on bids, $\underline{\hat{b}}'$, and the set of lower extremities $\{\underline{\hat{c}}_i\}$ for all $i\in N$. The function then iterates over $k\in\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and EFSM to FSM.
+Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function `estimateKC' which estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes as an input an estimate of the lower bound on bids, $\underline{\hat{b}}'$, and the set of lower extremities $\{\underline{\hat{c}}_i\}$ for all $i\in N$. The function then iterates over $k\in\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and EFSM to FSM.
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Indirect/Figures/lebrun_solution}
@@ -852,14 +848,12 @@ for all $i\in N$ and $x\in\mathbb{R}$. The discussion of the consequences arisin
 \label{sub:combined_methods_approach_indirect}
 Without loss of generality, suppose network operator 1 is characterized by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-The combined methods approach (CMA) is equivalent to EFSM with one difference: the last stage in the customized finite-difference method is solved using the PPM method instead of the standard FSM method (Stage 3 in Figure~\ref{fig:lebrun_solution_indirect}). PPM should reduce the error in the approximation generated by FSM as $b$ approaches $\bar{\hat{b}}$, where the system of ODEs does not satisfy the Lipschitz condition for continuity.
+The CMA method is equivalent to EFSM with one difference: the last stage in the customized finite-difference method is solved using the PPM method instead of the standard FSM method (Stage 3 in Figure~\ref{fig:lebrun_solution_indirect}). PPM should reduce the error in the approximation generated by FSM as $b$ approaches $\bar{\hat{b}}$, where the system of ODEs does not satisfy the Lipschitz condition for continuity.
 % subsection combined_methods_approach_indirect (end)
 
 \subsection{Approximation Results} % (fold)
 \label{sub:extended_approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios using both algorithms: EFSM and CMA.
-
-Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, both EFSM and CMA were tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, we omit the discussion of the verification results in this section.
+In this subsection, we present the approximation results for two bidding scenarios with 3 and 4 network operators Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, both EFSM and CMA were tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, we omit the discussion of the verification results in this section.
 
 In the first examined scenario, there are 3 network operators characterized by reputation ratings summarized in Table~\ref{tab:approximation_scenario_ext_3_indirect}. Furthermore, the price weight is set to $0.55$. Figures~\ref{fig:efs_3_indirect}~and~\ref{fig:efs_3_sufficiency_indirect} depict the results of the approximation generated by the EFSM method, while Figures~\ref{fig:combined_3_indirect}~and~\ref{fig:combined_3_sufficiency_indirect} depict the results of the approximation generated by the CMA method. Both methods yield the same estimate of the lower bound on bids, $\underline{\hat{b}}\approx 0.407$, and satisfy the sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$. It is worth noting that, as expected, the bidding scenario comprises two stages (cf.~Figure~\ref{fig:lebrun_solution_indirect}): stage 1 such that $\hat{b}\in [0.407, 0.43]$ where network operators 1 and 2 are competing against each other only, and network operator 3 is characterized by the bidding extension given by Equation~\eqref{eq:efsm_lebrun_ext_1_indirect}; and stage 2 such that $\hat{b}\in [0.43, 0.71]$ where all network operators are competing against each other, and are solving the system in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect}.
 
