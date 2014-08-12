@@ -9,12 +9,10 @@ In this chapter, the bidding problem described in Section~\ref{sec:problem_defin
 
 In the first instance, we show how the problem can be restated into a bidding problem with asymmetric cost distributions. We then proceed to characterising the equilibrium bidding strategies (their existence and uniqueness) in the generic case; that is, with an arbitrary number of network operators and an arbitrary distribution of costs. The equilibrium bidding strategies are then explicitly derived in the restricted case; that is, with the number of network operators restricted to two and the costs uniformly distributed.
 
-Following that we present four numerical methods that can be used to numerically approximate the equilibrium bidding strategies in the case of more than two network operators characterised by uniform distributions of costs.
+Finally, the chapter concludes with the presentation of four numerical methods that can be used to numerically approximate the equilibrium bidding strategies in the case of more than two network operators characterised by uniform distributions of costs.
 
-Finally, the chapter concludes with a comparison of the insights gained from the direct and indirect approaches at deriving the equilibrium bidding strategies to the bidding problem. Furthermore, the expected prices that the subscriber will pay in the restricted case are analysed, and lastly, an improvement on the numerical methods is discussed.
-
-\section{Restatement of the Problem} % (fold)
-\label{sec:restatement_of_the_problem_indirect}
+\section{Problem Restatement} % (fold)
+\label{sec:problem_restatement_indirect}
 In order to transform the problem, recall the utility function for each network operator $i$
 \begin{equation*}
   u_i(b,c,r) = \left\{
@@ -96,7 +94,7 @@ since $w\in (0,1)$ and $r_i\in [0,1]$, and in particular, if $w=1$
 Therefore, in terms of costs-hat, the network operators are \emph{ex ante} asymmetric; that is, due to differing domains of costs-hat between the network operators, the probability distributions will have differing supports.
 
 With these results at hand, we can proceed with the characterisation of the equilibrium bidding strategies in the generic case, which is the subject of the next section.
-% section restatement_of_the_problem_indirect (end)
+% section problem_restatement_indirect (end)
 
 \section{Generic Case} % (fold)
 \label{sec:generic_case_indirect}
@@ -314,7 +312,9 @@ and
   \bar{\hat{b}} = \frac{\bar{\hat{c}}_1 + \bar{\hat{c}}_2}{2}.
 \end{equation}
 \end{proposition}
-Note that the equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, we would get a particular bid-hat. Since it is difficult (if even possible) to analytically invert the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}, we resort to numerical methods for estimating the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators. The numerical procedure is as follows.
+It is worth noting that, if the network operators are assumed to submit at least their costs, then Proposition~\ref{prop:pcomp_equi_bidding_str_direct} and Conjecture~\ref{conj:pcomp_max_equi_bidding_str_direct} are ruled out by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} combined with Proposition~\ref{prop:equilibrium_restricted_indirect} since the latter establishes an analytical solution to the bidding problem while Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} makes this solution unique. Furthermore, for the same reason, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} and Proposition~\ref{prop:equilibrium_restricted_indirect} prove Conjecture~\ref{conj:special_case_w_1_direct} for $n=2$ network operators and costs drawn from uniform distribution over the interval $[0,1]$ (cf. numerical example in Section~\ref{sec:restricted_case_n_2_indirect}). However, if this assumption is relaxed, then, as showed by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarized in Proposition~\ref{prop:equilibrium_restricted_indirect} as well as Proposition~\ref{prop:pcomp_equi_bidding_str_direct} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterize equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str_direct} as non-standard, further argue that such equilibria are important and should not be neglected.
+
+The equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, we would get a particular bid-hat. Since it is difficult (if even possible) to analytically invert the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}, we resort to numerical methods for estimating the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators. The numerical procedure is as follows.
 \begin{enumerate}
   \item For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2.
   \item If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$.
@@ -376,6 +376,43 @@ Keeping costs and reputation ratings fixed, one can then estimate the equilibriu
 By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:example_restricted_indirect}. Figure~\ref{fig:bids_restricted_indirect} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:prices_restricted_indirect} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:example_restricted_indirect} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:bids_restricted_indirect}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:bids_restricted_indirect}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w_c < w < 1$, while network operator 1 for the values of $0 < w < w_c$.
 
 Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (Figure~\ref{fig:prices_restricted_indirect}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0_direct}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1_direct}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
+
+Having derived the equilibrium bidding strategy functions, it is possible to examine the expected prices the subscriber will have to pay for different values of the price weight given the reputation ratings of the network operators. This is examined next.
+
+\subsection{Subscriber's Perspective: Expected Prices} % (fold)
+\label{sub:subscriber_s_perspective_expected_prices_indirect}
+Suppose there are two network operators, and costs are uniformly distributed over the interval $[0,1]$. The expected price is equivalent to the expected value of the winning bid; that is, with some abuse of notation
+\begin{equation}
+  \label{eq:exp_price_def_indirect}
+  E[p](w,r_1,r_2) = E[b_i \:\vert\: \arg\min_{i\in \{1,2\}}\beta(w,b_i,r_i)],
+\end{equation}
+where $b_i$ is the equilibrium bid, and $\beta(w,b_i,r_i) = \beta(b_i,r_i)$ evaluated for a particular value of $w$ for all $i\in \{1,2\}$.
+
+If both network operators have equal reputation ratings, $r = r_1 = r_2$ say, then Corollary~\ref{cor:special_case_r_i_r_j_direct} holds for all $w\in [0,1]$. Therefore, regardless of the choice of the price weight, the subscriber expects to pay the price of
+\begin{equation}
+  \label{eq:exp_price_at_w_1_indirect}
+  E[p^*] \equiv E[p](w,r,r) = E\left[\min_{i\in \{1,2\}}\frac{1+c_i}{2}\right] \quad\textrm{for all } w\in [0,1],
+\end{equation}
+which is equivalent to Equation~\eqref{eq:standard_fpa_direct} evaluated at $n=2$. In particular, for costs, $c_i$, uniformly distributed over the interval $[0,1]$, $E[p^*] = \frac{2}{3}$.
+
+If, on the other hand, both network operators are characterized by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:equilibrium_restricted_indirect}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
+
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Indirect/Figures/expected_prices}
+  \caption{Average prices plotted against the price weight for different pairs of reputation ratings}
+  \label{fig:expected_prices_indirect}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Indirect/Figures/expected_prices_sensitivity}
+  \caption{Sensitivity of the price weight to the expected prices}
+  \label{fig:expected_prices_sensitivity_indirect}
+\end{figure}
+
+To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretised interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers\footnote{See Section~\ref{sub:probability_notation}, Appendix~\ref{cha:notation} for the definition of the Strong Law of Large Numbers.} implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices_indirect} shows the result of the estimation for four pairs of reputation ratings: $(r_1, r_2) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
+
+It can be observed that regardless of the values of the reputation ratings, the expected prices, $E[p](w,r_1,r_2)$, are bounded from below by $E[p^*]$ for each price weight; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Hence, it can be concluded that regardless of the values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
+
+Furthermore, as the difference $(r_2-r_1)$ increases, the expected prices, $E[p](w,r_1,r_2)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Therefore, it can be hypothesized that the smaller the difference $(r_2-r_1)$, the less (expected) price sensitive the price weight; that is, for any $w_1\in[0,1]$, if $(r^2_2-r^2_1) > (r^1_2-r^1_1)$ for all $r^1_1,r^1_2,r^2_1,r^2_2\in [0,1]$, then $E[p](w_1,r^2_1,r^2_2) \ge E[p](w_1,r^1_1,r^1_2)$ (Figure~\ref{fig:expected_prices_sensitivity_indirect}). In other words, for any expected price, as the difference $(r_2-r_1)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed.
+% subsection subscriber_s_perspective_expected_prices_in_restricted_case (end)
 
 As already mentioned in the previous section, the bidding problem does not possess a closed-form solution in the case of more than two network operators. However, it is possible to approximate the solution numerically, as it is discussed in the next section. It should further be noted that the equilibrium bidding strategies derived in this section will be used to verify the correctness of the numerical methods presented in the next section.
 % section restricted_case_n_2_indirect (end)
@@ -449,7 +486,7 @@ To conclude, in the rest of this section, we shall concentrate on cases such tha
 \end{equation*}
 for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
-In what follows, we outline the inner workings of the FSM and PPM methods, and present the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using both algorithms.
+In what follows, we firstly outline the inner workings of the FSM and PPM methods, and then present the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using both algorithms. Lastly, a possible improvement to PPM using Chebyshev polynomials is discussed.
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
@@ -712,9 +749,40 @@ In the second examined scenario, there are 4 network operators characterized by 
   \caption{PPM solution satisfies the sufficiency condition for all~$\hat{b}$}
   \label{fig:polynomial_projection_4_sufficiency_indirect}
 \end{figure}
+% subsection approximation_results (end)
+
+\subsection{Improved Polynomial Projection Method using Chebyshev Polynomials} % (fold)
+\label{sub:improved_polynomial_projection_method_using_chebyshev_polynomials_indirect}
+The PPM method could potentially be improved in the sense that it would yield more accurate results if Chebyshev polynomials were employed in place of regular polynomials. Chebyshev polynomials are better suited to least squares optimization upon which the PPM method is based~\cite{MasonApproximation2003,Hubbard2011}.
+
+In order to facilitate the improvement, the inverse equilibrium bidding function in Equation~\eqref{eq:polynomial_cost_function_indirect} can be approximated using Chebyshev polynomials as follows
+\begin{equation*}
+  \displaystyle\hat{c}_i(b;\underline{\hat{b}},\alpha_i) = \sum_{k=0}^K \alpha_{i,k} T_k\left(x(b;\underline{\hat{b}})\right)
+\end{equation*}
+for all $i\in N$. Here, $T_k$ denotes $k^{\textrm{th}}$ Chebyshev polynomial of the first kind defined recursively by
+\begin{equation*}
+  \left\{
+    \begin{array}{l}
+      T_0(x) = 1\\
+      T_1(x) = x\\
+      T_{k+1}(x) = 2xT_k(x) - T_{k-1}(x), \qquad k=1,\ldots,K-1
+    \end{array}
+  \right.
+\end{equation*}
+and $x(b;\underline{\hat{b}})\in [-1,1]$ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$. The grid of points, $x(b;\underline{\hat{b}})$, should be chosen such that
+\begin{equation*}
+  \displaystyle x(b_t;\bar{\hat{b}}) \equiv x_t = cos\left(\frac{2t-1}{2T}\pi\right),
+\end{equation*}
+and
+\begin{equation*}
+  b_t = \frac{\bar{\hat{b}} + \underline{\hat{b}} + (\bar{\hat{b}} - \underline{\hat{b}})x_t}{2}, \qquad t = 1,\ldots,T.
+\end{equation*}
+Generated in this way, the grid of points, more commonly known as Chebyshev nodes, is said to minimize the interpolation error when approximating a function~\cite{Hubbard2011}.
+
+The cost functions defined this way should potentially yield more accurate as well as stable numerically results, especially if the Mathematical Programming with Equilibrium Constraints (MPEC) optimization approach is employed~\cite{HubbardPaarsch2011,Hubbard2011}.
+% subsection other_numerical_methods (end)
 
 In this section, the FSM and PPM numerical algorithms were described, and two exemplary bidding scenarios were analysed for which the equilibrium bidding strategies were generated using the aforementioned algorithms. It should be noted, however, that one of the key assumptions of this section was $\underline{\hat{c}}_i\leq \hat{c}(\underline{\hat{b}})$ for all network operators $i\in N$, which restricted the choice of the price weight and the reputation ratings to a set satisfying $w\geq 1 - \sfrac{1}{(10r_n - 9r_2 - r_1 + 1)}$. In the following section, we relax that assumption by allowing cases such that $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one network operator $i\in N$. In other words, we consider all nontrivial equilibria characterised by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. Furthermore, we present two numerical algorithms which are able to generate equilibrium bidding strategies under the relaxed assumption.
-% subsection approximation_results (end)
 % section numerical_analysis_indirect (end)
 
 \section{Extended Numerical Analysis} % (fold)
@@ -930,85 +998,9 @@ In the second examined scenario, there are 4 network operators characterized by 
   \label{fig:combined_4_sufficiency_indirect}
 \end{figure}
 % subsection extended_approximation_results_indirect (end)
+
+In this section, the EFSM and CMA numerical algorithms were outlined, and two exemplary bidding scenarios were analysed for which the equilibrium bidding strategies were generated by the aforementioned algorithms. Both numerical methods ``complete'' the FSM and PPM methods in the sense that they permit for cases such that $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one network operator $i\in N$, and hence, consider all nontrivial equilibria characterised by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. It is an important improvement since otherwise only a very restricted subset of all possible bidding scenarios resulting in nontrivial equilibria could be considered and numerically approximated.
 % section extended_numerical_analysis_indirect (end)
-
-\section{Discussion} % (fold)
-\label{sec:discussion_indirect}
-The aim of this section is threefold. First, the results from direct and indirect approaches are compared. Second, the prices the subscriber has to pay for each value of the price weight given a tuple of network operators' reputation ratings (in the restricted case) are examined. Finally, a possible improvement to PPM using Chebyshev polynomials is discussed.
-
-\subsection{Comparison of Direct and Indirect Approaches} % (fold)
-\label{sub:comparison_of_direct_and_indirect_approaches_indirect}
-If the network operators are assumed to submit at least their costs, then, in the restricted case, Proposition~\ref{prop:pcomp_equi_bidding_str_direct} and Conjecture~\ref{conj:pcomp_max_equi_bidding_str_direct} are ruled out by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} combined with Proposition~\ref{prop:equilibrium_restricted_indirect} since the latter establishes an analytical solution to the bidding problem while Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} makes this solution unique. Furthermore, for the same reason, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} and Proposition~\ref{prop:equilibrium_restricted_indirect} prove Conjecture~\ref{conj:special_case_w_1_direct} for $n=2$ network operators and costs drawn from uniform distribution over the interval $[0,1]$ (cf. numerical example in Section~\ref{sec:restricted_case_n_2_indirect}).
-
-However, if this assumption is relaxed, then, as showed by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarized in Proposition~\ref{prop:equilibrium_restricted_indirect} as well as Proposition~\ref{prop:pcomp_equi_bidding_str_direct} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterize equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str_direct} as non-standard, further argue that such equilibria are important and should not be neglected.
-% subsection comparison_of_results_from_direct_and_indirect_approaches (end)
-
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Indirect/Figures/expected_prices}
-  \caption{Average prices plotted against the price weight for different pairs of reputation ratings}
-  \label{fig:expected_prices_indirect}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Indirect/Figures/expected_prices_sensitivity}
-  \caption{Sensitivity of the price weight to the expected prices}
-  \label{fig:expected_prices_sensitivity_indirect}
-\end{figure}
-
-\subsection{Subscriber's Perspective: Expected Prices in Restricted Case $n=2$} % (fold)
-\label{sub:subscriber_s_perspective_expected_prices_in_restricted_case_n_2_indirect}
-Having derived the equilibrium bidding strategy functions in the restricted case, it is possible to examine the expected prices the subscriber will have to pay for different values of the price weight given the reputation ratings of the network operators. We consider only the equilibrium bidding strategy functions in Proposition~\ref{prop:equilibrium_restricted_indirect} since they assume the network operators submit at least their costs. Hence, suppose all of the assumptions of Section~\ref{sec:restricted_case_n_2_indirect} hold; that is, there are two network operators, and costs are uniformly distributed over the interval $[0,1]$. The expected price is equivalent to the expected value of the winning bid; that is, with some abuse of notation
-\begin{equation}
-  \label{eq:exp_price_def_indirect}
-  E[p](w,r_1,r_2) = E[b_i \:\vert\: \arg\min_{i\in \{1,2\}}\beta(w,b_i,r_i)],
-\end{equation}
-where $b_i$ is the equilibrium bid, and $\beta(w,b_i,r_i) = \beta(b_i,r_i)$ evaluated for a particular value of $w$ for all $i\in \{1,2\}$.
-
-If both network operators have equal reputation ratings, $r = r_1 = r_2$ say, then Corollary~\ref{cor:special_case_r_i_r_j_direct} holds for all $w\in [0,1]$. Therefore, regardless of the choice of the price weight, the subscriber expects to pay the price of
-\begin{equation}
-  \label{eq:exp_price_at_w_1_indirect}
-  E[p^*] \equiv E[p](w,r,r) = E\left[\min_{i\in \{1,2\}}\frac{1+c_i}{2}\right] \quad\textrm{for all } w\in [0,1],
-\end{equation}
-which is equivalent to Equation~\eqref{eq:standard_fpa_direct} evaluated at $n=2$. In particular, for costs, $c_i$, uniformly distributed over the interval $[0,1]$, $E[p^*] = \frac{2}{3}$.
-
-If, on the other hand, both network operators are characterized by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:equilibrium_restricted_indirect}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
-
-To this end, for any given pair of reputation ratings, the costs are pseudo-randomly drawn from the uniform distribution over the discretised interval $[0,1]$. For each selected price weight, the average price is averaged over 10,000 i.i.d.~observations. The Strong Law of Large Numbers (which is stated in Section~\ref{sec:probability_notation}) implies that as the number of observations tends to infinity, the average (sample mean) of the observations approaches the real mean of the distribution of the random variable in question. Therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight. Without loss of generality, suppose further that $r_i \le r_j$. Figure~\ref{fig:expected_prices_indirect} shows the result of the estimation for four pairs of reputation ratings: $(r_1, r_2) = (0.25, 0.25)$, $(0.25, 0.5)$, $(0.25, 0.75)$, and $(0.25, 1.0)$.
-
-It can be observed that regardless of the values of the reputation ratings, the expected prices, $E[p](w,r_1,r_2)$, are bounded from below by $E[p^*]$ for each price weight; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Hence, it can be concluded that regardless of the values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
-
-Furthermore, as the difference $(r_2-r_1)$ increases, the expected prices, $E[p](w,r_1,r_2)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Therefore, it can be hypothesized that the smaller the difference $(r_2-r_1)$, the less (expected) price sensitive the price weight; that is, for any $w_1\in[0,1]$, if $(r^2_2-r^2_1) > (r^1_2-r^1_1)$ for all $r^1_1,r^1_2,r^2_1,r^2_2\in [0,1]$, then $E[p](w_1,r^2_1,r^2_2) \ge E[p](w_1,r^1_1,r^1_2)$ (Figure~\ref{fig:expected_prices_sensitivity_indirect}). In other words, for any expected price, as the difference $(r_2-r_1)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed.
-% subsection subscriber_s_perspective_expected_prices_in_restricted_case (end)
-
-\subsection{Improved Polynomial Projection Method using Chebyshev Polynomials} % (fold)
-\label{sub:improved_polynomial_projection_method_using_chebyshev_polynomials_indirect}
-As briefly mentioned in Section~, the PPM method could potentially be improved in the sense that it would yield more accurate results if Chebyshev polynomials were employed in place of regular polynomials. Chebyshev polynomials are better suited to least squares optimization upon which the PPM method is based~\cite{MasonApproximation2003,Hubbard2011}.
-
-In order to facilitate the improvement, the inverse equilibrium bidding function in Equation~\eqref{eq:polynomial_cost_function_indirect} can be approximated using Chebyshev polynomials as follows
-\begin{equation*}
-  \displaystyle\hat{c}_i(b;\underline{\hat{b}},\alpha_i) = \sum_{k=0}^K \alpha_{i,k} T_k\left(x(b;\underline{\hat{b}})\right)
-\end{equation*}
-for all $i\in N$. Here, $T_k$ denotes $k^{\textrm{th}}$ Chebyshev polynomial of the first kind defined recursively by
-\begin{equation*}
-  \left\{
-    \begin{array}{l}
-      T_0(x) = 1\\
-      T_1(x) = x\\
-      T_{k+1}(x) = 2xT_k(x) - T_{k-1}(x), \qquad k=1,\ldots,K-1
-    \end{array}
-  \right.
-\end{equation*}
-and $x(b;\underline{\hat{b}})\in [-1,1]$ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$. The grid of points, $x(b;\underline{\hat{b}})$, should be chosen such that
-\begin{equation*}
-  \displaystyle x(b_t;\bar{\hat{b}}) \equiv x_t = cos\left(\frac{2t-1}{2T}\pi\right),
-\end{equation*}
-and
-\begin{equation*}
-  b_t = \frac{\bar{\hat{b}} + \underline{\hat{b}} + (\bar{\hat{b}} - \underline{\hat{b}})x_t}{2}, \qquad t = 1,\ldots,T.
-\end{equation*}
-Generated in this way, the grid of points, more commonly known as Chebyshev nodes, is said to minimize the interpolation error when approximating a function~\cite{Hubbard2011}.
-
-The cost functions defined this way should potentially yield more accurate as well as stable numerically results, especially if the Mathematical Programming with Equilibrium Constraints (MPEC) optimization approach is employed~\cite{HubbardPaarsch2011,Hubbard2011}.
-% subsection other_numerical_methods (end)
-% section discussion (end)
 
 \section{Summary}
 \label{sec:summary_indirect}
