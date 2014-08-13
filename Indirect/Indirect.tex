@@ -81,7 +81,7 @@ In order to avoid ambiguity, we shall refer to $\hat{c}_i$ as costs-hat and $\ha
 
 As a result of this transformation, the costs-hat, $\hat{c}_i$, for each network operator $i$ are distributed over the interval
 \begin{equation*}
-  \hat{c}_i\in [(1-w)r_i, (1-w)r_i + w]\equiv [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
+  \hat{c}_i\in [(1-w)r_i, (1-w)r_i + w]= [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
 \end{equation*}
 since $c_i\in [0,1]$ for all $i\in N$. Note, moreover, that for all $i\in N$
 \begin{equation*}
@@ -124,11 +124,11 @@ Assume that
 \end{enumerate}
 \end{assumptions}
 
-In equilibrium, the bids of each network operator equal $\hat{b}_i = \hat{b}_i(\hat{c}_i)$, where $\hat{b}_i$ is the equilibrium bidding function. Denote by $\hat{c}_i(\hat{b}_i)\equiv \hat{b}_i^{-1}(\hat{b}_i)$ an inverse equilibrium bidding function for each network operator $i\in N$. Therefore, the expected utility for each network operator $i\in N$ can be written as
+In equilibrium, the bids of each network operator equal $\hat{b}_i = \hat{b}_i(\hat{c}_i)$, where $\hat{b}_i$ is the equilibrium bidding function. Denote by $\hat{c}_i(\hat{b}_i)= \hat{b}_i^{-1}(\hat{b}_i)$ an inverse equilibrium bidding function for each network operator $i\in N$. Therefore, the expected utility for each network operator $i\in N$ can be written as
 \begin{align}
   \label{eq:def_expected_utility_indirect}
   \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i})
-  &\equiv (\hat{b}_i - \hat{c}_i)P\{\textrm{winning}\mid\hat{b}_i\}\\ \nonumber
+  &= (\hat{b}_i - \hat{c}_i)P\{\textrm{winning}\mid\hat{b}_i\}\\ \nonumber
   &= (\hat{b}_i - \hat{c}_i)Q_i(\hat{b}_i),
 \end{align}
 where
@@ -391,7 +391,7 @@ where $b_i$ is the equilibrium bid, and $\beta(w,b_i,r_i) = \beta(b_i,r_i)$ eval
 If both network operators have equal reputation ratings, $r = r_1 = r_2$ say, then Corollary~\ref{cor:special_case_r_i_r_j_direct} holds for all $w\in [0,1]$. Therefore, regardless of the choice of the price weight, the subscriber expects to pay the price of
 \begin{equation}
   \label{eq:exp_price_at_w_1_indirect}
-  E[p^*] \equiv E[p](w,r,r) = E\left[\min_{i\in \{1,2\}}\frac{1+c_i}{2}\right] \quad\textrm{for all } w\in [0,1],
+  E[p^*] = E[p](w,r,r) = E\left[\min_{i\in \{1,2\}}\frac{1+c_i}{2}\right] \quad\textrm{for all } w\in [0,1],
 \end{equation}
 which is equivalent to Equation~\eqref{eq:standard_fpa_direct} evaluated at $n=2$. In particular, for costs, $c_i$, uniformly distributed over the interval $[0,1]$, $E[p^*] = \frac{2}{3}$.
 
@@ -502,7 +502,7 @@ The idea behind the FSM is to find the best approximation of the lower bound on 
 \end{equation}
 for all $i\in N$, lies within a set of permissible functions, $S_i$, such that every element of that set is a function mapping $[\underline{\hat{b}}', \bar{\hat{b}}]$ into $[\underline{\hat{c}}_i, \bar{\hat{c}}_i]$, it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, and each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$; that is,
 \begin{equation*}
-  S_i\equiv\left\{s_i \:\middle\vert\:
+  S_i=\left\{s_i \:\middle\vert\:
   \begin{array}{l}
     s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\underline{\hat{c}}_i, \bar{\hat{c}}_i],\\
     b_1 < b_2\implies s_i(b_1) < s_i(b_2) \textrm{ for all }b_1,b_2\in [\underline{\hat{b}}', \bar{\hat{b}}),\\
@@ -538,7 +538,7 @@ This specification of the problem is a modified version of the First Algorithm i
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_indirect}. For any given tolerance, $\epsilon\in\left(0, \bar{\hat{b}} - \underline{\hat{c}}_2\right)$, the algorithm aims at finding the interval $LH\equiv[low, high]\subseteq [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that (approximately) $\underline{\hat{b}}\in LH$ and $high-low < \epsilon$. The approximation to the lower bound on bids is then found to be $\underline{\hat{b}}' = 0.5\cdot(low + high)$.
+The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_indirect}. For any given tolerance, $\epsilon\in\left(0, \bar{\hat{b}} - \underline{\hat{c}}_2\right)$, the algorithm aims at finding the interval $LH=[low, high]\subseteq [\underline{\hat{c}}_2, \bar{\hat{b}}]$ such that (approximately) $\underline{\hat{b}}\in LH$ and $high-low < \epsilon$. The approximation to the lower bound on bids is then found to be $\underline{\hat{b}}' = 0.5\cdot(low + high)$.
 
 The initial guess supplied to the algorithm is the interval $[\underline{\hat{c}}_2, \bar{\hat{b}}]$. In every iteration, the guessed value for the lower bound on bids is the midpoint of the interval; that is, $guess = 0.5\cdot(low + high)$. The algorithm then uses this value as the new initial condition for the system in~\eqref{eq:fsm_initial_value_problem_indirect}. If the solution to the system lies within the set $S_i$ for all $i\in N$, then $guess$ becomes the new upper endpoint of the interval $LH$; that is, $LH = [low, guess]$. Otherwise, it becomes the new lower endpoint; that is, $LH = [guess, high]$. This procedure is repeated until the length of the interval is smaller than $\epsilon$.
 
@@ -771,7 +771,7 @@ for all $i\in N$. Here, $T_k$ denotes $k^{\textrm{th}}$ Chebyshev polynomial of 
 \end{equation*}
 and $x(b;\underline{\hat{b}})\in [-1,1]$ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$. The grid of points, $x(b;\underline{\hat{b}})$, should be chosen such that
 \begin{equation*}
-  \displaystyle x(b_t;\bar{\hat{b}}) \equiv x_t = cos\left(\frac{2t-1}{2T}\pi\right),
+  \displaystyle x(b_t;\bar{\hat{b}}) = x_t = cos\left(\frac{2t-1}{2T}\pi\right),
 \end{equation*}
 and
 \begin{equation*}
@@ -805,7 +805,7 @@ The EFSM method extends the FSM method by effectively implementing the reasoning
 \end{equation}
 for all $i\in N$, lies within a set of permissible functions, $S_i$, such that every element of that set is a function mapping $[\underline{\hat{b}}',\bar{\hat{b}}]$ into $[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i]$, it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, and each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$; that is,
 \begin{equation*}
-  S_i\equiv\left\{s_i \:\middle\vert\:
+  S_i=\left\{s_i \:\middle\vert\:
   \begin{array}{l}
     s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i],\\
     b_1 < b_2\implies s_i(b_1) < s_i(b_2) \textrm{ for all }b_1,b_2\in [\underline{\hat{b}}', \bar{\hat{b}}),\\

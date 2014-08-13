@@ -45,7 +45,7 @@ Assume that
 These assumptions correspond to Assumptions~A.1 and Theorem~U.1 in Lebrun~\cite{Lebrun2006}, and, as shown by Lebrun, with these assumptions satisfied, there exists one and only one pure-strategy Bayesian Nash equilibrium where bidders engage in serious bidding; that is, bid at least their cost. Formally,
 \begin{proposition}[Characterization of the Equilibrium in Common Priors Setting]
 \label{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}
-Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i\equiv b_i^{-1}$, satisfy the following system of differential equations
+Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i= b_i^{-1}$, satisfy the following system of differential equations
 \begin{equation*}
   \frac{d}{db}c_i(b) = \frac{1 - F_i(c_i(b))}{f_i(c_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n \frac{1}{b-c_k(b)} - \frac{1}{b-c_i(b)} \right]
 \end{equation*}
@@ -94,7 +94,7 @@ To briefly recap, the FSM method was first proposed by Bajari~\cite{Bajari2001a}
 \end{equation}
 for all $i\in N$, lies within a set of permissible functions, $S$, such that every element of that set is a function mapping $[\underline{b}, \bar{c}]$ into $[\underline{c}, \bar{c}]$, it is monotonically increasing everywhere except possibly at $\underline{c}$, and each function value is strictly lower than its argument except possibly at $\bar{c}$; that is,
 \begin{equation*}
-  S\equiv\left\{s \:\middle\vert\:
+  S=\left\{s \:\middle\vert\:
   \begin{array}{l}
     s: [\underline{b}, \bar{c}]\to [\underline{c}, \bar{c}],\\
     b_1 < b_2\implies s(b_1) < s(b_2) \text{ for all }b_1,b_2\in [\underline{b}, \bar{c}),\\
@@ -285,19 +285,19 @@ There are two fundamental questions that need to be addressed when it comes to q
 The buyer's expected price is equivalent to the expected value of the winning bid; that is,
 \begin{equation}
   \label{eq:expected_price_approximation}
-  p \equiv E[b_i(c_i) \:\vert\: b_i(c_i) < \min_{j\neq i} b_j(c_j)],
+  p = E[b_i(c_i) \:\vert\: b_i(c_i) < \min_{j\neq i} b_j(c_j)],
 \end{equation}
 where $b_i$ is the equilibrium bidding function for all $i\in N$. Since an analytical derivation of the closed-form solution is not straightforward, similarly to the analysis presented in Section~\ref{sub:subscriber_s_perspective_expected_prices_indirect}, we resort to numerical estimation of the buyer's expected price. That is, for each considered bidding scenario, the costs for each bidder are pseudo-randomly drawn from uniform distribution, the corresponding equilibrium bids are computed, and the minimum is chosen as the winning bid (price). This procedure is repeated 1000 times, yielding 1000 i.i.d.~observations of the price which are then averaged to give an estimate of the expected price (consequence of the Strong Law of Large Numbers; Section~\ref{sec:probability_notation}, Appendix~\ref{cha:notation}).
 
 In order to define the bidder's ex-ante expected utility, we restate here, with some abuse of notation, the expected utility function for each bidder $i\in N$ as defined in Equation~\eqref{eq:def_expected_utility_indirect}, Chapter~\ref{cha:indirect}:
 \begin{equation}
   \label{eq:expected_utility_approximation}
-  \Pi_i(c_i) \equiv (b_i(c_i) - c_i)\cdot \prod_{j\neq i} \left( 1 - F_j(b_j^{-1}(b_i(c_i))) \right)
+  \Pi_i(c_i) = (b_i(c_i) - c_i)\cdot \prod_{j\neq i} \left( 1 - F_j(b_j^{-1}(b_i(c_i))) \right)
 \end{equation}
 where $b_i$ is the equilibrium bidding function, and $F_i$ is the distribution function of costs for bidder $i$. The ex-ante expected utility is then equivalent to the expected value of the expected utility; that is,
 \begin{equation}
   \label{eq:ex_ante_expected_utility_approximation}
-  \Pi_i \equiv E[\Pi_i(c_i)] = \int_{\underline{c}_i}^{\bar{c}_i} \Pi_i(t)dF_i(t)
+  \Pi_i = E[\Pi_i(c_i)] = \int_{\underline{c}_i}^{\bar{c}_i} \Pi_i(t)dF_i(t)
 \end{equation}
 for all $i\in N$. In other words, the ex-ante expected utility can be thought of as the average expected utility for each bidder for each considered bidding scenario, and it follows from the definition of ex-ante expected payments in a standard first-price auction put forward by Krishna~\cite{Krishna10} (cf.~Section 2.4 Revenue Comparison in~\cite{Krishna10}).
 
@@ -352,7 +352,7 @@ This section presents the results of approximating the DMP auction with CP aucti
 \item For each reputation ratings $n$-tuple, evaluate relative errors in expected price and ex-ante expected utility per bidder using Equations~\eqref{eq:relative_error_price_approximation}~and~\eqref{eq:relative_error_utility_approximation}.
 \item Evaluate mean relative errors in expected price and ex-ante expected utility per bidder, and associated 95\% confidence intervals. The confidence interval for the mean is computed using the formula described in~\cite{LawChapter42007}; that is, given a random sample of size $k$ with unknown mean and standard deviation, the confidence interval is defined as
 \begin{equation*}
-  \text{ci}\equiv\bar{X}\pm t_{1-\sfrac{\alpha}{2},k-1}\frac{s}{\sqrt{k}},
+  \text{ci}=\bar{X}\pm t_{1-\sfrac{\alpha}{2},k-1}\frac{s}{\sqrt{k}},
 \end{equation*}
 where $\bar{X}$ is the sample mean, $s$ is the sample standard deviation, and $t_{1-\sfrac{\alpha}{2}, k-1}$ is the upper $1-\sfrac{\alpha}{2}$ critical value for the \emph{t}-distribution with $k-1$ degrees of freedom. It is worth noting that for 95\% confidence interval, $\alpha=0.05$.
 \item Repeat for price weight values ranging from $0.55$ to $0.99$\footnote{Since we consider only feasible bidders, we require that $w\in(0.5,1)$ which was shown to be sufficient to warrant feasible bidding in Section~\ref{sec:numerical_analysis_indirect}.}.

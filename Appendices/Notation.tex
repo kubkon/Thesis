@@ -35,11 +35,11 @@ Every increasing function is one-to-one and onto.
 
 \section{Probability Theory and Statistics} % (fold)
 \label{sec:probability_notation}
-Let $X$ denote a continuous random variable (r.v.) with the support $[a, b]\subset\mathbb{R}$. By $F_{X}$ we mean a cumulative distribution function of the $X$ r.v.; therefore, for any $x\in\mathbb{R}$, $F_{X}(x) = P\{X \le x\}$, where $P\{X\le x\}$ denotes the probability of the event such that $X\le x$. If $F_{X}$ admits a density function, it shall be denoted by $f_{X} \equiv \frac{d}{dx}F_{X}$. If it is clear from the context which variable is considered random, we shall drop the subscript; that is, $F_{X}\equiv F$.
+Let $X$ denote a continuous random variable (r.v.) with the support $[a, b]\subset\mathbb{R}$. By $F_{X}$ we mean a cumulative distribution function of the $X$ r.v.; therefore, for any $x\in\mathbb{R}$, $F_{X}(x) = P\{X \le x\}$, where $P\{X\le x\}$ denotes the probability of the event such that $X\le x$. If $F_{X}$ admits a density function, it shall be denoted by $f_{X} = \frac{d}{dx}F_{X}$. If it is clear from the context which variable is considered random, we shall drop the subscript; that is, $F_{X}= F$.
 
 The expected value of $X$, denoted by $E[X]$, is defined as $E[X] = \int_{-\infty}^{\infty} xdF(x)$. Similarly, if $u$ is a function of $X$, then the expected value of $u(X)$ is defined as $E[u(X)] = \int_{-\infty}^{\infty} u(x)dF(x)$.
 
-Let $X_1, \ldots, X_n$ be independent continuous r.v.s with distribution function $F$ and density function $f\equiv \frac{d}{dx}F$. If we let $X_{i:n}$ denote the $i$th smallest of these r.v.s, then $X_{1:n}, \ldots,X_{n:n}$ are called the \emph{order statistics} \cite{Arnold08,David03}. In the event that the r.v.s are independently and identically distributed (i.i.d.), the distribution of $X_{i:n}$ is
+Let $X_1, \ldots, X_n$ be independent continuous r.v.s with distribution function $F$ and density function $f= \frac{d}{dx}F$. If we let $X_{i:n}$ denote the $i$th smallest of these r.v.s, then $X_{1:n}, \ldots,X_{n:n}$ are called the \emph{order statistics} \cite{Arnold08,David03}. In the event that the r.v.s are independently and identically distributed (i.i.d.), the distribution of $X_{i:n}$ is
 \begin{equation}
 	\label{eq:iid_cdf_notation}
 	F_{X_{i:n}}(x) = \sum_{k=i}^{n} \binom{n}{k} (F(x))^k (1-F(x))^{n-k},
@@ -108,7 +108,7 @@ If $\mathcal{B}_i = \Theta_i$ for all $i$, then the mechanism becomes the so-cal
 
 A direct mechanism $(\mathbf{Q},\mathbf{M})$ is said to satisfy \emph{incentive compatibility} (IC) constraint if for all $i\in N$, for all $\theta_i\in\Theta_i$, and for all $\hat{\theta}_i\in\Theta_i$,
 \begin{equation*}
-  \tilde{\tilde{u}}_i(\theta_i) \equiv q_i(\theta_i)\theta_i - m_i(\theta_i)\ge q_i(\hat{\theta}_i)\theta_i - m_i(\hat{\theta}_i),
+  \tilde{\tilde{u}}_i(\theta_i) = q_i(\theta_i)\theta_i - m_i(\theta_i)\ge q_i(\hat{\theta}_i)\theta_i - m_i(\hat{\theta}_i),
 \end{equation*}
 where
 \begin{equation*}
