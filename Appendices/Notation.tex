@@ -17,10 +17,12 @@ Following the standard notation used in real analysis literature, we denote by $
 Let $f: X\to Y$ be a function mapping set $X$ into $Y$.
 \begin{thm}[Inverse of a Function]
 \label{thm:inverse_of_a_function_notation}
-If $f$ is one-to-one and onto, then it is invertible and its inverse is denoted by $f^{-1}$ with the property that, for all $x\in X$ and $y\in Y$, $f(x)=y$ and $f^{-1}(y) = x$.
+The function $f:X\to Y$ has an inverse $f^{-1}: Y\to X$ if and only if $f$ is one-to-one and onto.
 \end{thm}
 \begin{proof}
-FIX:ME
+Suppose $f$ has an inverse $f^{-1}$. Since $f^{-1}$ is a function, then for all $y\in Y$, there exists $x\in X$ such that $f^{-1}(y) = x$. Hence, $f$ is onto. Suppose there exist $x,x'\in X$ and $y\in Y$ such that $f(x) = y$ and $f(x') = y$. Then, $x = f^{-1}(y)$ and $x' = f^{-1}(y)$. But $f^{-1}$ is a function; hence, $x = x'$ and $f$ is one-to-one.
+
+Conversely, suppose $f$ is one-to-one and onto. Let $f^{-1}: Y\to X$ so that for all $y\in Y$, there exists $x\in X$ such that $f^{-1}(y) = x$. Since $f$ is onto, for all $y\in Y$, there exists $x\in X$ such that $f(x) = y$. Furthermore, since $f^{-1}(y) = x$ for all $y\in Y$ by definition, then $f^{-1}(f(x)) = x$. Since $f$ is one-to-one, for all $x,x'\in X$, $f(x) = y$ and $f(x') = y$ implies $x = x'$. Since $f^{-1}(f(x)) = x$ by the previous assertion, then $f^{-1}(f(x)) = f^{-1}(f(x'))$. Hence, $f^{-1}$ is an inverse of $f$.
 \end{proof}
 
 Let $f$ be an increasing function. That is, for all $x,y\in X$ such that $x < y$, it follows that $f(x) < f(y)$.
