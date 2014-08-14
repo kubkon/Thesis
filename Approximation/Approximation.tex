@@ -301,14 +301,14 @@ where $b_i$ is the equilibrium bidding function, and $F_i$ is the distribution f
 \end{equation}
 for all $i\in N$. In other words, the ex ante expected utility can be thought of as the average expected utility for each bidder for each considered bidding scenario, and it follows from the definition of ex ante expected payments in a standard first-price auction put forward by Krishna~\cite{Krishna10} (cf.~Section 2.4 Revenue Comparison in~\cite{Krishna10}).
 
-The way the aforementioned metrics are actually computed deserves a more elaborate explanation. The numerical derivation of equilibrium in CP auction relies on approximating the bidders' distributions of costs with truncated normal distributions with common support, as discussed in Section~\ref{sub:modeling_using_truncated_normal_distribution_approximation}. When computing the expected price and ex ante expected utilities for all bidders in the CP auction, it is assumed, however, that the bidders draw their costs from their actual (uniform) distributions but use the derived equilibrium bidding strategies to compute their bids. In this way, when computing the expected price and ex ante expected utilities, we do not misrepresent the bidders' distributions of costs, and hence, ensure the results of approximating the DMP auction with CP auction are as realistic as possible. To see this, suppose that, in the CP auction, the bidders' costs are drawn from the truncated normal distributions but in reality they come from uniform distributions. Let $F_i^{CP}$ denote the truncated normal distribution function with support $[\underline{c}, \bar{c}]$ (according to Equation~\eqref{eq:domain_common_priors_approximation}), and let $F_i^{DMP}$ denote the uniform distribution function with support $[\underline{c}_i, \bar{c}_i]$ for all $i\in N$. Then, as shown in the previous section, $[\underline{c}_i,\bar{c}_i]\subset [\underline{c}, \bar{c}]$. Hence, there exists $c\in [\underline{c}, \bar{c}]$ such that $c\in [\underline{c}_i, \bar{c}_i]$ for some $i\in N$; that is, a bidder is allowed to submit a cost lying outside their actual support.
+The way the aforementioned metrics are actually computed deserves a more elaborate explanation. The numerical derivation of equilibrium in CP auction relies on approximating the bidders' distributions of costs with truncated normal distributions with common support, as discussed in Section~\ref{sub:modeling_using_truncated_normal_distribution_approximation}. When computing the expected price and ex ante expected utilities for all bidders in the CP auction, it is assumed, however, that the bidders draw their costs from their actual (uniform) distributions but use the derived equilibrium bidding strategies to compute their bids. In this way, when computing the expected price and ex ante expected utilities, we do not misrepresent the bidders' distributions of costs, and hence, ensure the comparison results of casting the DMP auction into CP auction setting are as realistic as possible. To see this, suppose that, in the CP auction, the bidders' costs are drawn from the truncated normal distributions but in reality they come from uniform distributions. Let $F_i^{CP}$ denote the truncated normal distribution function with support $[\underline{c}, \bar{c}]$ (according to Equation~\eqref{eq:domain_common_priors_approximation}), and let $F_i^{DMP}$ denote the uniform distribution function with support $[\underline{c}_i, \bar{c}_i]$ for all $i\in N$. Then, as shown in the previous section, $[\underline{c}_i,\bar{c}_i]\subset [\underline{c}, \bar{c}]$. Hence, there exists $c\in [\underline{c}, \bar{c}]$ such that $c\in [\underline{c}_i, \bar{c}_i]$ for some $i\in N$; that is, a bidder is allowed to submit a cost lying outside their actual support.
 
 \begin{table}[t]
-  \caption{FIX:ME}
+  \caption{Expected prices and ex ante expected utilities for the considered bidding scenario}
   \vspace{0.5cm}
   \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c c}
     \hlx{vhv}
-    & \textbf{Expected}   & \multicolumn{2}{c}{\textbf{ex ante expected utility}, $\Pi_i$}\\
+    & \textbf{Expected}   & \multicolumn{2}{c}{\textbf{Ex ante expected utility}, $\Pi_i$}\\
     & \textbf{price}, $p$ & \textbf{Bidder 1} & \textbf{Bidder 2}\\
     \hlx{vhv}
     \textbf{DMP} & $0.583$ & $0.183$ & $0.030$\\
@@ -331,7 +331,7 @@ and the relative error in ex ante expected utilities as
 for all $i\in N$, where $p^{DMP}$ and $p^{CP}$ denote the expected prices for DMP and CP auction respectively, and $\Pi_i^{DMP}$ and $\Pi_i^{CP}$ denote the ex ante expected utilities for bidder $i$ for DMP and CP auction respectively. For the values of expected prices and ex ante expected utilities depicted in Table~\ref{tab:test_results_approximation}, the (percentage) relative errors are summarised in Table~\ref{tab:test_relative_errors_approximation}.
 
 \begin{table}[t]
-  \caption{FIX:ME}
+  \caption{Percentage relative errors in expected prices and ex ante expected utilities for the considered bidding scenario}
   \vspace{0.5cm}
   \begin{tabular*}{0.5\columnwidth}[L]{@{\extracolsep{\fill}}r c c c}
     \hlx{vhv}
