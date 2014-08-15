@@ -203,23 +203,23 @@ All that remains is to then select a family of distributions which captures the 
 In order to describe the truncated normal distribution, firstly recall the probability density function (pdf) of standard normal distribution
 \begin{equation}
   \label{eq:pdf_standard_normal_approximation}
-  \displaystyle\phi(x) = \frac{1}{\sqrt{2\pi}} \exp\left\{-\frac{1}{2}x^2\right\},
+  \displaystyle\phi(c) = \frac{1}{\sqrt{2\pi}} \exp\left\{-\frac{1}{2}c^2\right\},
 \end{equation}
 and cumulative distribution function (cdf)
 \begin{equation}
   \label{eq:cdf_standard_normal_approximation}
-  \displaystyle\Phi(x) = \int_{-\infty}^{x}\phi(x)dx = \frac{1}{2}\left[ 1 + \erf\left(\frac{x}{\sqrt{2}}\right) \right]
+  \displaystyle\Phi(c) = \int_{-\infty}^{c}\phi(c)dc = \frac{1}{2}\left[ 1 + \erf\left(\frac{c}{\sqrt{2}}\right) \right]
 \end{equation}
-for all $x\in\mathbb{R}$. The pdf of the truncated normal distribution, truncated to the interval $x\in[a,b]$, can then be described in terms of the pdf of the standard normal distribution as follows
+for all $c\in\mathbb{R}$. The pdf of the truncated normal distribution, truncated to the interval $x\in[\underline{c},\bar{c}]$, can then be described in terms of the pdf of the standard normal distribution as follows
 \begin{equation}
   \label{eq:pdf_truncated_normal_approximation}
-  \displaystyle f(x; \mu, \sigma, a, b) = \frac{\frac{1}{\sigma}\phi\left(\frac{x-\mu}{\sigma}\right)}{\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}
+  \displaystyle f(c; \mu, \sigma, \underline{c}, \bar{c}) = \frac{\frac{1}{\sigma}\phi\left(\frac{c-\mu}{\sigma}\right)}{\Phi\left(\frac{\bar{c}-\mu}{\sigma}\right) - \Phi\left(\frac{\underline{c}-\mu}{\sigma}\right)}
 \end{equation}
 where $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\sigma^2\geq 0$ is the variance (or squared scale)~\cite{JohnsonNormal1994,Cohen1991}. Similarly, the cdf of the truncated normal distribution can be defined as follows
 \begin{equation}
   \label{eq:cdf_truncated_normal_approximation}
-  \displaystyle F(x; \mu, \sigma, a, b) = \int_{-\infty}^{x}f(x;\mu,\sigma,a,b)dx
-  = \frac{\Phi\left(\frac{x-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}{\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)}.
+  \displaystyle F(c; \mu, \sigma, \underline{c}, \bar{c}) = \int_{-\infty}^{c}f(c;\mu,\sigma,\underline{c},\bar{c})dc
+  = \frac{\Phi\left(\frac{c-\mu}{\sigma}\right) - \Phi\left(\frac{\underline{c}-\mu}{\sigma}\right)}{\Phi\left(\frac{\bar{c}-\mu}{\sigma}\right) - \Phi\left(\frac{\underline{c}-\mu}{\sigma}\right)}.
 \end{equation}
 
 Before moving on to discussing the methodology for quantifying the accuracy of the approximations, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common priors setting where bidders are characterised by truncated normal distributions. Firstly, we note that the supports for both bidders are
@@ -232,7 +232,7 @@ for bidder 1, and
 \end{equation*}
 for bidder 2, while the common support is given by
 \begin{equation*}
-  [a,b] = [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
+  [\underline{c},\bar{c}] = [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
 \end{equation*}
 
 \begin{figure}[t]
@@ -267,11 +267,11 @@ The choice of the parameters is motivated by the shape of the normal distributio
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_pdfs}
-  \caption{Pdfs of the truncated normal distributions from the CP bidding problem characterised by: $a=0.125$, $b=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
+  \caption{Pdfs of the truncated normal distributions from the CP bidding problem characterised by: $\underline{c}=0.125$, $\bar{c}=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
   \label{fig:test_truncated_normal_pdfs_approximation}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
-  \caption{FSM solution to the CP bidding problem characterised by: $a=0.125$, $b=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
+  \caption{FSM solution to the CP bidding problem characterised by: $\underline{c}=0.125$, $\bar{c}=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
   \label{fig:test_truncated_normal_bids_approximation}
 \end{figure}
 
@@ -344,11 +344,13 @@ for all $i\in N$, where $p^{DMP}$ and $p^{CP}$ denote the expected prices for DM
   \end{tabular*}
   \label{tab:test_relative_errors_approximation}
 \end{table}
+
+In this section, we showed how a DMP bidding scenario can be cast into CP setting by approximating bidders' cost distributions with truncated normal distributions with common support. Furthermore, expected prices and ex ante expected utilities were suggested as metrics for quantifying the accuracy of approximating DMP auction with CP auction. In what follows, we use the proposed metrics to study approximation results in three different bidding scenarios with two, three and four bidders respectively.
 % subsection methodology (end)
 
 \section{Approximation Results} % (fold)
 \label{sec:approximation_results_approximation}
-This section presents the results of approximating the DMP auction with CP auction. We analyse the results for three bidding scenarios: with $n=2$, $n=3$ and $n=4$ bidders respectively. The procedure for generating the approximation results is as follows:
+In this section, we analyse the results for three bidding scenarios: with $n=2$, $n=3$ and $n=4$ bidders respectively. The procedure for generating the approximation results is as follows:
 \begin{enumerate}
 \item For each chosen value of price weight, generate 100 reputation ratings $n$-tuples, $(r_1,\ldots, r_n)$. Each $n$-tuple is ordered; that is, $r_1 < r_2 < \cdots < r_n$. Therefore, in what follows, bidder 1 is characterised by the lowest reputation rating, bidder 2 by the second lowest, and so on. By ordering individual reputation ratings within the $n$-tuples, we focus on exploring the mean relative errors in ex ante expected utilities for individual bidders characterised by the lowest reputation rating, second lowest, etc. In other words, if a bidder is characterised by the lowest reputation rating, we quantify the mean relative error in ex ante expected utility the bidder is going to incur by bidding according to the equilibrium bidding strategies prescribed by the CP auction. Without this assumption, the mean relative error curves would converge on the same value for all bidders, and thus, some valuable insight into the extent of the mean relative errors in ex ante expected utilities would be lost. It is worth noting, however, that the mean relative error in expected price is unaffected by ordering of the reputation ratings.
 
@@ -361,17 +363,7 @@ Furthermore, each $r_i$ for each bidder $i$ is drawn from a uniform distribution
 where $\bar{X}$ is the sample mean, $s$ is the sample standard deviation, and $t_{1-\sfrac{\alpha}{2}, k-1}$ is the upper $1-\sfrac{\alpha}{2}$ critical value for the \emph{t}-distribution with $k-1$ degrees of freedom. It is worth noting that for 95\% confidence interval, $\alpha=0.05$.
 \item Repeat for price weight values ranging from $0.55$ to $0.99$. Since we consider only feasible bidders, we require that $w\in(0.5,1)$ which was shown to be sufficient to warrant feasible bidding in Section~\ref{sec:numerical_analysis_indirect}, Chapter~\ref{cha:indirect}.
 \end{enumerate}
-It is worth noting that the bidding scenario with $n\geq 3$ bidders requires the use of EFSM method (cf.~assumptions of Section~\ref{sec:numerical_analysis_indirect}).
-
-\begin{figure}[p!]
-  \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders}
-  \caption{Approximation results for 2 bidders}
-  \label{fig:compare_2_bidders_approximation}
-  \vspace{10mm}
-  \includegraphics[width=\figsize]{Approximation/Figures/compare_3_bidders}
-  \caption{Approximation results for 3 bidders}
-  \label{fig:compare_3_bidders_approximation}
-\end{figure}
+It is worth noting that the bidding scenario with $n\geq 3$ bidders requires the use of the EFSM method (cf.~assumptions of Section~\ref{sec:numerical_analysis_indirect}).
 
 \subsection{$n=2$ Bidders} % (fold)
 \label{sub:n_2_bidders_approximation}
@@ -384,10 +376,14 @@ We explore the error bounds next. The mean error in expected prices is approxima
 To summarise, for all analysed values of price weight, the mean relative error in expected prices is relatively small compared to the mean errors in ex ante expected utilities for both bidders. It is important to notice that the mean relative errors for both bidders are bounded from above by the same mean relative error of 15\%. In terms of the lower bound, however, bidder 2 who is characterised by higher reputation rating is characterised by much higher mean relative error (13\% in contrast to \emph{only} 7\% for bidder~1).
 % subsection n_2_bidders_approximation (end)
 
-\begin{figure}[t!]
-  \includegraphics[width=\figsize]{Approximation/Figures/compare_4_bidders}
-  \caption{Approximation results for 4 bidders}
-  \label{fig:compare_4_bidders_approximation}
+\begin{figure}[p!]
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_2_bidders}
+  \caption{Approximation results for 2 bidders}
+  \label{fig:compare_2_bidders_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_3_bidders}
+  \caption{Approximation results for 3 bidders}
+  \label{fig:compare_3_bidders_approximation}
 \end{figure}
 
 \subsection{$n=3$ Bidders} % (fold)
@@ -398,6 +394,12 @@ All mean relative errors, unlike in the case of 2 bidders, exhibit clear nonline
 
 As expected, bidder 3 who is characterised by the highest reputation rating experiences the highest mean relative error in ex ante expected utilities for all values of the price weight out of all bidders. In fact, the lower bound for bidder 3 is the same as the upper bound for the remaining bidders. This agrees with the conclusion drawn for the case of 2 bidders, where bidder 2 was the bidder characterised by the highest reputation rating and experienced the highest mean relative error out of all bidders.
 % subsection n_3_bidders_approximation (end)
+
+\begin{figure}[t!]
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_4_bidders}
+  \caption{Approximation results for 4 bidders}
+  \label{fig:compare_4_bidders_approximation}
+\end{figure}
 
 \subsection{$n=4$ Bidders} % (fold)
 \label{sub:n_4_bidders_approximation}
