@@ -7,13 +7,25 @@
 
 \section{Principles of Operation} % (fold)
 \label{sec:principles_of_operation_dmp}
-The Digital Marketplace (DMP) is a market-based framework for trading wireless communications services. In its simplest form, there are three main groups of actors involved in the operation of the DMP: \emph{subscribers}, \emph{network operators}, and \emph{market provider}. The subscribers are the end-users of the communications services, and they act as the buyers in the DMP. The network operators, on the other hand, act as the sellers/bidders. Lastly, the market provider is tasked with operating the DMP; thus providing common platform for all actors involved. It is left open-ended who should be the market provider; however, one of the following three choices is the most likely: a regulatory body, a consortium of network operators, or a single network operator on behalf of the regulatory body \cite{DMIrvine02}.
+The Digital Marketplace (DMP) is a market-based framework for trading wireless communications services. It was developed with the heterogeneous wireless communications environment in mind, where the end-users (of communications services) have the ability to select a network operator that reflects their preferences on a per-service basis.
 
-\begin{figure}[t]
-	\includegraphics[width=\figsize]{DMP/Figures/dmp_model}
+In its simplest form, there are three main groups of economic agents involved in the operation of the DMP: \emph{subscribers}, \emph{network operators}, and \emph{market provider}. This is depicted in Figure~\ref{fig:dmp_model_dmp}. The subscribers are the end-users of the communications services, and they act as the buyers in the DMP. The network operators, on the other hand, act as the sellers/bidders, and are responsible for providing the subscribers with services and facilitating network resources required to transport said services. In networking terminology, network operators are equivalent to mobile network operators (MNOs); for example, O2 or Vodafone in the UK. Lastly, the market provider is tasked with operating the DMP; thus providing common platform for all agents involved. It is left open-ended who should be the market provider; however, one of the following three choices is the most likely: a regulatory body, a consortium of network operators, or a single network operator on behalf of the regulatory body \cite{DMLeBodic00,DMIrvine02}.
+
+\begin{figure}[p]
+	\includegraphics[width=4in]{DMP/Figures/dmp_model}
 	\caption{The business model of Digital Marketplace (adapted from~\cite{DMIrvine02})}
 	\label{fig:dmp_model_dmp}
+	\vspace{10mm}
+	\includegraphics[width=3.5in]{DMP/Figures/no_decoupled}
+	\caption{Decoupling of network operator into service and network providers (adapted from~\cite{DMIrvine02})}
+	\label{fig:no_decoupled_dmp}
 \end{figure}
+
+It should be noted that the original specification of the DMP found for example in~\cite{DMLeBodic00,DMIrvine02,LeBodicThesis} differentiates between service and network providers. Thus, the network operator as an entity is decoupled into service and network providers as shown in Figure~\ref{fig:no_decoupled_dmp}. Under this model, the service provider is responsible for providing communications services to the end-user, while network provider facilitates (physical) network resources required to transport said services. A good example of a service provider is that of a mobile virtual network operator (MVNO). An MVNO, such as Giffgaff in the UK, provides services to the end-users, but does not necessarily own a physical network infrastructure; instead, they enter into a contract with an MNO, and use their network to transport users' services. For example, in the UK, Giffgaff has a contractual agreement with O2.
+
+While the original specification of the DMP advocates decoupling of service and network provisions, in the research reported in this thesis we concentrate on the simplest business model; i.e., service and network provision is handled by one entity, a network operator. Nevertheless, all of the results presented in this thesis are applicable to the decoupled case. Indeed, it is a matter of replacing network operator with network provider; or replacing subscriber with service provider, and network operator with network provider. In the latter case, the negotiation process (or network selection mechanism which is described in Section~\ref{sec:network_selection_mechanism_dmp}) is between service and network providers. In this case, service provider acts as a buyer, while network providers are the sellers.
+
+The next section provides a conceptual overview of the negotation process between the subscriber and the network operators. This process is termed \emph{network selection mechanism}, and is the means for the subscriber to select the network operators who reflects their service preferences best.
 % section principles_of_operation_dmp (end)
 
 \section{Network Selection Mechanism} % (fold)
