@@ -49,11 +49,21 @@ In a first-price sealed-bid auction, the bidders submit their bids simultaneousl
 
 \subsubsection{Bidder Valuations} % (fold)
 \label{ssub:bidder_valuations_dmp}
+The main reason for a seller of an object to use an auction mechanism is because they are uncertain how valuable the object is to the potential bidder. Otherwise, if the bidders' valuations were known, the seller would simply discriminate by offering the object to the bidder who is willing to pay the most~\cite{Krishna10}. This uncertainty in bidders' valuations is categorised into three distinct models: private values, common values, and interdependent values models.
 
+In private values models, each bidder knows the value of the object to himself at the time of bidding. Furthermore, each bidder can only make an intelligent guess about the valuations of other bidders. Finally, the knowledge of other bidders' valuations would not affect the bidder's own valuation for the object.
+
+In common values models, the value of the object is the same for all bidders. It is, however, unknown to them at the time of bidding except for some estimates of the true value.
+
+The interdependent values model generalises the common values model in the sense that the value of the object is not necessarily the same for all bidders. The bidders, however, still possess only estimates of the true value of the object at the time of bidding. Furthermore, in interdependent values model, the information available to other bidders, i.e., their estimates of the value, may influence the value of the remaining bidder if known to them.
+
+To put the models in context, private values model is a good approximation in a scenario where a painting is sold at an auction provided the bidders do not intend to resell the object in the resale market. In other words, they assign values to a painting only on the basis of how much utility they would derive from possessing it. Common values and interdependent values model, on the other hand, is a good approximation to an auction where land with an unknown amount of oil is being sold. Bidders may possess different estimates of the amount of oil, but the final value depends directly on the future sales of the extracted oil.
 % subsection bidder_valuations_dmp (end)
 
 \subsubsection{Standard versus Procurement Auctions} % (fold)
 \label{ssub:standard_versus_procurement_auctions_dmp}
+So far, we have only discussed the assumptions and models of auction theory where a number of bidders is contesting for the right to buy an object. However, auctions can also be used to sell goods. In other words, in such a scenario, the auctioneer is trying to purchase an item for the lowest price from a set of sellers/bidders. This type of auctions is referred to as procurement auctions.
+
 It is important to realise that procurement auctions are equivalent to standard auctions in the same setting~\cite{Krishna10}. Therefore, the abundance of results on standard auctions applies to procurement auctions with only certain small conceptual differences; for example, in standard auctions we talk about the maximum bid, while in procurement auctions about the minimum bid. We make use of this fact in this thesis, and provide proofs of only results not already covered in the literature on auctions in general, since if the result is proved in one case (be it either for standard or procurement auctions), it can immediately be adapted to the other case.
 % subsection standard_versus_procurement_auctions_dmp (end)
 % subsection primer_in_auction_theory_dmp (end)
