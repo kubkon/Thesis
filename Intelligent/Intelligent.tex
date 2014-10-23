@@ -7,7 +7,53 @@
 
 \section{The Problem of Intelligent Network Seletion} % (fold)
 \label{sec:the_problem_of_intelligent_network_seletion_intelligent}
+In this section, 
 
+\subsection{Heterogeneous Wireless Access Networks} % (fold)
+\label{sub:heterogeneous_wireless_access_networks_intelligent}
+Over the last decade, the world of wireless and mobile communications has witnessed several major improvements \cite{ABC03}. The evolution of traditional 2$^\text{nd}$ Generation (2G) cellular systems, such as Global System for Mobile Communications (GSM), into 3$^{\text{rd}}$ Generation (3G) systems, such as Universal Mobile Telephone System (UMTS) or Code Division Multiple Access 2000 (CDMA2000), has drastically improved the cellular coverage worldwide, and provided basic mobile Internet access. At the same time, IEEE 802.11-based Wireless Local Area Network (WLAN) solutions have emerged as the predominant high-speed wireless Internet access at airports, in hotels or even at home.
+
+With the introduction of advanced mobile phones, more commonly referred to as smartphones, the wireless users can finally take advantage of both the coverage offered by 3G cellular access network and the high-speed Internet access offered by WLANs. Whenever the smartphone is in close proximity to a WLAN hot spot, it automatically switches from 3G to WLAN mode for faster data access. However, this only works when either the WLAN hot spot provides free access, or is within the user's subscription; for example, as part of the monthly data allowance plan with a local wireless access operator. Moreover, this solution lacks the support for session continuity, and does not provide any intelligence when switching from one access network to another. For instance, although the WLAN hot spot is by definition deemed to offer faster data rates, this does not necessarily translate into higher Quality of Service (QoS). In fact, it might be just the contrary, especially in a very crowded hot spot area where the users run very bandwidth intensive applications such as video or music streaming, or even on-line gaming. Under such circumstances, trying to make a Voice over IP (VoIP) phone call using Skype can be nigh impossible \cite{Wisely4gWLAN09}. Therefore, the decision to switch from one network to another should not only consider the availability of a particular wireless access network (say, WLAN) but also the offered QoS for the best user experience.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=3.5in]{Intelligent/Figures/heterogeneous}
+    \caption{Heterogeneous wireless access network}
+    \label{fig:heterogeneous_intelligent}
+\end{figure}
+
+In the advent of 4$^{\text{th}}$ Generation (4G) wireless systems, such as Worldwide Interoperability for Microwave Access (WiMAX) and Long Term Evolution Advanced (LTE-A), the wireless users will be able to choose from an even wider variety of different wireless access technologies \cite{HossainBeaubrun09, HossainTalebiFard09}. This, together with the industry's drive to have an all-IP-based traffic, gives rise to the concept of a \emph{heterogeneous wireless access network}. The heterogeneous wireless access network spans different wireless access technologies integrated into one network to provide wireless and mobile users with the requested multimedia services and QoS. The connection to the network will be available through the introduction of multi-mode user equipment; i.e., a device, similar to a smartphone, which integrates all or some of the wireless technologies included in the heterogeneous wireless access network. This is depicted in Figure~\ref{fig:heterogeneous_intelligent}.
+
+The heterogeneous wireless access network will possess many advantages over the contemporary wireless networking solution. From the users' perspective, different coverage and QoS characteristics of each of the included wireless access technologies will lead to the ability to seamlessly connect at any time, at any place, and to the access technology which offers the most optimal quality available. This is referred to as \emph{Always Best Connected} networking paradigm \cite{ABC03}, and will be introduced in more detail in the subsequent section. From the network operators' perspective, on the other hand, the integration of wireless access technologies will allow for more efficient usage of the network resources, and might be the most economic way of providing both universal coverage and broadband access \cite{HossainBeaubrun09}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=4in]{Intelligent/Figures/wireless_city}
+    \caption{Enhanced wireless coverage and broadband access}
+    \label{fig:wireless_city_intelligent}
+\end{figure}
+
+Figure~\ref{fig:wireless_city_intelligent} shows how a heterogeneous wireless access network can provide enhanced wireless coverage and broadband access across the entire city area. In the example, WLAN hot spots are used as a localised high-speed Internet access; WiMAX is used as a Wireless Metropolitan Area Network (WMAN), covering nearly the $\sfrac{3}{4}$ of the city area, and providing wireless broadband access; and the cellular network, which could be based on 3G or LTE-A, is used as a Wireless Wide Area Network (WWAN), and delivers medium speed wireless access inside as well as outside the city. The overlap of wireless access technologies provides potentially better network resources management, and also high-speed and high quality Internet access inside as well as outside the city limits.
+% subsection heterogeneous_wireless_access_networks (end)
+
+\subsection{Always Best Connected Networking Paradigm} % (fold)
+\label{sub:always_best_connected_networking_paradigm_intelligent}
+As briefly mentioned in the previous section, \emph{Always Best Connected (ABC)} networking paradigm assumes that a wireless user is: (1) ``always'' connected to the Internet, and (2) uses the ``best'' access technology available \cite{ABC03}. ``Always'' can be understood as being able to utilise all wireless access technologies available at any time, while ``best'' implies that when a particular technology is being chosen, several factors such as user preferences, application requirements, network coverage, etc., are considered in order to make the most optimal selection possible. This is shown in Figure~\ref{fig:abc_intelligent}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=4in]{Intelligent/Figures/abc}
+    \caption{The essence of ABC networking paradigm}
+    \label{fig:abc_intelligent}
+\end{figure}
+
+Furthermore, the paradigm emphasises seamless information delivery and extensive mobility support. In other words, the changes in the communications environment should affect the user as little as possible, even when they are ``on the move.'' Therefore, should the user move from the coverage area of one access technology to another, the handover should be as non-disrupting for the user as possible; i.e., the session continuity should be maintained at all times, regardless of the access technology currently used. Thus, it is clear that network selection plays a vital role in the successful operation of the ABC solution.
+% subsection always_best_connected_networking_paradigm (end)
+
+\subsection{Tussle and Economic Aspects of Intelligent Network Selection} % (fold)
+\label{sub:tussle_and_economic_aspects_of_intelligent_network_selection_intelligent}
+
+% subsection tussle_and_economic_aspects_of_intelligent_network_selection (end)
 % section the_problem_of_intelligent_network_seletion_intelligent (end)
 
 \section{Intelligent Network Selection in the Literature} % (fold)
