@@ -219,7 +219,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{420.25, 452.84699999999998}, {195, 68}}</string>
+			<string>{{426.95999045670033, 473.4900256035346}, {151, 39}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -258,8 +258,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
-\f0\b\fs48 \cf0 Multi-mode\
-User Equipment}</string>
+\f0\b\fs48 \cf0 Smartphone}</string>
 			</dict>
 			<key>Wrap</key>
 			<string>NO</string>
@@ -1298,7 +1297,7 @@ User Equipment}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-10-23 21:31:36 +0000</string>
+	<string>2014-10-26 10:52:39 +0000</string>
 	<key>Modifier</key>
 	<string>Jakub Konka</string>
 	<key>NotesVisible</key>
@@ -1375,13 +1374,13 @@ User Equipment}</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>BottomSlabHeight</key>
-		<real>343</real>
+		<real>567</real>
 		<key>CurrentSheet</key>
 		<integer>0</integer>
 		<key>Expanded_Canvases</key>
 		<array/>
 		<key>Frame</key>
-		<string>{{5, 187}, {1240, 690}}</string>
+		<string>{{0, 0}, {1440, 849}}</string>
 		<key>ShowInfo</key>
 		<true/>
 		<key>ShowRuler</key>
@@ -1391,7 +1390,7 @@ User Equipment}</string>
 		<key>SidebarWidth</key>
 		<integer>230</integer>
 		<key>VisibleRegion</key>
-		<string>{{22, 6}, {678, 530}}</string>
+		<string>{{-43, -116}, {893, 769}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>
