@@ -5,7 +5,7 @@
 \minitoc
 \vspace{10mm}
 
-This chapter formally defines the network selection mechanism in the Digital Marketplace (DMP), and casts it into the framework of game theory. The mechanism is then direcly analysed in three special cases: 1) when only reputation ratings of the network operators decide on the winning network operator, 2) when only the monetary bids of the network operators matter in the selection of the winner, and finally, 3) when all network operators are characterised by the same reputation rating. In essence, those special cases correspond to the extremes of the studied bidding problem, and in all those cases, the equilibrium bidding strategies are derived.
+This chapter formally defines the network selection mechanism in the Digital Marketplace (DMP), and casts it into the framework of game theory. The mechanism is then directly analysed in three special cases: 1) when only reputation ratings of the network operators decide on the winning network operator, 2) when only the monetary bids of the network operators matter in the selection of the winner, and finally, 3) when all network operators are characterised by the same reputation rating. In essence, those special cases correspond to the extremes of the studied bidding problem, and in all those cases, the equilibrium bidding strategies are derived.
 
 The chapter then concludes with the analysis of the mechanism in a restricted case with only two network operators, for which the equilibrium bidding strategies are derived. They are shown, however, to be suboptimal as they allow the network operators to submit a negative monetary bid.
 
@@ -18,7 +18,7 @@ Let $\beta : \mathbb{R}_+\times [0,1] \to \mathbb{R}_+$, defined by
 	\label{eq:def_beta_direct}
 	\beta(b_i, r_i) = w_{price}\cdot b_i + w_{penalty}\cdot r_i \quad\text{for all } i\in N,
 \end{equation}
-denote the compound bid. Each network operator $i$ is characterized by the utility function $u_i$ such that
+denote the compound bid. Each network operator $i$ is characterised by the utility function $u_i$ such that
 \begin{equation}
 	\label{eq:sellers_utility_direct}
 	u_i(b,c,r) = \left\{
@@ -27,7 +27,7 @@ denote the compound bid. Each network operator $i$ is characterized by the utili
 		0 & \;\text{if } \beta(b_i, r_i) > \displaystyle\min_{j\neq i}\beta(b_j,r_j),
 	\end{array}\right.
 \end{equation}
-where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the type vector, and $r = (r_i, r_{-i})$ the reputation rating vector. The type of each network operator is assumed to represent the cost of (or the minimum price for) transporting the service request under consideration. The winner of the auction is determined as the network operator whose compound bid is the lowest one; i.e.,~network operator $i$ is the winner if
+where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the type vector, and $r = (r_i, r_{-i})$ the reputation rating vector. The type of each network operator is assumed to represent the cost of (or the minimum price for) transporting the service request under consideration. The winner of the auction is determined as the network operator whose compound bid is the lowest one; i.e., network operator $i$ is the winner if
 \begin{equation*}
 	\beta(b_i, r_i) < \displaystyle\min_{j\neq i}\beta(b_j,r_j).
 \end{equation*}
@@ -50,11 +50,11 @@ Note, however, that this assumption could potentially lead to a situation where 
 	\label{eq:subscribers_valuation_direct}
 	v\geq wb_i + (1-w)r_i \quad\text{for all } i\in N
 \end{equation}
-where $v\in (0,1]$ is the subscriber's valuation, and it is private knowledge~\cite{DMLeBodic00}. The subscriber's valuation is effectively equivalent to a secret (or hidden) reserve price~\cite{Vincent1995575,LiPerrigne1999,BajariHortacsu2003}. This creates an additional uncertainty about the auction that each network operator needs to incorporate into their equilibrium bidding strategies. To elaborate further, by setting a secret reserve valuation, the subscriber creates a phantom bidder characterized by a reputation rating $r_0$ and submitting a bid $b_0$ such that $v=\beta(b_0,r_0)$, and therefore, risks not obtaining a service offer from any network operator if $v < \beta(b_i,r_i)$ for all $i\in N$. Therefore, the solution presented in this and the following chapters would have to be modified by including the phantom bidder in the derivation of the equilibrium bidding strategies. However, in order to keep the analysis tractable, we do not incorporate this assumption in this research.
+where $v\in (0,1]$ is the subscriber's valuation, and it is private knowledge~\cite{DMLeBodic00}. The subscriber's valuation is effectively equivalent to a secret (or hidden) reserve price~\cite{Vincent1995575,LiPerrigne1999,BajariHortacsu2003}. This creates an additional uncertainty about the auction that each network operator needs to incorporate into their equilibrium bidding strategies. To elaborate further, by setting a secret reserve valuation, the subscriber creates a phantom bidder characterised by a reputation rating $r_0$ and submitting a bid $b_0$ such that $v=\beta(b_0,r_0)$, and therefore, risks not obtaining a service offer from any network operator if $v < \beta(b_i,r_i)$ for all $i\in N$. Therefore, the solution presented in this and the following chapters would have to be modified by including the phantom bidder in the derivation of the equilibrium bidding strategies. However, in order to keep the analysis tractable, we do not incorporate this assumption in this research.
 	
-Following the standard assumptions from the auction literature~\cite{Krishna10}, the set of network operators, $N$, is finite and the network operators are risk neutral; that is, they seek to maximize their expected profits. Furthermore, the subscriber is risk neutral and does not have any budget constraints; that is, the subscriber is prepared to accept any offer from the network operators. In reality, it is unlikely for the network operators and the buyer to be risk neutral, and the buyer to not have any budget constraints. However, in order for the problem to be tractable, we enforce those assumptions in this research. The implications of relaxing those assumptions on the analysis of an auction are explored in Krishna~\cite{Krishna10}.
+Following the standard assumptions from the auction literature~\cite{Krishna10}, the set of network operators, $N$, is finite and the network operators are risk neutral; that is, they seek to maximise their expected profits. Furthermore, the subscriber is risk neutral and does not have any budget constraints; that is, the subscriber is prepared to accept any offer from the network operators. In reality, it is unlikely for the network operators and the buyer to be risk neutral, and the buyer to not have any budget constraints. However, in order for the problem to be tractable, we enforce those assumptions in this research. The implications of relaxing those assumptions on the analysis of an auction are explored in Krishna~\cite{Krishna10}.
 
-The costs $c_i$ for each network operator $i$ are private knowledge. Thus, they are particular realizations of the r.v.s $C_i$ for each $i$. Furthermore, it is assumed that each $C_i$ is identically and idenpendently distributed (i.i.d.) over the interval $[0,1]$ according to some continuous (and atomless) probability distribution which admits a distribution function $F_{C}$ and an associated density function $f_{C}$ such that $f_C$ is locally bounded away from zero over the interval $[0,1]$. In order to keep the specification fairly generic, we do not explicitly decompose the costs into the underlying components such as interconnection charges, infrastructure fixed costs, etc. We refer the Reader to~\cite{Njoroge2009,LeCadre2009,HauBrenner2009} for an in-depth coverage of the problem. Furthermore, we recognize that various network operators will have different architecture, topology, infrastructure, etc., and that this impacts cost to support the service. In order to capture the variation in costs, we employ an i.i.d.~random variable to assign a cost to a particular network operator at the time of the service request. This further aids generality of the results presented in this research.
+The costs $c_i$ for each network operator $i$ are private knowledge. Thus, they are particular realisations of the random variables (r.v.) $C_i$ for each $i$. Furthermore, it is assumed that each $C_i$ is identically and independently distributed (i.i.d.) over the interval $[0,1]$ according to some continuous (and atomless) probability distribution which admits a distribution function $F_{C}$ and an associated density function $f_{C}$ such that $f_C$ is locally bounded away from zero over the interval $[0,1]$. In order to keep the specification fairly generic, we do not explicitly decompose the costs into the underlying components such as interconnection charges, infrastructure fixed costs, etc. We refer the Reader to~\cite{Njoroge2009,LeCadre2009,HauBrenner2009} for an in-depth coverage of the problem. Furthermore, we recognise that various network operators will have different architecture, topology, infrastructure, etc., and that this impacts cost to support the service. In order to capture the variation in costs, we employ an i.i.d.~random variable to assign a cost to a particular network operator at the time of the service request. This further aids generality of the results presented in this research.
 
 The reputation ratings $r_i$ for each network operator $i$ are common knowledge. It is assumed that each $r_i\in [0,1]$ such that the higher the reputation, the lower the rating $r_i$. Initially, it was assumed that ratings are private knowledge. However, after analysis, it was concluded that this would contradict its purpose. The reputation of each network operator, in order to be meaningful, must be freely available to everyone, including the competitors of the network operators. For example, in the Amazon.com Marketplace, the buyers have the right to rate the seller they buy from on a scale from one to five (with five being the best), and these ratings are publicly available~\cite{AMAZON}. Similarly, on eBay, the buyers can leave sellers feedback (negative, neutral, or positive) which over time is viewed as reputation, and is also publicly available~\cite{EBAY}.
 	
@@ -65,7 +65,7 @@ The problem is divided into two cases: generic and restricted case. In the forme
 
 \section{Generic Case} % (fold)
 \label{sec:direct_generic_case_direct}
-Suppose that all network operators use the same strictly increasing in $c_i$ bidding strategy function; i.e., $b_i = b_i(c_i) = b(c_i)$ for all $i\in N$. In this case, the equilibrium profile $(b^*,\ldots,b^*)$ is called \emph{symmetric}. In its generic form, the problem proves to be complicated enough for the analytical solution not to be achievable using the existing methods of solving auctions. It would seem that since the problem is a modified version of the standard FPA, the standard analytical approach, found for example in~\cite{Krishna10,McAfee1987,Hansen88,Dastidar08}, should apply. However, this is not the case. To see why, note that each network operator $i$ faces an optimization problem
+Suppose that all network operators use the same strictly increasing in $c_i$ bidding strategy function; i.e., $b_i = b_i(c_i) = b(c_i)$ for all $i\in N$. In this case, the equilibrium profile $(b^*,\ldots,b^*)$ is called \emph{symmetric}. In its generic form, the problem proves to be complicated enough for the analytical solution not to be achievable using the existing methods of solving auctions. It would seem that since the problem is a modified version of the standard FPA, the standard analytical approach, found for example in~\cite{Krishna10,McAfee1987,Hansen88,Dastidar08}, should apply. However, this is not the case. To see why, note that each network operator $i$ faces an optimisation problem
 \begin{equation}
 	\label{eq:simple_foc_direct}
 	\max_{b_i}E\left[ b_i-c_i \:\middle\vert\: wb_i + (1-w)r_i < \displaystyle\min_{j\neq i}(wb(C_j) + (1-w)r_j) \right].
@@ -88,7 +88,7 @@ Let $C_{1:n-1} = \min_{j\neq i}C_j$ be the lowest order statistic of an i.i.d.~r
 	= &\max_{b_i}\bigg(b_i-c_i\bigg)\left(1 - F_{C}\left(b^{-1}\left(b_i + \frac{1-w}{w}(r_i-\min_{j\neq i}r_j)\right)\right)\right)^{n-1},
 	\label{eq:ode_part2_direct}
 \end{align}
-where we have used the fact that the distribution function of an $i$th order statistic of an i.i.d.~random sample is defined as in Equation~\eqref{eq:iid_cdf_notation}.
+where we have used the fact that the distribution function of an $i^\textrm{th}$ order statistic of an i.i.d.~random sample is defined as in Equation~\eqref{eq:iid_cdf_notation}.
 
 Finally, recalling that at a symmetric equilibrium $b_i=b(c_i)$ and letting $k=\nobreak\frac{(1-w)}{w}(r_i-\min_{j\neq i}r_j)$, the identity~\eqref{eq:ode_part2_direct} becomes
 \begin{align}
@@ -168,7 +168,7 @@ Suppose $c_i$ is i.i.d.~over the interval $[0,1]$ for all $i\in N$ and $r_i \in 
 constitutes a symmetric pure-strategy Bayesian Nash equilibrium of the DMP variant of a procurement first-price sealed-bid auction.
 \end{proposition}
 
-The next natural question to ask is whether $b^*_{FPA}$ constitutes an equilibrium for any other $w\neq 1$. The following conjecture summarizes this point,
+The next natural question to ask is whether $b^*_{FPA}$ constitutes an equilibrium for any other $w\neq 1$. The following conjecture summarises this point,
 \begin{conjecture}
 \label{conj:special_case_w_1_direct}
 Suppose $c_i$ is i.i.d.~over the interval $[0,1]$ for all $i\in N$ and $r_i \in [0,1]$ for all $i\in N$ is common knowledge. If the symmetric equilibrium bidding strategy function of the standard procurement first-price sealed-bid auction, $b^*_{FPA}$, constitutes a symmetric pure-strategy Bayesian Nash equilibrium of the DMP variant of a procurement first-price sealed-bid auction, then $w=1$.
@@ -208,7 +208,7 @@ Suppose for the time being that $b^*(c_i) = b_{FPA}^*(c_i)$ for every value of t
 	\label{fig:ecdf_N_3_direct}
 \end{figure}
 
-Table~\ref{tab:bids_fpa_direct} and Figure~\ref{fig:bids_fpa_direct} depict a particular output from the simulation for $n=3$ network operators. In this particular example, for $w\in (0.65, 1]$, network operator 1 who is characterized by the lowest cost of all three network operators, wins the auction; that is, the network operator 1's compound bid is the lowest. At $w=0.65$, an intersection occurs of network operator 1's and 3's compound bids, and after that network operator 3 becomes the winner. If the simulation was repeated $r$ times, and the intersection was to fall within a close neighbourhood of $w=0.65$ in the vast majority of cases, then $b^*$ could quite likely be an equilibrium bidding strategy in the interval $w\in (0.65, 1]$. This is predicated on the fact that, as $w\rightarrow 1$, the offered price dominates the value of the compound bid; that is, the offered price is weighted more than the reputation rating (Equation~\eqref{eq:def_beta_direct}).
+Table~\ref{tab:bids_fpa_direct} and Figure~\ref{fig:bids_fpa_direct} depict a particular output from the simulation for $n=3$ network operators. In this particular example, for $w\in (0.65, 1]$, network operator 1 who is characterised by the lowest cost of all three network operators, wins the auction; that is, the network operator 1's compound bid is the lowest. At $w=0.65$, an intersection occurs of network operator 1's and 3's compound bids, and after that network operator 3 becomes the winner. If the simulation was repeated $r$ times, and the intersection was to fall within a close neighbourhood of $w=0.65$ in the vast majority of cases, then $b^*$ could quite likely be an equilibrium bidding strategy in the interval $w\in (0.65, 1]$. This is predicated on the fact that, as $w\rightarrow 1$, the offered price dominates the value of the compound bid; that is, the offered price is weighted more than the reputation rating (Equation~\eqref{eq:def_beta_direct}).
 
 The methodology is as follows:
 \begin{enumerate}
@@ -252,7 +252,7 @@ Clearly, the prediction based on Equation~\eqref{eq:mc_prob_winning_direct} conv
 
 \subsection{Special Case $r_i=r_j$} % (fold)
 \label{sub:special_case_r_i_r_j_direct}
-In the last extreme case, when all network operators are characterized by the same reputation rating, i.e., when $r_i = r_j$ for all $i\neq j$, and when $w\neq 0$, it can be easily verified that the problem simplifies to the special case $w=1$. To see why, let $r = r_i,$ for all network operators $i$. Then, for all $i\in N$ and $w\neq 0$
+In the last extreme case, when all network operators are characterised by the same reputation rating, i.e., when $r_i = r_j$ for all $i\neq j$, and when $w\neq 0$, it can be easily verified that the problem simplifies to the special case $w=1$. To see why, let $r = r_i,$ for all network operators $i$. Then, for all $i\in N$ and $w\neq 0$
 \begin{align*}
 	&\beta(b_i, r) < \min_{j\neq i} \beta(b_j, r)\\
 	\iff &\frac{1}{w} \left(b_i + \frac{1-w}{w} r\right) < \frac{1}{w} \min_{j\neq i} \left(b_j + \frac{1-w}{w} r\right)\\
@@ -274,7 +274,7 @@ Formally,
 Suppose $c_i$ is i.i.d.~over the interval $[0,1]$ for all $i\in N$ and $r_i\in [0,1]$ for all $i\in N$ is common knowledge. Suppose $r_i = r_j$ for all $i\neq j$, and $w\neq 0$. Then, the problem simplifies to the special case $w=1$, and hence, $b^*_{FPA}$ is the symmetric equilibrium bidding strategy (Proposition~\ref{prop:special_case_w_1_direct}).
 \end{corollary}
 
-In this section, we showed that, in the generic case, it is difficult to derive a closed-form solution to the bidding problem. Furthermore, we characerised the optimal bidding strategy in three special cases: $w=0$, $w=1$, $r_i=r_j$ for all $i,j\in N$ such that $i\neq j$.
+In this section, we showed that, in the generic case, it is difficult to derive a closed-form solution to the bidding problem. Furthermore, we characterised the optimal bidding strategy in three special cases: $w=0$, $w=1$, $r_i=r_j$ for all $i,j\in N$ such that $i\neq j$.
 
 The problem is considerably simplified by restricting the number of network operators to $n=2$, and letting the costs be drawn from the uniform distribution. In this case, it is possible to derive bidding strategies for both bidders, and this is the subject of the following section.
 % subsection special_case_r_i_r_j_ (end)
@@ -362,7 +362,7 @@ If $c_i = c_j$, both network operators should bid their costs; that is, $b_i = c
 
 If $c_i > c_j$, network operator $j$'s optimal bidding strategy would be to bid $b_j = c_i - \epsilon$ where $\epsilon>0$ is very small; while network operator $i$ should bid $b_i = c_i$ (Figure~\ref{fig:complete_N_2_c6_direct}).
 
-It can be concluded that the bidding strategies depend only on costs if $r_i = r_j$. In the remaining cases, they are asymmetric in the sense that the winning network operator is characterized by
+It can be concluded that the bidding strategies depend only on costs if $r_i = r_j$. In the remaining cases, they are asymmetric in the sense that the winning network operator is characterised by
 \begin{equation*}
 	b_i = c_j + \frac{1-w}{w}(r_j - r_i) - \epsilon \quad\text{with }\epsilon>0\text{ being very small},
 \end{equation*}
@@ -380,7 +380,7 @@ Here, contrary to previous section, we assume the standard case; that is, that r
 	\label{eq:pcomp_bidding_str_direct}
 	b_i(c_i) = m_i + n_i c_i,\quad\text{for all } m_i\in\mathbb{R},n_i>0,
 \end{equation}
-and costs are independently drawn from the uniform distribution over the interval $[0,1]$. In other words, (although somewhat counter-intuitive) we allow for negative bids from the network operators. The motivation for such an assumption will be explained in detail later on in the section. Note, moreover, that the strategy function is assumed to be linear in cost. Each network operator $i$ faces an optimization problem
+and costs are independently drawn from the uniform distribution over the interval $[0,1]$. In other words, (although somewhat counter-intuitive) we allow for negative bids from the network operators. The motivation for such an assumption will be explained in detail later on in the section. Note, moreover, that the strategy function is assumed to be linear in cost. Each network operator $i$ faces an optimisation problem
 \begin{equation}
 	\label{eq:pcomp_exp_utility_uc_direct}
 	\max_{b_i}E \left[ b_i-c_i \:\middle\vert\: wb_i + (1-w)r_i < w(m_j + n_j C_j) + (1-w)r_j\right]
@@ -489,15 +489,15 @@ The direct mechanism $(\mathbf{Q},\mathbf{M})$ where $\mathbf{Q}=(Q_i,Q_j)$ and 
 
 Thirdly, suppose that economic agents are computers who bid on behalf of the network operators. This assumption is reasonable since there currently are estimated 6.1 billion mobile subscribers around the world \cite{Ericsson2011}. In other words, bidding on a per call basis would have to be automated by the network operators in order to make the process manageable. One way of achieving such an automation would be to utilise the concept of a direct mechanism. In a direct mechanism, economic agents submit their costs (which need not be truthful) directly to the mechanism which then computes the bids and chooses the winner on their behalf. By the Revelation Principle, we know that for every mechanism and an equilibrium for that mechanism, there exists an incentive compatible direct mechanism which yields the same outcomes as in the given equilibrium of the original mechanism (see Section~\ref{sec:theory_of_games_notation}, Appendix~\ref{cha:notation} for the definition of the Revelation Principle). In our case, the direct mechanism $(\mathbf{Q},\mathbf{M})$ is the direct representation of the DMP variant of an FPA. Since it is incentive compatible, economic agents will not lie about their costs. Since it is individually rational, they will find it beneficial to participate in the mechanism. Therefore, the possibility of one of the network operators bidding below their cost or negatively will not matter to any of the network operators and will not lead to an outcome in which the service is sold for a negative price.
 
-Nonetheless, the possibility of one of the network operators bidding below their cost or negatively might seem counter-intuitive and irrational. The most straightforward solution is to constrain the original optimization problem in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}; that is, each network operator $i$ tries to solve for all $w\neq 0$
+Nonetheless, the possibility of one of the network operators bidding below their cost or negatively might seem counter-intuitive and irrational. The most straightforward solution is to constrain the original optimisation problem in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}; that is, each network operator $i$ tries to solve for all $w\neq 0$
 \begin{align}
 	\label{eq:pcomp_exp_utility_c_direct}
 	&\max_{b_i}E \left[ b_i-c_i \:\middle\vert\: wb_i + (1-w)r_i < w(m_j + n_j C_j) + (1-w)r_j\right]\\
 	&\text{subject to}\quad c_i-b_i\le 0.\nonumber
 \end{align}
-The constraint $c_i-b_i\le 0$ ensures that each network operator bids above or equal to their cost. However, this problem is much more complicated than its unconstrained version in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}. Not only is it necessary to solve the nonlinear constrained optimization problem for each network operator $i$, but also it needs to be done simultaneously \cite{Griffin2011}. To better explore the inherent complexity of the problem, we will apply the Karush-Kuhn-Tucker Conditions theorem, and try to derive the equilibrium bidding strategies for all network operators (see Section~\ref{sec:optimisation_theory_notation}, Appendix~\ref{cha:notation} for the definition of the Karush-Kuhn-Tucker Conditions theorem). But first, note that, since $n_j>0$ ($n_i>0$ for network operator $j$), $E[\cdot \vert \cdot]$ is a concave function of $b_i$ ($b_j$ for network operator $j$). Moreover, the constraint as a function of $b_i$ ($b_j$ for network operator $j$) is affine, and hence convex. Therefore, the Karush-Kuhn-Tucker Conditions are necessary and sufficient conditions for a solution in nonlinear constrained optimization problem to be optimal.
+The constraint $c_i-b_i\le 0$ ensures that each network operator bids above or equal to their cost. However, this problem is much more complicated than its unconstrained version in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}. Not only is it necessary to solve the nonlinear constrained optimisation problem for each network operator $i$, but also it needs to be done simultaneously \cite{Griffin2011}. To better explore the inherent complexity of the problem, we will apply the Karush-Kuhn-Tucker Conditions theorem, and try to derive the equilibrium bidding strategies for all network operators (see Section~\ref{sec:optimisation_theory_notation}, Appendix~\ref{cha:notation} for the definition of the Karush-Kuhn-Tucker Conditions theorem). But first, note that, since $n_j>0$ ($n_i>0$ for network operator $j$), $E[\cdot \vert \cdot]$ is a concave function of $b_i$ ($b_j$ for network operator $j$). Moreover, the constraint as a function of $b_i$ ($b_j$ for network operator $j$) is affine, and hence convex. Therefore, the Karush-Kuhn-Tucker Conditions are necessary and sufficient conditions for a solution in nonlinear constrained optimisation problem to be optimal.
 
-The problem will be approached as follows. First, we will fix the bidding strategy for network operator $j$ and treat the problem as a standard nonlinear constrained optimization problem for network operator $i$. The same stage will be repeated for network operator $j$. Then the results of both stages will be combined together and solved simultaneously. In effect, this will result in derivation of the equilibrium bidding strategies for both network operators.
+The problem will be approached as follows. First, we will fix the bidding strategy for network operator $j$ and treat the problem as a standard nonlinear constrained optimisation problem for network operator $i$. The same stage will be repeated for network operator $j$. Then the results of both stages will be combined together and solved simultaneously. In effect, this will result in derivation of the equilibrium bidding strategies for both network operators.
 
 The Lagrangian of the problem for network operator $i$ is
 \begin{align}
@@ -561,7 +561,7 @@ In the second case, $\lambda_j=0$ implies
 	1 - \frac{1}{n_i}b_j - \frac{1}{n_i}\left( \frac{1-w}{w}(r_j-r_i) - m_i \right) - (b_j-c_j)\frac{1}{n_i} = 0.
 \end{equation*}
 
-Without loss of generality, suppose $r_i<r_j$. In total, there are four possible solutions to the simultaneous optimization problem: $\lambda_i=\lambda_j=0$; $\lambda_i > 0$ and $\lambda_j=0$; $\lambda_i=0$ and $\lambda_j > 0$; and $\lambda_i > 0$ and $\lambda_j > 0$.
+Without loss of generality, suppose $r_i<r_j$. In total, there are four possible solutions to the simultaneous optimisation problem: $\lambda_i=\lambda_j=0$; $\lambda_i > 0$ and $\lambda_j=0$; $\lambda_i=0$ and $\lambda_j > 0$; and $\lambda_i > 0$ and $\lambda_j > 0$.
 
 Firstly, suppose $\lambda_i > 0$ and $\lambda_j > 0$. This implies $b_i=c_i$ and $b_j=c_j$. Hence, $n_i=n_j=1$ and $m_i=m_j=0$ which yields
 \begin{equation*}
@@ -574,7 +574,7 @@ Firstly, suppose $\lambda_i > 0$ and $\lambda_j > 0$. This implies $b_i=c_i$ and
 \end{equation*}
 But, since $r_i < r_j$, $\lambda_i < 0$ for all $c_i\in[0,1]$ and $w\in(0,1]$. Therefore, the case where $b_i=c_i$ and $b_j=c_j$ cannot constitute an equilibrium.
 
-Secondly, suppose $\lambda_i=\lambda_j=0$. In this case, the problem is equivalent to the unconstrained optimization problem in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}. That is, we need to solve
+Secondly, suppose $\lambda_i=\lambda_j=0$. In this case, the problem is equivalent to the unconstrained optimisation problem in Equation~\eqref{eq:pcomp_exp_utility_uc_direct}. That is, we need to solve
 \begin{equation*}
 	\left\{
 	\begin{array}{ll}
@@ -605,7 +605,7 @@ Since $r_i < r_j$ and $c_j\in[0,1]$, $w(c_j)\in(0,1]$. Hence, the constraint is 
 \begin{equation*}
 	c_j-b_j'(c_j) \le 0 \iff w \ge w(c_j).
 \end{equation*}
-In other words, for $w\ge w(c_j)$, $(b_i',b_j')$ constitutes an equilibrium of the constrained optimization problem in Equation~\eqref{eq:pcomp_exp_utility_c_direct}. However, for $w < w(c_j)$, $(b_i', b_j')$ is no longer an equilibrium.
+In other words, for $w\ge w(c_j)$, $(b_i',b_j')$ constitutes an equilibrium of the constrained optimisation problem in Equation~\eqref{eq:pcomp_exp_utility_c_direct}. However, for $w < w(c_j)$, $(b_i', b_j')$ is no longer an equilibrium.
 
 Therefore, for $w < w(c_j)$, the only alternative for network operator $j$ is to bid $b_j''(c_j)=c_j$. If network operator $i$ would continue to use the strategy $b_i'$ in Equation~\eqref{eq:pcomp_equi_bidding_str_direct}, the complementary slackness conditions for network operator $j$ are satisfied; that is, for all $c_j\in[0,1]$
 \begin{equation*}
@@ -629,7 +629,7 @@ since $w < w(c_j)$ and $r_i<r_j$.
 	\label{fig:pincomplete_bids_update_i_2_direct}
 \end{figure}
 
-Nevertheless, network operator $i$ might find it beneficial to update their bidding strategy given the fact that network operator $j$ bids according to $b_j''$ for $w<w(c_j)$, as this could potentially lead to higher profits for network operator $i$. However, there is at least one major limitation that network operator $i$ will face; that is, $w(c_j)$ as perceived by network operator $i$ is a function of cost of network operator $j$. Hence, it is a function of a random variable $C_j$. Since $C_j$ is a continuous random variable, the exact estimation of $w(C_j)$ is impossible; i.e., the probability of the event $w(C_j)=E[w(C_j)]$ is zero. Therefore, if network operator $i$ decides to update their bidding strategy, they may actually decrease their expected profits. To see why, suppose that network operator $i$ updates their bidding strategy. In this case, $b_j''(c_j) = c_j$ and $\lambda_i = 0$ which imply that $m_j = 0$, $n_j=1$ and thus
+Nevertheless, network operator $i$ might find it beneficial to update their bidding strategy given the fact that network operator $j$ bids according to $b_j''$ for $w<w(c_j)$, as this could potentially lead to higher profits for network operator $i$. However, there is at least one major limitation that network operator $i$ will face; that is, $w(c_j)$ as perceived by network operator $i$ is a function of cost of network operator $j$. Hence, it is a function of an r.v.~$C_j$. Since $C_j$ is a continuous r.v., the exact estimation of $w(C_j)$ is impossible; i.e., the probability of the event $w(C_j)=E[w(C_j)]$ is zero. Therefore, if network operator $i$ decides to update their bidding strategy, they may actually decrease their expected profits. To see why, suppose that network operator $i$ updates their bidding strategy. In this case, $b_j''(c_j) = c_j$ and $\lambda_i = 0$ which imply that $m_j = 0$, $n_j=1$ and thus
 \begin{align*}
 	&1 - b_i - \frac{1-w}{w}(r_i-r_j) - b_i + c_i = 0\\
 	\iff &b_i''(c_i) = \frac{1}{2} - \frac{1-w}{2w}(r_i-r_j) + \frac{1}{2}c_i.
@@ -639,7 +639,7 @@ If $w(c_j) > E[w(C_j)]$, then network operator $i$ will benefit from an update o
 	&E\left[b_i''(c_i)-c_i \:\middle\vert\: wb_i''(c_i) + (1-w)r_i < wC_j + (1-w)r_j \right]\\
 	- &E\left[b_i'(c_i)-c_i \:\middle\vert\: wb_i'(c_i) + (1-w)r_i < wC_j + (1-w)r_j \right] > 0
 \end{align*}
-for all $c_i\in[0,1]$ and $w < E[w(C_j)]$. Figure~\ref{fig:pincomplete_bids_update_i_1_direct} depicts the above situation. Network operator $i$ will increase their bid (or offered price) for $w < E[w(C_j)]$, and yet will not decrease their probability of winning. At the same time, network operator $j$ will not have an incentive to modify their bidding strategy as it does not yield higher profits than by bidding $b_j''(c_j)$; that is, network operator $j$ faces an optimization problem
+for all $c_i\in[0,1]$ and $w < E[w(C_j)]$. Figure~\ref{fig:pincomplete_bids_update_i_1_direct} depicts the above situation. Network operator $i$ will increase their bid (or offered price) for $w < E[w(C_j)]$, and yet will not decrease their probability of winning. At the same time, network operator $j$ will not have an incentive to modify their bidding strategy as it does not yield higher profits than by bidding $b_j''(c_j)$; that is, network operator $j$ faces an optimisation problem
 \begin{equation*}
 	\max_{b_j} E\left[b_j - c_j \:\middle\vert\: wb_j + (1-w)r_j < wb_i''(C_i) + (1-w)r_i \right],
 \end{equation*}
@@ -656,14 +656,14 @@ for all $c_j\in[0,1]$. Figure~\ref{fig:pincomplete_bids_update_j_1_direct} depic
 
 If $w(c_j) < E[w(C_j)]$, then network operator $i$ will decrease their expected profits for $w(c_j) < w < E[w(C_j)]$, as in this range, the pair of bidding strategies $(b_i',b_j')$ constitutes an equilibrium. Figure~\ref{fig:pincomplete_bids_update_i_2_direct} shows the above situation. However, it is not clear whether the increase in expected profits when $w(c_j) > E[w(C_j)]$ for network operator $i$ is larger than the decrease in expected profits when $w(c_j) < E[w(C_j)]$, and hence, whether it is worth for network operator $i$ to guess the value of $w(c_j)$.
 
-The above discussion suggests that a possible solution to the constrained optimization problem in Equation~\eqref{eq:pcomp_exp_utility_c_direct} may assume the following form
+The above discussion suggests that a possible solution to the constrained optimisation problem in Equation~\eqref{eq:pcomp_exp_utility_c_direct} may assume the following form
 \begin{equation*}
 	b_i^*(c_i) = \max\left\{ c_i, b_i'(c_i) \right\}.
 \end{equation*}
 However, since a formal proof is not provided, the result is stated as a conjecture.
 \begin{conjecture}
 \label{conj:pcomp_max_equi_bidding_str_direct}
-Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in N$, and $r_i\in [0,1]$ for all $i\in N$ is common knowledge. If the optimization problem is subject to a constraint $b_i\ge c_i$, then the equilibrium bidding strategy for all $w\in (0,1]$ is given by
+Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in N$, and $r_i\in [0,1]$ for all $i\in N$ is common knowledge. If the optimisation problem is subject to a constraint $b_i\ge c_i$, then the equilibrium bidding strategy for all $w\in (0,1]$ is given by
 \begin{equation}
 \label{eq:pcomp_equi_bidding_str_max_direct}
 	b_i^*(c_i) = \max\left\{ c_i, b_i'(c_i) \right\}.
@@ -686,11 +686,11 @@ Finally, a constraint optimisation problem was proposed that addresses negative 
 \section{Proofs} % (fold)
 \label{sec:proofs_direct}
 \begin{proof}[Proof of Proposition~\ref{prop:special_case_w_0_direct}]
-Let $m = |N_0|$ be the number of network operators with the lowest reputation rating such that $m\in\mathbb{Z}_+$. Since $n = |N|$ is finite and $N_0\subseteq N$, then $m \le n$. Now, each $j\in N_0$ is facing a maximization problem
+Let $m = |N_0|$ be the number of network operators with the lowest reputation rating such that $m\in\mathbb{Z}_+$. Since $n = |N|$ is finite and $N_0\subseteq N$, then $m \le n$. Now, each $j\in N_0$ is facing a maximisation problem
 \begin{equation*}
 	\max_{b_j} \frac{1}{m} \left(b_j - c_j \right), \quad\text{for all } j\in N_0.
 \end{equation*}
-Since $1\le m\le n$, and since $b_j\in\mathbb{R}_+$ and $\mathbb{R}_+$ is not bounded from above, this implies that the maximization problem is unbounded; that is, $b_j\rightarrow\infty$ for all $j\in N_0$.
+Since $1\le m\le n$, and since $b_j\in\mathbb{R}_+$ and $\mathbb{R}_+$ is not bounded from above, this implies that the maximisation problem is unbounded; that is, $b_j\rightarrow\infty$ for all $j\in N_0$.
 
 The remaining network operators $k\in N\setminus N_0$ will try to solve
 \begin{equation*}

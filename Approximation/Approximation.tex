@@ -43,7 +43,7 @@ Assume that
 \end{enumerate}
 \end{assumptions}
 These assumptions correspond to Assumptions~A.1 and Theorem~U.1 in Lebrun~\cite{Lebrun2006}, and, as shown by Lebrun, with these assumptions satisfied, there exists one and only one pure-strategy Bayesian Nash equilibrium where bidders engage in serious bidding; that is, bid at least their cost. Formally,
-\begin{proposition}[Characterization of the Equilibrium in common prior Setting]
+\begin{proposition}[Characterisation of the Equilibrium in Common Prior Setting]
 \label{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}
 Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i= b_i^{-1}$, satisfy the following system of differential equations
 \begin{equation*}
@@ -82,7 +82,6 @@ In this section, a CP auction is approximated using the FSM method already intro
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method}
-
 To briefly recap, the FSM method was first proposed by Bajari~\cite{Bajari2001a} (cf.~Algorithm~1 in \cite{Bajari2001a}). The method aims at finding the best approximation of the lower bound on bids, $\underline{b}$, by successively picking a value from the feasible interval, $(\underline{c}, \bar{c})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:fsm_initial_value_problem_approximation}
@@ -186,7 +185,7 @@ Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$
 \begin{equation*}
   [(1-w)r_i, (1-w)r_i + w] = [\underline{c}_i, \bar{c}_i] \subset [0,1].
 \end{equation*}
-In order to ease the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$. Therefore, in the general case, unless the bidders are characterised by the same reputation rating, that is $r_i=r_j$ for all $i,j\in N$, their distributions' supports will not overlap fully; i.e.,
+In order to simplify the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$. Therefore, in the general case, unless the bidders are characterised by the same reputation rating, that is $r_i=r_j$ for all $i,j\in N$, their distributions' supports will not overlap fully; i.e.,
 \begin{equation*}
   [\underline{c}_i,\bar{c}_i] \neq [\underline{c}_j,\bar{c}_j], \quad i\neq j \text{ and } i,j\in N.
 \end{equation*}
@@ -275,7 +274,7 @@ The choice of the parameters is motivated by the shape of the normal distributio
   \label{fig:test_truncated_normal_bids_approximation}
 \end{figure}
 
-Table~\ref{tab:test_truncated_normal_params_approximation} summarizes the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centred around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
+Table~\ref{tab:test_truncated_normal_params_approximation} summaris es the numerical values of the described parameters, while the resultant pdfs are depicted in Figure~\ref{fig:test_truncated_normal_pdfs_approximation}, and Figure~\ref{fig:test_truncated_normal_bids_approximation} shows the resultant equilibrium bidding strategies for both bidders. It is worth noting that the pdfs match the illustrative example shown in Figure~\ref{fig:dmp_to_common_priors_approximation}. Furthermore, note that the pdfs for both bidders, as intended, are centred around the midpoints of their original supports respectively, and they tail off to zero as the bounds of the supports are reached.
 % subsection modelling (end)
 
 \subsection{Methodology for Quantifying Accuracy of the Approximations} % (fold)
@@ -350,7 +349,7 @@ In this section, we showed how a DMP bidding scenario can be cast into CP settin
 
 \section{Approximation Results} % (fold)
 \label{sec:approximation_results_approximation}
-In this section, we analyse the results for three bidding scenarios: with $n=2$, $n=3$ and $n=4$ bidders respectively. We concentrate on only up to four bidders since the time required to simulate the problem increases exponentially with each additional bidder. It should be noted that the simulations were run on a 12-core Xeon processor, and were fully parallelised (i.e., each repetition was run in a separate process, and up to 20 processes were running at any one time). The time required to complete each simulation run took approximately: 1.6 hours for $n=2$ bidders, 25.6 hours for $n=3$ bidders, and 72 hours for $n=4$ bidders FIX:ME. Furthermore, we note that since the UK market is currently dominated by an oligopoly of four network operators (bidders) who own their infrastructure (EE, Vodafone, O2, and Three), solving the problem for four bidders is directly relevant.
+In this section, we analyse the results for three bidding scenarios: with $n=2$, $n=3$ and $n=4$ bidders respectively. We concentrate on only up to four bidders since the time required to simulate the problem increases quadratically with each additional bidder. It should be noted that the simulations were run on a 12-core Xeon processor, and were fully parallelised (i.e., each repetition was run in a separate process, and up to 20 processes were running at any one time). The time required to complete each simulation run took approximately: 1.6 hours for $n=2$ bidders, 25.6 hours for $n=3$ bidders, and 72 hours for $n=4$ bidders FIX:ME. Furthermore, we note that since the UK market is currently dominated by an oligopoly of four network operators (bidders) who own their infrastructure (EE, Vodafone, O2, and Three), solving the problem for four bidders is directly relevant.
 
 The procedure for generating the approximation results is as follows:
 \begin{enumerate}

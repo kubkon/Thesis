@@ -1009,6 +1009,8 @@
 						AAD9kf//+6L///2jAAAD3AAAwGw=
 						</data>
 					</dict>
+					<key>Draws</key>
+					<string>NO</string>
 				</dict>
 				<key>shadow</key>
 				<dict>
@@ -1221,7 +1223,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-10-23 21:30:18 +0000</string>
+	<string>2014-11-01 10:56:04 +0000</string>
 	<key>Modifier</key>
 	<string>Jakub Konka</string>
 	<key>NotesVisible</key>
