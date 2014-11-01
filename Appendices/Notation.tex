@@ -12,8 +12,11 @@ This chapter, firstly, introduces mathematical notation used in this thesis. It 
 Following the standard notation used in real analysis literature, we denote by $\mathbb{R}$ the set of all real numbers. An open subset of $\mathbb{R}$ is denoted by $(a,b)\subset \mathbb{R}$ such that $a < b$ and $a,b\in\mathbb{R}$. Similarly, $[a,b]\subset\mathbb{R}$ denotes a closed subset of $\mathbb{R}$, $(a,b]$ a half-open (from the left) subset, and $[a,b)$ a half-open (from the right) subset. The set of all positive (negative) real numbers, however, is denoted by $\mathbb{R}_+$ ($\mathbb{R}_-$).
 % section notation (end)
 
-\section{Set Theory} % (fold)
-\label{sec:set_theory_notation}
+\section{Mathematical Analysis} % (fold)
+\label{sec:mathematical_analysis_notation}
+
+\subsection{Invertibility of a Function} % (fold)
+\label{sub:invertibility_of_a_function_notation}
 Let $f: X\to Y$ be a function mapping set $X$ into $Y$.
 \begin{thm}[Inverse of a Function]
 \label{thm:inverse_of_a_function_notation}
@@ -33,7 +36,53 @@ If $f$ is increasing, then it is invertible.
 \begin{proof}
 Every increasing function is one-to-one and onto.
 \end{proof}
-% subsection set_theory_notation (end)
+% subsection invertibility_of_a_function (end)
+
+\subsection{Nonlinear Constrained Optimisation} % (fold)
+\label{sub:nonlinear_constrained_optimisation_notation}
+The following theorem on nonlinear constrained optimisation is also be used in this thesis.
+\begin{thm}[Karush-Kuhn-Tucker Conditions]
+Let $f:\mathbb{R}^n\to\mathbb{R}$ be a concave function, $g_i:\mathbb{R}^n\to\mathbb{R}$ be convex functions for $i=1,\ldots,m$, and $h_j:\mathbb{R}^n\to\mathbb{R}$ be affine functions for $j=1,\ldots,l$. Then $\mathbf{x}^*\in\mathbb{R}^n$ is an optimal point for the following optimisation problem:
+\begin{equation*}
+	\left\{
+	\begin{array}{rl}
+		\max &f(x_1,\ldots,x_n)\\
+		\text{subject to} &g_1(x_1,\ldots,x_n)\le 0\\
+		& \vdots\\
+		&g_m(x_1,\ldots,x_n)\le 0\\
+		&h_1(x_1,\ldots,x_n) = 0\\
+		& \vdots\\
+		&h_l(x_1,\ldots,x_n) = 0
+	\end{array}
+	\right.
+\end{equation*}
+if and only if there exist unique multipliers $\bm{\lambda}=(\lambda_1,\ldots,\lambda_m)\ge 0$ and $\bm{\mu}=(\mu_1,\ldots,\mu_l)\in\mathbb{R}$ such that the Lagrangian
+\begin{equation*}
+	L(\mathbf{x},\bm{\lambda},\bm{\mu}) = f(\mathbf{x}) - \sum_{i=1}^m\lambda_i g_i(\mathbf{x}) - \sum_{j=1}^l\mu_j h_j(\mathbf{x})
+\end{equation*}
+is stationary at $(\mathbf{x}^*,\bm{\lambda},\bm{\mu})$, that is,
+\begin{equation*}
+	\nabla L(\mathbf{x}^*,\bm{\lambda},\bm{\mu}) = \nabla f(\mathbf{x}^*) - \sum_{i=1}^m\lambda_i \nabla g_i(\mathbf{x}^*) - \sum_{j=1}^l\mu_j \nabla h_j(\mathbf{x}^*) = \mathbf{0},
+\end{equation*}
+and satisfies the complementary slackness conditions
+\begin{equation*}
+	\lambda_i g_i(\mathbf{x}^*)=0 \quad\text{for } i=1,\ldots,m.
+\end{equation*}
+\end{thm}
+\begin{proof}
+For the proof of this theorem, we refer the Reader to Carter's ``Foundations of Mathematical Economics'' \cite{Carter2001}.
+\end{proof}
+% subsection nonlinear_constrained_optimisation_notation (end)
+
+\subsection{Lipschitz Condition} % (fold)
+\label{sub:lipschitz_condition_notation}
+Let $f$ be a function such that $f: \mathbb{R}^n \to \mathbb{R}^n$, and let $E$ be a subset of $\mathbb{R}^n$. Then, $f$ is said to satisfy Lipschitz condition on $E$ if there exists $M>0$ such that
+\begin{equation*}
+	\|f(\mathbf{x}) - f(\mathbf{y})\| \leq M \| \mathbf{x} - \mathbf{y} \|
+\end{equation*}
+for all $\mathbf{x},\mathbf{y}\in E$, where $\|\cdot\|$ denotes a norm on $\mathbb{R}^n$~\cite{HubbardPaarsch2011,SteinShakarchiCH7}.
+% subsection lipschitz_condition (end)
+% subsection mathematical_analysis_notation (end)
 
 \section{Probability Theory and Statistics} % (fold)
 \label{sec:probability_notation}
@@ -41,6 +90,8 @@ Let $X$ denote an (absolutely-) continuous random variable (r.v.) with the suppo
 
 The expected value of $X$, denoted by $E[X]$, is defined as $E[X] = \int_{-\infty}^{\infty} xdF(x)$. Similarly, if $u$ is a function of $X$, then the expected value of $u(X)$ is defined as $E[u(X)] = \int_{-\infty}^{\infty} u(x)dF(x)$.
 
+\subsection{Order Statistics} % (fold)
+\label{sub:order_statistics_notation}
 Let $X_1, \ldots, X_n$ be independent continuous r.v.s with distribution function $F$ and density function $f= \frac{d}{dx}F$. If we let $X_{i:n}$ denote the $i$th smallest of these r.v.s, then $X_{1:n}, \ldots,X_{n:n}$ are called the \emph{order statistics} \cite{Arnold08,David03}. In the event that the r.v.s are independently and identically distributed (i.i.d.), the distribution of $X_{i:n}$ is
 \begin{equation}
 	\label{eq:iid_cdf_notation}
@@ -51,7 +102,10 @@ while the density of $X_{i:n}$ can be obtained by differentiating Equation~\eqre
 	\label{eq:iid_pdf_notation}
 	f_{X_{i:n}}(x) = \frac{n!}{(n-i)!(i-1)!} f(x) (F(x))^{i-1} (1-F(x))^{n-i}.
 \end{equation}
+% subsection order_statistics (end)
 
+\subsection{Strong Law of Large Numbers} % (fold)
+\label{sub:strong_law_of_large_numbers_notation}
 Let $X_1,\ldots,X_n$ be i.i.d.~r.v.s with finite mean $\mu$. Let
 \begin{equation*}
   \bar{X}(n) = \frac{\sum_{i=1}^n X_i}{n}.
@@ -63,7 +117,8 @@ $\bar{X}(n)\rightarrow\mu$ with probability $1$ as $n\rightarrow\infty$.
 \begin{proof}
 For proof of this theorem, we refer the Reader to Chung's ``A Course in Probability Theory'' \cite{Chung2001}.
 \end{proof}
-% subsection probability_notation (end)
+% subsection strong_law_of_large_numbers (end)
+% section probability_notation (end)
 
 \section{Game Theory} % (fold)
 \label{sec:theory_of_games_notation}
@@ -134,43 +189,6 @@ For proof of this theorem, we refer the Reader to Krishna's ``Auction Theory'' \
 \end{proof}
 % subsubsection mechanism_design_theory_notation (end)
 % subsection theory_of_games (end)
-
-\section{Optimisation Theory} % (fold)
-\label{sec:optimisation_theory_notation}
-The following theorem on nonlinear constrained optimisation is also be used in this thesis.
-\begin{thm}[Karush-Kuhn-Tucker Conditions]
-Let $f:\mathbb{R}^n\to\mathbb{R}$ be a concave function, $g_i:\mathbb{R}^n\to\mathbb{R}$ be convex functions for $i=1,\ldots,m$, and $h_j:\mathbb{R}^n\to\mathbb{R}$ be affine functions for $j=1,\ldots,l$. Then $\mathbf{x}^*\in\mathbb{R}^n$ is an optimal point for the following optimisation problem:
-\begin{equation*}
-	\left\{
-	\begin{array}{rl}
-		\max &f(x_1,\ldots,x_n)\\
-		\text{subject to} &g_1(x_1,\ldots,x_n)\le 0\\
-		& \vdots\\
-		&g_m(x_1,\ldots,x_n)\le 0\\
-		&h_1(x_1,\ldots,x_n) = 0\\
-		& \vdots\\
-		&h_l(x_1,\ldots,x_n) = 0
-	\end{array}
-	\right.
-\end{equation*}
-if and only if there exist unique multipliers $\bm{\lambda}=(\lambda_1,\ldots,\lambda_m)\ge 0$ and $\bm{\mu}=(\mu_1,\ldots,\mu_l)\in\mathbb{R}$ such that the Lagrangian
-\begin{equation*}
-	L(\mathbf{x},\bm{\lambda},\bm{\mu}) = f(\mathbf{x}) - \sum_{i=1}^m\lambda_i g_i(\mathbf{x}) - \sum_{j=1}^l\mu_j h_j(\mathbf{x})
-\end{equation*}
-is stationary at $(\mathbf{x}^*,\bm{\lambda},\bm{\mu})$, that is,
-\begin{equation*}
-	\nabla L(\mathbf{x}^*,\bm{\lambda},\bm{\mu}) = \nabla f(\mathbf{x}^*) - \sum_{i=1}^m\lambda_i \nabla g_i(\mathbf{x}^*) - \sum_{j=1}^l\mu_j \nabla h_j(\mathbf{x}^*) = \mathbf{0},
-\end{equation*}
-and satisfies the complementary slackness conditions
-\begin{equation*}
-	\lambda_i g_i(\mathbf{x}^*)=0 \quad\text{for } i=1,\ldots,m.
-\end{equation*}
-\end{thm}
-\begin{proof}
-For the proof of this theorem, we refer the Reader to Carter's ``Foundations of Mathematical Economics'' \cite{Carter2001}.
-\end{proof}
-% section optimization_theory_notation (end)
-
 % section preliminaries (end)
 
 % chapter notation (end)
