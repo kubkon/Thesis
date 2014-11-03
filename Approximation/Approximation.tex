@@ -344,12 +344,20 @@ for all $i\in N$, where $p^{DMP}$ and $p^{CP}$ denote the expected prices for DM
   \label{tab:test_relative_errors_approximation}
 \end{table}
 
-In this section, we showed how a DMP bidding scenario can be cast into CP setting by approximating bidders' cost distributions with truncated normal distributions with common support. Furthermore, expected prices and \emph{ex ante} expected utilities were suggested as metrics for quantifying the accuracy of approximating DMP auction with CP auction. In what follows, we use the proposed metrics to study approximation results in three different bidding scenarios with two, three and four bidders respectively.
+In this section, we showed how a DMP bidding scenario can be cast into CP setting by approximating bidders' cost distributions with truncated normal distributions with common support. Furthermore, expected prices and \emph{ex ante} expected utilities were suggested as metrics for quantifying the accuracy of approximating DMP auction with CP auction. In what follows, we use the proposed metrics to study approximation results in four different bidding scenarios with two, three, four and five bidders respectively.
 % subsection methodology (end)
 
 \section{Approximation Results} % (fold)
 \label{sec:approximation_results_approximation}
-In this section, we analyse the results for three bidding scenarios: with $n=2$, $n=3$ and $n=4$ bidders respectively. We concentrate on only up to four bidders since the time required to simulate the problem increases quadratically with each additional bidder. It should be noted that the simulations were run on a 12-core Xeon processor, and were fully parallelised (i.e., each repetition was run in a separate process, and up to 20 processes were running at any one time). The time required to complete each simulation run took approximately: 1.6 hours for $n=2$ bidders, 25.6 hours for $n=3$ bidders, and 72 hours for $n=4$ bidders FIX:ME. Furthermore, we note that since the UK market is currently dominated by an oligopoly of four network operators (bidders) who own their infrastructure (EE, Vodafone, O2, and Three), solving the problem for four bidders is directly relevant.
+In this section, we analyse the results for four bidding scenarios: with $n=2$, $n=3$, $n=4$ and $n=5$ bidders respectively. We concentrate on only up to five bidders since the time required to simulate the problem increases quadratically with each additional bidder. It should be noted that the simulations were run on a 12-core Xeon processor, and were fully parallelised (i.e., each repetition was run in a separate process, and up to 20 processes were running at any one time). The time required to complete each simulation run took approximately: 1.6 hours for $n=2$ bidders, 25.6 hours for $n=3$ bidders, 76.2 hours for $n=4$ bidders, and 153.4 hours for $n=5$ bidders. Figure~\ref{fig:simulation_time_approximation} depicts results of fitting a polynomial of the order two to the data. It is clear from the figure that simulating for more than five bidders takes a considerable amount of time, and is, therefore, impractical.
+
+\begin{figure}[t!]
+  \includegraphics[width=\figsize]{Approximation/Figures/simulation_time}
+  \caption{Polynomial of the order two fitted to the simulation time data}
+  \label{fig:simulation_time_approximation}
+\end{figure}
+
+Furthermore, we note that since the UK market is currently dominated by an oligopoly of four incumbent network operators (bidders) who own their infrastructure (EE, Vodafone, O2, and Three), solving the problem for up to five bidders is directly relevant.
 
 The procedure for generating the approximation results is as follows:
 \begin{enumerate}
@@ -395,10 +403,14 @@ All mean relative errors, unlike in the case of two bidders, exhibit clear nonli
 As expected, bidder 3 who is characterised by the highest reputation rating experiences the highest mean relative error in \emph{ex ante} expected utilities for all values of the price weight out of all bidders. In fact, the lower bound for bidder 3 is the same as the upper bound for the remaining bidders. This agrees with the conclusion drawn for the case of two bidders, where bidder 2 was the bidder characterised by the highest reputation rating and experienced the highest mean relative error out of all bidders.
 % subsection n_3_bidders_approximation (end)
 
-\begin{figure}[t!]
+\begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/compare_4_bidders}
   \caption{Approximation results for four bidders}
   \label{fig:compare_4_bidders_approximation}
+  \vspace{10mm}
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_4_bidders}
+  \caption{Approximation results for five bidders}
+  \label{fig:compare_5_bidders_approximation}
 \end{figure}
 
 \subsection{$n=4$ Bidders} % (fold)
@@ -411,6 +423,11 @@ In terms of shape of the mean relative error curves, similarly to the case of th
 
 As expected, bidder 4 who is characterised by the highest reputation rating experiences the highest mean relative error in \emph{ex ante} expected utilities for all values of the price weight out of all bidders. This agrees with the conclusion drawn for the previous two bidding scenarios, where bidder who was characterised by the highest reputation rating, experienced the highest mean relative error out of all bidders. It should further be noted that the range of values the mean relative error takes is much larger than it was the case for bidders characterised by the highest reputation rating in the previous two bidding scenarios.
 % subsection n_4_bidders_approximation (end)
+
+\subsection{$n=5$ Bidders} % (fold)
+\label{sub:n_5_bidders_approximation}
+
+% subsection n_5_bidders_approximation (end)
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/compare_price}
@@ -429,6 +446,11 @@ As expected, bidder 4 who is characterised by the highest reputation rating expe
   \includegraphics[width=\figsize]{Approximation/Figures/compare_bidder_3}
   \caption{Mean relative error in \emph{ex ante} expected utilities for bidder 3 across all bidding scenarios}
   \label{fig:compare_bidder_3_approximation}
+\end{figure}
+\begin{figure}[t!]
+  \includegraphics[width=\figsize]{Approximation/Figures/compare_bidder_3}
+  \caption{Mean relative error in \emph{ex ante} expected utilities for bidder 4 across all bidding scenarios}
+  \label{fig:compare_bidder_4_approximation}
 \end{figure}
 
 \subsection{Discussion} % (fold)
