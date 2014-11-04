@@ -75,7 +75,17 @@ In its simplest form, the network selection mechanism uses the derived utility f
 
 \subsection{Multiple Attribute Decision Making} % (fold)
 \label{sub:multiple_attribute_decision_making_intelligent}
+Multiple attribute decision making (MADM) is a branch of multiple criteria decision making (MCDM), a subdiscipline of operations research~\cite{LushengKuo2013}. The main aim of MADM is to aid a decision-maker in making a complex decision that often depends on multiple, possibly conflicting attributes.
 
+MADM-based network selection is closely related to utility-based approach as it effectively studies methods of combining utilities for different attributes in the most optimal way~\cite{LushengKuo2013}. As such, the main challenge of this approach is similar to that of utility-based approach; that is, capturing user's preference per attribute per scenario.
+
+The MADM-based network selection usually involves~\cite{LushengKuo2013}:
+\begin{enumerate}
+\item gathering and quantifying values for each considered attribute for each candidate network. For example, candidate network A might have a price attribute of 0.5, while candidate network B of 0.25.
+\item calculating weights for each attribute based on user's preferences. For example, user might prefer a higher price but a lower delay, and hence, a higher weight is assigned to the price attribute.
+\item utilising a MADM algorithm to score each candidate network based on the combination of attributes and weights. It is interesting to note that the score is equivalent to the combined utility function in the utility-based network selection. The score can be computed, for example, as a simple sum of all the attributes weighted by the weights, or alternatively, the attributes can be raised to the power of the corresponding weights and multiplied together. The former approach is referred to as simple additive weighting (SAW)~\cite{BariLeung2007a}, while the latter as multiplicative exponential weighting (MEW)~\cite{Nguyen2008}. Other popular algorithms include: grey relational analysis (GRA)~\cite{Song2005}, and technique for order preference by similarity to an ideal solution (TOPSIS)~\cite{BariLeung2007b}.
+\item selecting candidate network which achieves the highest score.
+\end{enumerate}
 % subsection multiple_attribute_decision_making (end)
 
 \subsection{Fuzzy Logic} % (fold)
