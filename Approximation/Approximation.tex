@@ -349,11 +349,15 @@ In this section, we showed how a DMP bidding scenario can be cast into CP settin
 
 \section{Approximation Results} % (fold)
 \label{sec:approximation_results_approximation}
-In this section, we analyse the results for four bidding scenarios: with $n=2$, $n=3$, $n=4$ and $n=5$ bidders respectively. We concentrate on only up to five bidders since the time required to simulate the problem increases quadratically with each additional bidder. It should be noted that the simulations were run on a 12-core Xeon processor, and were fully parallelised (i.e., each repetition was run in a separate process, and up to 20 processes were running at any one time). The time required to complete each simulation run took approximately: 1.6 hours for $n=2$ bidders, 25.6 hours for $n=3$ bidders, 76.2 hours for $n=4$ bidders, and 153.4 hours for $n=5$ bidders. Figure~\ref{fig:simulation_time_approximation} depicts results of fitting a polynomial of the order two to the data. It is clear from the figure that simulating for more than five bidders takes a considerable amount of time, and is, therefore, impractical.
+In this section, we analyse the results for four bidding scenarios: with $n=2$, $n=3$, $n=4$ and $n=5$ bidders respectively. We concentrate on only up to five bidders since the time required to simulate the problem increases exponentially with each additional bidder. It should be noted that the simulations were run on a 12-core Xeon processor, and were fully parallelised (i.e., each repetition was run in a separate process, and up to 20 processes were running at any one time). The time required to complete each simulation run took approximately: 1.6 hours for $n=2$ bidders, 25.6 hours for $n=3$ bidders, 76.2 hours for $n=4$ bidders, and 266.7 hours for $n=5$ bidders. Figure~\ref{fig:simulation_time_approximation} depicts results of fitting an exponential function of the form
+\begin{equation*}
+  f(x) = ae^{bx} + c, \quad\textrm{where}\: a,b,c\in\mathbb{R}, \textrm{ and } x\in\mathbb{R}_+
+\end{equation*}
+to the data. Assuming the growth rate of simulation times with each additional bidder will be at least as big as inferred from the measured simulation times, simulating for more than five bidders is impractical. For example, a predicted simulation time for ten bidders is approximately 108,745 hours, which equates to more than 12 years.
 
 \begin{figure}[t!]
   \includegraphics[width=\figsize]{Approximation/Figures/simulation_time}
-  \caption{Polynomial of the order two fitted to the simulation time data}
+  \caption{Exponential function fitted to the simulation time data}
   \label{fig:simulation_time_approximation}
 \end{figure}
 
