@@ -38,42 +38,6 @@ Every increasing function is one-to-one and onto.
 \end{proof}
 % subsection invertibility_of_a_function (end)
 
-\subsection{Nonlinear Constrained Optimisation} % (fold)
-\label{sub:nonlinear_constrained_optimisation_notation}
-The following theorem on nonlinear constrained optimisation is also used in this thesis.
-\begin{thm}[Karush-Kuhn-Tucker Conditions]
-Let $f:\mathbb{R}^n\to\mathbb{R}$ be a concave function, $g_i:\mathbb{R}^n\to\mathbb{R}$ be convex functions for $i=1,\ldots,m$, and $h_j:\mathbb{R}^n\to\mathbb{R}$ be affine functions for $j=1,\ldots,l$. Then $\mathbf{x}^*\in\mathbb{R}^n$ is an optimal point for the following optimisation problem:
-\begin{equation*}
-	\left\{
-	\begin{array}{rl}
-		\max &f(x_1,\ldots,x_n)\\
-		\text{subject to} &g_1(x_1,\ldots,x_n)\le 0\\
-		& \vdots\\
-		&g_m(x_1,\ldots,x_n)\le 0\\
-		&h_1(x_1,\ldots,x_n) = 0\\
-		& \vdots\\
-		&h_l(x_1,\ldots,x_n) = 0
-	\end{array}
-	\right.
-\end{equation*}
-if and only if there exist unique multipliers $\bm{\lambda}=(\lambda_1,\ldots,\lambda_m)\ge 0$ and $\bm{\mu}=(\mu_1,\ldots,\mu_l)\in\mathbb{R}$ such that the Lagrangian
-\begin{equation*}
-	L(\mathbf{x},\bm{\lambda},\bm{\mu}) = f(\mathbf{x}) - \sum_{i=1}^m\lambda_i g_i(\mathbf{x}) - \sum_{j=1}^l\mu_j h_j(\mathbf{x})
-\end{equation*}
-is stationary at $(\mathbf{x}^*,\bm{\lambda},\bm{\mu})$, that is,
-\begin{equation*}
-	\nabla L(\mathbf{x}^*,\bm{\lambda},\bm{\mu}) = \nabla f(\mathbf{x}^*) - \sum_{i=1}^m\lambda_i \nabla g_i(\mathbf{x}^*) - \sum_{j=1}^l\mu_j \nabla h_j(\mathbf{x}^*) = \mathbf{0},
-\end{equation*}
-and satisfies the complementary slackness conditions
-\begin{equation*}
-	\lambda_i g_i(\mathbf{x}^*)=0 \quad\text{for } i=1,\ldots,m.
-\end{equation*}
-\end{thm}
-\begin{proof}
-For the proof of this theorem, we refer the Reader to Carter's ``Foundations of Mathematical Economics'' \cite{Carter2001}.
-\end{proof}
-% subsection nonlinear_constrained_optimisation_notation (end)
-
 \subsection{Lipschitz Condition} % (fold)
 \label{sub:lipschitz_condition_notation}
 Let $f$ be a function such that $f: \mathbb{R}^n \to \mathbb{R}^n$, and let $E$ be a subset of $\mathbb{R}^n$. Then, $f$ is said to satisfy Lipschitz condition on $E$ if there exists $M>0$ such that
