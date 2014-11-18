@@ -22,5 +22,11 @@ Finally, in order to address the numerical instability of the EFSM method for la
 
 \section{Further Work} % (fold)
 \label{sec:further_work_conclusions}
-Further work goes here.
+There are many aspects of the research presented in this thesis that can further be elaborated upon. The most important future directions are as follows.
+\begin{enumerate}
+\item The implementation of the EFSM method assumes the bidders to be characterised by uniform distributions of costs (see Section~\ref{sub:extended_forward_shooting_method_indirect}, Chapter~\ref{cha:indirect}). It will strengthen the generality of the results presented in this thesis if the EFSM method is implemented for bidders characterised by nonuniform distributions as well. Furthermore, it will provide a basic (benchmark) method for numerically solving the unusual first-price sealed-bid auction with asymmetric bidders posed by the Digital Marketplace.
+\item Currently, the expected prices are examined in the case of only two network operatrs (see Section~\ref{sub:subscriber_s_perspective_expected_prices_indirect}, Chapter~\ref{cha:indirect}). The subscribers involved in the Digital Marketplace would benefit from characterisation of the expected prices in scenarios with more than two network operators.
+\item Furthermore, casting the auction format represented by the network selection mechanism employed in the Digital Marketplace into an auction with common prior assumes that the latter is based on truncated normal distributions (see Section~\ref{sec:network_selection_mechanism_cast_into_common_priors_setting_approximation}, Chapter~\ref{cha:approximation}). However, with the aim of reducing the upper bound on approximation error (16\%), utilisation of different distributions could be explored.
+\item Finally, the results presented in this thesis are based on the following fundamental assumptions: subscriber does not have any budget constraints; subscriber and network operators are risk neutral; and network operators are characterised by symmetric uniform cost distributions (see Section~\ref{sec:problem_definition_and_assumptions_direct}, Chapter~\ref{cha:direct}). It is generally agreed that these assumptions do not reflect the real world to a high degree~\cite{Krishna10}. Therefore, relaxing those assumptions and modifying the analysis accordingly might strengthen the applicability of the results to the real world scenarios.
+\end{enumerate}
 % section further_work (end)
