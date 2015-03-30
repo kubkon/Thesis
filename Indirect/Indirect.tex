@@ -722,37 +722,6 @@ In the second examined scenario, there are 4 network operators characterized by 
 \end{figure}
 % subsection approximation_results (end)
 
-\subsection{Improved Polynomial Projection Method using Chebyshev Polynomials} % (fold)
-\label{sub:improved_polynomial_projection_method_using_chebyshev_polynomials_indirect}
-The PPM method could potentially be improved in the sense that it would yield more accurate results if Chebyshev polynomials were employed in place of regular polynomials. Chebyshev polynomials are better suited to least squares optimisation upon which the PPM method is based~\cite{MasonApproximation2003,Hubbard2011}.
-
-In order to facilitate the improvement, the inverse equilibrium bidding function in Equation~\eqref{eq:polynomial_cost_function_indirect} can be approximated using Chebyshev polynomials as follows
-\begin{equation}
-  \displaystyle\hat{c}_i(b;\underline{\hat{b}},\alpha_i) = \sum_{k=0}^K \alpha_{i,k} T_k\left(x(b;\underline{\hat{b}})\right)
-\end{equation}
-for all $i\in N$. Here, $T_k$ denotes $k^{\textrm{th}}$ Chebyshev polynomial of the first kind defined recursively by
-\begin{equation}
-  \left\{
-    \begin{array}{l}
-      T_0(x) = 1\\
-      T_1(x) = x\\
-      T_{k+1}(x) = 2xT_k(x) - T_{k-1}(x), \qquad k=1,\ldots,K-1
-    \end{array}
-  \right.
-\end{equation}
-and $x(b;\underline{\hat{b}})\in [-1,1]$ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$. The grid of points, $x(b;\underline{\hat{b}})$, should be chosen such that
-\begin{equation}
-  \displaystyle x(b_t;\bar{\hat{b}}) = x_t = cos\left(\frac{2t-1}{2T}\pi\right),
-\end{equation}
-and
-\begin{equation}
-  b_t = \frac{\bar{\hat{b}} + \underline{\hat{b}} + (\bar{\hat{b}} - \underline{\hat{b}})x_t}{2}, \qquad t = 1,\ldots,T.
-\end{equation}
-Generated in this way, the grid of points, more commonly known as Chebyshev nodes, is said to minimise the interpolation error when approximating a function~\cite{Hubbard2011}.
-
-The cost functions defined this way should potentially yield more accurate as well as stable numerically results, especially if the Mathematical Programming with Equilibrium Constraints (MPEC) optimisation approach is employed~\cite{HubbardPaarsch2011,Hubbard2011}.
-% subsection other_numerical_methods (end)
-
 In this section, the FSM and PPM numerical algorithms were described, and two exemplary bidding scenarios were analysed for which the equilibrium bidding strategies were generated using the aforementioned algorithms. It should be noted, however, that one of the key assumptions of this section was $\underline{\hat{c}}_i\leq \hat{c}(\underline{\hat{b}})$ for all network operators $i\in N$, which restricted the choice of the price weight and the reputation ratings to a set satisfying $w\geq 1 - \sfrac{1}{(10r_n - 9r_2 - r_1 + 1)}$. In the following section, we relax that assumption by allowing cases such that $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one network operator $i\in N$. In other words, we consider all nontrivial equilibria characterised by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. Furthermore, we present two numerical algorithms which are able to generate equilibrium bidding strategies under the relaxed assumption.
 % section numerical_analysis_indirect (end)
 
