@@ -70,7 +70,6 @@ Then, the same profile constitutes an equilibrium for an auction with the utilit
   u_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \frac{1}{w}\cdot \hat{u}_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}).
 \end{equation}
 \end{proposition}
-\noindent The formal proof of Proposition~\ref{prop:equivalence_of_utilities_indirect} as well as any other proposition (unless stated otherwise) included in this chapter is given in Section~\ref{sec:proofs_indirect}.
 
 In order to avoid ambiguity, we shall refer to $\hat{c}_i$ as costs-hat and $\hat{b}_i$ as bids-hat, while still referring to $c_i$ as costs and $b_i$ as bids. Note, moreover, that since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost.
 
@@ -974,56 +973,3 @@ In this chapter, the bidding problem with symmetric cost distributions, as defin
 When restricted to $n=2$ network operators, the equilibrium bidding strategies were analytically derived, and the expected prices for the subscriber were analysed.
 
 Finally, for the case of $n\geq 2$ network operators, we proposed three numerical algorithms for approximating the equilibrium bidding strategies: FSM (Algorithm~\ref{alg:forward_shooting_method_indirect}), PPM (Algorithm~\ref{alg:polynomial_projection_method_indirect}), and EFSM (Algorithm~\ref{alg:extended_forward_shooting_method_indirect}). The algorithms were verified for correct implementation, and, for each approximated scenario, the derived equilibrium bidding strategies were tested for sufficiency condition for a pure strategy Bayesian Nash equilibrium. The FSM and PPM methods allow for numerically approximating equilibrium bidding strategies for a subset of all possible bidding scenarios resulting in nontrivial equilibria, while the EFSM method enables computation of the numerical solution to all bidding scenarios.
-
-\section{Proofs}
-\label{sec:proofs_indirect}
-\begin{proof}[Proof of Proposition~\ref{prop:equivalence_of_utilities_indirect}]
-Let
-\begin{equation}
-  \displaystyle\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \hat{u}_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
-\end{equation}
-and
-\begin{equation}
-  \displaystyle\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = u_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
-\end{equation}
-be the expected utilities corresponding to utility functions $\hat{u}_i$ and $u_i$ respectively. By definition of the pure-strategy Bayesian Nash equilibrium~\cite{Gibbons92}, for all $i$ and $\hat{c}_i$,
-\begin{equation}
-  \hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
-\end{equation}
-for all $\hat{b}_i$. Since $w\in(0,1)$, we may multiply both sides of the inequality by $\frac{1}{w} > 0$, which yields, for all $i$ and $\hat{c}_i$
-\begin{align}
-  &\frac{1}{w}\hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \frac{1}{w}\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i}) \\\nonumber
-  \iff &\frac{1}{w}\hat{u}_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq \frac{1}{w}\hat{u}_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
-  \iff &u_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq u_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
-  \iff &\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
-\end{align}
-for all $\hat{b}_i$. Hence, we have just shown that $(\hat{b}_1^*,\ldots,\hat{b}_n^*)$ constitutes a pure-strategy Bayesian Nash equilibrium of the auction with utility function $u_i$.
-\end{proof}
-\begin{proof}[Proof of Proposition~\ref{prop:regularity_conditions_indirect}]
-Proof of 1) is trivial. To prove 2) and 3), we note that for all $x\in [(1-w)r_i, (1-w)r_i + w]$,
-\begin{align}
-  F_i(x)
-  &= P\{\hat{C}_i\le x\} \\\nonumber
-  &= P\{wC + (1-w)r_i\le x\} \\\nonumber
-  &= P\left\{ C\le \frac{x - (1-w)r_i}{w} \right\}
-\end{align}
-since $\hat{c}_i = wc_i + (1-w)r_i$ and $w\neq 0$. Hence,
-\begin{equation}
-  F_i(x) = F_C\left( \frac{x - (1-w)r_i}{w} \right)
-\end{equation}
-and
-\begin{equation}
-  \frac{x - (1-w)r_i}{w}\in [0,1]
-\end{equation}
-for all $x\in [(1-w)r_i, (1-w)r_i + w]$. Therefore, since $F_C$ is differentiable over $(0,1]$ with a derivative $f_C$ locally bounded away from zero over this interval, by extension, $F_i$ is differentiable over $((1-w)r_i, (1-w)r_i + w]$ with a derivative $f_i$ locally bounded away from zero over this interval, and this proves 2). Moreover, since $F_C$ is absolutely-continuous, it is atomless (see \cite{Atomless,Feller1970} for definition of atomless probability distribution), and by extension, $F_i$ is atomless, which proves 3).
-\end{proof}
-
-\begin{proof}[Proof of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}]
-To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf.~C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
-
-To prove uniqueness, without loss of generality, let network operator 1 be characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on; that is, let $r_1 \leq r_2 \leq\cdots \leq r_n$. This implies $\underline{\hat{c}}_1 \leq \underline{\hat{c}}_2 \leq\cdots \leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 \leq \bar{\hat{c}}_2 \leq \cdots\leq \bar{\hat{c}}_n$. Since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then at least one inequality is strict. We need to consider two cases: 1) $r_1 < r_2$, and 2) $r_1 = r_2$. When 1) holds, then $\bar{\hat{c}}_1 < \bar{\hat{c}}_2$, implying that the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds. Otherwise, if 2) holds, then the additional condition (iii) in Theorem~1 in Lebrun~\cite{Lebrun2006} is satisfied. Thus, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
-\end{proof}
-
-\begin{proof}[Proof of Proposition~\ref{prop:equilibrium_restricted_indirect}]
-The proof is analogous to the proof of Proposition~1 in Kaplan and Zamir~\cite{KaplanZamir2007}.
-\end{proof}

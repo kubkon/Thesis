@@ -1,0 +1,239 @@
+%!TEX root = /Users/jakubkonka/Thesis/Thesis.tex
+\chapter{Mathematical Proofs} % (fold)
+\label{cha:proofs}
+In this chapter, mathematical proofs of all propositions are presented.
+
+\begin{propositiona}[\ref{prop:special_case_w_0_direct}]
+Suppose $c_i$ is i.i.d.~over the interval $[0,1]$ for all $i\in N$ and $r_i\in [0,1]$ for all $i\in N$ is common knowledge. Let $N_0\subseteq N$ be the set of all those network operators with the lowest reputation rating. If $w=0$, then every network operator $j\in N_0$ will have an incentive to bid abnormally high, i.e., $b_j\rightarrow\infty$, while every remaining network operator $k\in N\setminus N_0$ will be indifferent to the value of their bid.
+\end{propositiona}
+\begin{proof}
+Let $m = |N_0|$ be the number of network operators with the lowest reputation rating such that $m\in\mathbb{Z}_+$. Since $n = |N|$ is finite and $N_0\subseteq N$, then $m \le n$. Now, each $j\in N_0$ is facing a maximisation problem
+\begin{equation}
+	\max_{b_j} \frac{1}{m} \left(b_j - c_j \right), \quad\text{for all } j\in N_0.
+\end{equation}
+Since $1\le m\le n$, and since $b_j\in\mathbb{R}_+$ and $\mathbb{R}_+$ is not bounded from above, this implies that the maximisation problem is unbounded; that is, $b_j\rightarrow\infty$ for all $j\in N_0$.
+
+The remaining network operators $k\in N\setminus N_0$ will try to solve
+\begin{equation}
+	\max_{b_k} 0, \quad\text{for all } k\in N\setminus N_0,
+\end{equation}
+since $r_k > r_j = \min_{i\in N} r_i$. Hence, each network operator $k\in N\setminus N_0$ is indifferent to the value of their bid, which concludes the proof.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:special_case_w_1_direct}]
+Suppose $c_i$ is i.i.d.~over the interval $[0,1]$ for all $i\in N$ and $r_i \in [0,1]$ for all $i\in N$ is common knowledge. If $w=1$, then the symmetric equilibrium bidding strategy function of the standard procurement first-price sealed-bid auction,
+\begin{equation}
+	b^*_{FPA}(c_i) = \frac{1}{1 - F_{C_{1:n-1}}(c_i)}\int_{c_i}^{1} tdF_{C_{1:n-1}}(t) \quad\text{for all } i\in N,
+\end{equation}
+constitutes a symmetric pure-strategy Bayesian Nash equilibrium of the DMP variant of a procurement first-price sealed-bid auction.
+\end{propositiona}
+\begin{proof}
+The proof is analogous to the proof of Proposition~2.2 in Krishna~\cite{Krishna10}.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:pcomp_equi_bidding_str_direct}]
+Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in N$, and $r_i\in [0,1]$ for all $i\in N$ is common knowledge. Then the equilibrium bidding strategy for all $w\in (0,1]$ is given by
+\begin{equation}
+	b_i'(c_i) = \frac{1}{2} - \frac{1-w}{3w}(r_i-r_j) + \frac{1}{2}c_i.
+\end{equation}
+\end{propositiona}
+\begin{proof}
+Suppose there are two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that network operator 2 follows $b_2'$ equilibrium bidding strategy. We will argue that it is optimal for network operator 1 to follow $b_1'$ equilibrium bidding strategy. First, note that $b_1'$ is strictly increasing and continuous function of cost (similarly is $b_2'$). Suppose that network operator 1 bids an amount $b_1$. Since $b_1'$ is strictly increasing, it is bijective. Therefore, there exists unique cost $c'_1$ such that $c'_1 = {b_1'}^{-1}(b_1)$. Network operator 1's expected utility from bidding $b_1'(c'_1)$ is
+\begin{align}
+	&\tilde{u}_1(b_1'(c'_1), c_1) \\\nonumber
+	&= E \left[ b_1'(c'_1) - c_1 \:\middle\vert\: wb_1'(c'_1) + (1-w)r_1 < wb_2'(c_2) + (1-w)r_2 \right] \\\nonumber
+	&= \frac{1}{2} \left( 1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) + c'_1 - 2c_1 \right) \left( 1 - c'_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) \right).
+\end{align}
+We thus obtain that
+\begin{equation}
+	\tilde{u}_1(b_1'(c_1), c_1) - \tilde{u}_1(b_1'(c'_1), c_1) = \frac{1}{2}(c_1-c'_1)^2 \ge 0
+\end{equation}
+regardless of whether $c'_1\ge c_1$ or $c'_1 \le c_1$. We have thus argued that if network operator 2 follows $b_2'$, network operator 1 with a cost $c_1$ cannot benefit by bidding anything other than $b_1'(c_1)$. Similar argument can be used to show that it is optimal for network operator 2 to follow $b_2'$ while network operator 1 is following $b_1'$. Hence, $(b_1',b_2')$ constitutes a Bayesian-Nash equilibrium profile.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:pcomp_negative_bids_direct}]
+Suppose both network operators bid according to $b_i'$ bidding strategies. Then they are guaranteed nonnegative profit in case of winning (or a draw).
+\end{propositiona}
+\begin{proof}
+Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators follow the equilibrium bidding strategy, $b_i'(c_i)$. We need to show that network operator 1's bid is always at least as high as their cost whenever they win or draw with network operator 2; that is, $b_1'(c_1)\ge c_1$.
+
+First of all, note that if $r_1\le r_2$,
+\begin{equation}
+	b_1'(c_1) = \frac{1}{2}-\frac{1-w}{3w}(r_1-r_2) + \frac{1}{2}c_1 \ge \frac{1}{2}(1+c_1) \ge c_1, \quad\text{for all } c_1\in[0,1].
+\end{equation}
+Thus, we need only to consider the case when $r_1>r_2$.
+
+Suppose $r_1>r_2$. If $c_1>c_2$, and since $b_1'(c_2)$ is strictly increasing in $c_1$, network operator 1 will lose for all values of $w\in(0,1]$. If $c_1=c_2$, network operator 1 will lose for all values of $w\in(0,1)$, except at $w=1$ when there will be a draw. But at $w=1$, network operator 1's bid is at least as high as her cost; i.e.,
+\begin{equation}
+	b_1'(c_1) = \frac{1}{2}(1+c_1) \ge c_1, \quad\text{for all } c_1\in[0,1].
+\end{equation}
+If $c_1<c_2$, it is sufficient to show that the intersection of $b_1'(c_1)$ and $c_1$ in terms of $w$ can never occur before the intersection of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. First of all, we need to check that both intersections do occur; that is,
+\begin{equation}
+	b_1'(c_1) = c_1 \iff w = \frac{1}{1 + \frac{3}{2}\cdot\frac{1 - c_1}{r_1 - r_2}}.
+\end{equation}
+Similarly,
+\begin{equation}
+	\beta(b_1'(c_1),r_1) = \beta(b_2'(c_2),r_2) \iff w = \frac{1}{1+ \frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}}.
+\end{equation}
+Since $r_1>r_2$ and $c_1<c_2$, we have $0<r_1-r_2\le 1$ and $0<c_2-c_1\le 1$. Therefore, this implies
+\begin{equation}
+	0 < w = \frac{1}{1+ \frac{3}{2}\cdot\frac{1-c_1}{r_1-r_2}} \le 1,
+\end{equation}
+and
+\begin{equation}
+	0 < w = \frac{1}{1+ \frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}} \le 1.
+\end{equation}
+Now, suppose that the intersection of $b_1'(c_1)$ and $c_1$ occurs before that of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. We must thus have
+\begin{equation}
+	\frac{1}{1+\frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}} < \frac{1}{1+\frac{3}{2}\cdot\frac{1-c_1}{r_1-r_2}} \iff \frac{1-c_2}{r_1-r_2} < 0.
+\end{equation}
+But since $c_2\in[0,1]$ and $r_1>r_2$ by assumption,
+\begin{equation}
+	0 < \frac{1-c_2}{r_1-r_2}
+\end{equation}
+we reach a contradiction, and this concludes the proof.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:pcomp_direct_mechanism_direct}]
+The direct mechanism $(\mathbf{Q},\mathbf{M})$ where $\mathbf{Q}=(Q_i,Q_j)$ and $\mathbf{M}=(M_i,M_j)$ (with $Q_i$ and $M_i$ defined in Equations~\eqref{eq:pcomp_allocation_rule_direct} and \eqref{eq:pcomp_payment_rule_direct} respectively) satisfies both the IC and IR constraints.
+\end{propositiona}
+\begin{proof}
+Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators participate in the direct mechanism $(\mathbf{Q},\mathbf{M})$. Firstly, we show that the mechanism is incentive compatible. Without loss of generality, suppose that network operator 2 truthfully submits their cost to the mechanism. We argue that it is optimal for network operator 1 to also submit their cost truthfully. Suppose to the contrary; that is, that network operator 1 has an incentive not to reveal their cost truthfully by submitting $c'_1$. Thus, their expected utility becomes
+\begin{align}
+	&\tilde{\tilde{u}}_1(c'_1) = E\left[ b_1'(c'_1) - c_1 \:\middle\vert\: 2b_1'(c'_1) - 1 + \frac{4}{3}\cdot\frac{1-w}{w}(r_1-r_2) < C_2 \right] \\\nonumber
+	&= \left(\frac{1}{2} - \frac{1}{3}\cdot\frac{1-w}{w}(r_1-r_2) + \frac{1}{2}c'_1 - c_1 \right)\left(1 - c'_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2)\right).
+\end{align}
+The first-order condition yields $c'_1 = c_1$ and the second-order condition is satisfied. Hence, this shows that $(\mathbf{Q},\mathbf{M})$ is incentive compatible.
+
+Secondly, we show that $(\mathbf{Q},\mathbf{M})$ is individually rational. Since the mechanism is incentive compatible, each network operator reveals their cost truthfully. Hence, for all $c_1$
+\begin{align}
+	\tilde{\tilde{u}}_1(c_1) &= \left(\frac{1}{2} - \frac{1}{3}\cdot\frac{1-w}{w}(r_1-r_2) - \frac{1}{2}c_1 \right)\left(1 - c_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2)\right)\\\nonumber
+	&= \frac{1}{2}\left( 1 - c_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) \right)^2 \ge 0.
+\end{align}
+Therefore, $(\mathbf{Q},\mathbf{M})$ is individually rational.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:equivalence_of_utilities_indirect}]
+Suppose $(\hat{b}_1^*, \ldots, \hat{b}_n^*)$ is a pure-strategy Bayesian Nash equilibrium profile for an auction with the utility function
+\begin{equation}
+  \hat{u}_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \left\{
+  \begin{array}{l l}
+    \displaystyle\left(\hat{b}_i-\hat{c}_i\right) & \;\textrm{if}\quad\hat{b}_i < \displaystyle\min_{j\neq i}\hat{b}_j,\\[2ex]
+    0 & \;\textrm{if}\quad\hat{b}_i > \displaystyle\min_{j\neq i}\hat{b}_j.
+  \end{array}\right.
+\end{equation}
+Then, the same profile constitutes an equilibrium for an auction with the utility function
+\begin{equation}
+  u_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \frac{1}{w}\cdot \hat{u}_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}).
+\end{equation}
+\end{propositiona}
+\begin{proof}
+Let
+\begin{equation}
+  \displaystyle\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \hat{u}_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
+\end{equation}
+and
+\begin{equation}
+  \displaystyle\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = u_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
+\end{equation}
+be the expected utilities corresponding to utility functions $\hat{u}_i$ and $u_i$ respectively. By definition of the pure-strategy Bayesian Nash equilibrium~\cite{Gibbons92}, for all $i$ and $\hat{c}_i$,
+\begin{equation}
+  \hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
+\end{equation}
+for all $\hat{b}_i$. Since $w\in(0,1)$, we may multiply both sides of the inequality by $\frac{1}{w} > 0$, which yields, for all $i$ and $\hat{c}_i$
+\begin{align}
+  &\frac{1}{w}\hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \frac{1}{w}\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i}) \\\nonumber
+  \iff &\frac{1}{w}\hat{u}_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq \frac{1}{w}\hat{u}_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
+  \iff &u_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq u_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
+  \iff &\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
+\end{align}
+for all $\hat{b}_i$. Hence, we have just shown that $(\hat{b}_1^*,\ldots,\hat{b}_n^*)$ constitutes a pure-strategy Bayesian Nash equilibrium of the auction with utility function $u_i$.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:regularity_conditions_indirect}]
+Let $F_i$ be the distribution function of $\hat{c}_i$ for all $i\in N$, and suppose $w\in (0,1]$. Then,
+\begin{enumerate}
+  \item the support of $F_i$ is an interval ${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]}$;
+  \item $F_i$ is differentiable over ${(\underline{\hat{c}}_i, \bar{\hat{c}}_i]}$ with a derivative $f_i$ locally bounded away from zero over this interval; and
+  \item $F_i$ is atomless.
+\end{enumerate}
+\end{propositiona}
+\begin{proof}
+Proof of 1) is trivial. To prove 2) and 3), we note that for all $x\in [(1-w)r_i, (1-w)r_i + w]$,
+\begin{align}
+  F_i(x)
+  &= P\{\hat{C}_i\le x\} \\\nonumber
+  &= P\{wC + (1-w)r_i\le x\} \\\nonumber
+  &= P\left\{ C\le \frac{x - (1-w)r_i}{w} \right\}
+\end{align}
+since $\hat{c}_i = wc_i + (1-w)r_i$ and $w\neq 0$. Hence,
+\begin{equation}
+  F_i(x) = F_C\left( \frac{x - (1-w)r_i}{w} \right)
+\end{equation}
+and
+\begin{equation}
+  \frac{x - (1-w)r_i}{w}\in [0,1]
+\end{equation}
+for all $x\in [(1-w)r_i, (1-w)r_i + w]$. Therefore, since $F_C$ is differentiable over $(0,1]$ with a derivative $f_C$ locally bounded away from zero over this interval, by extension, $F_i$ is differentiable over $((1-w)r_i, (1-w)r_i + w]$ with a derivative $f_i$ locally bounded away from zero over this interval, and this proves 2). Moreover, since $F_C$ is absolutely-continuous, it is atomless (see \cite{Atomless,Feller1970} for definition of atomless probability distribution), and by extension, $F_i$ is atomless, which proves 3).
+\end{proof}
+
+\begin{propositiona}[\ref{prop:characterization_of_the_equilibrium_indirect}]
+Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. In every such equilibrium, network operator $i\in J$ follows a bid function $\hat{b}_i$, for all $1\leq i\leq n$. Moreover, there exists $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$ such that, for all $i\in J$, there exists a continuous extension of $\hat{b}_i$ to the interval $\left[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\}, \bar{\hat{b}}\right]$ that is differentiable with a strictly positive derivative everywhere over this interval, except possibly at $\underline{\hat{c}}_i$ or when its value is equal to $\bar{\hat{b}}$, and such that the inverse bid functions $\hat{c}_i$ for all $i\in J$ of these extensions, where differentiable, satisfy the following system of differential equations
+\begin{equation}
+  \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n \frac{1}{b-\hat{c}_k(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
+\end{equation}
+for all $1\leq i\leq n$, with the following lower boundary condition
+\begin{equation}
+  \hat{c}_i(\underline{\hat{b}}) = \min\left\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\right\} \quad\textrm{for all }i\in J
+\end{equation}
+and the upper boundary condition
+\begin{equation}
+  \hat{c}_i(\bar{\hat{b}}) = \bar{\hat{b}}
+\end{equation}
+for all, except possibly one, $1\leq i\leq n$.
+\end{propositiona}
+\begin{proof}
+To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf.~C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
+
+To prove uniqueness, without loss of generality, let network operator 1 be characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on; that is, let $r_1 \leq r_2 \leq\cdots \leq r_n$. This implies $\underline{\hat{c}}_1 \leq \underline{\hat{c}}_2 \leq\cdots \leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 \leq \bar{\hat{c}}_2 \leq \cdots\leq \bar{\hat{c}}_n$. Since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then at least one inequality is strict. We need to consider two cases: 1) $r_1 < r_2$, and 2) $r_1 = r_2$. When 1) holds, then $\bar{\hat{c}}_1 < \bar{\hat{c}}_2$, implying that the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds. Otherwise, if 2) holds, then the additional condition (iii) in Theorem~1 in Lebrun~\cite{Lebrun2006} is satisfied. Thus, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:equilibrium_restricted_indirect}]
+Let there be $n=2$ network operators, and suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in \{1, 2\}$. Furthermore, let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. The equilibrium inverse bidding strategy functions are given by
+\begin{align}
+  \hat{c}_1(b) &= \bar{\hat{c}}_1 + \frac{(\bar{\hat{c}}_2 - \bar{\hat{c}}_1)^2}{(\bar{\hat{c}}_2 + \bar{\hat{c}}_1 - 2b)d_1 \exp{\left(\displaystyle\frac{\bar{\hat{c}}_2 - \bar{\hat{c}}_1}{\bar{\hat{c}}_2 + \bar{\hat{c}}_1 - 2b}\right)} + 4(\bar{\hat{c}}_2 - b)},\\[2ex]
+  \hat{c}_2(b) &= \bar{\hat{c}}_2 + \frac{(\bar{\hat{c}}_1 - \bar{\hat{c}}_2)^2}{(\bar{\hat{c}}_1 + \bar{\hat{c}}_2 - 2b)d_2 \exp{\left(\displaystyle\frac{\bar{\hat{c}}_1 - \bar{\hat{c}}_2}{\bar{\hat{c}}_1 + \bar{\hat{c}}_2 - 2b}\right)} + 4(\bar{\hat{c}}_1 - b)},
+\end{align}
+where
+\begin{align}
+  d_1 = \frac{\displaystyle\frac{(\bar{\hat{c}}_2 - \bar{\hat{c}}_1)^2}{\underline{\hat{c}}_1 - \bar{\hat{c}}_1} + 4(\underline{\hat{b}} - \bar{\hat{c}}_2)}{-2(\underline{\hat{b}} - \bar{\hat{b}})} \exp{\left(\displaystyle\frac{\bar{\hat{c}}_2 - \bar{\hat{c}}_1}{2(\underline{\hat{b}} - \bar{\hat{b}})}\right)}, \\[2ex]
+  d_2 = \frac{\displaystyle\frac{(\bar{\hat{c}}_1 - \bar{\hat{c}}_2)^2}{\underline{\hat{c}}_2 - \bar{\hat{c}}_2} + 4(\underline{\hat{b}} - \bar{\hat{c}}_1)}{-2(\underline{\hat{b}} - \bar{\hat{b}})} \exp{\left(\frac{\bar{\hat{c}}_1 - \bar{\hat{c}}_2}{2(\underline{\hat{b}} - \bar{\hat{b}})}\right)},
+\end{align}
+and
+\begin{equation}
+  \underline{\hat{b}} = \frac{\underline{\hat{c}}_1\underline{\hat{c}}_2 - \displaystyle\frac{(\bar{\hat{c}}_1 + \bar{\hat{c}}_2)^2}{4}}{\underline{\hat{c}}_1 - \bar{\hat{c}}_1 + \underline{\hat{c}}_2 - \bar{\hat{c}}_2},\quad
+  \bar{\hat{b}} = \frac{\bar{\hat{c}}_1 + \bar{\hat{c}}_2}{2}.
+\end{equation}
+\end{propositiona}
+\begin{proof}
+The proof is analogous to the proof of Proposition~1 in Kaplan and Zamir~\cite{KaplanZamir2007}.
+\end{proof}
+
+\begin{propositiona}[\ref{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}]
+Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i= b_i^{-1}$, satisfy the following system of differential equations
+\begin{equation}
+  \frac{d}{db}c_i(b) = \frac{1 - F_i(c_i(b))}{f_i(c_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n \frac{1}{b-c_k(b)} - \frac{1}{b-c_i(b)} \right]
+\end{equation}
+for all $1\leq i\leq n$, with the following lower boundary condition
+\begin{equation}
+  c_i(\underline{b}) = \underline{c}
+\end{equation}
+and the upper boundary condition
+\begin{equation}
+  c_i(\bar{c}) = \bar{c}
+\end{equation}
+for all $1\leq i\leq n$.
+\end{propositiona}
+\begin{proof}
+The proposition is just a restatement of the Theorems C.1 Characterization of the Equilibria and U.1 Uniqueness of the Equilibrium in Lebrun~\cite{Lebrun2006}, and hence, we refer the reader to that paper for proofs.
+\end{proof}

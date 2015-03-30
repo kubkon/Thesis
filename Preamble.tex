@@ -115,27 +115,31 @@
 \usepackage{mathrsfs}
 \usepackage{xfrac} %  \sfrac
 \DeclareMathOperator\erf{erf}
-%% Examples
+%% Examples, assumptions, definitions
 \theoremstyle{definition}
 \newtheorem{problem}{Problem}
-%% Assumptions
-\theoremstyle{definition}
 \newtheorem{assumptions}{Assumptions}[chapter]
-%% Definition
-\theoremstyle{definition}
 \newtheorem{define}{Definition}[chapter]
-%% Theorem
+%% Theorems
 \theoremstyle{thm}
 \newtheorem*{thm}{Theorem}
-%% Proposition
+%% Numbered propositions, colloraries, conjectures
 \theoremstyle{plain}
 \newtheorem{proposition}{Proposition}[chapter]
-%% Corollary
-\theoremstyle{plain}
 \newtheorem{corollary}[proposition]{Corollary}
-%% Conjecture
-\theoremstyle{plain}
 \newtheorem{conjecture}[proposition]{Conjecture}
+%% Custom-numbered, appendix-inserted propositions
+\newtheoremstyle{styleAppendix}%
+{}%
+{}%
+{\itshape}%
+{}%
+{\bfseries}%
+{.}%
+{ }%%
+{\thmname{#1}\thmnote{ #3}}%
+\theoremstyle{styleAppendix}
+\newtheorem*{propositiona}{Proposition}
 %% QED symbol
 \renewcommand{\qedsymbol}{$\blacksquare$}
 %% Custom operators
