@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper, oneside, english]{scrbook}
+\documentclass[12pt, a4paper, oneside, english]{book}
 
 % XeTeX!
 % AMSSYMB needs to be declared before FONTSPEC & XUNICODE
@@ -18,8 +18,8 @@
 % Set Line spacing
 \usepackage{setspace}
 % \singlespacing
-\onehalfspacing
-% \doublespacing
+% \onehalfspacing
+\doublespacing
 % \setstretch{1.25}
 
 % Set Margins
@@ -31,7 +31,7 @@
 % Set no space between paragraphs
 \setlength{\parskip}{0ex}
 
-% No extra space betweem words
+% No extra space between words
 \frenchspacing
 
 % Set up margin notes
@@ -47,20 +47,15 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[LE,RO]{\textbf{\textsf\thepage}}
+\fancyfoot[CE,CO]{\textbf{\textsf\thepage}}
 
 % This set page numbers for pages at the start of chapters (Not sure exactly why this is needed!)
 \fancypagestyle{plain}{%
-     \fancyfoot[LE,RO]{\textbf{\textsf\thepage}}}
+     \fancyfoot[CE,CO]{\textbf{\textsf\thepage}}}
 
 % Force width of header rule to zero
 \renewcommand{\headrulewidth}{0pt}
 % \renewcommand{\footrulewidth}{0pt}
-
-% % Raggedright
-% \usepackage{ragged2e}
-% \RaggedRight
-% \parindent=1.5em
 
 % Prevent over-eager hyphenation
 % \hyphenpenalty=5000
@@ -85,13 +80,6 @@
 \renewcommand{\cftsecfont}{\normalfont\rmfamily\small}
 % Decrease the size of subsection entries
 \renewcommand{\cftsubsecfont}{\normalfont\rmfamily\small}
-
-% Mini TOC at the start of each chapter
-\usepackage{minitoc}
-% Set the minitoc title in sans
-\renewcommand{\mtifont}{\sffamily\Large}
-% less space between contents lines
-% \tightmtctrue
 
 % Pretty tables
 \usepackage{mdwtab}
