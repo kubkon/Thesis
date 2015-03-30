@@ -38,36 +38,36 @@ Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from 
 \end{equation}
 \end{propositiona}
 \begin{proof}
-Suppose there are two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that network operator 2 follows $b_2'$ equilibrium bidding strategy. We will argue that it is optimal for network operator 1 to follow $b_1'$ equilibrium bidding strategy. First, note that $b_1'$ is strictly increasing and continuous function of cost (similarly is $b_2'$). Suppose that network operator 1 bids an amount $b_1$. Since $b_1'$ is strictly increasing, it is bijective. Therefore, there exists unique cost $c'_1$ such that $c'_1 = {b_1'}^{-1}(b_1)$. Network operator 1's expected utility from bidding $b_1'(c'_1)$ is
+Suppose there are two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that network operator 2 follows $b_2'$ equilibrium bidding strategy. It will be argued that it is optimal for network operator 1 to follow $b_1'$ equilibrium bidding strategy. First, note that $b_1'$ is strictly increasing and continuous function of cost (similarly is $b_2'$). Suppose that network operator 1 bids an amount $b_1$. Since $b_1'$ is strictly increasing, it is bijective. Therefore, there exists unique cost $c'_1$ such that $c'_1 = {b_1'}^{-1}(b_1)$. Network operator 1's expected utility from bidding $b_1'(c'_1)$ is
 \begin{align}
 	&\tilde{u}_1(b_1'(c'_1), c_1) \\\nonumber
 	&= E \left[ b_1'(c'_1) - c_1 \:\middle\vert\: wb_1'(c'_1) + (1-w)r_1 < wb_2'(c_2) + (1-w)r_2 \right] \\\nonumber
 	&= \frac{1}{2} \left( 1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) + c'_1 - 2c_1 \right) \left( 1 - c'_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) \right).
 \end{align}
-We thus obtain that
+Thus, it follows
 \begin{equation}
 	\tilde{u}_1(b_1'(c_1), c_1) - \tilde{u}_1(b_1'(c'_1), c_1) = \frac{1}{2}(c_1-c'_1)^2 \ge 0
 \end{equation}
-regardless of whether $c'_1\ge c_1$ or $c'_1 \le c_1$. We have thus argued that if network operator 2 follows $b_2'$, network operator 1 with a cost $c_1$ cannot benefit by bidding anything other than $b_1'(c_1)$. Similar argument can be used to show that it is optimal for network operator 2 to follow $b_2'$ while network operator 1 is following $b_1'$. Hence, $(b_1',b_2')$ constitutes a Bayesian-Nash equilibrium profile.
+regardless of whether $c'_1\ge c_1$ or $c'_1 \le c_1$. It was thus argued that if network operator 2 follows $b_2'$, network operator 1 with a cost $c_1$ cannot benefit by bidding anything other than $b_1'(c_1)$. Similar argument can be used to show that it is optimal for network operator 2 to follow $b_2'$ while network operator 1 is following $b_1'$. Hence, $(b_1',b_2')$ constitutes a Bayesian-Nash equilibrium profile.
 \end{proof}
 
 \begin{propositiona}[\ref{prop:pcomp_negative_bids_direct}]
 Suppose both network operators bid according to $b_i'$ bidding strategies. Then they are guaranteed nonnegative profit in case of winning (or a draw).
 \end{propositiona}
 \begin{proof}
-Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators follow the equilibrium bidding strategy, $b_i'(c_i)$. We need to show that network operator 1's bid is always at least as high as their cost whenever they win or draw with network operator 2; that is, $b_1'(c_1)\ge c_1$.
+Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators follow the equilibrium bidding strategy, $b_i'(c_i)$. It needs to be shown that network operator 1's bid is always at least as high as their cost whenever they win or draw with network operator 2; that is, $b_1'(c_1)\ge c_1$.
 
 First of all, note that if $r_1\le r_2$,
 \begin{equation}
 	b_1'(c_1) = \frac{1}{2}-\frac{1-w}{3w}(r_1-r_2) + \frac{1}{2}c_1 \ge \frac{1}{2}(1+c_1) \ge c_1, \quad\text{for all } c_1\in[0,1].
 \end{equation}
-Thus, we need only to consider the case when $r_1>r_2$.
+Thus, the case when $r_1>r_2$ needs only to be considered.
 
 Suppose $r_1>r_2$. If $c_1>c_2$, and since $b_1'(c_2)$ is strictly increasing in $c_1$, network operator 1 will lose for all values of $w\in(0,1]$. If $c_1=c_2$, network operator 1 will lose for all values of $w\in(0,1)$, except at $w=1$ when there will be a draw. But at $w=1$, network operator 1's bid is at least as high as her cost; i.e.,
 \begin{equation}
 	b_1'(c_1) = \frac{1}{2}(1+c_1) \ge c_1, \quad\text{for all } c_1\in[0,1].
 \end{equation}
-If $c_1<c_2$, it is sufficient to show that the intersection of $b_1'(c_1)$ and $c_1$ in terms of $w$ can never occur before the intersection of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. First of all, we need to check that both intersections do occur; that is,
+If $c_1<c_2$, it is sufficient to show that the intersection of $b_1'(c_1)$ and $c_1$ in terms of $w$ can never occur before the intersection of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. First of all, it needs to be checked that both intersections do occur; that is,
 \begin{equation}
 	b_1'(c_1) = c_1 \iff w = \frac{1}{1 + \frac{3}{2}\cdot\frac{1 - c_1}{r_1 - r_2}}.
 \end{equation}
@@ -75,7 +75,7 @@ Similarly,
 \begin{equation}
 	\beta(b_1'(c_1),r_1) = \beta(b_2'(c_2),r_2) \iff w = \frac{1}{1+ \frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}}.
 \end{equation}
-Since $r_1>r_2$ and $c_1<c_2$, we have $0<r_1-r_2\le 1$ and $0<c_2-c_1\le 1$. Therefore, this implies
+Since $r_1>r_2$ and $c_1<c_2$, it follows that $0<r_1-r_2\le 1$ and $0<c_2-c_1\le 1$. Therefore, this implies
 \begin{equation}
 	0 < w = \frac{1}{1+ \frac{3}{2}\cdot\frac{1-c_1}{r_1-r_2}} \le 1,
 \end{equation}
@@ -83,29 +83,29 @@ and
 \begin{equation}
 	0 < w = \frac{1}{1+ \frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}} \le 1.
 \end{equation}
-Now, suppose that the intersection of $b_1'(c_1)$ and $c_1$ occurs before that of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. We must thus have
+Now, suppose that the intersection of $b_1'(c_1)$ and $c_1$ occurs before that of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. It must thus follow
 \begin{equation}
 	\frac{1}{1+\frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}} < \frac{1}{1+\frac{3}{2}\cdot\frac{1-c_1}{r_1-r_2}} \iff \frac{1-c_2}{r_1-r_2} < 0.
 \end{equation}
 But since $c_2\in[0,1]$ and $r_1>r_2$ by assumption,
 \begin{equation}
-	0 < \frac{1-c_2}{r_1-r_2}
+	0 < \frac{1-c_2}{r_1-r_2};
 \end{equation}
-we reach a contradiction, and this concludes the proof.
+a contradiction, which concludes the proof.
 \end{proof}
 
 \begin{propositiona}[\ref{prop:pcomp_direct_mechanism_direct}]
 The direct mechanism $(\mathbf{Q},\mathbf{M})$ where $\mathbf{Q}=(Q_i,Q_j)$ and $\mathbf{M}=(M_i,M_j)$ (with $Q_i$ and $M_i$ defined in Equations~\eqref{eq:pcomp_allocation_rule_direct} and \eqref{eq:pcomp_payment_rule_direct} respectively) satisfies both the IC and IR constraints.
 \end{propositiona}
 \begin{proof}
-Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators participate in the direct mechanism $(\mathbf{Q},\mathbf{M})$. Firstly, we show that the mechanism is incentive compatible. Without loss of generality, suppose that network operator 2 truthfully submits their cost to the mechanism. We argue that it is optimal for network operator 1 to also submit their cost truthfully. Suppose to the contrary; that is, that network operator 1 has an incentive not to reveal their cost truthfully by submitting $c'_1$. Thus, their expected utility becomes
+Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators participate in the direct mechanism $(\mathbf{Q},\mathbf{M})$. Firstly, it is shown that the mechanism is incentive compatible. Without loss of generality, suppose that network operator 2 truthfully submits their cost to the mechanism. It is argued that it is optimal for network operator 1 to also submit their cost truthfully. Suppose to the contrary; that is, that network operator 1 has an incentive not to reveal their cost truthfully by submitting $c'_1$. Thus, their expected utility becomes
 \begin{align}
 	&\tilde{\tilde{u}}_1(c'_1) = E\left[ b_1'(c'_1) - c_1 \:\middle\vert\: 2b_1'(c'_1) - 1 + \frac{4}{3}\cdot\frac{1-w}{w}(r_1-r_2) < C_2 \right] \\\nonumber
 	&= \left(\frac{1}{2} - \frac{1}{3}\cdot\frac{1-w}{w}(r_1-r_2) + \frac{1}{2}c'_1 - c_1 \right)\left(1 - c'_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2)\right).
 \end{align}
 The first-order condition yields $c'_1 = c_1$ and the second-order condition is satisfied. Hence, this shows that $(\mathbf{Q},\mathbf{M})$ is incentive compatible.
 
-Secondly, we show that $(\mathbf{Q},\mathbf{M})$ is individually rational. Since the mechanism is incentive compatible, each network operator reveals their cost truthfully. Hence, for all $c_1$
+Secondly, it is shown that $(\mathbf{Q},\mathbf{M})$ is individually rational. Since the mechanism is incentive compatible, each network operator reveals their cost truthfully. Hence, for all $c_1$
 \begin{align}
 	\tilde{\tilde{u}}_1(c_1) &= \left(\frac{1}{2} - \frac{1}{3}\cdot\frac{1-w}{w}(r_1-r_2) - \frac{1}{2}c_1 \right)\left(1 - c_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2)\right)\\\nonumber
 	&= \frac{1}{2}\left( 1 - c_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) \right)^2 \ge 0.
@@ -140,14 +140,14 @@ be the expected utilities corresponding to utility functions $\hat{u}_i$ and $u_
 \begin{equation}
   \hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
 \end{equation}
-for all $\hat{b}_i$. Since $w\in(0,1)$, we may multiply both sides of the inequality by $\frac{1}{w} > 0$, which yields, for all $i$ and $\hat{c}_i$
+for all $\hat{b}_i$. Since $w\in(0,1)$, both sides of the inequality may be multiplied by $\frac{1}{w} > 0$, which yields, for all $i$ and $\hat{c}_i$
 \begin{align}
   &\frac{1}{w}\hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \frac{1}{w}\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i}) \\\nonumber
   \iff &\frac{1}{w}\hat{u}_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq \frac{1}{w}\hat{u}_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
   \iff &u_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq u_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
   \iff &\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
 \end{align}
-for all $\hat{b}_i$. Hence, we have just shown that $(\hat{b}_1^*,\ldots,\hat{b}_n^*)$ constitutes a pure-strategy Bayesian Nash equilibrium of the auction with utility function $u_i$.
+for all $\hat{b}_i$. Hence, it was just shown that $(\hat{b}_1^*,\ldots,\hat{b}_n^*)$ constitutes a pure-strategy Bayesian Nash equilibrium of the auction with utility function $u_i$.
 \end{proof}
 
 \begin{propositiona}[\ref{prop:regularity_conditions_indirect}]
@@ -159,7 +159,7 @@ Let $F_i$ be the distribution function of $\hat{c}_i$ for all $i\in N$, and supp
 \end{enumerate}
 \end{propositiona}
 \begin{proof}
-Proof of 1) is trivial. To prove 2) and 3), we note that for all $x\in [(1-w)r_i, (1-w)r_i + w]$,
+Proof of 1) is trivial. To prove 2) and 3), note that for all $x\in [(1-w)r_i, (1-w)r_i + w]$,
 \begin{align}
   F_i(x)
   &= P\{\hat{C}_i\le x\} \\\nonumber
@@ -193,9 +193,9 @@ and the upper boundary condition
 for all, except possibly one, $1\leq i\leq n$.
 \end{propositiona}
 \begin{proof}
-To prove existence, we note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf.~C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
+To prove existence, note that Lebrun~\cite{Lebrun2006} proves the existence of a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat (cf.~C.5 Characterization with Possibly Different Lower and Upper Extremities in~\cite{Lebrun2006}).
 
-To prove uniqueness, without loss of generality, let network operator 1 be characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on; that is, let $r_1 \leq r_2 \leq\cdots \leq r_n$. This implies $\underline{\hat{c}}_1 \leq \underline{\hat{c}}_2 \leq\cdots \leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 \leq \bar{\hat{c}}_2 \leq \cdots\leq \bar{\hat{c}}_n$. Since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then at least one inequality is strict. We need to consider two cases: 1) $r_1 < r_2$, and 2) $r_1 = r_2$. When 1) holds, then $\bar{\hat{c}}_1 < \bar{\hat{c}}_2$, implying that the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds. Otherwise, if 2) holds, then the additional condition (iii) in Theorem~1 in Lebrun~\cite{Lebrun2006} is satisfied. Thus, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
+To prove uniqueness, without loss of generality, let network operator 1 be characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on; that is, let $r_1 \leq r_2 \leq\cdots \leq r_n$. This implies $\underline{\hat{c}}_1 \leq \underline{\hat{c}}_2 \leq\cdots \leq \underline{\hat{c}}_n$ and $\bar{\hat{c}}_1 \leq \bar{\hat{c}}_2 \leq \cdots\leq \bar{\hat{c}}_n$. Since Assumptions~\ref{ass:assumptions_generic_indirect} are satisfied, then at least one inequality is strict. Two cases need to be considered: 1) $r_1 < r_2$, and 2) $r_1 = r_2$. When 1) holds, then $\bar{\hat{c}}_1 < \bar{\hat{c}}_2$, implying that the additional condition (ii) in Theorem~1 in Lebrun~\cite{Lebrun2006} holds. Otherwise, if 2) holds, then the additional condition (iii) in Theorem~1 in Lebrun~\cite{Lebrun2006} is satisfied. Thus, the considered first-price auction has one and only one pure-strategy Bayesian Nash equilibrium where network operators bid at least their costs-hat.
 \end{proof}
 
 \begin{propositiona}[\ref{prop:equilibrium_restricted_indirect}]
@@ -235,5 +235,5 @@ and the upper boundary condition
 for all $1\leq i\leq n$.
 \end{propositiona}
 \begin{proof}
-The proposition is just a restatement of the Theorems C.1 Characterization of the Equilibria and U.1 Uniqueness of the Equilibrium in Lebrun~\cite{Lebrun2006}, and hence, we refer the reader to that paper for proofs.
+The proposition is just a restatement of the Theorems C.1 Characterization of the Equilibria and U.1 Uniqueness of the Equilibrium in Lebrun~\cite{Lebrun2006}, and hence, the reader is referred to that paper for proofs.
 \end{proof}

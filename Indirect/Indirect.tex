@@ -4,7 +4,7 @@
 
 In this chapter, the bidding problem described in Section~\ref{sec:problem_definition_and_assumptions_direct} is transformed from a bidding problem with symmetric cost (or type) distributions into a bidding problem with asymmetric cost distributions. This type of bidding problems has already been researched by the economic community, both in a very specific setting (two bidders, specific cost distributions) \cite{KaplanZamir2007,MaskinRiley2000}, and in a very general setting ($n$ bidders, arbitrary cost distributions) \cite{Lebrun1999,Lebrun2006}, and hence there exist results that are applicable to the problem at hand.
 
-In the first instance, we show how the problem can be restated into a bidding problem with asymmetric cost distributions. We then proceed to characterising the equilibrium bidding strategies (their existence and uniqueness) in the generic case; that is, with an arbitrary number of network operators and an arbitrary distribution of costs. The equilibrium bidding strategies are then explicitly derived in the restricted case; that is, with the number of network operators restricted to two and the costs uniformly distributed. Finally, the chapter concludes with the presentation of three numerical methods that can be used to numerically approximate the equilibrium bidding strategies in the case of more than two network operators characterised by uniform distributions of costs.
+In the first instance, it is showed how the problem can be restated into a bidding problem with asymmetric cost distributions. The discussion then proceeds to characterising the equilibrium bidding strategies (their existence and uniqueness) in the generic case; that is, with an arbitrary number of network operators and an arbitrary distribution of costs. The equilibrium bidding strategies are then explicitly derived in the restricted case; that is, with the number of network operators restricted to two and the costs uniformly distributed. Finally, the chapter concludes with the presentation of three numerical methods that can be used to numerically approximate the equilibrium bidding strategies in the case of more than two network operators characterised by uniform distributions of costs.
 
 \section{Problem Restatement} % (fold)
 \label{sec:problem_restatement_indirect}
@@ -34,12 +34,12 @@ Substituting Equation~\eqref{eq:b_from_b_hat_indirect} back into the utility fun
     0 & \;\textrm{if } \hat{b}_i > \displaystyle\min_{j\neq i}\hat{b}_j.
   \end{array}\right.
 \end{equation}
-If we further let
+Further let
 \begin{equation}
   \label{eq:cost_hat_indirect}
   \hat{c}_i = wc_i + (1-w)r_i \quad\textrm{for all } i\in N,
 \end{equation}
-the utility function simplifies to
+then the utility function simplifies to
 \begin{equation}
   \label{eq:sellers_utility_hat_full_indirect}
   u_i(\hat{b},\hat{c}) = \left\{
@@ -49,12 +49,12 @@ the utility function simplifies to
   \end{array}\right.
 \end{equation}
 
-In the rest of this thesis, we concentrate on the utility function with the scaling factor, $\displaystyle\sfrac{1}{w}$, omitted; that is, let
+The rest of this thesis concentrates on the utility function with the scaling factor, $\displaystyle\sfrac{1}{w}$, omitted; that is, let
 \begin{equation}
   \label{eq:sellers_utility_hat_indirect}
     \hat{u}_i(\hat{b},\hat{c}) = w\cdot u_i(\hat{b}, \hat{c})
 \end{equation}
-for all $i\in N$. In fact, we note that the pure-strategy Bayesian Nash equilibrium for the auction with utility function in Equation~\eqref{eq:sellers_utility_hat_indirect} constitutes an equilibrium for the auction with utility function in Equation~\eqref{eq:sellers_utility_hat_full_indirect}. Formally,
+for all $i\in N$. In fact, it can be noted that the pure-strategy Bayesian Nash equilibrium for the auction with utility function in Equation~\eqref{eq:sellers_utility_hat_indirect} constitutes an equilibrium for the auction with utility function in Equation~\eqref{eq:sellers_utility_hat_full_indirect}. Formally,
 \begin{proposition}
 \label{prop:equivalence_of_utilities_indirect}
 Suppose $(\hat{b}_1^*, \ldots, \hat{b}_n^*)$ is a pure-strategy Bayesian Nash equilibrium profile for an auction with the utility function
@@ -71,7 +71,7 @@ Then, the same profile constitutes an equilibrium for an auction with the utilit
 \end{equation}
 \end{proposition}
 
-In order to avoid ambiguity, we shall refer to $\hat{c}_i$ as costs-hat and $\hat{b}_i$ as bids-hat, while still referring to $c_i$ as costs and $b_i$ as bids. Note, moreover, that since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost.
+In order to avoid ambiguity, $\hat{c}_i$ will be referred to as cost-hat and $\hat{b}_i$ as bid-hat, while $c_i$ will still be referred to as cost and $b_i$ as bid. Note, moreover, that since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost.
 
 As a result of this transformation, the costs-hat, $\hat{c}_i$, for each network operator $i$ are distributed over the interval
 \begin{equation}
@@ -87,7 +87,7 @@ since $w\in (0,1)$ and $r_i\in [0,1]$, and in particular, if $w=1$
 \end{equation}
 Therefore, in terms of costs-hat, the network operators are \emph{ex ante} asymmetric; that is, due to differing domains of costs-hat between the network operators, the probability distributions will have differing supports.
 
-With these results at hand, we can proceed with the characterisation of the equilibrium bidding strategies in the generic case, which is the subject of the next section.
+With these results at hand, the discussion can proceed with the characterisation of the equilibrium bidding strategies in the generic case, which is the subject of the next section.
 % section problem_restatement_indirect (end)
 
 \section{Generic Case} % (fold)
@@ -105,16 +105,16 @@ Let $F_i$ be the distribution function of $\hat{c}_i$ for all $i\in N$, and supp
 \end{enumerate}
 \end{proposition}
 
-The regularity conditions in Proposition~\ref{prop:regularity_conditions_indirect} correspond to the regularity assumptions on type distributions put forward by Lebrun~\cite{Lebrun2006} (cf. Assumptions~A.1 in~\cite{Lebrun2006}). Therefore, since our problem satisfies Lebrun's assumptions, his results are applicable to our problem.
+The regularity conditions in Proposition~\ref{prop:regularity_conditions_indirect} correspond to the regularity assumptions on type distributions put forward by Lebrun~\cite{Lebrun2006} (cf. Assumptions~A.1 in~\cite{Lebrun2006}). Therefore, since the problem satisfies Lebrun's assumptions, his results are applicable.
 
-We further assume that
+Further assume that
 \begin{assumptions}
 \label{ass:assumptions_generic_indirect}
 Assume that
 \begin{enumerate}
   \item $w\in(0,1)$;
   \item there exists $i\in N$ such that $r_i\neq r_j$ for all $i\neq j$ and $j\in N$; and
-  \item without loss of generality, let network operator 1 be characterized by the lowest reputation rating; that is, $r_1 \leq r_i$ for all $i\in N$ such that $i\neq 1$. If there exists $j\in N$ such that $j\neq 1$ and $r_1 = r_j$, then we make an additional assumption that there exists $\delta > 0$ such that $F_i$ is strictly log-concave over $(\bar{\hat{c}}_1 - \delta, \bar{\hat{c}}_1)\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i)$ for all $i\in N$.
+  \item without loss of generality, let network operator 1 be characterized by the lowest reputation rating; that is, $r_1 \leq r_i$ for all $i\in N$ such that $i\neq 1$. If there exists $j\in N$ such that $j\neq 1$ and $r_1 = r_j$, then it is further assumed that there exists $\delta > 0$ such that $F_i$ is strictly log-concave over $(\bar{\hat{c}}_1 - \delta, \bar{\hat{c}}_1)\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i)$ for all $i\in N$.
 \end{enumerate}
 \end{assumptions}
 
@@ -161,7 +161,7 @@ which leads to the system of nonlinear ordinary differential equations (ODE)
 \begin{equation}
   \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
 \end{equation}
-for $i=1,2,\dotsc,n$. As we shall see briefly, there exists a unique set of inverse bidding functions that satisfy the system and constitute a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. Firstly, we need to define a few concepts (cf.~Definitions 1, 2 and 3 in Lebrun~\cite{Lebrun2006}).
+for $i=1,2,\dotsc,n$. As will be shown briefly, there exists a unique set of inverse bidding functions that satisfy the system and constitute a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. Firstly, few concepts need to be defined (cf.~Definitions 1, 2 and 3 in Lebrun~\cite{Lebrun2006}).
 
 \begin{define}[Upper bound on bids]
 \label{def:upper_bound_bids_indirect}
@@ -211,7 +211,7 @@ Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then,
   \end{array}
 \end{equation}
 
-With those definitions at hand, we can proceed with the characterisation of the equilibrium which is due to Lebrun~\cite{Lebrun2006}.
+With those definitions at hand, the discussion can proceed with the characterisation of the equilibrium which is due to Lebrun~\cite{Lebrun2006}.
 \begin{proposition}[Characterisation of the Equilibrium]
 \label{prop:characterization_of_the_equilibrium_indirect}
 Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. In every such equilibrium, network operator $i\in J$ follows a bid function $\hat{b}_i$, for all $1\leq i\leq n$. Moreover, there exists $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$ such that, for all $i\in J$, there exists a continuous extension of $\hat{b}_i$ to the interval $\left[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}})\}, \bar{\hat{b}}\right]$ that is differentiable with a strictly positive derivative everywhere over this interval, except possibly at $\underline{\hat{c}}_i$ or when its value is equal to $\bar{\hat{b}}$, and such that the inverse bid functions $\hat{c}_i$ for all $i\in J$ of these extensions, where differentiable, satisfy the following system of differential equations
@@ -233,13 +233,13 @@ for all, except possibly one, $1\leq i\leq n$.
 \end{proposition}
 The intuition behind the upper boundary condition in Equation~\eqref{eq:foc_ode_upper_boundary_indirect} is that the network operator bids their cost-hat when their probability of winning is zero. Ignoring the minimum operator, the intuition behind the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} on the other hand, is that the lowest bid-hat of each network operator is reached for their lowest cost-hat.
 
-Since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost, and we immediately deduce the following corollary.
+Since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost, and the following corollary can immediately be deduced.
 \begin{corollary}
 \label{cor:characterization_of_the_equilibrium_indirect}
 Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs.
 \end{corollary}
 
-Even though we are guaranteed that there exists a unique equilibrium to our problem, the establishment of a closed-form solution to the system of ODEs for $n\ge 2$ network operators and arbitrary cost distribution is very difficult (if possible), and for $n>2$ is not possible \cite{Lebrun2006, Krishna10}. However, it is possible to explicitly derive the equilibrium bidding strategy functions in a much restricted setting with two network operators characterised by uniform distributions of costs. This is explored in the next section.
+Even though it is guaranteed that there exists a unique equilibrium to the problem, the establishment of a closed-form solution to the system of ODEs for $n\ge 2$ network operators and arbitrary cost distribution is very difficult (if possible), and for $n>2$ is not possible \cite{Lebrun2006, Krishna10}. However, it is possible to explicitly derive the equilibrium bidding strategy functions in a much restricted setting with two network operators characterised by uniform distributions of costs. This is explored in the next section.
 % section indirect_generic_case (end)
 
 \section{Restricted Case $n=2$} % (fold)
@@ -254,7 +254,7 @@ Let $n=2$ network operators, and assume costs, $c_i$, for both network operators
     0 & \;\textrm{if } \hat{b}_i > \hat{b}_j.
   \end{array}\right.
 \end{equation}
-Since the distribution of costs, $c_i$, for each network operator $i$ is uniform with support $[0,1]$, the distribution of costs-hat, $\hat{c}_i$, for each network operator $i$ is uniform with support~${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]} = {[(1-w)r_i, (1-w)r_i + w]}$. Therefore, the distribution function of costs-hat satisfies the regularity conditions specified in Proposition~\ref{prop:regularity_conditions_indirect}, and by Corollary~\ref{cor:characterization_of_the_equilibrium_indirect}, we conclude that the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs exists and is unique.
+Since the distribution of costs, $c_i$, for each network operator $i$ is uniform with support $[0,1]$, the distribution of costs-hat, $\hat{c}_i$, for each network operator $i$ is uniform with support~${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]} = {[(1-w)r_i, (1-w)r_i + w]}$. Therefore, the distribution function of costs-hat satisfies the regularity conditions specified in Proposition~\ref{prop:regularity_conditions_indirect}, and by Corollary~\ref{cor:characterization_of_the_equilibrium_indirect}, it can be concluded that the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs exists and is unique.
 
 The derivation of the equilibrium involves three stages: 1) deriving equilibrium inverse bidding strategy functions using the procedure described by Kaplan and Zamir~\cite{KaplanZamir2007}; 2) numerically estimating the equilibrium bidding strategy functions by inverting the inverses; and 3) transforming the problem back to the original domain (from costs-hat and bids-hat back to costs and bids).
 
@@ -263,9 +263,9 @@ First, note that, by Definition~\ref{def:upper_bound_bids_indirect}, the upper b
   \label{eq:upper_bound_bids_restricted_indirect}
   \bar{\hat{b}} = \min\arg\max_{b\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]} \frac{(b - \bar{\hat{c}}_1)(\bar{\hat{c}}_2 - b)}{\bar{\hat{c}}_2 - \underline{\hat{c}}_2} = \frac{\bar{\hat{c}}_1 + \bar{\hat{c}}_2}{2},
 \end{equation}
-where we have used the fact that $F_2$ is the distribution function of the uniform distribution with support $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$.
+where the fact that $F_2$ is the distribution function of the uniform distribution with support $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ was used.
 
-If $\bar{\hat{b}} \leq \underline{\hat{c}}_2 \iff \bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then, by Definition~\ref{def:feasible_bidders_indirect}, only network operator 1 is a feasible bidder. In this case, any pure-strategy Bayesian Nash equilibrium must have network operator 1 always bidding $\underline{\hat{c}}_2$, and hence, always winning the auction at price $\underline{\hat{c}}_2$ \cite{KaplanZamir2007}. We shall refer to this case as trivial. Otherwise, in the nontrivial case, by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}, the inverse equilibrium bidding functions are determined by the system
+If $\bar{\hat{b}} \leq \underline{\hat{c}}_2 \iff \bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then, by Definition~\ref{def:feasible_bidders_indirect}, only network operator 1 is a feasible bidder. In this case, any pure-strategy Bayesian Nash equilibrium must have network operator 1 always bidding $\underline{\hat{c}}_2$, and hence, always winning the auction at price $\underline{\hat{c}}_2$ \cite{KaplanZamir2007}. Henceforth, this case will be referred to as trivial. Otherwise, in the nontrivial case, by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}, the inverse equilibrium bidding functions are determined by the system
 \begin{equation}
   \label{eq:foc_restricted_indirect}
   \left\{
@@ -279,7 +279,7 @@ with boundary conditions (cf.~boundary conditions in~\cite{KaplanZamir2007}) $\h
 
 Note that, since $n=2$, $k(\underline{\hat{b}})=2$ by Definition~\ref{def:lower_bound_bids_indirect}. Hence, by~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, $\underline{\hat{c}}_2\leq \hat{c}(\underline{\hat{b}})$, and since $\underline{\hat{c}}_1 < \underline{\hat{c}}_2$, this reduces the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} to $\hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i$ for all $i\in\{1,2\}$.
 
-Integrating the system~\eqref{eq:foc_restricted_indirect} bounded by the aforementioned boundary conditions results in the derivation of the equilibrium inverse bidding strategy functions. The derivation procedure is fully described in Kaplan and Zamir~\cite{KaplanZamir2007}; hence, we only provide the final result.
+Integrating the system~\eqref{eq:foc_restricted_indirect} bounded by the aforementioned boundary conditions results in the derivation of the equilibrium inverse bidding strategy functions. The derivation procedure is fully described in Kaplan and Zamir~\cite{KaplanZamir2007}; hence, only the final result is provided.
 \begin{proposition}
 \label{prop:equilibrium_restricted_indirect}
 Let there be $n=2$ network operators, and suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in \{1, 2\}$. Furthermore, let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. The equilibrium inverse bidding strategy functions are given by
@@ -305,7 +305,7 @@ and
 \end{proposition}
 It is worth noting that, if the network operators are assumed to submit at least their costs, then Proposition~\ref{prop:pcomp_equi_bidding_str_direct} is ruled out by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} combined with Proposition~\ref{prop:equilibrium_restricted_indirect} since the latter establishes an analytical solution to the bidding problem while Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} makes this solution unique. However, if the assumption that network operators submit at least their costs is relaxed, then, as shown by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarised in Proposition~\ref{prop:equilibrium_restricted_indirect} as well as Proposition~\ref{prop:pcomp_equi_bidding_str_direct} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterise equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str_direct} as non-standard, further argue that such equilibria are important and should not be neglected.
 
-The equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, we would get a particular bid-hat. Since inverting the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect} is analytically intractable, we resort to numerical methods for estimating the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators. The numerical procedure is as follows.
+The equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, a particular bid-hat is obtained. Since inverting the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect} is analytically intractable, numerical method is used to estimate the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators. The numerical method is as follows.
 \begin{enumerate}
   \item For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2.
   \item If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$.
@@ -366,7 +366,7 @@ Keeping costs and reputation ratings fixed, one can then estimate the equilibriu
 
 By way of example, the equilibrium bidding strategy functions were estimated for the set of cost-reputation pairs depicted in Table~\ref{tab:example_restricted_indirect}. Figure~\ref{fig:bids_restricted_indirect} shows the value of the compound bid, $\beta(b_i,r_i)$, for different values of $w$ for both network operators, while Figure~\ref{fig:prices_restricted_indirect} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:example_restricted_indirect} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:bids_restricted_indirect}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:bids_restricted_indirect}, $w_c\approx 0.365$. Hence, network operator 2 wins the auction for the values of $w_c < w < 1$, while network operator 1 for the values of $0 < w < w_c$.
 
-Note, furthermore, that since we have explicitly required the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (see Figure~\ref{fig:prices_restricted_indirect}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0_direct}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1_direct}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
+Note, furthermore, that since it was explicitly required for the network operators to bid their own costs when their probability of winning is zero, the monetary bid of network operator 2 is capped at their cost, $b_2 = 0.25$, for the values of $0 < w \le w_0$ where $w_0\approx 0.265$ (see Figure~\ref{fig:prices_restricted_indirect}). In the same range of $w$, as $w$ decreases, network operator 1's bid increases in an exponential-like fashion, to finally culminate in $b_1\to\infty$ at $w=0$ in accordance with Proposition~\ref{prop:special_case_w_0_direct}. As $w\to 1$, on the other hand, the monetary bids of both network operators tend to the values specified in Proposition~\ref{prop:special_case_w_1_direct}, that is, $b_1=0.875$ and $b_2=0.625$, to finally attain those values at $w=1$.
 
 Having derived the equilibrium bidding strategy functions, it is possible to examine the expected prices the subscriber will have to pay for different values of the price weight given the reputation ratings of the network operators. This is examined next.
 
@@ -386,7 +386,7 @@ If both network operators have equal reputation ratings, $r = r_1 = r_2$ say, th
 \end{equation}
 which is equivalent to Equation~\eqref{eq:standard_fpa_direct} evaluated at $n=2$. In particular, for costs, $c_i$, uniformly distributed over the interval $[0,1]$, $E[p^*] = \frac{2}{3}$.
 
-If, on the other hand, both network operators are characterised by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:equilibrium_restricted_indirect}, which are not easily invertible. Hence, we resort to numerical methods for estimating average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
+If, on the other hand, both network operators are characterised by different reputation ratings, then an analytical derivation of the expected prices for each value of the price weight given a pair of reputation ratings is cumbersome. This is due to the fact that network operators bid according to a pair of inverse equilibrium bidding functions specified in Proposition~\ref{prop:equilibrium_restricted_indirect}, which are not easily invertible. Hence, numerical method is used to estimate average (sample mean) prices for selected values of the price weight given a pair of reputation ratings.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/expected_prices}
@@ -412,9 +412,9 @@ As already mentioned in the previous section, the bidding problem does not posse
 \label{sec:numerical_analysis_indirect}
 Precisely because the system of ODEs~\eqref{eq:foc_ode_indirect} together with the lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect} does not possess any known closed-form solution in a generic setting, and especially when $n>2$, there exists a considerable research base studying methods for numerical approximation of the solution to the system of ODEs in question. See Hubbard and Paarsch~\cite{HubbardPaarsch2011} for an excellent overview of the subject.
 
-The literature is mostly concerned with asymmetric first-price auctions in which the bidders are characterised by different probability distributions sharing a common support; that is, $F_i(x)\neq F_j(x)$ for at least one $i\in N$ such that $i\neq j, j\in N$, and for all $x\in [\underline{\hat{c}}, \bar{\hat{c}}]$ where $[\underline{\hat{c}}, \bar{\hat{c}}] = [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for all $i\in N$. This is not true in our case. Therefore, the methods described in Hubbard and Paarsch~\cite{HubbardPaarsch2011} have to be adapted before they can be applied to the problem under investigation here.
+The literature is mostly concerned with asymmetric first-price auctions in which the bidders are characterised by different probability distributions sharing a common support; that is, $F_i(x)\neq F_j(x)$ for at least one $i\in N$ such that $i\neq j, j\in N$, and for all $x\in [\underline{\hat{c}}, \bar{\hat{c}}]$ where $[\underline{\hat{c}}, \bar{\hat{c}}] = [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for all $i\in N$. This is not true in this case. Therefore, the methods described in Hubbard and Paarsch~\cite{HubbardPaarsch2011} have to be adapted before they can be applied to the problem under investigation here.
 
-However, both scenarios (the one considered in the literature and the one at hand) share a common difficulty: the fact that the common lower bound on bids, $\underline{\hat{b}}$, is unknown \emph{a priori} \cite{HubbardPaarsch2011}. On the other hand, since the common upper bound on bids, $\bar{\hat{b}}$, is known \emph{a priori}, it would seem that any well-known finite-difference method, such as Euler or Runge-Kutta methods, could be applied to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with the upper bound on bids as a starting point (the so-called \emph{terminal value problem} as opposed to the more common \emph{initial value problem}). As shown by Hubbard and Paarsch~\cite{HubbardPaarsch2011}, the system does not satisfy the Lipschitz condition as we approach the upper bound on bids, $\bar{\hat{b}}$ (see Section~\ref{sub:lipschitz_condition_notation}, Appendix~\ref{cha:notation} for the definition of Lipschitz condition). Therefore, much of the theory of ordinary differential equations no longer applies. In practice, this effectively means that the numerical solution obtained using a finite-difference method applied to the terminal value problem will quickly diverge. This is depicted in Figure~\ref{fig:lipschitz_indirect}. In this scenario, there are 2 network operators characterised by reputation ratings $r_1 = 0.25$ and $r_2 = 0.75$, and the price weight is set to $w=0.5$. The $4^{\textrm{th}}$-order backwards Runge-Kutta method is used to numerically solve the terminal value problem. It is clear in the figure that the numerical solution tracks the analytical equilibrium path only for $\hat{b}\in [0.72, 0.75]$, while it diverges for all the remaining values of bid-hat, $\hat{b}\in [0.515625, 0.72)$. Note, further, that after the solution diverges, it never recovers rendering the approximation useless.
+However, both scenarios (the one considered in the literature and the one at hand) share a common difficulty: the fact that the common lower bound on bids, $\underline{\hat{b}}$, is unknown \emph{a priori} \cite{HubbardPaarsch2011}. On the other hand, since the common upper bound on bids, $\bar{\hat{b}}$, is known \emph{a priori}, it would seem that any well-known finite-difference method, such as Euler or Runge-Kutta methods, could be applied to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with the upper bound on bids as a starting point (the so-called \emph{terminal value problem} as opposed to the more common \emph{initial value problem}). As shown by Hubbard and Paarsch~\cite{HubbardPaarsch2011}, the system does not satisfy the Lipschitz condition as the solution approaches the upper bound on bids, $\bar{\hat{b}}$ (see Section~\ref{sub:lipschitz_condition_notation}, Appendix~\ref{cha:notation} for the definition of Lipschitz condition). Therefore, much of the theory of ordinary differential equations no longer applies. In practice, this effectively means that the numerical solution obtained using a finite-difference method applied to the terminal value problem will quickly diverge. This is depicted in Figure~\ref{fig:lipschitz_indirect}. In this scenario, there are 2 network operators characterised by reputation ratings $r_1 = 0.25$ and $r_2 = 0.75$, and the price weight is set to $w=0.5$. The $4^{\textrm{th}}$-order backwards Runge-Kutta method is used to numerically solve the terminal value problem. It is clear in the figure that the numerical solution tracks the analytical equilibrium path only for $\hat{b}\in [0.72, 0.75]$, while it diverges for all the remaining values of bid-hat, $\hat{b}\in [0.515625, 0.72)$. Note, further, that after the solution diverges, it never recovers rendering the approximation useless.
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Indirect/Figures/lipschitz}
@@ -422,15 +422,15 @@ However, both scenarios (the one considered in the literature and the one at han
   \label{fig:lipschitz_indirect}
 \end{figure}
 
-In this section, we shall consider two numerical algorithms which overcome the aforementioned problem: the forward shooting method (FSM), and the polynomial projection method (PPM), both of which were first proposed by Bajari~\cite{Bajari2001a}. We focus on the FSM and PPM methods since they are the simplest out of all of the available algorithms described in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and hence, they pose the least technical difficulties when adapting to the problem at hand, and yet yield numerical results of acceptable quality to permit conlusions to be drawn. To this end, let costs, $c_i$, be drawn from a uniform distribution for all network operators as in Section~\ref{sec:restricted_case_n_2_indirect}. Again, this implies that the distribution of costs-hats, $\hat{c}_i$, is uniform with supports $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [(1-w)r_i, (1-w)r_i + w]$ for all $i\in N$. We shall concentrate only on cases in which $J=N$; that is, $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. In particular, we require $w\in\left(0.5, 1\right)$ which immediately implies $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. To see this, without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. Since $\bar{\hat{b}}\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]$ by Definition~\ref{def:upper_bound_bids_indirect}, and in particular, if $\underline{\hat{c}}_n < \bar{\hat{c}}_1$, then $\underline{\hat{c}}_n < \bar{\hat{b}}$. Thus, we require $\underline{\hat{c}}_n = (1-w)r_n < (1-w)r_1 + w = \bar{\hat{c}}_1$. This is equivalent to $1 - \frac{1}{1+r_n-r_1} < w$. Since $(r_n - r_1)\in (0, 1]$, then $1 - \frac{1}{1+r_n-r_1} \in (0,0.5]$. Therefore, if $0.5 < w$, then $1 - \frac{1}{1+r_n-r_1} < w$ for all $(r_n-r_1)\in (0,1]$.
+In this section, two numerical algorithms are considered which overcome the aforementioned problem: the forward shooting method (FSM), and the polynomial projection method (PPM), both of which were first proposed by Bajari~\cite{Bajari2001a}. The thesis focuses on the FSM and PPM methods since they are the simplest out of all of the available algorithms described in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and hence, they pose the least technical difficulties when adapting to the problem at hand, and yet yield numerical results of acceptable quality to permit conlusions to be drawn. To this end, let costs, $c_i$, be drawn from a uniform distribution for all network operators as in Section~\ref{sec:restricted_case_n_2_indirect}. Again, this implies that the distribution of costs-hats, $\hat{c}_i$, is uniform with supports $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [(1-w)r_i, (1-w)r_i + w]$ for all $i\in N$. The discussion concentrates only on cases in which $J=N$; that is, $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. In particular, it is required $w\in\left(0.5, 1\right)$ which immediately implies $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. To see this, without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. Since $\bar{\hat{b}}\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]$ by Definition~\ref{def:upper_bound_bids_indirect}, and in particular, if $\underline{\hat{c}}_n < \bar{\hat{c}}_1$, then $\underline{\hat{c}}_n < \bar{\hat{b}}$. Thus, it is required $\underline{\hat{c}}_n = (1-w)r_n < (1-w)r_1 + w = \bar{\hat{c}}_1$. This is equivalent to $1 - \frac{1}{1+r_n-r_1} < w$. Since $(r_n - r_1)\in (0, 1]$, then $1 - \frac{1}{1+r_n-r_1} \in (0,0.5]$. Therefore, if $0.5 < w$, then $1 - \frac{1}{1+r_n-r_1} < w$ for all $(r_n-r_1)\in (0,1]$.
 
-Furthermore, note that assumption 3 in Assumptions~\ref{ass:assumptions_generic_indirect} is satisfied even if there exists two or more network operators characterised by the lowest reputation rating. To see this, let, without loss of generality, network operators 1 and 2 be characterised by the lowest reputation rating. Then, $\bar{\hat{c}}_1 = \bar{\hat{c}}_2$. Recall that $\bar{\hat{b}}\in [\bar{\hat{c}}_1, \bar{\hat{c}}_2]$ by Definition~\ref{def:upper_bound_bids_indirect}. Thus, $\bar{\hat{b}} = \bar{\hat{c}}_1$. For assumption 3 in Assumptions~\ref{ass:assumptions_generic_indirect} not to hold, we require $\bar{\hat{b}} = \bar{\hat{c}}_1 \leq \underline{\hat{c}}_i$ for any $i\in N$ and any $\delta>0$. But this means network operator $i$ is not a feasible bidder; that is, $i\not\in J$ by Definition~\ref{def:feasible_bidders_indirect}. A contradiction since we assumed $J = N$. Now, let $\delta = \bar{\hat{b}} - \underline{\hat{c}}_n > 0$ where $n = |N|$; that is, $r_1\leq r_n$. Then, we obtain
+Furthermore, note that assumption 3 in Assumptions~\ref{ass:assumptions_generic_indirect} is satisfied even if there exists two or more network operators characterised by the lowest reputation rating. To see this, let, without loss of generality, network operators 1 and 2 be characterised by the lowest reputation rating. Then, $\bar{\hat{c}}_1 = \bar{\hat{c}}_2$. Recall that $\bar{\hat{b}}\in [\bar{\hat{c}}_1, \bar{\hat{c}}_2]$ by Definition~\ref{def:upper_bound_bids_indirect}. Thus, $\bar{\hat{b}} = \bar{\hat{c}}_1$. For assumption 3 in Assumptions~\ref{ass:assumptions_generic_indirect} not to hold, it is required $\bar{\hat{b}} = \bar{\hat{c}}_1 \leq \underline{\hat{c}}_i$ for any $i\in N$ and any $\delta>0$. But this means network operator $i$ is not a feasible bidder; that is, $i\not\in J$ by Definition~\ref{def:feasible_bidders_indirect}. A contradiction since it was assumed $J = N$. Now, let $\delta = \bar{\hat{b}} - \underline{\hat{c}}_n > 0$ where $n = |N|$; that is, $r_1\leq r_n$. Then,
 \begin{equation}
 (\bar{\hat{b}}-\delta, \bar{\hat{b}})\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i) = (\underline{\hat{c}}_n, \bar{\hat{b}})\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i) = (\underline{\hat{c}}_n, \bar{\hat{b}})
 \end{equation}
 for all $i\in N$. The resulting set is convex, and since $(\underline{\hat{c}}_n, \bar{\hat{b}})\subset [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for all $i\in N$, this implies that $F_i$ is strictly log-concave over $(\bar{\hat{b}}-\delta, \bar{\hat{b}})\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i)$ for all $i\in N$.
 
-Finally, we shall concentrate on cases such that
+Finally, the discussion will concentrate on cases such that
 \begin{equation}
   \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\textrm{for all } i\in N.
 \end{equation}
@@ -457,27 +457,27 @@ for network operators $j\in N, j\not\in I$, and by the system in Equation~\eqref
 \begin{equation}
   \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\textrm{for all } i\in N.
 \end{equation}
-Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We can maximise the (approximate) probability of enforcing this condition by reasoning as follows. Without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ (assuming $\underline{\hat{b}}$ is distributed uniformly over $(\underline{\hat{c}}_2, \bar{\hat{b}})$) can be quantified as follows
+Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. The (approximate) probability of enforcing this condition can be maximised by reasoning as follows. Without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ (assuming $\underline{\hat{b}}$ is distributed uniformly over $(\underline{\hat{c}}_2, \bar{\hat{b}})$) can be quantified as follows
 \begin{equation}
   P\left\{ \underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}}) \right\} = 1 - P\left\{\underline{\hat{b}}\in(\underline{\hat{c}}_2, \underline{\hat{c}}_n)\right\} = 1 - \frac{\underline{\hat{c}}_n - \underline{\hat{c}}_2}{\bar{\hat{b}}-\underline{\hat{c}}_2} = \frac{\bar{\hat{b}} - \underline{\hat{c}}_n}{\bar{\hat{b}} - \underline{\hat{c}}_2}.
 \end{equation}
-For example, for the probability of at least $0.9$, we require
+For example, for the probability of at least $0.9$, it is required
 \begin{equation}
   \frac{\bar{\hat{b}} - \underline{\hat{c}}_n}{\bar{\hat{b}} - \underline{\hat{c}}_2} \geq 0.9 \iff \bar{\hat{b}}\geq 10\underline{\hat{c}}_n - 9\underline{\hat{c}}_2.
 \end{equation}
-Since $\bar{\hat{c}}_1\leq \bar{\hat{b}}$ by Definition~\ref{def:upper_bound_bids_indirect}, we may write
+Since $\bar{\hat{c}}_1\leq \bar{\hat{b}}$ by Definition~\ref{def:upper_bound_bids_indirect}, it follows that
 \begin{equation}
   \bar{\hat{c}}_1 \geq 10\underline{\hat{c}}_n - 9\underline{\hat{c}}_2 \iff w \geq 1 - \frac{1}{10r_n - 9r_2 - r_1 + 1}.
 \end{equation}
-Note that, since we assumed $r_1\leq\cdots\leq r_n$ with at least one inequality strict, the denominator is always strictly greater than $1$ ($10r_n - 9r_2-r_1+1 > 1$), hence guaranteeing the right-hand side of the inequality to be smaller than $1$.
+Note that, since it was assumed $r_1\leq\cdots\leq r_n$ with at least one inequality strict, the denominator is always strictly greater than $1$ ($10r_n - 9r_2-r_1+1 > 1$), hence guaranteeing the right-hand side of the inequality to be smaller than $1$.
 
-To conclude, in the rest of this section, we shall concentrate on cases such that
+To conclude, the rest of this section will concentrate on cases such that
 \begin{equation}
   w \in (0.5, 1) \quad\textrm{and}\quad w \geq 1 - \frac{1}{10r_n - 9r_2 - r_1 + 1}
 \end{equation}
 for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
-In what follows, we firstly outline the inner workings of the FSM and PPM methods, and then present the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using both algorithms. Lastly, a possible improvement to PPM using Chebyshev polynomials is discussed.
+In what follows, firstly the inner workings of the FSM and PPM methods are outlined, and then the numerically approximated equilibrium bidding strategies are presented for two bidding scenarios generated using both algorithms.
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
@@ -535,7 +535,7 @@ The initial guess supplied to the algorithm is the interval $[\underline{\hat{c}
 
 In each step, the system of ODEs in~\eqref{eq:fsm_initial_value_problem_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
-Furthermore, in the implementation of the FSM, we assumed that
+Furthermore, in the implementation of the FSM, it was assumed that
 \begin{equation}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\textrm{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
 \end{equation}
@@ -550,7 +550,7 @@ and it is there mainly to avoid possible divisions by zero which are not handled
 \begin{equation}
   \frac{1 - F_i(x)}{f_i(x)}
 \end{equation}
-which is undefined for all $x\in\mathbb{R}$ such that $x < \underline{\hat{c}}_i$ and $x > \bar{\hat{c}}_i$ (since $f_i(x) = 0$ for all $x < \underline{\hat{c}}_i$ and $x > \bar{\hat{c}}_i$). On the other hand, by enforcing this assumption, we implicitly assume that the algorithm always operates in the feasible region; that is,
+which is undefined for all $x\in\mathbb{R}$ such that $x < \underline{\hat{c}}_i$ and $x > \bar{\hat{c}}_i$ (since $f_i(x) = 0$ for all $x < \underline{\hat{c}}_i$ and $x > \bar{\hat{c}}_i$). On the other hand, by enforcing this assumption, it is implicitly assumed that the algorithm always operates in the feasible region; that is,
 \begin{equation}
   \hat{c}_i(b)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i] \quad\textrm{for all } i\in N \textrm{ and } b\in\left[\underline{\hat{b}}', \bar{\hat{b}}\right].
 \end{equation}
@@ -561,7 +561,7 @@ This, of course, cannot be guaranteed for all choices of $\underline{\hat{b}}'$ 
 \label{sub:polynomial_projection_method_indirect}
 Without loss of generality, suppose network operator 1 is characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
-In the PPM, we assume that the inverse equilibrium bidding function for each network operator $i\in N$ can be approximated by a $K^{\textrm{th}}$ order polynomial of the form
+In the PPM, it is assumed that the inverse equilibrium bidding function for each network operator $i\in N$ can be approximated by a $K^{\textrm{th}}$ order polynomial of the form
 \begin{equation}
   \label{eq:polynomial_cost_function_indirect}
   \hat{c}_i(b;\underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i + \sum_{k=1}^K \alpha_{i,k}(b - \underline{\hat{b}})^k,
@@ -618,7 +618,7 @@ The pseudo-code for the PPM is shown in listing Algorithm~\ref{alg:polynomial_pr
 
 In each step of the algorithm, the nonlinear optimisation problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimisation technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this section were obtained using the GSL implementation of the Nelder-Mead method~\cite{GSL}. A brief overview of the most basic form of the Nelder-Mead simplex method can be found for example in~\cite{AvrielPenalty2003}.
 
-Furthermore, in the implementation of the PPM, we made the same simplification as in the implementation of the forward shooting method; that is,
+Furthermore, in the implementation of the PPM, the same simplification was made as in the implementation of the FSM method; that is,
 \begin{equation}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\textrm{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
 \end{equation}
@@ -627,16 +627,16 @@ for all $i\in N$ and $x\in\mathbb{R}$. This assumption reduces the definition of
   &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\\nonumber
   &- \displaystyle\left[ \bar{\hat{c}}_i - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\right]\cdot\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right],
 \end{align}
-and it is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. It is important to realise, however, that by enforcing this assumption, we implicitly assume that the algorithm always operates in the feasible region; that is,
+and it is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. It is important to realise, however, that by enforcing this assumption, it is implicitly assumed that the algorithm always operates in the feasible region; that is,
 \begin{equation}
   \underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}}) \quad\textrm{and}\quad \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
 \end{equation}
-for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since we treat the minimisation problem in~\eqref{eq:least_squares_objective_function_indirect} as an unconstrained optimisation problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event; for example, the unconstrained optimisation problem can be translated into a constrained optimisation problem using a penalty function approach as described in~\cite{AvrielPenalty2003}. Alternatively, a constrained optimisation technique, such as the Constrained Optimization BY Linear Approximation (COBYLA) method~\cite{Powell1994}, could be used in place of the Nelder-Mead method.
+for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since the minimisation problem in~\eqref{eq:least_squares_objective_function_indirect} is treated as an unconstrained optimisation problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event; for example, the unconstrained optimisation problem can be translated into a constrained optimisation problem using a penalty function approach as described in~\cite{AvrielPenalty2003}. Alternatively, a constrained optimisation technique, such as the Constrained Optimization BY Linear Approximation (COBYLA) method~\cite{Powell1994}, could be used in place of the Nelder-Mead method.
 % subsection polynomial_projection_method_indirect (end)
 
 \subsection{Approximation Results} % (fold)
 \label{sub:approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios with 3 and 4 network operators. The source code of all algorithms presented in this thesis is available upon request from the author. It is also envisaged that, in the future, the source code will be publicly available on the author's Github website: \url{https://github.com/kubkon}.
+In this subsection, the approximation results for two bidding scenarios with 3 and 4 network operators are presented. The source code of all algorithms presented in this thesis is available upon request from the author. It is also envisaged that, in the future, the source code will be publicly available on the author's Github website: \url{https://github.com/kubkon}.
 
 \begin{table}[t]
   \caption{Bidding scenario with 2 network operators}
@@ -664,7 +664,7 @@ Before analysing numerical results, both algorithms were tested for correct impl
   \label{fig:polynomial_projection_verification_indirect}
 \end{figure}
 
-Note, however, that this does not prove that the algorithms will provide correct results for any number of network operators. On the contrary, it merely suggests that the implementation of the algorithms passed basic sanity check. Therefore, in what follows, for each produced output, we shall verify whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then they constitute an approximate Bayesian Nash equilibrium.
+Note, however, that this does not prove that the algorithms will provide correct results for any number of network operators. On the contrary, it merely suggests that the implementation of the algorithms passed basic sanity check. Therefore, in what follows, for each produced output, it will be verified whether the numerically approximated bidding strategies satisfy the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each network operator is a best response to the bidding strategies of the remaining network operators. If the derived bidding strategies constitute best responses that are mutually consistent, then they constitute an approximate Bayesian Nash equilibrium.
 
 In the first examined scenario, there are 3 network operators characterised by reputation ratings as summarised in Table~\ref{tab:approximation_scenario_3_indirect}. Furthermore, the price weight is set to $0.75$. Figures~\ref{fig:forward_shooting_3_sufficiency_indirect}~and~\ref{fig:polynomial_projection_3_sufficiency_indirect} depict the results of the approximation generated by the FSM and the PPM methods respectively. Both approximation methods yield virtually the same estimate of the lower bound on bids, $\underline{\hat{b}}\approx 0.375$. In the FSM case, the approximation diverges in the very near proximity of $\bar{\hat{b}}$, and therefore, the approximation satisfies the sufficiency only until $b$ reaches a close neighbourhood of $\bar{\hat{b}}$. This is due to the fact that the system of ODEs does not satisfy Lipschitz condition as $b$ approaches $\bar{\hat{b}}$. The PPM method, on the other hand, eliminates this problem entirely, and the approximation satisfies sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$.
 
@@ -722,14 +722,14 @@ In the second examined scenario, there are 4 network operators characterized by 
 \end{figure}
 % subsection approximation_results (end)
 
-In this section, the FSM and PPM numerical algorithms were described, and two exemplary bidding scenarios were analysed for which the equilibrium bidding strategies were generated using the aforementioned algorithms. It should be noted, however, that one of the key assumptions of this section was $\underline{\hat{c}}_i\leq \hat{c}(\underline{\hat{b}})$ for all network operators $i\in N$, which restricted the choice of the price weight and the reputation ratings to a set satisfying $w\geq 1 - \sfrac{1}{(10r_n - 9r_2 - r_1 + 1)}$. In the following section, we relax that assumption by allowing cases such that $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one network operator $i\in N$. In other words, we consider all nontrivial equilibria characterised by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. Furthermore, we present two numerical algorithms which are able to generate equilibrium bidding strategies under the relaxed assumption.
+In this section, the FSM and PPM numerical algorithms were described, and two exemplary bidding scenarios were analysed for which the equilibrium bidding strategies were generated using the aforementioned algorithms. It should be noted, however, that one of the key assumptions of this section was $\underline{\hat{c}}_i\leq \hat{c}(\underline{\hat{b}})$ for all network operators $i\in N$, which restricted the choice of the price weight and the reputation ratings to a set satisfying $w\geq 1 - \sfrac{1}{(10r_n - 9r_2 - r_1 + 1)}$. In the following section, this assumption is relaxed by allowing cases such that $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one network operator $i\in N$. In other words, all nontrivial equilibria characterised by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} are considered. Furthermore, a numerical algorithm which is able to generate equilibrium bidding strategies under the relaxed assumption is presented.
 % section numerical_analysis_indirect (end)
 
 \section{Extended Numerical Analysis} % (fold)
 \label{sec:extended_numerical_analysis_indirect}
 Suppose $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one $i\in N$, and let all the remaining assumptions of Section~\ref{sec:numerical_analysis_indirect} hold. To be more specific, let $w\in (0.5,1.0)$ for all $r_i\in[0,1], i\in N$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
-In what follows, we present a numerical algorithm which improves upon the algorithms considered in Section~\ref{sec:numerical_analysis_indirect}: the extended forward shooting method (EFSM). Furthermore, we analyse the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using the algorithm.
+In what follows, a numerical algorithm which improves upon the algorithms considered in Section~\ref{sec:numerical_analysis_indirect} is presented: the extended forward shooting method (EFSM). Furthermore, the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using the algorithm are analysed.
 
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
@@ -844,7 +844,7 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 
 In each stage, the system of ODEs in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GSL implementation of the Embedded-Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
-Furthermore, similarly to the implementation of the FSM and PPM methods, in the implementation of EFSM, we assumed that
+Furthermore, similarly to the implementation of the FSM and PPM methods, in the implementation of EFSM, it was assumed that
 \begin{equation}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\textrm{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
 \end{equation}
@@ -854,7 +854,7 @@ for all $i\in N$ and $x\in\mathbb{R}$. The discussion of the consequences arisin
 
 \subsection{Approximation Results} % (fold)
 \label{sub:extended_approximation_results_indirect}
-In this subsection, we present the approximation results for two bidding scenarios with 3 and 4 network operators. Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, the EFSM method was tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, we omit the discussion of the verification results in this section.
+This subsection presents the approximation results for two bidding scenarios with 3 and 4 network operators. Similarly to the algorithms presented in Section~\ref{sec:numerical_analysis_indirect}, the EFSM method was tested for correct implementation using the same procedure as presented in Section~\ref{sec:numerical_analysis_indirect}. Therefore, for brevity, the discussion of the verification results in this section is omitted.
 
 In the first examined scenario, there are 3 network operators characterised by reputation ratings summarised in Table~\ref{tab:approximation_scenario_ext_3_indirect}. Furthermore, the price weight is set to $0.55$. Figure~\ref{fig:efs_3_sufficiency_indirect} depicts the results of the approximation generated by the EFSM method. The method yields an estimate of the lower bound on bids of $\underline{\hat{b}}\approx 0.407$, and satisfies the sufficiency for all $b\in[\underline{\hat{b}},\bar{\hat{b}}]$. It is worth noting that, as expected, the bidding scenario comprises two stages (cf.~Figure~\ref{fig:lebrun_solution_indirect}): stage 1 such that $\hat{b}\in [0.407, 0.43]$ where network operators 1 and 2 are competing against each other only, and network operator 3 is characterised by the bidding extension given by Equation~\eqref{eq:efsm_lebrun_ext_1_indirect}; and stage 2 such that $\hat{b}\in [0.43, 0.71]$ where all network operators are competing against each other, and are solving the system in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect}.
 
@@ -909,8 +909,8 @@ In this section, the EFSM numerical algorithm was outlined, and two exemplary bi
 
 \section{Summary}
 \label{sec:summary_indirect}
-In this chapter, the bidding problem with symmetric cost distributions, as defined in Chapter~\ref{cha:direct}, was transformed into a bidding problem with asymmetric cost distributions. Following the transformation, we formally characterised the equilibrium bidding strategies for the generic case of $n$ network operators; that is, it was shown that the pure strategy Bayesian Nash equilibrium exists and is unique (Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} and Corollary~\ref{cor:characterization_of_the_equilibrium_indirect}).
+In this chapter, the bidding problem with symmetric cost distributions, as defined in Chapter~\ref{cha:direct}, was transformed into a bidding problem with asymmetric cost distributions. Following the transformation, the equilibrium bidding strategies for the generic case of $n$ network operators were formally characterised; that is, it was shown that the pure strategy Bayesian Nash equilibrium exists and is unique (Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} and Corollary~\ref{cor:characterization_of_the_equilibrium_indirect}).
 
 When restricted to $n=2$ network operators, the equilibrium bidding strategies were analytically derived, and the expected prices for the subscriber were analysed.
 
-Finally, for the case of $n\geq 2$ network operators, we proposed three numerical algorithms for approximating the equilibrium bidding strategies: FSM (Algorithm~\ref{alg:forward_shooting_method_indirect}), PPM (Algorithm~\ref{alg:polynomial_projection_method_indirect}), and EFSM (Algorithm~\ref{alg:extended_forward_shooting_method_indirect}). The algorithms were verified for correct implementation, and, for each approximated scenario, the derived equilibrium bidding strategies were tested for sufficiency condition for a pure strategy Bayesian Nash equilibrium. The FSM and PPM methods allow for numerically approximating equilibrium bidding strategies for a subset of all possible bidding scenarios resulting in nontrivial equilibria, while the EFSM method enables computation of the numerical solution to all bidding scenarios.
+Finally, for the case of $n\geq 2$ network operators, three numerical algorithms for approximating the equilibrium bidding strategies were proposed: FSM (Algorithm~\ref{alg:forward_shooting_method_indirect}), PPM (Algorithm~\ref{alg:polynomial_projection_method_indirect}), and EFSM (Algorithm~\ref{alg:extended_forward_shooting_method_indirect}). The algorithms were verified for correct implementation, and, for each approximated scenario, the derived equilibrium bidding strategies were tested for sufficiency condition for a pure strategy Bayesian Nash equilibrium. The FSM and PPM methods allow for numerically approximating equilibrium bidding strategies for a subset of all possible bidding scenarios resulting in nontrivial equilibria, while the EFSM method enables computation of the numerical solution to all bidding scenarios.
