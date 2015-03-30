@@ -19,9 +19,9 @@ Following the notation of Chapter~\ref{cha:indirect}, let each bidder $i$ be cha
   \end{array}\right.
 \end{equation}
 where, as before, $b = (b_1,\ldots,b_n)$, and $c = (c_1,\ldots,c_n)$. In the CP auction, we assume that each bidder $i$ draws their cost from common support across all bidders; i.e., let
-\begin{equation*}
+\begin{equation}
   c_i\in [\underline{c}, \bar{c}] \quad\text{for all } i\in N \text{ such that } [\underline{c}, \bar{c}]\subseteq [0, 1].
-\end{equation*}
+\end{equation}
 
 Let $F_i$ be the distribution function of $c_i$ for all $i\in N$. Note that the distribution functions between bidders need not be equal, and hence, we are dealing with an asymmetric FPA.
 
@@ -39,9 +39,9 @@ These assumptions correspond to Assumptions~A.1 and Theorem~U.1 in Lebrun~\cite{
 \begin{proposition}[Characterisation of the Equilibrium in Common Prior Setting]
 \label{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation}
 Let Assumptions~\ref{ass:assumptions_common_priors_approximation} be satisfied. There exists one and only one pure-strategy Bayesian Nash equilibrium where bidders submit at least their costs. In every such equilibrium, bidder $i\in N$ follows a bid function $b_i$, for all $1\leq i\leq n$ such that its inverse, $c_i= b_i^{-1}$, satisfy the following system of differential equations
-\begin{equation*}
+\begin{equation}
   \frac{d}{db}c_i(b) = \frac{1 - F_i(c_i(b))}{f_i(c_i(b))}\left[ \frac{1}{n-1}\sum_{k=1}^n \frac{1}{b-c_k(b)} - \frac{1}{b-c_i(b)} \right]
-\end{equation*}
+\end{equation}
 for all $1\leq i\leq n$, with the following lower boundary condition
 \begin{equation}
   \label{eq:foc_ode_lower_boundary_approximation}
@@ -57,13 +57,13 @@ for all $1\leq i\leq n$.
 \noindent The formal proof of Proposition~\ref{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation} as well as any other proposition (unless stated otherwise) included in this chapter is given in Section~\ref{sec:proofs_approximation}.
 
 In effect, Proposition~\ref{prop:characterization_of_the_equilibrium_in_common_priors_setting_approximation} is a special case of Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}. That is, the equilibrium bidding functions still have to satisfy the system of nonlinear ODEs given by Equation~\eqref{eq:foc_ode_indirect}; however, in this case, the lower boundary condition reduces to
-\begin{equation*}
+\begin{equation}
   c_i(\underline{b}) = \underline{c},
-\end{equation*}
+\end{equation}
 and the upper boundary condition to
-\begin{equation*}
+\begin{equation}
   c_i(\bar{c}) = \bar{c},
-\end{equation*}
+\end{equation}
 i.e., the bids never exceed the upper extremity of the common support range.
 
 It should be noted that, even though the bidding problem is considerably simpler than the original one discussed in this thesis (cf.~Chapter~\ref{cha:indirect}), it still involves finding the lower bound on bids, and hence, the closed-form solution exists only in a handful of special cases~\cite{Krishna10,HubbardPaarsch2011}. However, as presented by Hubbard and Paarsch~\cite{HubbardPaarsch2011}, the problem can be approximated using numerical methods, which is discussed in the next section.
@@ -84,7 +84,7 @@ To briefly recap, the FSM method was first proposed by Bajari~\cite{Bajari2001a}
   \end{array}
 \end{equation}
 for all $i\in N$, lies within a set of permissible functions, $S$, such that every element of that set is a function mapping $[\underline{b}, \bar{c}]$ into $[\underline{c}, \bar{c}]$, it is monotonically increasing everywhere except possibly at $\underline{c}$, and each function value is strictly lower than its argument except possibly at $\bar{c}$; that is,
-\begin{equation*}
+\begin{equation}
   S=\left\{s \:\middle\vert\:
   \begin{array}{l}
     s: [\underline{b}, \bar{c}]\to [\underline{c}, \bar{c}],\\
@@ -92,7 +92,7 @@ for all $i\in N$, lies within a set of permissible functions, $S$, such that eve
     s(b) < b \text{ for all }b\in [\underline{b}, \bar{c})
   \end{array}
   \right\}.
-\end{equation*}
+\end{equation}
 
 The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_approximation}. Note that the algorithm is almost identical to the FSM version tailored to the DMP auction (cf.~Algorithm~\ref{alg:forward_shooting_method_indirect}), with only differences being the definition of the set of permissible functions, $S$, and the algorithm's search region delimited by $low$ and $high$ variables. Hence, we omit the discussion of the algorithm and refer the reader to Section~\ref{sub:forward_shooting_method_indirect}.
 
@@ -175,13 +175,13 @@ In this section, we firstly model the DMP auction as a CP auction where bidders 
 \subsection{Modelling using Truncated Normal Distribution} % (fold)
 \label{sub:modeling_using_truncated_normal_distribution_approximation}
 Recall from Chapter~\ref{cha:indirect} that, in the DMP auction, each bidder $i$ draws their cost from a uniform distribution with the support
-\begin{equation*}
+\begin{equation}
   [(1-w)r_i, (1-w)r_i + w] = [\underline{c}_i, \bar{c}_i] \subset [0,1].
-\end{equation*}
+\end{equation}
 In order to simplify the exposition of the concepts presented in this chapter, we shall refer to costs-hat, $\hat{c}_i$, introduced in Chapter~\ref{cha:indirect} as simply costs, $c_i$. Therefore, in the general case, unless the bidders are characterised by the same reputation rating, that is $r_i=r_j$ for all $i,j\in N$, their distributions' supports will not overlap fully; i.e.,
-\begin{equation*}
+\begin{equation}
   [\underline{c}_i,\bar{c}_i] \neq [\underline{c}_j,\bar{c}_j], \quad i\neq j \text{ and } i,j\in N.
-\end{equation*}
+\end{equation}
 
 Recall further that, in a CP auction, every bidder is characterised by a distribution (of costs) with common support across all bidders. Hence, in order to model any DMP bidding scenario, firstly, we need to agree on a support that is common to every bidder and, at the same time, encompasses the supports of every individual bidder from the original (DMP) auction. The smallest such support is
 \begin{equation}
@@ -215,17 +215,17 @@ where $\mu\in\mathbb{R}$ is the mean (or location) of the distribution, and $\si
 \end{equation}
 
 Before moving on to discussing the methodology for quantifying the accuracy of the approximations, consider bidding scenario summarized in Table~\ref{tab:verification_indirect} in Chapter~\ref{cha:indirect}. Suppose we were to cast this scenario into common prior setting where bidders are characterised by truncated normal distributions. Firstly, we note that the supports for both bidders are
-\begin{equation*}
+\begin{equation}
   [\underline{c}_1, \bar{c}_1] = [0.125, 0.625]
-\end{equation*}
+\end{equation}
 for bidder 1, and
-\begin{equation*}
+\begin{equation}
   [\underline{c}_2, \bar{c}_2] = [0.375, 0.875]
-\end{equation*}
+\end{equation}
 for bidder 2, while the common support is given by
-\begin{equation*}
+\begin{equation}
   [\underline{c},\bar{c}] = [\underline{c}_1, \bar{c}_2] = [0.125, 0.875].
-\end{equation*}
+\end{equation}
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Approximation/Figures/modelling_params}
@@ -234,13 +234,13 @@ for bidder 2, while the common support is given by
 \end{figure}
 
 Secondly, we need to specify distribution specific parameters (mean and standard deviation) for each bidder. Since the aim is to approximate the original distributions of both bidders, we pick the midpoints of the original supports as means for both bidders, that is,
-\begin{equation*}
+\begin{equation}
   \mu_i = \underline{c}_i + \frac{\bar{c}_i - \underline{c}_i}{2} = \underline{c}_i + \frac{w}{2},
-\end{equation*}
+\end{equation}
 and let the standard deviations be equal to the quarter of the length of the original supports, that is,
-\begin{equation*}
+\begin{equation}
   \sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
-\end{equation*}
+\end{equation}
 The choice of the parameters is motivated by the shape of the normal distribution, and the fact that, with this choice of parameters, the probability of at least $0.95$ of drawing cost from the interval $[\underline{c}_i, \bar{c}_i]$ (which corresponds to the interval $[\mu_i - 2\sigma_i, \mu_i + 2\sigma_i]$) is achieved~\cite{JohnsonNormal1994}; and therefore, minimising the probability of drawing cost from outside the interval $[\underline{c}_i, \bar{c}_i]$, and effectively imitating uniform distribution with support $[\underline{c}_i, \bar{c}_i]$. This is depicted in Figure~\ref{fig:modelling_params_approximation} as the shaded region under the bell curve.
 
 \begin{table}[t]
@@ -343,9 +343,9 @@ In this section, we showed how a DMP bidding scenario can be cast into CP settin
 \section{Approximation Results} % (fold)
 \label{sec:approximation_results_approximation}
 In this section, we analyse the results for four bidding scenarios: with $n=2$, $n=3$, $n=4$ and $n=5$ bidders respectively. We concentrate on only up to five bidders due to the following three reasons. Firstly, the time required to simulate the problem increases exponentially with each additional bidder. It should be noted that the simulations were run on a 12-core Xeon processor, and were fully parallelised (i.e., each repetition was run in a separate process, and up to 20 processes were running at any one time). The time required to complete each simulation run took approximately: 1.6 hours for $n=2$ bidders, 25.6 hours for $n=3$ bidders, 76.2 hours for $n=4$ bidders, and 271.9 hours for $n=5$ bidders. Figure~\ref{fig:simulation_time_approximation} depicts results of fitting an exponential function of the form
-\begin{equation*}
+\begin{equation}
   f(x) = ae^{bx} + c, \quad\textrm{where}\: a,b,c\in\mathbb{R}, \textrm{ and } x\in\mathbb{R}_+
-\end{equation*}
+\end{equation}
 to the data. Assuming the growth rate of simulation times with each additional bidder will be at least as big as inferred from the measured simulation times, simulating for more than five bidders is impractical. For example, a predicted simulation time for ten bidders is approximately 124,255 hours, which equates to more than 14 years.
 
 \begin{figure}[t!]
@@ -365,9 +365,9 @@ The procedure for generating the approximation results is as follows:
 Furthermore, each $r_i$ for each bidder $i$ is drawn from a uniform distribution over the range $(0,1)$. It should be noted that reputation ratings have to be unique: if $(r_1,r_2)$, then $r_1\neq r_2$; and if $r=(r_1,r_2)$ and $g=(g_1,g_2)$ are two consecutively generated reputation rating $n$-tuples, then we require $r \neq g$. By Assumptions~\ref{ass:assumptions_generic_indirect}, there exists at least one $r_i\neq r_j$ for all $1\leq i,j\leq n$ such that $i\neq j$. This immediately rules out the possibility of bidders having equal reputation ratings in case of 2 bidders. In case of 3 or more bidders, Assumptions~\ref{ass:assumptions_generic_indirect} permit for 2 or more bidders (but not all) to be characterised by equal reputation ratings. In order to keep the analysis numerically tractable, however, we do not consider bidding scenarios with bidders characterised by equal reputation ratings in case of 3 or more bidders.
 \item For each reputation ratings $n$-tuple, evaluate relative errors in expected price and \emph{ex ante} expected utility per bidder using Equations~\eqref{eq:relative_error_price_approximation}~and~\eqref{eq:relative_error_utility_approximation}.
 \item Evaluate mean relative errors in expected price and \emph{ex ante} expected utility per bidder, and associated 95\% confidence intervals. The confidence interval for the mean is computed using the formula described in~\cite{LawChapter42007}; that is, given a random sample of size $k$ with unknown mean and standard deviation, the confidence interval is defined as
-\begin{equation*}
+\begin{equation}
   \text{ci}=\bar{X}\pm t_{1-\sfrac{\alpha}{2},k-1}\frac{s}{\sqrt{k}},
-\end{equation*}
+\end{equation}
 where $\bar{X}$ is the sample mean, $s$ is the sample standard deviation, and $t_{1-\sfrac{\alpha}{2}, k-1}$ is the upper $1-\sfrac{\alpha}{2}$ critical value for the \emph{t}-distribution with $k-1$ degrees of freedom. It is worth noting that for 95\% confidence interval, $\alpha=0.05$.
 \item Repeat for price weight values ranging from $0.55$ to $0.99$. Since we consider only feasible bidders, we require that $w\in(0.5,1)$ which was shown to be sufficient to warrant feasible bidding in Section~\ref{sec:numerical_analysis_indirect}, Chapter~\ref{cha:indirect}.
 \end{enumerate}

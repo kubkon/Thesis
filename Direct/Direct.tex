@@ -23,23 +23,23 @@ denote the compound bid. Each network operator $i$ is characterised by the utili
 	\end{array}\right.
 \end{equation}
 where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the type vector, and $r = (r_i, r_{-i})$ the reputation rating vector. The type of each network operator is assumed to represent the cost of (or the minimum price for) transporting the service request under consideration. The winner of the auction is determined as the network operator whose compound bid is the lowest one; i.e., network operator $i$ is the winner if
-\begin{equation*}
+\begin{equation}
 	\beta(b_i, r_i) < \displaystyle\min_{j\neq i}\beta(b_j,r_j).
-\end{equation*}
+\end{equation}
 In the event that there is a tie
-\begin{equation*}
+\begin{equation}
 	\beta(b_i, r_i) = \displaystyle\min_{j\neq i}\beta(b_j,r_j),
-\end{equation*}
+\end{equation}
 the winner is randomly selected with equal probability.
 
 It is, moreover, assumed that the price and reputation weights $(w_{price}, w_{penalty})$ are announced by the subscriber to all network operators before the auction. Thus, there is no uncertainty in knowing how much the subscriber values the offered price of the service over the reputation of the network operator (or vice versa). Furthermore,
-\begin{equation*}
+\begin{equation}
 	w_{price} + w_{penalty} = 1,\quad 0\le w_{price},w_{penalty} \le 1.
-\end{equation*}
+\end{equation}
 In order to simplify the notation, it is assumed throughout the rest of this thesis that $w=w_{price}$. This simplifies the definition of the compound bid in Equation~\eqref{eq:def_beta_direct} to
-\begin{equation*}
+\begin{equation}
   \beta(b_i, r_i) = wb_i + (1-w)r_i\quad\text{for all } i\in N.
-\end{equation*}
+\end{equation}
 Note, however, that since $w$ is assumed to be common knowledge, it could potentially lead to a situation where network operators manipulate the knowledge of $w$ to increase their profits by overcharging the subscriber. Therefore, in order to circumvent such an eventuality, the subscriber would only consider offers such that
 \begin{equation}
 	\label{eq:subscribers_valuation_direct}
@@ -143,9 +143,9 @@ Recalling that at a symmetric equilibrium $b_i=b(c_i)$, the identity \eqref{eq:s
 	\frac{d}{dc_i}b(c_i) - b(c_i)\frac{f_{C_{1:n-1}}(c_i)}{1 - F_{C_{1:n-1}}(c_i)} = -c_i \frac{f_{C_{1:n-1}}(c_i)}{1 - F_{C_{1:n-1}}(c_i)},
 \end{equation}
 or equivalently,
-\begin{equation*}
+\begin{equation}
 	\frac{d}{dc_i}(b(c_i)(1 - F_{C_{1:n-1}}(c_i))) = -c_if_{C_{1:n-1}}(c_i).
-\end{equation*}
+\end{equation}
 Assuming $b(1) = 1$, we have
 \begin{align}
 	\label{eq:standard_fpa_ode_solution_direct}
@@ -167,21 +167,21 @@ constitutes a symmetric pure-strategy Bayesian Nash equilibrium of the DMP varia
 \subsection{Special Case $r_i=r_j$} % (fold)
 \label{sub:special_case_r_i_r_j_direct}
 In the last extreme case, when all network operators are characterised by the same reputation rating, i.e., when $r_i = r_j$ for all $i\neq j$, and when $w\neq 0$, it can be easily verified that the problem simplifies to the special case $w=1$. To see why, let $r = r_i,$ for all network operators $i$. Then, for all $i\in N$ and $w\neq 0$
-\begin{align*}
-	&\beta(b_i, r) < \min_{j\neq i} \beta(b_j, r)\\
-	\iff &\frac{1}{w} \left(b_i + \frac{1-w}{w} r\right) < \frac{1}{w} \min_{j\neq i} \left(b_j + \frac{1-w}{w} r\right)\\
-	\iff &b_i + \frac{1-w}{w} r < \min_{j\neq i} b_j + \frac{1-w}{w} r\\
+\begin{align}
+	&\beta(b_i, r) < \min_{j\neq i} \beta(b_j, r)\\\nonumber
+	\iff &\frac{1}{w} \left(b_i + \frac{1-w}{w} r\right) < \frac{1}{w} \min_{j\neq i} \left(b_j + \frac{1-w}{w} r\right)\\\nonumber
+	\iff &b_i + \frac{1-w}{w} r < \min_{j\neq i} b_j + \frac{1-w}{w} r\\\nonumber
 	\iff &b_i < \min_{j\neq i} b_j.
-\end{align*}
+\end{align}
 Hence, the utility of each network operator $i$ simplifies to
-\begin{equation*}
+\begin{equation}
 	u_i(b,c,r) = \left\{
 	\begin{array}{l l}
 		b_i - c_i &\text{ if } b_i < \displaystyle\min_{j\neq i} b_j,\\
 		0 &\text{ if } b_i > \displaystyle\min_{j\neq i} b_j.
 	\end{array}
 	\right.
-\end{equation*}
+\end{equation}
 Formally,
 \begin{corollary}
 \label{cor:special_case_r_i_r_j_direct}
@@ -277,13 +277,13 @@ If $c_i = c_j$, both network operators should bid their costs; that is, $b_i = c
 If $c_i > c_j$, network operator $j$'s optimal bidding strategy would be to bid $b_j = c_i - \epsilon$ where $\epsilon>0$ is very small; while network operator $i$ should bid $b_i = c_i$ (see Figure~\ref{fig:complete_N_2_c6_direct}).
 
 It can be concluded that the bidding strategies depend only on costs if $r_i = r_j$. In the remaining cases, they are asymmetric in the sense that the winning network operator is characterised by
-\begin{equation*}
+\begin{equation}
 	b_i = c_j + \frac{1-w}{w}(r_j - r_i) - \epsilon \quad\text{with }\epsilon>0\text{ being very small},
-\end{equation*}
+\end{equation}
 while the losing network operator by bidding their own cost
-\begin{equation*}
+\begin{equation}
 	b_j = c_j.
-\end{equation*}
+\end{equation}
 Hence, when dealing with incomplete information, we will exploit these results by concentrating on equilibrium bidding strategies which are linear functions of cost.
 % subsection complete_information_n_2 (end)
 
@@ -317,18 +317,18 @@ The first-order condition yields
 	b_j = \frac{n_i}{2} - \frac{1}{2}\left( \frac{1-w}{w}(r_j-r_i) - m_i \right) + \frac{1}{2}c_j.
 \end{equation}
 Thus, it follows
-\begin{equation*}
+\begin{equation}
 	\left\{
 	\begin{array}{l l}
 		n_i &= n_j = \displaystyle\frac{1}{2},\\[2ex]
 		m_i &= \displaystyle\frac{n_j}{2} - \displaystyle\frac{1}{2}\left( \displaystyle\frac{1-w}{w}(r_i-r_j) - m_j \right),\\[2ex]
 		m_j &= \displaystyle\frac{n_i}{2} - \displaystyle\frac{1}{2}\left( \displaystyle\frac{1-w}{w}(r_j-r_i) - m_i \right).
 	\end{array}\right.
-\end{equation*}
+\end{equation}
 Solving the above equations simultaneously yields the equilibrium bidding strategy,
-\begin{equation*}
+\begin{equation}
 	b_i'(c_i) = \frac{1}{2} - \frac{1-w}{3w}(r_i-r_j) + \frac{1}{2}c_i \quad\text{for all } i\in N.
-\end{equation*}
+\end{equation}
 Formally,
 \begin{proposition}
 \label{prop:pcomp_equi_bidding_str_direct}
@@ -419,15 +419,15 @@ Finally, we proposed an analytical solution to the restricted case of two networ
 \label{sec:proofs_direct}
 \begin{proof}[Proof of Proposition~\ref{prop:special_case_w_0_direct}]
 Let $m = |N_0|$ be the number of network operators with the lowest reputation rating such that $m\in\mathbb{Z}_+$. Since $n = |N|$ is finite and $N_0\subseteq N$, then $m \le n$. Now, each $j\in N_0$ is facing a maximisation problem
-\begin{equation*}
+\begin{equation}
 	\max_{b_j} \frac{1}{m} \left(b_j - c_j \right), \quad\text{for all } j\in N_0.
-\end{equation*}
+\end{equation}
 Since $1\le m\le n$, and since $b_j\in\mathbb{R}_+$ and $\mathbb{R}_+$ is not bounded from above, this implies that the maximisation problem is unbounded; that is, $b_j\rightarrow\infty$ for all $j\in N_0$.
 
 The remaining network operators $k\in N\setminus N_0$ will try to solve
-\begin{equation*}
+\begin{equation}
 	\max_{b_k} 0, \quad\text{for all } k\in N\setminus N_0,
-\end{equation*}
+\end{equation}
 since $r_k > r_j = \min_{i\in N} r_i$. Hence, each network operator $k\in N\setminus N_0$ is indifferent to the value of their bid, which concludes the proof.
 \end{proof}
 
@@ -443,9 +443,9 @@ Suppose there are two network operators: network operator 1 and 2 with cost-repu
 	&= \frac{1}{2} \left( 1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) + c'_1 - 2c_1 \right) \left( 1 - c'_1 - \frac{2}{3}\cdot\frac{1-w}{w}(r_1-r_2) \right).
 \end{align*}
 We thus obtain that
-\begin{equation*}
+\begin{equation}
 	\tilde{u}_1(b_1'(c_1), c_1) - \tilde{u}_1(b_1'(c'_1), c_1) = \frac{1}{2}(c_1-c'_1)^2 \ge 0
-\end{equation*}
+\end{equation}
 regardless of whether $c'_1\ge c_1$ or $c'_1 \le c_1$. We have thus argued that if network operator 2 follows $b_2'$, network operator 1 with a cost $c_1$ cannot benefit by bidding anything other than $b_1'(c_1)$. Similar argument can be used to show that it is optimal for network operator 2 to follow $b_2'$ while network operator 1 is following $b_1'$. Hence, $(b_1',b_2')$ constitutes a Bayesian-Nash equilibrium profile.
 \end{proof}
 
@@ -453,39 +453,39 @@ regardless of whether $c'_1\ge c_1$ or $c'_1 \le c_1$. We have thus argued that 
 Let there be two network operators: network operator 1 and 2 with cost-reputation pairs $(c_1,r_1)$ and $(c_2,r_2)$ respectively. Suppose that both network operators follow the equilibrium bidding strategy, $b_i'(c_i)$. We need to show that network operator 1's bid is always at least as high as their cost whenever they win or draw with network operator 2; that is, $b_1'(c_1)\ge c_1$.
 
 First of all, note that if $r_1\le r_2$,
-\begin{equation*}
+\begin{equation}
 	b_1'(c_1) = \frac{1}{2}-\frac{1-w}{3w}(r_1-r_2) + \frac{1}{2}c_1 \ge \frac{1}{2}(1+c_1) \ge c_1, \quad\text{for all } c_1\in[0,1].
-\end{equation*}
+\end{equation}
 Thus, we need only to consider the case when $r_1>r_2$.
 
 Suppose $r_1>r_2$. If $c_1>c_2$, and since $b_1'(c_2)$ is strictly increasing in $c_1$, network operator 1 will lose for all values of $w\in(0,1]$. If $c_1=c_2$, network operator 1 will lose for all values of $w\in(0,1)$, except at $w=1$ when there will be a draw. But at $w=1$, network operator 1's bid is at least as high as her cost; i.e.,
-\begin{equation*}
+\begin{equation}
 	b_1'(c_1) = \frac{1}{2}(1+c_1) \ge c_1, \quad\text{for all } c_1\in[0,1].
-\end{equation*}
+\end{equation}
 If $c_1<c_2$, it is sufficient to show that the intersection of $b_1'(c_1)$ and $c_1$ in terms of $w$ can never occur before the intersection of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. First of all, we need to check that both intersections do occur; that is,
-\begin{equation*}
+\begin{equation}
 	b_1'(c_1) = c_1 \iff w = \frac{1}{1 + \frac{3}{2}\cdot\frac{1 - c_1}{r_1 - r_2}}.
-\end{equation*}
+\end{equation}
 Similarly,
-\begin{equation*}
+\begin{equation}
 	\beta(b_1'(c_1),r_1) = \beta(b_2'(c_2),r_2) \iff w = \frac{1}{1+ \frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}}.
-\end{equation*}
+\end{equation}
 Since $r_1>r_2$ and $c_1<c_2$, we have $0<r_1-r_2\le 1$ and $0<c_2-c_1\le 1$. Therefore, this implies
-\begin{equation*}
+\begin{equation}
 	0 < w = \frac{1}{1+ \frac{3}{2}\cdot\frac{1-c_1}{r_1-r_2}} \le 1,
-\end{equation*}
+\end{equation}
 and
-\begin{equation*}
+\begin{equation}
 	0 < w = \frac{1}{1+ \frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}} \le 1.
-\end{equation*}
+\end{equation}
 Now, suppose that the intersection of $b_1'(c_1)$ and $c_1$ occurs before that of $\beta(b_1'(c_1),r_1)$ and $\beta(b_2'(c_2),r_2)$. We must thus have
-\begin{equation*}
+\begin{equation}
 	\frac{1}{1+\frac{3}{2}\cdot\frac{c_2-c_1}{r_1-r_2}} < \frac{1}{1+\frac{3}{2}\cdot\frac{1-c_1}{r_1-r_2}} \iff \frac{1-c_2}{r_1-r_2} < 0.
-\end{equation*}
+\end{equation}
 But since $c_2\in[0,1]$ and $r_1>r_2$ by assumption,
-\begin{equation*}
+\begin{equation}
 	0 < \frac{1-c_2}{r_1-r_2}
-\end{equation*}
+\end{equation}
 we reach a contradiction, and this concludes the proof.
 \end{proof}
 

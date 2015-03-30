@@ -38,9 +38,9 @@ Every increasing function is one-to-one and onto.
 \subsection{Lipschitz Condition} % (fold)
 \label{sub:lipschitz_condition_notation}
 Let $f$ be a function such that $f: \mathbb{R}^n \to \mathbb{R}^n$, and let $E$ be a subset of $\mathbb{R}^n$. Then, $f$ is said to satisfy Lipschitz condition on $E$ if there exists $M>0$ such that
-\begin{equation*}
+\begin{equation}
 	\|f(\mathbf{x}) - f(\mathbf{y})\| \leq M \| \mathbf{x} - \mathbf{y} \|
-\end{equation*}
+\end{equation}
 for all $\mathbf{x},\mathbf{y}\in E$, where $\|\cdot\|$ denotes a norm on $\mathbb{R}^n$~\cite{HubbardPaarsch2011,SteinShakarchiCH7}.
 % subsection lipschitz_condition (end)
 % subsection mathematical_analysis_notation (end)
@@ -68,9 +68,9 @@ while the density of $X_{i:n}$ can be obtained by differentiating Equation~\eqre
 \subsection{Strong Law of Large Numbers} % (fold)
 \label{sub:strong_law_of_large_numbers_notation}
 Let $X_1,\ldots,X_n$ be i.i.d.~r.v.s with finite mean $\mu$. Let
-\begin{equation*}
+\begin{equation}
   \bar{X}(n) = \frac{\sum_{i=1}^n X_i}{n}.
-\end{equation*}
+\end{equation}
 Then, for sufficiently large $n$, $\bar{X}(n)$ provides a reasonable approximation of $\mu$ \cite{LawChapter42007}. This result is known as the Strong Law of Large Numbers,
 \begin{thm}[Strong Law of Large Numbers]
 $\bar{X}(n)\rightarrow\mu$ with probability $1$ as $n\rightarrow\infty$.
@@ -122,23 +122,23 @@ Every mechanism can be viewed as a game with incomplete information between $n$ 
 If $\mathcal{B}_i = \Theta_i$ for all $i$, then the mechanism becomes the so-called \emph{direct mechanism}. In a direct mechanism, bidders are effectively submitting their valuations rather than bids to the mechanism. In general, direct mechanisms tend to be smaller and simpler than generic mechanisms, and therefore are easier to analyse while still being able to model the scenario accurately. Formally, a direct mechanism is defined as a tuple $(\mathbf{Q},\mathbf{M})$ with an allocation rule defined as $\mathbf{Q}:\nobreak\Theta\to\Delta$, and a payment rule defined as $\mathbf{M}:\nobreak\Theta\to\mathbb{R}^n$. Note that in direct mechanism bidders' valuations are directly used to determine the outcome of the mechanism.
 
 A direct mechanism $(\mathbf{Q},\mathbf{M})$ is said to satisfy \emph{incentive compatibility} (IC) constraint if for all $i\in N$, for all $\theta_i\in\Theta_i$, and for all $\hat{\theta}_i\in\Theta_i$,
-\begin{equation*}
+\begin{equation}
   \tilde{\tilde{u}}_i(\theta_i) = q_i(\theta_i)\theta_i - m_i(\theta_i)\ge q_i(\hat{\theta}_i)\theta_i - m_i(\hat{\theta}_i),
-\end{equation*}
+\end{equation}
 where
-\begin{equation*}
+\begin{equation}
   q_i(\hat{\theta}_i) = E[Q_i(\hat{\theta}_i,\theta_{-i})],
-\end{equation*}
+\end{equation}
 and
-\begin{equation*}
+\begin{equation}
   m_i(\hat{\theta}_i) = E[M_i(\hat{\theta}_i, \theta_{-i})].
-\end{equation*}
+\end{equation}
 In both cases, the expectation is taken over the realisations of all but player $i$ types, $\theta_{-i}\in\Theta_{-i}$.
 
 A direct mechanism $(\mathbf{Q}, \mathbf{M})$ is said to satisfy \emph{individual rationality} (IR) constraint if for all $i\in N$, and for all $\theta_i\in\Theta_i$,
-\begin{equation*}
+\begin{equation}
   \tilde{\tilde{u}}_i(\theta_i)\ge 0.
-\end{equation*}
+\end{equation}
 
 In this thesis, we also make use of the very powerful Revelation Principle theorem due to Myerson which states the link between any generic mechanism and a direct mechanism~\cite{Myerson1979, Krishna10}:
 \begin{thm}[Revelation Principle]

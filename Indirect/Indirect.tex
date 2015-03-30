@@ -9,13 +9,13 @@ In the first instance, we show how the problem can be restated into a bidding pr
 \section{Problem Restatement} % (fold)
 \label{sec:problem_restatement_indirect}
 In order to transform the problem, recall the utility function for each network operator~$i$
-\begin{equation*}
+\begin{equation}
   u_i(b,c,r) = \left\{
   \begin{array}{l l}
     b_i-c_i & \;\textrm{if } wb_i + (1-w)r_i < \displaystyle\min_{j\neq i}[wb_j + (1-w)r_j],\\
     0 & \;\textrm{if } wb_i + (1-w)r_i > \displaystyle\min_{j\neq i}[wb_j + (1-w)r_j],
   \end{array}\right.
-\end{equation*}
+\end{equation}
 and let
 \begin{equation}
   \label{eq:b_hat_indirect}
@@ -27,13 +27,13 @@ Solving Equation~\eqref{eq:b_hat_indirect} for $b_i$ yields
   b_i = \frac{\hat{b}_i - (1-w)r_i}{w}, \quad w\neq 0.
 \end{equation}
 Substituting Equation~\eqref{eq:b_from_b_hat_indirect} back into the utility function yields
-\begin{equation*}
+\begin{equation}
   u_i(\hat{b},c,r) = \left\{
   \begin{array}{l l}
     \displaystyle\frac{1}{w}\left[\hat{b}_i-(wc_i + (1-w)r_i)\right] & \;\textrm{if } \hat{b}_i < \displaystyle\min_{j\neq i}\hat{b}_j,\\[2ex]
     0 & \;\textrm{if } \hat{b}_i > \displaystyle\min_{j\neq i}\hat{b}_j.
   \end{array}\right.
-\end{equation*}
+\end{equation}
 If we further let
 \begin{equation}
   \label{eq:cost_hat_indirect}
@@ -58,34 +58,34 @@ for all $i\in N$. In fact, we note that the pure-strategy Bayesian Nash equilibr
 \begin{proposition}
 \label{prop:equivalence_of_utilities_indirect}
 Suppose $(\hat{b}_1^*, \ldots, \hat{b}_n^*)$ is a pure-strategy Bayesian Nash equilibrium profile for an auction with the utility function
-\begin{equation*}
+\begin{equation}
   \hat{u}_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \left\{
   \begin{array}{l l}
     \displaystyle\left(\hat{b}_i-\hat{c}_i\right) & \;\textrm{if}\quad\hat{b}_i < \displaystyle\min_{j\neq i}\hat{b}_j,\\[2ex]
     0 & \;\textrm{if}\quad\hat{b}_i > \displaystyle\min_{j\neq i}\hat{b}_j.
   \end{array}\right.
-\end{equation*}
+\end{equation}
 Then, the same profile constitutes an equilibrium for an auction with the utility function
-\begin{equation*}
+\begin{equation}
   u_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \frac{1}{w}\cdot \hat{u}_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}).
-\end{equation*}
+\end{equation}
 \end{proposition}
 \noindent The formal proof of Proposition~\ref{prop:equivalence_of_utilities_indirect} as well as any other proposition (unless stated otherwise) included in this chapter is given in Section~\ref{sec:proofs_indirect}.
 
 In order to avoid ambiguity, we shall refer to $\hat{c}_i$ as costs-hat and $\hat{b}_i$ as bids-hat, while still referring to $c_i$ as costs and $b_i$ as bids. Note, moreover, that since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost.
 
 As a result of this transformation, the costs-hat, $\hat{c}_i$, for each network operator $i$ are distributed over the interval
-\begin{equation*}
+\begin{equation}
   \hat{c}_i\in [(1-w)r_i, (1-w)r_i + w]= [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
-\end{equation*}
+\end{equation}
 since $c_i\in [0,1]$ for all $i\in N$. Note, moreover, that for all $i\in N$
-\begin{equation*}
+\begin{equation}
   [\underline{\hat{c}}_i, \bar{\hat{c}}_i] \subset [0,1]
-\end{equation*}
+\end{equation}
 since $w\in (0,1)$ and $r_i\in [0,1]$, and in particular, if $w=1$
-\begin{equation*}
+\begin{equation}
   [\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [0,1].
-\end{equation*}
+\end{equation}
 Therefore, in terms of costs-hat, the network operators are \emph{ex ante} asymmetric; that is, due to differing domains of costs-hat between the network operators, the probability distributions will have differing supports.
 
 With these results at hand, we can proceed with the characterisation of the equilibrium bidding strategies in the generic case, which is the subject of the next section.
@@ -127,9 +127,9 @@ In equilibrium, the bids of each network operator equal $\hat{b}_i = \hat{b}_i(\
   &= (\hat{b}_i - \hat{c}_i)Q_i(\hat{b}_i),
 \end{align}
 where
-\begin{equation*}
+\begin{equation}
 Q_i(\hat{b}_i) = \prod_{j\neq i}\left( 1 - F_j(\hat{c}_j(\hat{b}_i)) \right)
-\end{equation*}
+\end{equation}
 is the probability that network operator $i$ is the lowest bidder.
 
 The first order condition for maximising network operator $i$'s expected utility is
@@ -138,9 +138,9 @@ The first order condition for maximising network operator $i$'s expected utility
   \frac{d}{d\hat{b}_i}\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = Q_i(\hat{b}_i) + (\hat{b}_i - \hat{c}_i)\cdot\frac{d}{d\hat{b}_i}Q_i(\hat{b}_i) = 0,
 \end{equation}
 where
-\begin{equation*}
+\begin{equation}
   \frac{d}{d\hat{b}_i}Q_i(\hat{b}_i) = (-1)\sum_{j\neq i} f_j(\hat{c}_j(\hat{b}_i))\frac{d}{d\hat{b}_i}\hat{c}_j(\hat{b}_i)\prod_{k\neq j} \left( 1 - F_k(\hat{c}_k(\hat{b}_i)) \right).
-\end{equation*}
+\end{equation}
 
 Noting that in equilibrium $\hat{c}_i = \hat{c}_i(\hat{b}_i)$, letting $\hat{b}_i = b$, and rearranging terms in Equation~\eqref{eq:foc_indirect} yields
 \begin{align}
@@ -155,13 +155,13 @@ Summing Equation~\eqref{eq:foc_simplified_indirect} over all $n$ network operato
   \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b - \hat{c}_i(b)} = \sum_{i=1}^n \frac{f_i(\hat{c}_i(b))}{1 - F_i(\hat{c}_i(b))}\cdot\frac{d}{db}\hat{c}_i(b).
 \end{equation}
 Subtracting Equation~\eqref{eq:foc_simplified_indirect} from \eqref{eq:foc_summed_indirect} yields 
-\begin{equation*}
+\begin{equation}
   \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b - \hat{c}_i(b)} - \frac{1}{b - \hat{c}_i(b)} = \frac{f_i(\hat{c}_i(b))}{1 - F_i(\hat{c}_i(b))}\cdot\frac{d}{db}\hat{c}_i(b)
-\end{equation*}
+\end{equation}
 which leads to the system of nonlinear ordinary differential equations (ODE)
-\begin{equation*}
+\begin{equation}
   \frac{d}{db}\hat{c}_i(b) = \frac{1 - F_i(\hat{c}_i(b))}{f_i(\hat{c}_i(b))}\left[ \frac{1}{n-1}\sum_{i=1}^n \frac{1}{b-\hat{c}_i(b)} - \frac{1}{b-\hat{c}_i(b)} \right]
-\end{equation*}
+\end{equation}
 for $i=1,2,\dotsc,n$. As we shall see briefly, there exists a unique set of inverse bidding functions that satisfy the system and constitute a pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs-hat. Firstly, we need to define a few concepts (cf.~Definitions 1, 2 and 3 in Lebrun~\cite{Lebrun2006}).
 
 \begin{define}[Upper bound on bids]
@@ -176,9 +176,9 @@ Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then, the u
 \begin{define}[Feasible bidders]
 \label{def:feasible_bidders_indirect}
 Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Let $J$ denote the set of feasible bidders. Then, $J$ is a subset of $N$ such that
-\begin{equation*}
+\begin{equation}
   J = \left\{j \:\middle\vert\: 1\leq j\leq n \textrm{ and } \underline{\hat{c}}_j < \bar{\hat{b}}\right\}.
-\end{equation*}
+\end{equation}
 Furthermore, let $n' = |J|$.
 \end{define}
 
@@ -187,13 +187,13 @@ Furthermore, let $n' = |J|$.
 Let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Then,
 \begin{enumerate}
   \item For all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, there exists one and only one $k(\underline{\hat{b}})\in \{2,\dotsc,n\}$ such that $\underline{\hat{c}}_{k(\underline{\hat{b}})} < \underline{\hat{b}}$ and
-  \begin{equation*}
+  \begin{equation}
     \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})}}\leq \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i},
-  \end{equation*}
+  \end{equation}
   and if $\underline{\hat{c}}_{k(\underline{\hat{b}})+1} < \underline{\hat{b}}$ (and $k(\underline{\hat{b}}) < n$)
-  \begin{equation*}
+  \begin{equation}
     \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{i=1}^{k(\underline{\hat{b}})}\frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_i} < \frac{1}{\underline{\hat{b}} - \underline{\hat{c}}_{k(\underline{\hat{b}})+1}}.
-  \end{equation*}
+  \end{equation}
   The proof of this assertion can be found in Lebrun~\cite{Lebrun2004} (see Lemma A4.1, Appendix 4).
   \item For all $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, let $\hat{c}(\underline{\hat{b}})$ be defined as follows
   \begin{equation}
@@ -247,14 +247,14 @@ Even though we are guaranteed that there exists a unique equilibrium to our prob
 \label{sec:restricted_case_n_2_indirect}
 Let $n=2$ network operators, and assume costs, $c_i$, for both network operators are drawn from the uniform distribution. Furthermore, let Assumptions~\ref{ass:assumptions_generic_indirect} be satisfied. Without loss of generality, suppose $r_1 < r_2$, which implies $\underline{\hat{c}}_1 < \underline{\hat{c}}_2$ and $\bar{\hat{c}}_1 < 
 \bar{\hat{c}}_2$. The utility function for each $i\in \{1,2\}$ is
-\begin{equation*}
+\begin{equation}
   u_i(\hat{b},\hat{c}) = \left\{
   \begin{array}{l l}
     \displaystyle\frac{1}{w}\left(\hat{b}_i-\hat{c}_i\right) & \;\textrm{if } \hat{b}_i < \hat{b}_j,\\[2ex]
     \displaystyle\frac{1}{2w}\left(\hat{b}_i-\hat{c}_i\right) & \;\textrm{if } \hat{b}_i = \hat{b}_j,\\[2ex]
     0 & \;\textrm{if } \hat{b}_i > \hat{b}_j.
   \end{array}\right.
-\end{equation*}
+\end{equation}
 Since the distribution of costs, $c_i$, for each network operator $i$ is uniform with support $[0,1]$, the distribution of costs-hat, $\hat{c}_i$, for each network operator $i$ is uniform with support~${[\underline{\hat{c}}_i, \bar{\hat{c}}_i]} = {[(1-w)r_i, (1-w)r_i + w]}$. Therefore, the distribution function of costs-hat satisfies the regularity conditions specified in Proposition~\ref{prop:regularity_conditions_indirect}, and by Corollary~\ref{cor:characterization_of_the_equilibrium_indirect}, we conclude that the pure-strategy Bayesian Nash equilibrium where network operators submit at least their costs exists and is unique.
 
 The derivation of the equilibrium involves three stages: 1) deriving equilibrium inverse bidding strategy functions using the procedure described by Kaplan and Zamir~\cite{KaplanZamir2007}; 2) numerically estimating the equilibrium bidding strategy functions by inverting the inverses; and 3) transforming the problem back to the original domain (from costs-hat and bids-hat back to costs and bids).
@@ -269,18 +269,15 @@ where we have used the fact that $F_2$ is the distribution function of the unifo
 If $\bar{\hat{b}} \leq \underline{\hat{c}}_2 \iff \bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then, by Definition~\ref{def:feasible_bidders_indirect}, only network operator 2 is a feasible bidder. In this case, any pure-strategy Bayesian Nash equilibrium must have network operator 1 always bidding $\underline{\hat{c}}_2$, and hence, always winning the auction at price $\underline{\hat{c}}_2$ \cite{KaplanZamir2007}. We shall refer to this case as trivial. Otherwise, in the nontrivial case, by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect}, the inverse equilibrium bidding functions are determined by the system
 \begin{equation}
   \label{eq:foc_restricted_indirect}
-  \begin{array}{ll}
-  &\left\{
+  \left\{
   \begin{array}{ll}
     \displaystyle\frac{d}{db}\hat{c}_1(b) &= \displaystyle\frac{\bar{\hat{c}}_1 - \hat{c}_1(b)}{b - \hat{c}_2(b)} \\[2ex]
     \displaystyle\frac{d}{db}\hat{c}_2(b) &= \displaystyle\frac{\bar{\hat{c}}_2 - \hat{c}_2(b)}{b - \hat{c}_1(b)}
   \end{array}
   \right.\\[1cm]
-  &\textrm{with boundary conditions (cf.~boundary conditions in~\cite{KaplanZamir2007})}\\
-  &\hat{c}_1(\underline{\hat{b}}) = \underline{\hat{c}}_1 \quad\textrm{and}\quad \hat{c}_1(\bar{\hat{b}}) = \bar{\hat{c}}_1 \quad\textrm{for network operator 1, and}\\
-  &\hat{c}_2(\underline{\hat{b}}) = \underline{\hat{c}}_2 \quad\textrm{and}\quad \hat{c}_2(\bar{\hat{b}}) = \bar{\hat{b}} \quad\textrm{for network operator 2.}
-  \end{array}
 \end{equation}
+with boundary conditions (cf.~boundary conditions in~\cite{KaplanZamir2007}) $\hat{c}_1(\underline{\hat{b}}) = \underline{\hat{c}}_1$ and $\hat{c}_1(\bar{\hat{b}}) = \bar{\hat{c}}_1$ for network operator 1, and $\hat{c}_2(\underline{\hat{b}}) = \underline{\hat{c}}_2$ and $\hat{c}_2(\bar{\hat{b}}) = \bar{\hat{b}}$ for network operator 2.
+
 Note that, since $n=2$, $k(\underline{\hat{b}})=2$ by Definition~\ref{def:lower_bound_bids_indirect}. Hence, by~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, $\underline{\hat{c}}_2\leq \hat{c}(\underline{\hat{b}})$, and since $\underline{\hat{c}}_1 < \underline{\hat{c}}_2$, this reduces the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} to $\hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i$ for all $i\in\{1,2\}$.
 
 Integrating the system~\eqref{eq:foc_restricted_indirect} bounded by the aforementioned boundary conditions results in the derivation of the equilibrium inverse bidding strategy functions. The derivation procedure is fully described in Kaplan and Zamir~\cite{KaplanZamir2007}; hence, we only provide the final result.
@@ -344,13 +341,13 @@ and
   \hat{b}_2(\hat{c}_2) = \hat{b}_2 \quad\textrm{for all } \hat{c}_2\in[\underline{\hat{c}}_2, \bar{\hat{c}}_2]
 \end{equation}
 the resultant equilibrium bidding strategy functions. The problem can be transformed back into the original domain by substituting Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect} into Equations~\eqref{eq:equi_bidding_str_1_indirect}~and~\eqref{eq:equi_bidding_str_2_indirect}; that is,
-\begin{equation*}
+\begin{equation}
   \hat{b}_1(\hat{c}_1) = \hat{b}_1 \iff b_1 = \displaystyle\frac{\hat{b}_1(wc_1 + (1-w)r_1) - (1-w)r_1}{w}
-\end{equation*}
+\end{equation}
 for all $c_1\in[0,1]$, and
-\begin{equation*}
+\begin{equation}
   \hat{b}_2(\hat{c}_2) = \hat{b}_2 \iff b_2 = \displaystyle\frac{\hat{b}_2(wc_2 + (1-w)r_2) - (1-w)r_2}{w}
-\end{equation*}
+\end{equation}
 for all $c_2\in[0,1]$.
 Keeping costs and reputation ratings fixed, one can then estimate the equilibrium bidding strategy functions with respect to the price weights by sliding the value of $w\in(0,1)$.
 
@@ -429,24 +426,24 @@ However, both scenarios (the one considered in the literature and the one at han
 In this section, we shall consider two numerical algorithms which overcome the aforementioned problem: the forward shooting method (FSM), and the polynomial projection method (PPM), both of which were first proposed by Bajari~\cite{Bajari2001a}. We focus on the FSM and PPM methods since they are the simplest out of all of the available algorithms described in Hubbard and Parsch~\cite{HubbardPaarsch2011}, and hence, they pose the least technical difficulties when adapting to the problem at hand, and yet yield numerical results of acceptable quality to permit conlusions to be drawn. To this end, let costs, $c_i$, be drawn from a uniform distribution for all network operators as in Section~\ref{sec:restricted_case_n_2_indirect}. Again, this implies that the distribution of costs-hats, $\hat{c}_i$, is uniform with supports $[\underline{\hat{c}}_i, \bar{\hat{c}}_i] = [(1-w)r_i, (1-w)r_i + w]$ for all $i\in N$. We shall concentrate only on cases in which $J=N$; that is, $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. In particular, we require $w\in\left(0.5, 1\right)$ which immediately implies $\underline{\hat{c}}_i < \bar{\hat{b}}$ for all $i\in N$. To see this, without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. Since $\bar{\hat{b}}\in[\bar{\hat{c}}_1, \bar{\hat{c}}_2]$ by Definition~\ref{def:upper_bound_bids_indirect}, and in particular, if $\underline{\hat{c}}_n < \bar{\hat{c}}_1$, then $\underline{\hat{c}}_n < \bar{\hat{b}}$. Thus, we require $\underline{\hat{c}}_n = (1-w)r_n < (1-w)r_1 + w = \bar{\hat{c}}_1$. This is equivalent to $1 - \frac{1}{1+r_n-r_1} < w$. Since $(r_n - r_1)\in (0, 1]$, then $1 - \frac{1}{1+r_n-r_1} \in (0,0.5]$. Therefore, if $0.5 < w$, then $1 - \frac{1}{1+r_n-r_1} < w$ for all $(r_n-r_1)\in (0,1]$.
 
 Furthermore, note that assumption 3 in Assumptions~\ref{ass:assumptions_generic_indirect} is satisfied even if there exists two or more network operators characterised by the lowest reputation rating. To see this, let, without loss of generality, network operators 1 and 2 be characterised by the lowest reputation rating. Then, $\bar{\hat{c}}_1 = \bar{\hat{c}}_2$. Recall that $\bar{\hat{b}}\in [\bar{\hat{c}}_1, \bar{\hat{c}}_2]$ by Definition~\ref{def:upper_bound_bids_indirect}. Thus, $\bar{\hat{b}} = \bar{\hat{c}}_1$. For assumption 3 in Assumptions~\ref{ass:assumptions_generic_indirect} not to hold, we require $\bar{\hat{b}} = \bar{\hat{c}}_1 \leq \underline{\hat{c}}_i$ for any $i\in N$ and any $\delta>0$. But this means network operator $i$ is not a feasible bidder; that is, $i\not\in J$ by Definition~\ref{def:feasible_bidders_indirect}. A contradiction since we assumed $J = N$. Now, let $\delta = \bar{\hat{b}} - \underline{\hat{c}}_n > 0$ where $n = |N|$; that is, $r_1\leq r_n$. Then, we obtain
-\begin{equation*}
+\begin{equation}
 (\bar{\hat{b}}-\delta, \bar{\hat{b}})\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i) = (\underline{\hat{c}}_n, \bar{\hat{b}})\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i) = (\underline{\hat{c}}_n, \bar{\hat{b}})
-\end{equation*}
+\end{equation}
 for all $i\in N$. The resulting set is convex, and since $(\underline{\hat{c}}_n, \bar{\hat{b}})\subset [\underline{\hat{c}}_i, \bar{\hat{c}}_i]$ for all $i\in N$, this implies that $F_i$ is strictly log-concave over $(\bar{\hat{b}}-\delta, \bar{\hat{b}})\cap (\underline{\hat{c}}_i, \bar{\hat{c}}_i)$ for all $i\in N$.
 
 Finally, we shall concentrate on cases such that
-\begin{equation*}
+\begin{equation}
   \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\textrm{for all } i\in N.
-\end{equation*}
+\end{equation}
 This requirement simplifies the problem so that it is numerically tractable using (slightly modified) existing numerical methods. More specifically, it reduces the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} to
 \begin{equation}
   \label{eq:foc_ode_lower_boundary_reduced_indirect}
   \hat{c}_i(\underline{\hat{b}}) = \underline{\hat{c}}_i \quad\textrm{for all } i\in N.
 \end{equation}
 Without this assumption, as explained by Lebrun~\cite{Lebrun2006}, there might exist $i$ such that
-\begin{equation*}
+\begin{equation}
   \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}
-\end{equation*}
+\end{equation}
 which forces the bid function $\hat{b}_i$ to be extended to the interval $[\hat{c}(\underline{\hat{b}}), \bar{\hat{b}}]$, which is strictly larger than the actual support, truncated at $\bar{\hat{b}}$, $[\underline{\hat{c}}_i, \bar{\hat{b}}]$ of network operator $i$'s cost. This result is somewhat confusing since even though $F_i(\hat{c}_i) = 0$ for all $\hat{c}_i\in [\hat{c}(\underline{\hat{b}}), \underline{\hat{c}}_i]$, $\hat{b}_i(\hat{c}_i)$ is still network operator $i$'s best response for all $\hat{c}_i\in [\hat{c}(\underline{\hat{b}}), \underline{\hat{c}}_i]$. The main difficulty when considering such cases stems from the fact that for all $i\in I$, where $I = \left\{i\in N \:\middle\vert\: \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}} \right\}$, the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} reduces to
 \begin{equation}
   \label{eq:foc_reduced_indirect}
@@ -458,27 +455,27 @@ As further explained by Lebrun~\cite{Lebrun2006}, the (inverse) equilibrium bidd
   \frac{d}{db}\hat{c}_j(b) = \frac{1 - F_j(\hat{c}_j(b))}{f_j(\hat{c}_j(b))} \left[ \frac{1}{k(\underline{\hat{b}}) - 1}\sum_{\substack{k\in N\\ k\not\in I}}\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_j(b)}\right]
 \end{equation}
 for network operators $j\in N, j\not\in I$, and by the system in Equation~\eqref{eq:foc_reduced_indirect} for network operators $i\in I$. Both systems are combined for all $b > \underline{\hat{b}}$ until the common function $\hat{c}_i$, $i\in I$, takes as its value the smallest lower extremity strictly smaller than $\hat{c}(\underline{\hat{b}})$. At the bid where this next smallest lower extremity is reached, the functions $\hat{c}_i$ of the network operators with this lower extremity of their supports are added to the system in Equation~\eqref{eq:foc_ode_reduced_indirect}. This process is repeated until $\hat{c}_i$ for all $i\in N$ are included in~\eqref{eq:foc_ode_reduced_indirect}. This procedure is not easily accommodated by any of the numerical methods described in the literature; hence, the assumption
-\begin{equation*}
+\begin{equation}
   \underline{\hat{c}}_i \leq \hat{c}(\underline{\hat{b}}) \quad\textrm{for all } i\in N.
-\end{equation*}
+\end{equation}
 Note, however, that this assumption cannot be enforced \emph{a priori} since $\underline{\hat{b}}$ is unknown. We can maximise the (approximate) probability of enforcing this condition by reasoning as follows. Without loss of generality, suppose $r_1\leq\cdots\leq r_n$ with at least one inequality strict. If $k(\underline{\hat{b}})=n$, then, by Definition~\ref{def:lower_bound_bids_indirect}, $\underline{\hat{c}}_n\leq \hat{c}(\underline{\hat{b}})$ and $\underline{\hat{c}}_n < \underline{\hat{b}}$. Furthermore, since $\underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}})$, then as the distance $(\underline{\hat{c}}_n-\underline{\hat{c}}_2)\to 0$, $k(\underline{\hat{b}})\to n$. Thus, the probability that $\underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}})$ (assuming $\underline{\hat{b}}$ is distributed uniformly over $(\underline{\hat{c}}_2, \bar{\hat{b}})$) can be quantified as follows
-\begin{equation*}
+\begin{equation}
   P\left\{ \underline{\hat{b}}\in (\underline{\hat{c}}_n, \bar{\hat{b}}) \right\} = 1 - P\left\{\underline{\hat{b}}\in(\underline{\hat{c}}_2, \underline{\hat{c}}_n)\right\} = 1 - \frac{\underline{\hat{c}}_n - \underline{\hat{c}}_2}{\bar{\hat{b}}-\underline{\hat{c}}_2} = \frac{\bar{\hat{b}} - \underline{\hat{c}}_n}{\bar{\hat{b}} - \underline{\hat{c}}_2}.
-\end{equation*}
+\end{equation}
 In particular, for the probability of at least $0.9$, we require
-\begin{equation*}
+\begin{equation}
   \frac{\bar{\hat{b}} - \underline{\hat{c}}_n}{\bar{\hat{b}} - \underline{\hat{c}}_2} \geq 0.9 \iff \bar{\hat{b}}\geq 10\underline{\hat{c}}_n - 9\underline{\hat{c}}_2.
-\end{equation*}
+\end{equation}
 Since $\bar{\hat{c}}_1\leq \bar{\hat{b}}$ by Definition~\ref{def:upper_bound_bids_indirect}, we may write
-\begin{equation*}
+\begin{equation}
   \bar{\hat{c}}_1 \geq 10\underline{\hat{c}}_n - 9\underline{\hat{c}}_2 \iff w \geq 1 - \frac{1}{10r_n - 9r_2 - r_1 + 1}.
-\end{equation*}
+\end{equation}
 Note that, since we assumed $r_1\leq\cdots\leq r_n$ with at least one inequality strict, the denominator is always strictly greater than $1$ ($10r_n - 9r_2-r_1+1 > 1$), hence guaranteeing the right-hand side of the inequality to be smaller than $1$.
 
 To conclude, in the rest of this section, we shall concentrate on cases such that
-\begin{equation*}
+\begin{equation}
   w \in (0.5, 1) \quad\textrm{and}\quad w \geq 1 - \frac{1}{10r_n - 9r_2 - r_1 + 1}
-\end{equation*}
+\end{equation}
 for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
 In what follows, we firstly outline the inner workings of the FSM and PPM methods, and then present the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using both algorithms. Lastly, a possible improvement to PPM using Chebyshev polynomials is discussed.
@@ -496,7 +493,7 @@ The idea behind the FSM is to find the best approximation of the lower bound on 
   \end{array}
 \end{equation}
 for all $i\in N$, lies within a set of permissible functions, $S_i$, such that every element of that set is a function mapping $[\underline{\hat{b}}', \bar{\hat{b}}]$ into $[\underline{\hat{c}}_i, \bar{\hat{c}}_i]$, it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, and each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$; that is,
-\begin{equation*}
+\begin{equation}
   S_i=\left\{s_i \:\middle\vert\:
   \begin{array}{l}
     s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\underline{\hat{c}}_i, \bar{\hat{c}}_i],\\
@@ -504,7 +501,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
     s_i(b) < b \textrm{ for all }b\in [\underline{\hat{b}}', \bar{\hat{b}})
   \end{array}
   \right\}.
-\end{equation*}
+\end{equation}
 This specification of the problem is a modified version of the First Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.3 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of bidders' costs.
 
 \begin{algorithm}
@@ -540,24 +537,24 @@ The initial guess supplied to the algorithm is the interval $[\underline{\hat{c}
 In each step, the system of ODEs in~\eqref{eq:fsm_initial_value_problem_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GNU Scientific Library (GSL) implementation of the Embedded Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
 Furthermore, in the implementation of the FSM, we assumed that
-\begin{equation*}
+\begin{equation}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\textrm{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
-\end{equation*}
+\end{equation}
 for all $i\in N$ and $x\in\mathbb{R}$. This assumption reduces the original initial value problem in~\eqref{eq:fsm_initial_value_problem_indirect} to
-\begin{equation*}
+\begin{equation}
   \begin{array}{ll}
     \displaystyle\frac{d}{db}\hat{c}_i(b) &= \displaystyle\left[ \bar{\hat{c}}_i - \hat{c}_i(b)\right]\cdot\left[ \frac{1}{n-1}\sum_{k=1}^n\frac{1}{b - \hat{c}_k(b)} - \frac{1}{b - \hat{c}_i(b)} \right], \\[2ex]
     \hat{c}_i(\underline{\hat{b}}') &= \underline{\hat{c}}_i,
   \end{array}
-\end{equation*}
+\end{equation}
 and it is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. Situations like this may arise due to the nature of finite-difference methods, and the fact that the system of ODEs features a fraction
-\begin{equation*}
+\begin{equation}
   \frac{1 - F_i(x)}{f_i(x)}
-\end{equation*}
+\end{equation}
 which is undefined for all $x\in\mathbb{R}$ such that $x < \underline{\hat{c}}_i$ and $x > \bar{\hat{c}}_i$ (since $f_i(x) = 0$ for all $x < \underline{\hat{c}}_i$ and $x > \bar{\hat{c}}_i$). On the other hand, by enforcing this assumption, we implicitly assume that the algorithm always operates in the feasible region; that is,
-\begin{equation*}
+\begin{equation}
   \hat{c}_i(b)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i] \quad\textrm{for all } i\in N \textrm{ and } b\in\left[\underline{\hat{b}}', \bar{\hat{b}}\right].
-\end{equation*}
+\end{equation}
 This, of course, cannot be guaranteed for all choices of $\underline{\hat{b}}'$ made by the algorithm, and therefore, it might skew the final result away from the actual value of the lower bound on bids, $\underline{\hat{b}}$.
 % subsection forward_shooting_method_indirect (end)
 
@@ -576,18 +573,18 @@ where $K\in\mathbb{N}_+$ and $K\geq 2$, and $\alpha_i = (\alpha_{i,1},\dotsc,\al
   H(\underline{\hat{b}}, \alpha_1,\dotsc,\alpha_n) = \sum_{i\in N}\sum_{b\in B}G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n)^2 + |B|\cdot\sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2,
 \end{equation}
 where $B=\{\underline{\hat{b}},\dotsc,\bar{\hat{b}}\}$ is a (finite) grid of points uniformly spaced between $\underline{\hat{b}}$ and $\bar{\hat{b}}$, $|B| < \infty$ denotes the cardinality of $B$, and $G_i$ captures network operator $i$'s first-order condition for profit maximisation, and is defined as follows
-\begin{align*}
-  &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\
+\begin{align}
+  &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\\nonumber
   &- \displaystyle\frac{1 - F_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}{f_i(\hat{c}_i(b;\underline{\hat{b}}, \alpha_i))}\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right].
-\end{align*}
+\end{align}
 Note that $G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n) = 0$ corresponds to the ODE in Equation~\eqref{eq:foc_ode_indirect} for each network operator $i\in N$. Furthermore, note that the objective function, $H$, incorporates only the upper boundary condition~\eqref{eq:foc_ode_upper_boundary_indirect}; that is,
-\begin{equation*}
+\begin{equation}
   \sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2.
-\end{equation*}
+\end{equation}
 The lower boundary condition~\eqref{eq:foc_ode_lower_boundary_indirect} is omitted since it is always satisfied through the definition of the inverse equilibrium bidding function in Equation~\eqref{eq:polynomial_cost_function_indirect}. To see this, recall that the lower boundary condition implies
-\begin{equation*}
+\begin{equation}
   \underline{\hat{c}}_i - \hat{c}_i(\underline{\hat{b}}; \underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i - \underline{\hat{c}}_i -\sum_{k=1}^K \alpha_{i,k} (\underline{\hat{b}} - \underline{\hat{b}})^2 = 0
-\end{equation*}
+\end{equation}
 for all $i\in N$. Therefore, it is unnecessary to include the lower boundary condition in the objective function, as it is always equal to $0$.
 
 This specification of the problem is a modified version of the Third Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.5 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of network operators' costs.
@@ -623,18 +620,18 @@ The pseudo-code for the PPM is shown in listing Algorithm~\ref{alg:polynomial_pr
 In each step of the algorithm, the nonlinear optimisation problem in \eqref{eq:least_squares_objective_function_indirect} can be solved numerically using any nonlinear optimisation technique, such as Nelder-Mead or Broyden-Fletcher-Goldfarb-Shanno methods. The results presented in this section were obtained using the GSL implementation of the Nelder-Mead method~\cite{GSL}. A brief overview of the most basic form of the Nelder-Mead simplex method can be found for example in~\cite{AvrielPenalty2003}.
 
 Furthermore, in the implementation of the PPM, we made the same simplification as in the implementation of the forward shooting method; that is,
-\begin{equation*}
+\begin{equation}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\textrm{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
-\end{equation*}
+\end{equation}
 for all $i\in N$ and $x\in\mathbb{R}$. This assumption reduces the definition of $G_i$ to
-\begin{align*}
-  &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\
+\begin{align}
+  &G_i(b; \underline{\hat{b}}, \alpha_1, \dotsc, \alpha_n) = \displaystyle\frac{d}{db}\hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\\\nonumber
   &- \displaystyle\left[ \bar{\hat{c}}_i - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\right]\cdot\left[ \frac{1}{n-1}\sum_{j=1}^n\frac{1}{b - \hat{c}_j(b;\underline{\hat{b}}, \alpha_j)} - \frac{1}{b - \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)} \right],
-\end{align*}
+\end{align}
 and it is there mainly to avoid possible divisions by zero which are not handled properly by the GSL library. It is important to realise, however, that by enforcing this assumption, we implicitly assume that the algorithm always operates in the feasible region; that is,
-\begin{equation*}
+\begin{equation}
   \underline{\hat{b}}\in (\underline{\hat{c}}_2, \bar{\hat{b}}) \quad\textrm{and}\quad \hat{c}_i(b;\underline{\hat{b}}, \alpha_i)\in [\underline{\hat{c}}_i, \bar{\hat{c}}_i]
-\end{equation*}
+\end{equation}
 for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$, $\alpha_i\in\mathbb{R}^K$, and $i\in N$. This, of course, cannot be guaranteed since we treat the minimisation problem in~\eqref{eq:least_squares_objective_function_indirect} as an unconstrained optimisation problem, and therefore, there exists a possibility that the algorithm will reach a minimum that is outside of the feasible range of values. At the same time, note that certain precautionary measures may be employed as to reduce the probability of such an event; for example, the unconstrained optimisation problem can be translated into a constrained optimisation problem using a penalty function approach as described in~\cite{AvrielPenalty2003}. Alternatively, a constrained optimisation technique, such as the Constrained Optimization BY Linear Approximation (COBYLA) method~\cite{Powell1994}, could be used in place of the Nelder-Mead method.
 % subsection polynomial_projection_method_indirect (end)
 
@@ -751,11 +748,11 @@ In the second examined scenario, there are 4 network operators characterized by 
 The PPM method could potentially be improved in the sense that it would yield more accurate results if Chebyshev polynomials were employed in place of regular polynomials. Chebyshev polynomials are better suited to least squares optimisation upon which the PPM method is based~\cite{MasonApproximation2003,Hubbard2011}.
 
 In order to facilitate the improvement, the inverse equilibrium bidding function in Equation~\eqref{eq:polynomial_cost_function_indirect} can be approximated using Chebyshev polynomials as follows
-\begin{equation*}
+\begin{equation}
   \displaystyle\hat{c}_i(b;\underline{\hat{b}},\alpha_i) = \sum_{k=0}^K \alpha_{i,k} T_k\left(x(b;\underline{\hat{b}})\right)
-\end{equation*}
+\end{equation}
 for all $i\in N$. Here, $T_k$ denotes $k^{\textrm{th}}$ Chebyshev polynomial of the first kind defined recursively by
-\begin{equation*}
+\begin{equation}
   \left\{
     \begin{array}{l}
       T_0(x) = 1\\
@@ -763,15 +760,15 @@ for all $i\in N$. Here, $T_k$ denotes $k^{\textrm{th}}$ Chebyshev polynomial of 
       T_{k+1}(x) = 2xT_k(x) - T_{k-1}(x), \qquad k=1,\ldots,K-1
     \end{array}
   \right.
-\end{equation*}
+\end{equation}
 and $x(b;\underline{\hat{b}})\in [-1,1]$ for all $b\in [\underline{\hat{b}}, \bar{\hat{b}}]$. The grid of points, $x(b;\underline{\hat{b}})$, should be chosen such that
-\begin{equation*}
+\begin{equation}
   \displaystyle x(b_t;\bar{\hat{b}}) = x_t = cos\left(\frac{2t-1}{2T}\pi\right),
-\end{equation*}
+\end{equation}
 and
-\begin{equation*}
+\begin{equation}
   b_t = \frac{\bar{\hat{b}} + \underline{\hat{b}} + (\bar{\hat{b}} - \underline{\hat{b}})x_t}{2}, \qquad t = 1,\ldots,T.
-\end{equation*}
+\end{equation}
 Generated in this way, the grid of points, more commonly known as Chebyshev nodes, is said to minimise the interpolation error when approximating a function~\cite{Hubbard2011}.
 
 The cost functions defined this way should potentially yield more accurate as well as stable numerically results, especially if the Mathematical Programming with Equilibrium Constraints (MPEC) optimisation approach is employed~\cite{HubbardPaarsch2011,Hubbard2011}.
@@ -799,7 +796,7 @@ The EFSM method extends the FSM method by effectively implementing the reasoning
   \end{array}
 \end{equation}
 for all $i\in N$, lies within a set of permissible functions, $S_i$, such that every element of that set is a function mapping $[\underline{\hat{b}}',\bar{\hat{b}}]$ into $[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i]$, it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, and each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$; that is,
-\begin{equation*}
+\begin{equation}
   S_i=\left\{s_i \:\middle\vert\:
   \begin{array}{l}
     s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i],\\
@@ -807,7 +804,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
     s_i(b) < b \textrm{ for all }b\in [\underline{\hat{b}}', \bar{\hat{b}})
   \end{array}
   \right\}.
-\end{equation*}
+\end{equation}
 
 \begin{algorithm}
 \caption{Extended forward shooting method}
@@ -869,9 +866,9 @@ Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-co
 \end{figure}
 
 In order to describe the customised finite-differences method, suppose there are $n=4$ network operators. The following argument can easily be adapted to the case of $n=3$ or $n>4$ network operators. Furthermore, suppose that
-\begin{equation*}
+\begin{equation}
   \underline{\hat{c}}_1 < \underline{\hat{c}}_2 < \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_3 < \underline{\hat{c}}_4.
-\end{equation*}
+\end{equation}
 The method comprises three stages as depicted in Figure~\ref{fig:lebrun_solution_indirect}.
 
 \begin{description}
@@ -900,9 +897,9 @@ Note that the solution to~\eqref{eq:efsm_lebrun_ext_1_indirect} depends only on 
 In each stage, the system of ODEs in Equation~\eqref{eq:efsm_lebrun_ode_1_indirect} can be solved numerically using any type of finite-difference methods, such as Euler or Runge-Kutta methods. The results presented in this section were obtained using the GSL implementation of the Embedded-Runge-Kutta-Fehlberg (4, 5) method~\cite{GSL}.
 
 Furthermore, similarly to the implementation of the FSM and PPM methods, in the implementation of EFSM, we assumed that
-\begin{equation*}
+\begin{equation}
   F_i(x) = \frac{x - \underline{\hat{c}}_i}{\bar{\hat{c}}_i - \underline{\hat{c}}_i} \quad\textrm{and}\quad f_i(x) = \frac{1}{\bar{\hat{c}}_i - \underline{\hat{c}}_i}
-\end{equation*}
+\end{equation}
 for all $i\in N$ and $x\in\mathbb{R}$. The discussion of the consequences arising from this simplifying assumption can be found in Section~\ref{sub:forward_shooting_method_indirect}.
 
 % subsection extended_forward_shooting_method_indirect (end)
@@ -982,42 +979,42 @@ Finally, for the case of $n\geq 2$ network operators, we proposed three numerica
 \label{sec:proofs_indirect}
 \begin{proof}[Proof of Proposition~\ref{prop:equivalence_of_utilities_indirect}]
 Let
-\begin{equation*}
+\begin{equation}
   \displaystyle\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = \hat{u}_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
-\end{equation*}
+\end{equation}
 and
-\begin{equation*}
+\begin{equation}
   \displaystyle\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i},\hat{c}_{-i}) = u_i(\hat{b}_i, \hat{c}_i, \hat{b}_{-i}, \hat{c}_{-i})P\{\textrm{winning}\:|\:\hat{b}_i\}
-\end{equation*}
+\end{equation}
 be the expected utilities corresponding to utility functions $\hat{u}_i$ and $u_i$ respectively. By definition of the pure-strategy Bayesian Nash equilibrium~\cite{Gibbons92}, for all $i$ and $\hat{c}_i$,
-\begin{equation*}
+\begin{equation}
   \hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
-\end{equation*}
+\end{equation}
 for all $\hat{b}_i$. Since $w\in(0,1)$, we may multiply both sides of the inequality by $\frac{1}{w} > 0$, which yields, for all $i$ and $\hat{c}_i$
-\begin{align*}
-  &\frac{1}{w}\hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \frac{1}{w}\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i}) \\
-  \iff &\frac{1}{w}\hat{u}_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq \frac{1}{w}\hat{u}_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\
-  \iff &u_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq u_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\
+\begin{align}
+  &\frac{1}{w}\hat\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \frac{1}{w}\hat\Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i}) \\\nonumber
+  \iff &\frac{1}{w}\hat{u}_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq \frac{1}{w}\hat{u}_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
+  \iff &u_i(\hat{b}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i^*\}\geq u_i(\hat{b}_i, \hat{b}_{-i}^*, \hat{c})P\{\textrm{winning}\:|\:\hat{b}_i\} \\\nonumber
   \iff &\Pi_i(\hat{b}_i^*,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})\geq \Pi_i(\hat{b}_i,\hat{c}_i,\hat{b}_{-i}^*,\hat{c}_{-i})
-\end{align*}
+\end{align}
 for all $\hat{b}_i$. Hence, we have just shown that $(\hat{b}_1^*,\ldots,\hat{b}_n^*)$ constitutes a pure-strategy Bayesian Nash equilibrium of the auction with utility function $u_i$.
 \end{proof}
 \begin{proof}[Proof of Proposition~\ref{prop:regularity_conditions_indirect}]
 Proof of 1) is trivial. To prove 2) and 3), we note that for all $x\in [(1-w)r_i, (1-w)r_i + w]$,
-\begin{align*}
+\begin{align}
   F_i(x)
-  &= P\{\hat{C}_i\le x\} \\
-  &= P\{wC + (1-w)r_i\le x\} \\
+  &= P\{\hat{C}_i\le x\} \\\nonumber
+  &= P\{wC + (1-w)r_i\le x\} \\\nonumber
   &= P\left\{ C\le \frac{x - (1-w)r_i}{w} \right\}
-\end{align*}
+\end{align}
 since $\hat{c}_i = wc_i + (1-w)r_i$ and $w\neq 0$. Hence,
-\begin{equation*}
+\begin{equation}
   F_i(x) = F_C\left( \frac{x - (1-w)r_i}{w} \right)
-\end{equation*}
+\end{equation}
 and
-\begin{equation*}
+\begin{equation}
   \frac{x - (1-w)r_i}{w}\in [0,1]
-\end{equation*}
+\end{equation}
 for all $x\in [(1-w)r_i, (1-w)r_i + w]$. Therefore, since $F_C$ is differentiable over $(0,1]$ with a derivative $f_C$ locally bounded away from zero over this interval, by extension, $F_i$ is differentiable over $((1-w)r_i, (1-w)r_i + w]$ with a derivative $f_i$ locally bounded away from zero over this interval, and this proves 2). Moreover, since $F_C$ is absolutely-continuous, it is atomless (see \cite{Atomless,Feller1970} for definition of atomless probability distribution), and by extension, $F_i$ is atomless, which proves 3).
 \end{proof}
 
