@@ -196,7 +196,7 @@ The problem is considerably simplified by restricting the number of network oper
 
 \section{Restricted Case $n=2$} % (fold)
 \label{sec:direct_restricted_case_n_2_direct}
-In this section, the discussion will be restricted to only two network operators. Since the problem in its generic form proved analytically intractable to be solved analytically, this section will explore whether in a much simplified scenario it is possible to find a closed-form solution. To this end, let $n=2$. The utility function for each network operator $i\in N$ thus becomes
+In this section, the discussion will be restricted to only two network operators. Since the problem in its generic form proved analytically intractable to be solved analytically, this section will explore whether in a much simplified scenario it is possible to find a closed-form solution. To this end, let $n=2$. The utility function for each network operator $i\in \{1, 2\}$ thus becomes
 \begin{equation}
 	\label{eq:utility_n_2_direct}
 	u_i(b,c,r) = \left\{
@@ -218,26 +218,26 @@ Here, it is assumed that information is complete; i.e., that each network operat
 	\vspace{0.5cm}
 	\begin{subfigure}[b]{0.5\textwidth}
 	  \includegraphics[width=2.8in]{Direct/Figures/complete_N_2_c1}
-	  \caption{$c_i < c_j$}
+	  \caption{$c_1 < c_2$}
 	  \label{fig:complete_N_2_c1_direct}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.5\textwidth}
 	  \includegraphics[width=2.8in]{Direct/Figures/complete_N_2_c2}
-	  \caption{$c_i = c_j$}
+	  \caption{$c_1 = c_2$}
 	  \label{fig:complete_N_2_c2_direct}
 	\end{subfigure}
 	\vspace{0.5cm}\\
 	\begin{subfigure}[b]{0.5\textwidth}
 	  \includegraphics[width=2.8in]{Direct/Figures/complete_N_2_c3_1}
-	  \caption{$c_i > c_j$ and $\beta(c_i,r_i) < \beta(c_j,r_j)$}
+	  \caption{$c_1 > c_2$ and $\beta(c_1,r_1) < \beta(c_2,r_2)$}
 	  \label{fig:complete_N_2_c3_1_direct}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.5\textwidth}
 	  \includegraphics[width=2.8in]{Direct/Figures/complete_N_2_c3_2}
-	  \caption{$c_i > c_j$ and $\beta(c_i,r_i) \ge \beta(c_j,r_j)$}
+	  \caption{$c_1 > c_2$ and $\beta(c_1,r_1) \ge \beta(c_2,r_2)$}
 	  \label{fig:complete_N_2_c3_2_direct}
 	\end{subfigure}
-	\caption{Different bidding scenarios for $r_i < r_j$}
+	\caption{Different bidding scenarios for $r_1 < r_2$}
 	\label{fig:complete_N_2_1_direct}
 \end{figure}
 
@@ -245,100 +245,103 @@ Here, it is assumed that information is complete; i.e., that each network operat
 	\vspace{0.5cm}
 	\begin{subfigure}[b]{0.5\textwidth}
 		\includegraphics[width=2.8in]{Direct/Figures/complete_N_2_c4}	  
-	  \caption{$c_i<c_j$}
+	  \caption{$c_1<c_2$}
 	  \label{fig:complete_N_2_c4_direct}
 	\end{subfigure}
 	\vspace{0.5cm}\\
 	\begin{subfigure}[b]{0.5\textwidth}
 	  \includegraphics[width=2.8in]{Direct/Figures/complete_N_2_c5}
-	  \caption{$c_i=c_j$}
+	  \caption{$c_1=c_2$}
 	  \label{fig:complete_N_2_c5_direct}
 	\end{subfigure}
 	\vspace{0.5cm}\\
 	\begin{subfigure}[b]{0.5\textwidth}
 	  \includegraphics[width=2.8in]{Direct/Figures/complete_N_2_c6}
-	  \caption{$c_i > c_j$}
+	  \caption{$c_1 > c_2$}
 	  \label{fig:complete_N_2_c6_direct}
 	\end{subfigure}
-	\caption{Different bidding scenarios for $r_i = r_j$}
+	\caption{Different bidding scenarios for $r_1 = r_2$}
 	\label{fig:complete_N_2_2_direct}
 \end{figure}
 
-Figure~\ref{fig:complete_N_2_1_direct} shows the first 4 cases for which $r_i < r_j$. (Note that exactly the same reasoning applies to the situation when $r_i > r_j$.) If $c_i < c_j$, network operator $i$ is guaranteed a victory and a positive profit as long as they bid within the highlighted part of the $\beta(b,r)$ curve depicted in Figure~\ref{fig:complete_N_2_c1_direct}. Thus, their optimal bidding strategy would be to bid slightly less than their opponent's compound bid evaluated at their opponent's cost, $\beta(c_j,r_j)$; that is, $b_i = c_j + \frac{1-w}{w}(r_j-r_i) - \epsilon$ where $\epsilon>0$ is very small. Network operator $j$, on the other hand, should find it optimal to bid $b_j = c_j$. To see why, suppose network operator $j$ bids $\hat{b}_j>c_j$. Since network operator $i$'s reputation rating and cost are strictly lower than those of network operator $j$'s, they can undercut the network operator $j$'s bid by a small amount so that $\hat{b}_i < \hat{b}_j$ and still make positive profit. But, in response, network operator $j$ will find it optimal to lower their bid so that it undercuts that of network operator $i$'s; that is, $\hat{b}_j < \hat{b}_i$. This process will continue until one of the network operators is forced to bid their cost. Since network operator $i$'s reputation rating and cost are strictly lower than those of network operator $j$'s, it can be concluded that $b_j = c_j$ and $b_i = c_j + \frac{1-w}{w}(r_j-r_i) - \epsilon$ where $\epsilon>0$ is very small.
+Figure~\ref{fig:complete_N_2_1_direct} shows the first 4 cases for which $r_1 < r_2$. (Note that exactly the same reasoning applies to the situation when $r_1 > r_2$.) If $c_1 < c_2$, network operator 1 is guaranteed a victory and a positive profit as long as they bid within the highlighted part of the $\beta(b,r)$ curve depicted in Figure~\ref{fig:complete_N_2_c1_direct}. Thus, their optimal bidding strategy would be to bid slightly less than their opponent's compound bid evaluated at their opponent's cost, $\beta(c_2,r_2)$; that is, $b_1 = c_2 + \frac{1-w}{w}(r_2-r_1) - \epsilon$ where $\epsilon>0$ is very small. Network operator 2, on the other hand, should find it optimal to bid $b_2 = c_2$. To see why, suppose network operator 2 bids $\hat{b}_2>c_2$. Since network operator 1's reputation rating and cost are strictly lower than those of network operator 2's, they can undercut the network operator 2's bid by a small amount so that $\hat{b}_1 < \hat{b}_2$ and still make positive profit. But, in response, network operator 2 will find it optimal to lower their bid so that it undercuts that of network operator 1's; that is, $\hat{b}_2 < \hat{b}_1$. This process will continue until one of the network operators is forced to bid their cost. Since network operator 1's reputation rating and cost are strictly lower than those of network operator 2's, it can be concluded that $b_2 = c_2$ and $b_1 = c_2 + \frac{1-w}{w}(r_2-r_1) - \epsilon$ where $\epsilon>0$ is very small.
 
-If $c_i = c_j$, arguing in the similar manner as previously, network operator $i$'s optimal bidding strategy would be to bid $b_i = c_j + \frac{1-w}{w}(r_j-r_i) - \epsilon$ where $\epsilon>0$ is very small; while network operator $j$ should bid $b_j = c_j$ (see Figure~\ref{fig:complete_N_2_c2_direct}).
+If $c_1 = c_2$, arguing in the similar manner as previously, network operator 1's optimal bidding strategy would be to bid $b_1 = c_2 + \frac{1-w}{w}(r_2-r_1) - \epsilon$ where $\epsilon>0$ is very small; while network operator 2 should bid $b_2 = c_2$ (see Figure~\ref{fig:complete_N_2_c2_direct}).
 
-If $c_i > c_j$, there are two cases to consider. If $\beta(c_i,r_i)<\beta(c_j,r_j)$, then network operator $i$ still has some room for manoeuvre, and should find it optimal to bid $b_i = c_j + \frac{1-w}{w}(r_j-r_i) - \epsilon$ where $\epsilon>0$ is very small; while network operator $j$ to bid $b_j=c_j$ (see Figure~\ref{fig:complete_N_2_c3_1_direct}). If $\beta(c_i,r_i)\ge \beta(c_j,r_j)$, on the other hand, the roles are reversed, and network operator $j$ should find it optimal to bid $b_j = c_i + \frac{1-w}{w}(r_i-r_j) - \epsilon$ where $\epsilon>0$ is very small; while network operator $i$ to bid $b_i = c_i$ (see Figure~\ref{fig:complete_N_2_c3_2_direct}).
+If $c_1 > c_2$, there are two cases to consider. If $\beta(c_1,r_1)<\beta(c_2,r_2)$, then network operator 1 still has some room for manoeuvre, and should find it optimal to bid $b_1 = c_2 + \frac{1-w}{w}(r_2-r_1) - \epsilon$ where $\epsilon>0$ is very small; while network operator 2 to bid $b_2=c_2$ (see Figure~\ref{fig:complete_N_2_c3_1_direct}). If $\beta(c_1,r_1)\ge \beta(c_2,r_2)$, on the other hand, the roles are reversed, and network operator 2 should find it optimal to bid $b_2 = c_1 + \frac{1-w}{w}(r_1-r_2) - \epsilon$ where $\epsilon>0$ is very small; while network operator 1 to bid $b_1 = c_1$ (see Figure~\ref{fig:complete_N_2_c3_2_direct}).
 
-Figure~\ref{fig:complete_N_2_2_direct} depicts the remaining 3 cases for which $r_i=r_j$. If $c_i < c_j$, network operator $i$'s optimal bidding strategy would be to bid $b_i = c_j - \epsilon$ where $\epsilon>0$ is very small; while network operator $j$ should bid $b_j = c_j$ (see Figure~\ref{fig:complete_N_2_c4_direct}).
+Figure~\ref{fig:complete_N_2_2_direct} depicts the remaining 3 cases for which $r_1=r_2$. If $c_1 < c_2$, network operator 1's optimal bidding strategy would be to bid $b_1 = c_2 - \epsilon$ where $\epsilon>0$ is very small; while network operator 2 should bid $b_2 = c_2$ (see Figure~\ref{fig:complete_N_2_c4_direct}).
 
-If $c_i = c_j$, both network operators should bid their costs; that is, $b_i = c_i$ and $b_j = c_j$ (see Figure~\ref{fig:complete_N_2_c5_direct}).
+If $c_1 = c_2$, both network operators should bid their costs; that is, $b_1 = c_1$ and $b_2 = c_2$ (see Figure~\ref{fig:complete_N_2_c5_direct}).
 
-If $c_i > c_j$, network operator $j$'s optimal bidding strategy would be to bid $b_j = c_i - \epsilon$ where $\epsilon>0$ is very small; while network operator $i$ should bid $b_i = c_i$ (see Figure~\ref{fig:complete_N_2_c6_direct}).
+If $c_1 > c_2$, network operator 2's optimal bidding strategy would be to bid $b_2 = c_1 - \epsilon$ where $\epsilon>0$ is very small; while network operator 1 should bid $b_1 = c_1$ (see Figure~\ref{fig:complete_N_2_c6_direct}).
 
-It can be concluded that the bidding strategies depend only on costs if $r_i = r_j$. In the remaining cases, they are asymmetric in the sense that the winning network operator is characterised by
+It can be concluded that the bidding strategies depend only on costs if $r_1 = r_2$. In the remaining cases, they are asymmetric in the sense that the winning network operator is characterised by
 \begin{equation}
-	b_i = c_j + \frac{1-w}{w}(r_j - r_i) - \epsilon \quad\text{with }\epsilon>0\text{ being very small},
+	b_1 = c_2 + \frac{1-w}{w}(r_2 - r_1) - \epsilon \quad\text{with }\epsilon>0\text{ being very small},
 \end{equation}
 while the losing network operator by bidding their own cost
 \begin{equation}
-	b_j = c_j.
+	b_2 = c_2.
 \end{equation}
 Hence, when dealing with incomplete information, these results will be exploited by concentrating on equilibrium bidding strategies which are linear functions of cost.
 % subsection complete_information_n_2 (end)
 
 \subsection{Incomplete Information} % (fold)
 \label{sub:incomplete_information_n_2_direct}
-Here, contrary to previous section, the standard case is assumed; that is, that reputation rating values for both network operators are known at the time of bidding; however, their costs are private knowledge. Suppose that the network operators use a strategy function $b_i: [0,1]\to\mathbb{R}$ defined by the rule
+Here, contrary to previous section, the standard case is assumed; that is, that reputation rating values for both network operators $i\in\{1,2\}$ are known at the time of bidding; however, their costs are private knowledge. Suppose that the network operators use a strategy function $b_i: [0,1]\to\mathbb{R}$ defined by the rule
 \begin{equation}
 	\label{eq:pcomp_bidding_str_direct}
-	b_i(c_i) = m_i + n_i c_i,\quad\text{for all } m_i\in\mathbb{R},n_i>0,
+	b_i(c_i) = \zeta_i + \eta_i c_i,\quad\text{for all } \zeta_i\in\mathbb{R},\eta_i>0,i\in\{ 1,2 \}
 \end{equation}
-and costs are independently drawn from the uniform distribution over the interval $[0,1]$. In other words, (although somewhat counter-intuitive) negative bids from the network operators are allowed. The motivation for such an assumption will be explained in detail later on in the section. Note, moreover, that the strategy function is assumed to be linear in cost. Each network operator $i$ faces an optimisation problem
+and costs are independently drawn from the uniform distribution over the interval $[0,1]$. In other words, (although somewhat counter-intuitive) negative bids from the network operators are allowed. The motivation for such an assumption will be explained in detail later on in the section. Note, moreover, that the strategy function is assumed to be linear in cost. Network operator 1 faces an optimisation problem
 \begin{equation}
 	\label{eq:pcomp_exp_utility_uc_direct}
-	\max_{b_i}E \left[ b_i-c_i \:\middle\vert\: wb_i + (1-w)r_i < w(m_j + n_j C_j) + (1-w)r_j\right]
+	\max_{b_1}E \left[ b_1-c_1 \:\middle\vert\: wb_1 + (1-w)r_2 < w(\zeta_2 + \eta_2 C_2) + (1-w)r_2\right]
 \end{equation}
 
-If $w=0$, then the result described in Proposition~\ref{prop:special_case_w_0_direct}, Section~\ref{sub:special_case_w_0_direct}, holds. Otherwise, for $0<w\le 1$, each network operator $i$ solves
+If $w=0$, then the result described in Proposition~\ref{prop:special_case_w_0_direct}, Section~\ref{sub:special_case_w_0_direct}, holds. Otherwise, for $0<w\le 1$, network operator 1 solves
 \begin{align}
-	&\max_{b_i} E \left[ b_i-c_i \:\middle\vert\: \frac{1}{n_j}\left( b_i + \frac{1-w}{w}(r_i-r_j)-m_j \right) < C_j \right] \nonumber\\
-	= &\max_{b_i}\int_{\frac{1}{n_j}(b_i + \frac{1-w}{w}(r_i-r_j)-m_j)}^{1} (b_i-c_i)dF_C(t)\nonumber\\
-	= &\max_{b_i} \bigg(b_i-c_i\bigg) \left(1-\frac{1}{n_j}b_i-\frac{1}{n_j} \left(\frac{1-w}{w}(r_i-r_j)-m_j \right) \right).
+	&\max_{b_1} E \left[ b_1-c_1 \:\middle\vert\: \frac{1}{\eta_2}\left( b_1 + \frac{1-w}{w}(r_1-r_2)-\zeta_2 \right) < C_2 \right] \nonumber\\
+	= &\max_{b_1}\int_{\frac{1}{\eta_2}(b_1 + \frac{1-w}{w}(r_1-r_2)-\zeta_2)}^{1} (b_1-c_1)dF_C(t)\nonumber\\
+	= &\max_{b_1} \bigg(b_1-c_1\bigg) \left(1-\frac{1}{\eta_2}b_1-\frac{1}{\eta_2} \left(\frac{1-w}{w}(r_1-r_2)-\zeta_2 \right) \right).
 	\label{eq:pcomp_exp_utility_w_1_direct}
 \end{align}
 The first-order condition yields
 \begin{align}
-	&\qquad\quad 1 - \frac{2}{n_j}b_i + \frac{1}{n_j}c_i - \frac{1}{n_j}\left( \frac{1-w}{w}(r_i-r_j) - m_j \right) = 0 \nonumber\\
-	&\iff b_i = \frac{n_j}{2} - \frac{1}{2}\left( \frac{1-w}{w}(r_i-r_j) - m_j \right) + \frac{1}{2}c_i.
+	&\qquad\quad 1 - \frac{2}{\eta_2}b_1 + \frac{1}{\eta_2}c_1 - \frac{1}{\eta_2}\left( \frac{1-w}{w}(r_1-r_2) - \zeta_2 \right) = 0 \nonumber\\
+	&\iff b_1 = \frac{\eta_2}{2} - \frac{1}{2}\left( \frac{1-w}{w}(r_1-r_2) - \zeta_2 \right) + \frac{1}{2}c_1.
 \end{align}
-(Note that the second-order condition is satisfied; i.e., $\frac{d^2}{db^2_i}E[\cdot\vert\cdot] = -\frac{2}{n_j} < 0$ since $n_j>0$.) Similar argument for network operator $j$ yields
+(Note that the second-order condition is satisfied; i.e., $\frac{d^2}{db^2_1}E[\cdot\vert\cdot] = -\frac{2}{\eta_2} < 0$ since $\eta_2>0$.) Similar argument for network operator 2 yields
 \begin{equation}
-	b_j = \frac{n_i}{2} - \frac{1}{2}\left( \frac{1-w}{w}(r_j-r_i) - m_i \right) + \frac{1}{2}c_j.
+	b_2 = \frac{\eta_1}{2} - \frac{1}{2}\left( \frac{1-w}{w}(r_2-r_1) - \zeta_1 \right) + \frac{1}{2}c_2.
 \end{equation}
 Thus, it follows
 \begin{equation}
 	\left\{
 	\begin{array}{l l}
-		n_i &= n_j = \displaystyle\frac{1}{2},\\[2ex]
-		m_i &= \displaystyle\frac{n_j}{2} - \displaystyle\frac{1}{2}\left( \displaystyle\frac{1-w}{w}(r_i-r_j) - m_j \right),\\[2ex]
-		m_j &= \displaystyle\frac{n_i}{2} - \displaystyle\frac{1}{2}\left( \displaystyle\frac{1-w}{w}(r_j-r_i) - m_i \right).
+		\eta_1 &= \eta_2 = \displaystyle\frac{1}{2},\\[2ex]
+		\zeta_1 &= \displaystyle\frac{\eta_2}{2} - \displaystyle\frac{1}{2}\left( \displaystyle\frac{1-w}{w}(r_1-r_2) - \zeta_2 \right),\\[2ex]
+		\zeta_2 &= \displaystyle\frac{\eta_1}{2} - \displaystyle\frac{1}{2}\left( \displaystyle\frac{1-w}{w}(r_2-r_1) - \zeta_1 \right).
 	\end{array}\right.
 \end{equation}
-Solving the above equations simultaneously yields the equilibrium bidding strategy,
-\begin{equation}
-	b_i'(c_i) = \frac{1}{2} - \frac{1-w}{3w}(r_i-r_j) + \frac{1}{2}c_i \quad\text{for all } i\in N.
-\end{equation}
+Solving the above equations simultaneously yields the equilibrium bidding strategies for both bidders
+\begin{align}
+	b_1(c_1) &= \frac{1}{2} - \frac{1-w}{3w}(r_1-r_2) + \frac{1}{2}c_1,\\[2ex]
+	b_2(c_2) &= \frac{1}{2} - \frac{1-w}{3w}(r_2-r_1) + \frac{1}{2}c_2.
+\end{align}
 Formally,
 \begin{proposition}
 \label{prop:pcomp_equi_bidding_str_direct}
-Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$ for all $i\in N$, and $r_i\in [0,1]$ for all $i\in N$ is common knowledge. Then the equilibrium bidding strategy for all $w\in (0,1]$ is given by
-\begin{equation}
-	\label{eq:pcomp_equi_bidding_str_direct}
-	b_i'(c_i) = \frac{1}{2} - \frac{1-w}{3w}(r_i-r_j) + \frac{1}{2}c_i.
-\end{equation}
+Let there be $n=2$ network operators. For all $i\in\{1, 2\}$, suppose $c_i$ is independently drawn from uniform distribution over the interval $[0,1]$, and $r_i\in [0,1]$ is common knowledge. Then the equilibrium bidding strategies for all $w\in (0,1]$ are given by
+\begin{align}
+	\label{eq:pcomp_equi_bidding_str_1_direct}
+	b_1(c_1) &= \frac{1}{2} - \frac{1-w}{3w}(r_1-r_2) + \frac{1}{2}c_1,\\[2ex]
+	\label{eq:pcomp_equi_bidding_str_2_direct}
+	b_2(c_2) &= \frac{1}{2} - \frac{1-w}{3w}(r_2-r_1) + \frac{1}{2}c_2.
+\end{align}
 \end{proposition}
-\noindent Observe that the pair of strategies $(b_i', b_j')$ does not constitute a symmetric equilibrium.
+\noindent Observe that the pair of strategies $(b_1, b_2)$ does not constitute a symmetric equilibrium.
 
 \begin{table}[h]
 	\caption{An exemplary set of cost-reputation pairs of two network operators}
@@ -364,41 +367,58 @@ Let there be $n=2$ network operators. Suppose $c_i$ is independently drawn from 
 	\label{fig:pincomplete_prices_uc_direct}
 \end{figure}
 
-By way of example, Table~\ref{tab:pcomp_direct} depicts a particular set of cost-reputation pairs of two network operators. Figure~\ref{fig:pincomplete_bids_uc_direct} shows the value of the compound bid, $\beta$, for different values of $w$ for both network operators, while Figure~\ref{fig:pincomplete_prices_uc_direct} depicts the value of the monetary bid (or offered price), $b'_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:pcomp_direct} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:pincomplete_bids_uc_direct}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:pincomplete_bids_uc_direct}, $w_c=0.4$. Hence, network operator 2 wins the auction for the values of $w\in(w_c,1]$, while network operator 1 for the values of $w\in[0,w_c)$. Note, moreover, that network operator 2 bids below their cost for values of $w<w_c$ (see Figure~\ref{fig:pincomplete_prices_uc_direct}). However, this does not necessarily disqualify the equilibrium bidding strategies given by Equation~\eqref{eq:pcomp_equi_bidding_str_direct}. The following observations show why. Firstly,
+By way of example, Table~\ref{tab:pcomp_direct} depicts a particular set of cost-reputation pairs of two network operators. Figure~\ref{fig:pincomplete_bids_uc_direct} shows the value of the compound bid, $\beta$, for different values of $w$ for both network operators, while Figure~\ref{fig:pincomplete_prices_uc_direct} depicts the value of the monetary bid (or offered price), $b_i$, for different values of $w$ for both network operators. The numerical data in Table~\ref{tab:pcomp_direct} suggests that network operator 2 should be the winner for the values of $w\rightarrow 1$ since network operator 2's cost is strictly lower than that of their opponent's. On the other hand, network operator 1 should be winner for the values of $w\rightarrow 0$ since network operator 1's reputation rating is strictly lower than that of their opponent's (which implies that network operator 1's reputation is in fact strictly higher than that of their opponent's). This prediction agrees with the numerical output shown in Figure~\ref{fig:pincomplete_bids_uc_direct}. Let $w_c$ denote the value of $w$ for which an intersection between the compound bids of both network operators occurs (if it exists). In Figure~\ref{fig:pincomplete_bids_uc_direct}, $w_c=0.4$. Hence, network operator 2 wins the auction for the values of $w\in(w_c,1]$, while network operator 1 for the values of $w\in[0,w_c)$. Note, moreover, that network operator 2 bids below their cost for values of $w<w_c$ (see Figure~\ref{fig:pincomplete_prices_uc_direct}). However, this does not necessarily disqualify the equilibrium bidding strategies given by Equations~\eqref{eq:pcomp_equi_bidding_str_1_direct}~and~\eqref{eq:pcomp_equi_bidding_str_2_direct}. The following observations show why. Firstly,
 \begin{proposition}
 \label{prop:pcomp_negative_bids_direct}
-Suppose both network operators bid according to $b_i'$ bidding strategies. Then they are guaranteed nonnegative profit in case of winning (or a draw).
+Suppose both network operators bid according to $b_i$ bidding strategies in Equations~\eqref{eq:pcomp_equi_bidding_str_1_direct}~and~\eqref{eq:pcomp_equi_bidding_str_2_direct}. Then they are guaranteed nonnegative profit in case of winning (or a draw).
 \end{proposition}
 \noindent Even though the prediction suggests that one of the network operators may bid negatively, they will not win the auction, and hence, are guaranteed profit at worst equal to zero.
 
-Secondly, let $(\mathbf{Q},\mathbf{M})$ be the direct mechanism induced by the equilibrium bidding strategies, $b_i'$, in Equation~\eqref{eq:pcomp_equi_bidding_str_direct} where $\mathbf{Q}=(Q_i,Q_j)$ and $\mathbf{M}=(M_i,M_j)$. Here, $Q_i$ represents the allocation rule defined by
+Secondly, let $(\mathbf{Q},\mathbf{M})$ be the direct mechanism induced by the equilibrium bidding strategies, $b_i$, in Equations~\eqref{eq:pcomp_equi_bidding_str_1_direct}~and~\eqref{eq:pcomp_equi_bidding_str_2_direct} where $\mathbf{Q}=(Q_1,Q_2)$ and $\mathbf{M}=(M_1,M_2)$. Here, $Q_i$ represents the allocation rule for each network operator $i\in\{1, 2\}$ defined by
 \begin{equation}
-	\label{eq:pcomp_allocation_rule_direct}
-	Q_i(c_i,c_j) =
+	\label{eq:pcomp_allocation_rule_1_direct}
+	Q_1(c_1,c_2) =
 	\left\{
 	\begin{array}{l l}
-		1 &\text{if } \beta(b_i'(c_i),r_i) < \beta(b_j'(c_j),r_j)\\
-		\frac{1}{2} &\text{if } \beta(b_i'(c_i),r_i) = \beta(b_j'(c_j),r_j)\\
-		0 &\text{otherwise}
+		1 &\text{if } \beta(b_1(c_1),r_1) < \beta(b_2(c_2),r_2),\\
+		\frac{1}{2} &\text{if } \beta(b_1(c_1),r_1) = \beta(b_2(c_2),r_2),\\
+		0 &\text{otherwise},
 	\end{array}
-	\right.,
+	\right.
 \end{equation}
-while $M_i$ is the payment rule defined by
+for network operator 1, and
 \begin{equation}
-	\label{eq:pcomp_payment_rule_direct}
-	M_i(c_i,c_j) = Q_i(c_i,c_j)b_i'(c_i).
+	\label{eq:pcomp_allocation_rule_2_direct}
+	Q_2(c_1,c_2) =
+	\left\{
+	\begin{array}{l l}
+		1 &\text{if } \beta(b_2(c_2),r_2) < \beta(b_1(c_1),r_1),\\
+		\frac{1}{2} &\text{if } \beta(b_2(c_2),r_2) = \beta(b_1(c_1),r_1),\\
+		0 &\text{otherwise},
+	\end{array}
+	\right.
 \end{equation}
-Suppose network operator $j$ reveals their cost truthfully. The equilibrium payoff function for network operator $i$ characterized by cost $c_i$ but revealing $c'_i$ is
+for network operator 2. $M_i$ for all $i\in\{1,2\}$, on the other hand, denotes the payment rule, and is defined by
+\begin{equation}
+	\label{eq:pcomp_payment_rule_1_direct}
+	M_1(c_1,c_2) = Q_1(c_1,c_2)b_1(c_1)
+\end{equation}
+for network operator 1, and
+\begin{equation}
+	\label{eq:pcomp_payment_rule_2_direct}
+	M_2(c_1,c_2) = Q_2(c_1,c_2)b_2(c_2).
+\end{equation}
+for network operator 2. Suppose network operator 2 reveals their cost truthfully. The equilibrium payoff function for network operator 1 characterized by cost $c_1$ but revealing $c'_1$ is
 \begin{align}
-	\tilde{\tilde{u}}_i(c'_i) &= E\left[ M_i(c'_i,C_j) - c_iQ_i(c'_i,C_j) \right]\nonumber \\
-	&= E\left[ (b_i'(c'_i)-c_i)Q_i(c'_i,C_j) \right]\nonumber \\
-	&= E\left[ b_i'(c'_i)-c_i \:\middle\vert\: \beta(b_i'(c'_i),r_i) < \beta(b_j'(C_j),r_j) \right].
+	\tilde{\tilde{u}}_1(c'_1) &= E\left[ M_1(c'_1,C_2) - c_1Q_1(c'_1,C_2) \right]\nonumber \\
+	&= E\left[ (b_1(c'_1)-c_1)Q_1(c'_1,C_2) \right]\nonumber \\
+	&= E\left[ b_1(c'_1)-c_1 \:\middle\vert\: \beta(b_1(c'_1),r_1) < \beta(b_2(C_2),r_2) \right].
 	\label{eq:pcomp_expected_utility_direct}
 \end{align}
-It turns out that it is in network operator $i$'s best interest to reveal their cost truthfully as well; i.e., $c'_i=c_i$. Moreover, both network operators cannot be better off by not participating in the auction; i.e., their equilibrium payoff function is nonnegative, $\tilde{\tilde{u}}_i(c_i)\ge 0$. Formally,
+It turns out that it is in network operator 1's best interest to reveal their cost truthfully as well; i.e., $c'_1=c_1$. Moreover, both network operators cannot be better off by not participating in the auction; i.e., their equilibrium payoff function is nonnegative, $\tilde{\tilde{u}}_i(c_i)\ge 0$ for all $i\in\{1,2\}$. Formally,
 \begin{proposition}
 \label{prop:pcomp_direct_mechanism_direct}
-The direct mechanism $(\mathbf{Q},\mathbf{M})$ where $\mathbf{Q}=(Q_i,Q_j)$ and $\mathbf{M}=(M_i,M_j)$ (with $Q_i$ and $M_i$ defined in Equations~\eqref{eq:pcomp_allocation_rule_direct} and \eqref{eq:pcomp_payment_rule_direct} respectively) satisfies both the IC and IR constraints.
+The direct mechanism $(\mathbf{Q},\mathbf{M})$ where $\mathbf{Q}=(Q_1,Q_2)$ and $\mathbf{M}=(M_1,M_2)$ satisfies both the IC and IR constraints.
 \end{proposition}
 \noindent This strengthens the fact that even though the network operators may bid negatively, the auction is still attractive to them.
 
