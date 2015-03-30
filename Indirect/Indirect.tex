@@ -754,7 +754,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
   \right\}.
 \end{equation}
 
-\begin{algorithm}
+\begin{algorithm}[p]
 \caption{Extended forward shooting method}
 \label{alg:extended_forward_shooting_method_indirect}
 \begin{algorithmic}[1]
@@ -782,7 +782,7 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[p]
 \caption{Function for estimating $k(\underline{\hat{b}})$ and $\hat{c}(\underline{\hat{b}})$}
 \label{alg:function_estimate_k_c_indirect}
 \begin{algorithmic}[1]
@@ -803,17 +803,17 @@ for all $i\in N$, lies within a set of permissible functions, $S_i$, such that e
 \end{algorithmic}
 \end{algorithm}
 
-The pseudo-code for the EFSM is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the FSM. The main differences are twofold: the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} according to a customised finite-differences method described below (line 8).
+The pseudo-code for the EFSM is shown in listing Algorithm~\ref{alg:extended_forward_shooting_method_indirect}. The flow of the algorithm is almost exactly the same as for the FSM. The main differences are twofold: the algorithm estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$ (line 6); and the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect} using the reasoning behind the bidding extension characterised by Lebrun~\cite{Lebrun2006} and described below (line 8).
 
 Listing Algorithm~\ref{alg:function_estimate_k_c_indirect} depicts the pseudo-code for the function `estimateKC' which estimates $k(\underline{\hat{b}}')$ and $\hat{c}(\underline{\hat{b}}')$. It takes as an input an estimate of the lower bound on bids, $\underline{\hat{b}}'$, and the set of lower extremities $\{\underline{\hat{c}}_i\}$ for all $i\in N$. The function then iterates over $k\in\{2,\ldots,n\}$, and for each $k$ it computes $\hat{c}(\underline{\hat{b}}')$ according to Equation~\eqref{eq:lower_bound_bids_cost_indirect}. If $k<n$ and $\hat{c}(\underline{\hat{b}}')$ satisfies~\eqref{eq:bounds_lower_bound_bids_cost_indirect}, then the function returns that particular pair of values $(k, \hat{c}(\underline{\hat{b}}'))$ such that $2\leq k < n$. Otherwise, $k=n$ is returned which reduces system~\eqref{eq:efsm_initial_value_problem_indirect} to~\eqref{eq:fsm_initial_value_problem_indirect}, and EFSM to FSM.
 
 \begin{figure}[t]
   \includegraphics[width=\figsize]{Indirect/Figures/lebrun_solution}
-  \caption{Customised finite-differences method capturing the reasoning behind the bidding extension characterized by Lebrun~\cite{Lebrun2006}}
+  \caption{The reasoning behind the bidding extension characterised by Lebrun~\cite{Lebrun2006} captured by the EFSM method}
   \label{fig:lebrun_solution_indirect}
 \end{figure}
 
-In order to describe the customised finite-differences method, suppose there are $n=4$ network operators. The following argument can easily be adapted to the case of $n=3$ or $n>4$ network operators. Furthermore, suppose that
+In order to describe how the algorithm solves the system~\eqref{eq:efsm_initial_value_problem_indirect}, suppose there are $n=4$ network operators. The following argument can easily be adapted to the case of $n=3$ or $n>4$ network operators. Furthermore, suppose that
 \begin{equation}
   \underline{\hat{c}}_1 < \underline{\hat{c}}_2 < \hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_3 < \underline{\hat{c}}_4.
 \end{equation}
