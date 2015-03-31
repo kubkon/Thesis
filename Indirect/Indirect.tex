@@ -514,12 +514,10 @@ To conclude, the rest of this section will concentrate on cases such that
 \end{equation}
 for all $r_1,r_2,r_n\in [0,1]$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
-In what follows, firstly the inner workings of the FSM and PPM methods are outlined, and then the numerically approximated equilibrium bidding strategies are presented for two bidding scenarios generated using both algorithms.
+In what follows, firstly the inner workings of the FSM and PPM methods are outlined, and then the numerically approximated equilibrium bidding strategies are presented for two bidding scenarios generated using both algorithms. In both cases, it is assumed without loss of generality that network operator 1 is characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
 \subsection{Forward Shooting Method} % (fold)
 \label{sub:forward_shooting_method_indirect}
-Without loss of generality, suppose network operator 1 is characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
-
 The idea behind the FSM is to find the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2, \bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:fsm_initial_value_problem_indirect}
@@ -602,9 +600,7 @@ This, of course, cannot be guaranteed for all choices of $\underline{\hat{b}}'$ 
 
 \subsection{Polynomial Projection Method} % (fold)
 \label{sub:polynomial_projection_method_indirect}
-Without loss of generality, suppose network operator 1 is characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
-
-In the PPM, it is assumed that the inverse equilibrium bidding function for each network operator $i\in N$ can be approximated by a $K^{\textrm{th}}$ order polynomial of the form
+The PPM method assumes that the inverse equilibrium bidding function for each network operator $i\in N$ can be approximated by a $K^{\textrm{th}}$ order polynomial of the form
 \begin{equation}
   \label{eq:polynomial_cost_function_indirect}
   \hat{c}_i(b;\underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i + \sum_{k=1}^K \alpha_{i,k}(b - \underline{\hat{b}})^k,
@@ -772,12 +768,10 @@ In this section, the FSM and PPM numerical algorithms were described, and two ex
 \label{sec:extended_numerical_analysis_indirect}
 Suppose $\hat{c}(\underline{\hat{b}}) < \underline{\hat{c}}_i < \bar{\hat{b}}$ for at least one $i\in N$, and let all the remaining assumptions of Section~\ref{sec:numerical_analysis_indirect} hold. To be more specific, let $w\in (0.5,1.0)$ for all $r_i\in[0,1], i\in N$ such that $r_1\leq\cdots\leq r_n$ with at least one inequality strict.
 
-In what follows, a numerical algorithm which improves upon the algorithms considered in Section~\ref{sec:numerical_analysis_indirect} is presented: the extended forward shooting method (EFSM). Furthermore, the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using the algorithm are analysed.
+In what follows, a numerical algorithm which improves upon the algorithms considered in Section~\ref{sec:numerical_analysis_indirect} is presented: the extended forward shooting method (EFSM). Furthermore, the numerically approximated equilibrium bidding strategies for two bidding scenarios generated using the algorithm are analysed. It is, furthermore, assumed without loss of generality that network operator 1 is characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
 
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
-Without loss of generality, suppose network operator 1 is characterised by the lowest reputation rating, network operator 2 by the second lowest, and so on. Hence, $\underline{\hat{c}}_1\leq \underline{\hat{c}}_2\leq \underline{\hat{c}}_i$ and $\bar{\hat{c}}_1\leq \bar{\hat{c}}_2\leq \bar{\hat{c}}_i$ for all $i\geq 2$.
-
 The EFSM method extends the FSM method by effectively implementing the reasoning behind the bidding extension characterised by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the EFSM aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:efsm_initial_value_problem_indirect}
