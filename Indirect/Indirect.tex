@@ -570,7 +570,7 @@ In the PPM, it is assumed that the inverse equilibrium bidding function for each
   \label{eq:polynomial_cost_function_indirect}
   \hat{c}_i(b;\underline{\hat{b}}, \alpha_i) = \underline{\hat{c}}_i + \sum_{k=1}^K \alpha_{i,k}(b - \underline{\hat{b}})^k,
 \end{equation}
-where $K\in\mathbb{N}_+$ and $K\geq 2$, and $\alpha_i = (\alpha_{i,1},\dotsc,\alpha_{i,K})^T$ is a $K$-tuple of unknown polynomial coefficients such that $\alpha_i\in\mathbb{R}^{K}$. The idea behind the method is then to employ a nonlinear optimisation technique, such as the Nelder-Mead method, to find an approximation to the lower bound on bids and the set of polynomial coefficients that best satisfy the system of ODEs~\eqref{eq:foc_ode_indirect} with lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect} and \eqref{eq:foc_ode_upper_boundary_indirect} in the least squares sense. That is, minimise the least squares objective function
+where $K\in\mathbb{N}_+$ and $K\geq 2$, and $\alpha_i = (\alpha_{i,1},\dotsc,\alpha_{i,K})^T$ is a vector of $K$ unknown polynomial coefficients such that $\alpha_i\in\mathbb{R}^{K}$. The idea behind the method is then to employ a nonlinear optimisation technique, such as the Nelder-Mead method, to find an approximation to the lower bound on bids and the set of polynomial coefficients that best satisfy the system of ODEs~\eqref{eq:foc_ode_indirect} with lower and upper boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect} and \eqref{eq:foc_ode_upper_boundary_indirect} in the least squares sense. That is, minimise the least squares objective function
 \begin{equation}
   \label{eq:least_squares_objective_function_indirect}
   H(\underline{\hat{b}}, \alpha_1,\dotsc,\alpha_n) = \sum_{i\in N}\sum_{b\in B}G_i(b; \underline{\hat{b}}, \alpha_1,\dotsc, \alpha_n)^2 + |B|\cdot\sum_{i\in N} (\bar{\hat{b}} - \hat{c}_i(\bar{\hat{b}}; \underline{\hat{b}}, \alpha_i))^2,
@@ -602,7 +602,7 @@ This specification of the problem is a modified version of the Third Algorithm i
   \Let{$k$}{$3$}
   \Let{$K$}{$8$}
   \For{$i\gets 1$ to $n$}
-    \Let{$\alpha_i$}{create $k$-tuple of $10^{-2}$}
+    \Let{$\alpha_i$}{create $k$-element vector of $10^{-2}$}
   \EndFor
   \Let{$\underline{b}$}{$\underline{\hat{c}}_2$}
   \Statex
