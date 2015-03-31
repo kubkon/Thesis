@@ -305,15 +305,48 @@ and
 \end{proposition}
 It is worth noting that, if the network operators are assumed to submit at least their costs, then Proposition~\ref{prop:pcomp_equi_bidding_str_direct} is ruled out by Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} combined with Proposition~\ref{prop:equilibrium_restricted_indirect} since the latter establishes an analytical solution to the bidding problem while Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} makes this solution unique. However, if the assumption that network operators submit at least their costs is relaxed, then, as shown by Kaplan and Zamir~\cite{KaplanZamir2011}, Proposition~\ref{prop:characterization_of_the_equilibrium_indirect} need no longer hold, and hence, there may exist multiple equilibria in the first-price sealed-bid auction bidding problem. As a result, both equilibria summarised in Proposition~\ref{prop:equilibrium_restricted_indirect} as well as Proposition~\ref{prop:pcomp_equi_bidding_str_direct} are valid. Kaplan and Zamir~\cite{KaplanZamir2011}, who characterise equilibria like the one specified in Proposition~\ref{prop:pcomp_equi_bidding_str_direct} as non-standard, further argue that such equilibria are important and should not be neglected since they may result in different winning offered prices and different network operators winning the auction. In other words, relaxing the assumption about network operators submitting at least their cost might help in understanding the ``deviations'' from the predicted equilibrium bidding behaviour prescribed in Proposition~\ref{prop:equilibrium_restricted_indirect} should these occur in reality. Here, those ``deviations'' may be captured by non-standard equilibria.
 
-The equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, a particular bid-hat is obtained. Since inverting the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect} is analytically intractable, numerical method is used to estimate the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators. The numerical method is as follows.
+The equilibrium inverse bidding strategy functions are inconvenient to work with: for a particular bid-hat value, they map into a particular cost-hat for either network operator. It would be more intuitive to work with their inverses, where for a particular cost-hat, a particular bid-hat is obtained. Since inverting the equilibrium inverse bidding strategy functions in Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect} is analytically intractable, numerical method is proposed that can be employed to estimate the inverses for a particular set of cost-reputation pairs with respect to the price weights for both network operators.
+
+\begin{algorithm}
+\caption{Inverse of equilibrium inverse bidding strategy functions}
+\label{alg:inverse_of_equilibrium_inverse_bidding_strategy_functions_indirect}
+\begin{algorithmic}[1]
+\Require{$w\in (0, 1]; r_1, r_2\in [0, 1]$ such that $r_1 \le r_2$}
+\Ensure{Tabulation of functions $\hat{b}_i(\hat{c}_i)$ for all $i\in\{1,2\}$: $(\hat{c}_1, \hat{b}_1)$ and $(\hat{c}_2, \hat{b}_2)$}
+  \Statex
+  \Let{$\underline{\hat{c}}_1$}{$(1-w)r_1$}
+  \Let{$\bar{\hat{c}}_1$}{$(1-w)r_1 + w$}
+  \Statex
+  \Let{$\underline{\hat{c}}_2$}{$(1-w)r_2$}
+  \Let{$\bar{\hat{c}}_2$}{$(1-w)r_2 + w$}
+  \Statex
+  \If{$\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$}
+    \Let{$\hat{c}_1$}{$\{\underline{\hat{c}}_1,\ldots, \bar{\hat{c}}_1\}$}
+    \Let{$\hat{b}_1$}{$\{\underline{\hat{c}}_2,\ldots, \underline{\hat{c}}_2\}$}
+    \Statex
+    \Let{$\hat{c}_2$}{$\{\underline{\hat{c}}_2,\ldots, \bar{\hat{c}}_2\}$}
+    \Let{$\hat{b}_2$}{$\{\underline{\hat{c}}_2,\ldots, \bar{\hat{c}}_2\}$}
+  \Else
+    \Let{$\underline{\hat{b}}$}{compute using~\eqref{eq:bounds_bid_restricted_indirect}}
+    \Let{$\bar{\hat{b}}$}{compute using~\eqref{eq:bounds_bid_restricted_indirect}}
+    \Statex
+    \Let{$\hat{b}_1$}{$\{\underline{\hat{b}},\ldots,\bar{\hat{b}}\}$}
+    \Let{$\hat{c}_1$}{compute using~\eqref{eq:inverse_equi_bidding_str_1_indirect} for all $b\in\hat{b}_1$}
+    \Statex
+    \Let{$\hat{b}_2$}{$\{\underline{\hat{b}},\ldots,\bar{\hat{c}}_2\}$}
+    \Let{$\hat{c}_2$}{compute using~\eqref{eq:inverse_equi_bidding_str_2_indirect} for all $b\in\hat{b}_2$}
+  \EndIf
+\end{algorithmic}
+\end{algorithm}
+
+Listing~\ref{alg:inverse_of_equilibrium_inverse_bidding_strategy_functions_indirect} depicts the pseudo-code of the proposed method. The steps of the algorithm can be summarised as follows:
 \begin{enumerate}
-  \item For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2.
-  \item If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$.
+  \item For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2 (lines 1--4).
+  \item If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ (lines 6--9).
   \item If $\bar{\hat{c}}_1 > 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is nontrivial. Hence,
   \begin{enumerate}
-    \item Calculate the common bids-hat support $[\underline{\hat{b}}, \bar{\hat{b}}]$ (see Equation~\eqref{eq:bounds_bid_restricted_indirect}).
-    \item For all $\hat{b}\in [\underline{\hat{b}}, \bar{\hat{b}}]$, calculate the corresponding costs-hat for both network operators using Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}.
-    \item Since by assumption $r_1 < r_2$, it follows that $\bar{\hat{c}}_1 \le \bar{\hat{c}}_2$, and hence, $\bar{\hat{b}}\le \bar{\hat{c}}_2$. Thus, network operator 2 bids their cost-hat, $\hat{c}_2(\hat{b}) = \hat{c}_2$  for all $\hat{b}\in [\bar{\hat{b}}, \bar{\hat{c}}_2]$.
+    \item Calculate the common bids-hat support $[\underline{\hat{b}}, \bar{\hat{b}}]$ using Equation~\eqref{eq:bounds_bid_restricted_indirect} (lines 11--12).
+    \item For all $\hat{b}\in [\underline{\hat{b}}, \bar{\hat{b}}]$, calculate the corresponding costs-hat for both network operators using Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}. Since by assumption $r_1 < r_2$, it follows that $\bar{\hat{c}}_1 \le \bar{\hat{c}}_2$, and hence, $\bar{\hat{b}}\le \bar{\hat{c}}_2$. Thus, network operator 2 bids their cost-hat, $\hat{c}_2(\hat{b}) = \hat{c}_2$  for all $\hat{b}\in [\bar{\hat{b}}, \bar{\hat{c}}_2]$ (lines 13--16).
   \end{enumerate}
 \end{enumerate}
 
