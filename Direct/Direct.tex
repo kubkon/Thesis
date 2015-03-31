@@ -146,7 +146,7 @@ or equivalently,
 \begin{equation}
 	\frac{d}{dc_i}(b(c_i)(1 - F_{C_{1:n-1}}(c_i))) = -c_if_{C_{1:n-1}}(c_i).
 \end{equation}
-Assuming $b(1) = 1$, it follows
+Since $c_i\in [0,1]$ for all $i\in N$, it follows $b(1) = 1$. To see this, suppose network operator 1 is characterised by cost $c_1 = 1$. Then, they would never submit a bid higher than their cost $c_1 = 1$ since they would never win. That is, the competiting network operator, network operator 2 say, regardless of their cost, could just bid $b(c_2) = c_1 = 1$ and win the auction. Furthermore, network operator 1 would never submit a bid lower than their cost $c_1 = 1$ since they would make a loss if they were to win the auction. Therefore, it must be that $b(1) = 1$. It follows then
 \begin{align}
 	\label{eq:standard_fpa_ode_solution_direct}
 	b(c_i) &= \frac{1}{1 - F_{C_{1:n-1}}(c_i)}\int_{c_i}^{1} tdF_{C_{1:n-1}}(t) \nonumber\\
