@@ -237,15 +237,15 @@ for bidder 2, while the common support is given by
   \label{fig:modelling_params_approximation}
 \end{figure}
 
-Secondly, the distribution specific parameters (mean and standard deviation) need to be specified for each bidder. Since the aim is to approximate the original distributions of both bidders, the midpoints of the original supports are picked as means for both bidders, that is,
+Secondly, the distribution specific parameters (mean and standard deviation) need to be specified for each bidder. The choice of the parameters is motivated by the shape of the normal distribution. Therefore, the midpoints of the original supports are picked as means for both bidders, that is,
 \begin{equation}
-  \mu_i = \underline{c}_i + \frac{\bar{c}_i - \underline{c}_i}{2} = \underline{c}_i + \frac{w}{2},
+  \mu_i = \underline{c}_i + \frac{\bar{c}_i - \underline{c}_i}{2} = \underline{c}_i + \frac{w}{2}.
 \end{equation}
-and let the standard deviations be equal to the quarter of the length of the original supports, that is,
+Furthermore, noting that, in the case of normal distribution, 95\% of all the values falls within 2 standard deviations away from the mean~\cite{JohnsonNormal1994}, the standard deviations are selected to be equal to the quarter of the length of the original supports, that is,
 \begin{equation}
   \sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
 \end{equation}
-The choice of the parameters is motivated by the shape of the normal distribution, and the fact that, with this choice of parameters, the probability of at least $0.95$ of drawing cost from the interval $[\underline{c}_i, \bar{c}_i]$ (which corresponds to the interval $[\mu_i - 2\sigma_i, \mu_i + 2\sigma_i]$) is achieved~\cite{JohnsonNormal1994}; and therefore, minimising the probability of drawing cost from outside the interval $[\underline{c}_i, \bar{c}_i]$, and effectively imitating uniform distribution with support $[\underline{c}_i, \bar{c}_i]$. This is depicted in Figure~\ref{fig:modelling_params_approximation} as the shaded region under the bell curve.
+In this way, for each bidder, 95\% of all the costs falls within the interval $[\underline{c}_i, \bar{c}_i]$, and therefore, the probability of drawing cost outside this interval is minimised. With this choice of parameters, the truncated normal distributions are effectively imitating uniform distributions with support $[\underline{c}_i, \bar{c}_i]$ for each bidder. This is depicted in Figure~\ref{fig:modelling_params_approximation} as the shaded region under the bell curve.
 
 \begin{table}[t]
   \caption{Numerical values of the chosen truncated normal distribution parameters}
