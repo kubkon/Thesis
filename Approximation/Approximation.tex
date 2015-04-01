@@ -82,15 +82,20 @@ To briefly recap, the FSM method was first proposed by Bajari~\cite{Bajari2001a}
     c_i(\underline{b}) &= \underline{c}
   \end{array}
 \end{equation}
-for all $i\in N$, lies within a set of permissible functions, $S$, such that every element of that set is a function mapping $[\underline{b}, \bar{c}]$ into $[\underline{c}, \bar{c}]$, it is monotonically increasing everywhere except possibly at $\underline{c}$, and each function value is strictly lower than its argument except possibly at $\bar{c}$; that is,
+for all $i\in N$ satisfies the following three conditions: 1) it is a function mapping $[\underline{b}, \bar{c}]$ into $[\underline{c}, \bar{c}]$, that is,
 \begin{equation}
-  S=\left\{s \:\middle\vert\:
-  \begin{array}{l}
-    s: [\underline{b}, \bar{c}]\to [\underline{c}, \bar{c}],\\
-    b_1 < b_2\implies s(b_1) < s(b_2) \text{ for all }b_1,b_2\in [\underline{b}, \bar{c}),\\
-    s(b) < b \text{ for all }b\in [\underline{b}, \bar{c})
-  \end{array}
-  \right\}.
+  \label{eq:fsm_condition_1_approximation}
+    s: [\underline{b}, \bar{c}]\to [\underline{c}, \bar{c}];
+\end{equation}
+2) it is monotonically increasing everywhere except possibly at $\underline{c}$, that is,
+\begin{equation}
+  \label{eq:fsm_condition_2_approximation}
+  b_1 < b_2\implies s(b_1) < s(b_2) \text{ for all }b_1,b_2\in [\underline{b}, \bar{c});
+\end{equation}
+and 3) each function value is strictly lower than its argument except possibly at $\bar{c}$, that is,
+\begin{equation}
+  \label{eq:fsm_condition_3_approximation}
+  s(b) < b \text{ for all }b\in [\underline{b}, \bar{c}).
 \end{equation}
 
 The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_shooting_method_approximation}. Note that the algorithm is almost identical to the FSM version tailored to the DMP auction (cf.~Algorithm~\ref{alg:forward_shooting_method_indirect}), with only differences being the definition of the set of permissible functions, $S$, and the algorithm's search region delimited by $low$ and $high$ variables. Hence, the discussion of the algorithm is omitted, and the reader is referred to Section~\ref{sub:forward_shooting_method_indirect}.
@@ -110,7 +115,7 @@ The pseudo-code for the FSM is depicted in listing Algorithm~\ref{alg:forward_sh
     \Let{$bids$}{$[guess, \bar{c})$}
     \Let{$(costs_1,\dotsc,costs_n)$}{solve~\eqref{eq:fsm_initial_value_problem_approximation} with initial value $\underline{b} = guess$}
     \StatexIndent[7.5]{evaluated at points $b\in bids$}
-    \If{$(bids,costs_i)\in S$ for all $i\gets 1$ to $n$}
+    \If{$(bids,costs_i)$ satisfies~\eqref{eq:fsm_condition_1_approximation}, \eqref{eq:fsm_condition_2_approximation} and \eqref{eq:fsm_condition_3_approximation} for all $i\gets 1$ to $n$}
       \Let{$high$}{$guess$}
     \Else
       \Let{$low$}{$guess$}
@@ -129,6 +134,8 @@ Similarly to the implementation of the FSM (and EFSM) algorithm for the DMP auct
 \label{sub:verification}
 Before proceeding with the modelling and analysis, the FSM algorithm was tested for correct implementation. The bidding scenario used to verify the algorithm is taken from the Bajari's paper \cite{Bajari2001a}. There are three bidders, and each is characterised by a truncated normal distribution but with different mean and standard deviation parameters (see Table~\ref{tab:verification_approximation}). Furthermore, each bidder draws their cost from common costs' range, $c_i\in [2,8]$.
 
+Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numerically approximated solution to the problem. It is clear that the approximation agrees with that of Bajari's~\cite{Bajari2001a} (cf.~Figure~1 in \cite{Bajari2001a}). Furthermore, in Figure~\ref{fig:fsm_common_priors_verification_sufficiency_approximation}, the numerical solution is verified whether it satisfies the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each bidder is a best response to the bidding strategies of the remaining bidders. As expected, the solution satisfies the sufficiency condition, and hence, it is concluded that the algorithm was implemented correctly.
+
 \begin{table}[t]
   \caption{Test bidding scenario}
   \vspace{0.5cm}
@@ -143,8 +150,6 @@ Before proceeding with the modelling and analysis, the FSM algorithm was tested 
   \end{tabular*}
   \label{tab:verification_approximation}
 \end{table}
-
-Figure~\ref{fig:fsm_common_priors_verification_approximation} depicts the numerically approximated solution to the problem. It is clear that the approximation agrees with that of Bajari's~\cite{Bajari2001a} (cf.~Figure~1 in \cite{Bajari2001a}). Furthermore, in Figure~\ref{fig:fsm_common_priors_verification_sufficiency_approximation}, the numerical solution is verified whether it satisfies the sufficiency condition for an equilibrium; that is, whether the numerically derived bidding strategy for each bidder is a best response to the bidding strategies of the remaining bidders. As expected, the solution satisfies the sufficiency condition, and hence, it is concluded that the algorithm was implemented correctly.
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/fsm_common_priors_verification}
@@ -258,11 +263,11 @@ The choice of the parameters is motivated by the shape of the normal distributio
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_pdfs}
-  \caption{Pdfs of the truncated normal distributions from the CP bidding problem characterised by: $\underline{c}=0.125$, $\bar{c}=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
+  \caption{Pdfs of the truncated normal distributions from the CP bidding problem characterised by: $\underline{c}=\underline{c}_1=0.125$, $\bar{c}=\bar{c}_2=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
   \label{fig:test_truncated_normal_pdfs_approximation}
   \vspace{10mm}
   \includegraphics[width=\figsize]{Approximation/Figures/test_truncated_normal_bids}
-  \caption{FSM solution to the CP bidding problem characterised by: $\underline{c}=0.125$, $\bar{c}=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
+  \caption{FSM solution to the CP bidding problem characterised by: $\underline{c}=\underline{c}_1=0.125$, $\bar{c}=\bar{c}_2=0.875$, and $\mu_1=0.375$ and $\sigma_1=0.125$ for bidder 1, and $\mu_2=0.625$ and $\sigma_2=0.125$ for bidder 2}
   \label{fig:test_truncated_normal_bids_approximation}
 \end{figure}
 
