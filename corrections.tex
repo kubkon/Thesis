@@ -1,0 +1,409 @@
+\documentclass[10pt,a4paper,notitlepage]{article}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,graphicx,url,fancyhdr,fancybox,fancyvrb}
+\usepackage[intoc]{nomencl}
+\usepackage{rotating}
+\usepackage[margin=10pt,font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage[nottoc]{tocbibind}
+\usepackage{fullpage}
+\usepackage{rotating}
+\usepackage{xfrac}
+\numberwithin{equation}{section}
+
+%%%---Set line spread------------------------------------------------------------------
+\linespread{1.5}
+\pagestyle{plain}
+
+% PDF SETUP------FILL IN HERE THE DOC TITLE AND AUTHOR---------------------------------
+\usepackage[
+      bookmarks,
+      hypertexnames=false,
+      breaklinks=true,
+      pdftitle={List of Corrections},
+      pdfauthor={Jakub Konka},
+      plainpages=false]{hyperref}
+
+\usepackage{parskip}
+
+%%%---Start document-------------------------------------------------------------------
+\begin{document}
+
+\title{List of Corrections: PhD Viva}
+\date{\today}
+\author{Jakub Konka}
+
+\maketitle
+
+%% General
+\setcounter{section}{0}
+\renewcommand{\thesection}{G}
+\renewcommand{\thesubsection}{G\arabic{subsection}}
+\section{General Comments}
+
+\setcounter{subsection}{0}
+\subsection{Comment 1}
+The presented work is not in the University Thesis Style---change. Thesis should conform to SU style.\\[-2ex]
+
+\textbf{Response:}
+The style was changed to match the University Thesis Style. More specifically:
+\begin{enumerate}
+	\item Title page now features University and Department;
+	\item Lines are double spaced;
+	\item Page with declaration of originality and ownership now features a heading;
+\end{enumerate}
+
+\subsection{Comment 2}
+Section 2.2---you have slipped into first person English–––this should be changed throughout the entire thesis. Convert to third person English throughout. We/our.\\[-2ex]
+
+\textbf{Response:}
+All occurrences of ``we'' or ``our'' were removed and replaced with their passive voice counterpart.
+
+\subsection{Comment 3}
+Proofs should be in an appendix, not at the end of the chapter.\\[-2ex]
+
+\textbf{Response:}
+All proofs were moved to Appendix A. For convenience, each proposition proved in the Appendix is restated before the actual proof is conducted (numbering of propositions was preserved). Furthermore, in the thesis, after the first proposition is stated, the reader is directed to the Appendix for the proof.
+
+\subsection{Comment 4}
+Every equation should have a number.\\[-2ex]
+
+\textbf{Response:}
+All equations are now numbered.
+
+\clearpage
+
+%% Abstract
+\setcounter{section}{0}
+\renewcommand{\thesection}{A}
+\renewcommand{\thesubsection}{A\arabic{subsection}}
+\section{Abstract Comments}
+
+\clearpage
+
+%% Chapter 1
+\setcounter{section}{0}
+\renewcommand{\thesection}{C\arabic{section}}
+\renewcommand{\thesubsection}{C\arabic{section}.\arabic{subsection}}
+\section{Chapter 1 Comments}
+\subsection{Comment 1}
+Objective 3---why simple? A model that facilitates... would be more appropriate.\\[-2ex]
+
+\textbf{Response:}
+Removed ``simple'' altogether.
+
+\subsection{Comment 2}
+What is a bearer service?\\[-2ex]
+
+\textbf{Response:}
+Bearer service, in telecommunications, is equivalent to data service; that is, a service that allows transmission of information between network interfaces. ``Bearer'' was removed from the text. Instead, some examples of services were added:
+\begin{quote}
+The exclusive one-to-one mapping between network operators and subscribers need no longer hold; when requesting a service (for example, making a phone call, or checking the email), the network selection mechanism will be responsible for selecting the network operator (access technology) that best matches the required quality requirements of the service.
+\end{quote}
+
+\clearpage
+
+%% Chapter 2
+\section{Chapter 2 Comments}
+\subsection{Comment 1}
+Weird font sizes used in Fig.~2.3.\\[-2ex]
+
+\textbf{Response:}
+Unified font sizes.
+
+\subsection{Comment 2}
+Is the flow of network traffic important for the diagram in Fig.~2.1? Fig.~2.1: Ensure diagram is bidirectional.\\[-2ex]
+
+\textbf{Response:}
+Replaced ``lighting bolts'' with double pointed arrows in Fig.~2.1.
+
+\subsection{Comment 3}
+The first two paragraphs of section 2.1.3 are not needed.\\[-2ex]
+
+\textbf{Response:}
+Removed.
+
+\subsection{Comment 4}
+Section 3.2.1---auction theory is promising for what?\\[-2ex]
+
+\textbf{Response:}
+Auction theory is one of the most \emph{prominent} branches of economics.
+
+\subsection{Comment 5}
+Need a 4th level of headings.\\[-2ex]
+
+\textbf{Response:}
+Modified accordingly.
+
+\clearpage
+
+%% Chapter 3
+\section{Chapter 3 Comments}
+\subsection{Comment 1}
+``report'' is a poor choice of variable.\\[-2ex]
+
+\textbf{Response:}
+Replaced with $\rho$.
+
+\subsection{Comment 2}
+P24: mention the paper via specific reference.\\[-2ex]
+
+\textbf{Response:}
+Rephrased and referenced the paper in question.
+
+\subsection{Comment 3}
+Section 3.2.2 contains too much design aspects---only reporting with relevance to the thesis is required. You can develop design choices elsewhere.\\[-2ex]
+
+\textbf{Response:}
+The design aspects of the reputation rating systems were added into the thesis after the reviewers of the IEEE Transactions on Vehicular Technology paper pointed out that this was missing. Furthermore, it is more descriptive than anything else, as the reputation rating system was developed by other researchers studying the DMP.
+
+\subsection{Comment 4}
+P8: More discussion on the definition of reputation is required. Does the reputation relate to the network operator or to each service offered by the network operator?\\[-2ex]
+
+\textbf{Response:}
+Added explanation in the paragraph describing the reputation rating system:
+\begin{quote}
+It is important to notice that the reputation rating relates to the network operator rather than to the type of service offered by the network operator, such as phone call, email or web browsing requests~[43].
+\end{quote}
+
+\clearpage
+
+%% Chapter 4
+\section{Chapter 4 Comments}
+\subsection{Comment 1}
+Figs. 4.1 and 4.2---add colour plot.\\[-2ex]
+
+\textbf{Response:}
+Revised accordingly.
+
+\subsection{Comment 2}
+In Figs. 4.1 and 4.2 is $i$ and $j$ a proxy for 1 and 2? $n=2$ in this section.\\[-2ex]
+
+\textbf{Response:}
+Yes it is. It was revised accordingly; $i$ was renamed to 1 and $j$ to 2 both in the text and in the figures. The changes make it compatible with Section 5.3, Chapter 5.
+
+\subsection{Comment 3}
+Equation (4.7): $n$ was previously the number of network operators---is this now varying with $i$?\\[-2ex]
+
+\textbf{Response:}
+To clarify the exposition, the variables were renamed as follows: $m_i$ is now $\zeta_i$, and $n_i$ is now $\eta_i$. See Equation (4.26) in the revised manuscript.
+
+\subsection{Comment 4}
+P40: Need to explain $b'$.\\[-2ex]
+
+\textbf{Response:}
+The apostrophe was dropped to simplify the notation.
+
+\subsection{Comment 5}
+Eq.~(4.15): Assuming $b(1) = 1$, need to explain the implications of this. P33: does making the assumption $b(1)=1$ have a physical meaning?\\[-2ex]
+
+\textbf{Response:}
+Added explanation in the text:
+\begin{quote}
+Since $c_i\in [0,1]$ for all $i\in N$, it follows $b(1) = 1$. To see this, suppose network operator 1 is characterised by cost $c_1 = 1$. Then, they would never submit a bid higher than their cost $c_1 = 1$ since they would never win. That is, the competing network operator, network operator 2 say, regardless of their cost, could just bid $b(c_2) = c_1 = 1$ and win the auction. Furthermore, network operator 1 would never submit a bid lower than their cost $c_1 = 1$ since they would make a loss if they were to win the auction. Therefore, it must be that $b(1) = 1$.
+\end{quote}
+
+\subsection{Comment 6}
+First equations on P29---will all the operations use the same weights?\\[-2ex]
+
+\textbf{Response:}
+Clarified in the paragraph before the equations:
+\begin{quote}
+It is, moreover, assumed that the price and reputation weights $(w_{price}, w_{penalty})$ are announced by the subscriber to all network operators before the auction. They are specific to the subscriber and the service they requested. In other words, it is envisaged that the same subscriber might use different weights for subsequently requested services during their participation in the DMP.
+\end{quote}
+
+\subsection{Comment 7}
+What happens if a network operator bids below their cost? Need a discussion on practicalities of real bids (incl. loss leader pricing strategy). Does allowing negative bids have a physical interpretation?\\[-2ex]
+
+\textbf{Response:}
+The point was addressed in the thesis. A paragraph explaining the problem and assumptions of game theory was added to the end of section 4.1:
+\begin{quote}
+It is further assumed that the network operators will bid at least their cost (unless explicitly stated otherwise). The problem of bidding below cost or negatively deserves a more elaborate explanation. There are two fundamental assumptions governing game theory~[22]: 1) economic agents are rational decision-makers; that is, they make decisions consistently in pursuit of their own objectives; and 2) their objective is to maximise the expected value of their own utility. In the light of those assumptions, network operators are implied to bid at least their cost as they would always strive to maximise their expected utility. However, the real behaviour of the network operators might be different in the sense that they might, in the view of game theory, behave irrationally by bidding below their cost to secure the contract with the subscriber. In fact, if the temporal aspect of the DMP is considered, network operators will interact by engaging in the DMP auction more than once. Then, it might prove beneficial for them to bid below their cost trading positive utility for securing the win---this is a well-known pricing strategy in economics called ``loss leader'' pricing strategy~[61, 62]. The idea behind the strategy is to sell a good at a price below its market cost to increase the store traffic and encourage sales of other, possibly more profitable goods. Applied back to the DMP, a network operator could, in principle, willingly incur cost by bidding below their cost to encourage more subscribers to use their services, or to improve their reputation rating by serving more subscribers. While the fact that situations like this can occur in reality is appreciated, this thesis follows the fundamental assumptions of game theory; that is, in the rest of this thesis (unless explicitly stated otherwise), it is assumed that all economic agents involved in the DMP are rational decision-makers and strive to maximise their expected utility. Otherwise, the mathematical treatment of the problem would prove impossible~[63].
+\end{quote}
+
+\clearpage
+
+%% Chapter 5
+\section{Chapter 5 Comments}
+\subsection{Comment 1}
+Remove obsolete figures from Chapter 5.\\[-2ex]
+
+\textbf{Response:}
+The following figures were removed: 5.8, 5.10, 5.12, 5.14, 5.17 and 5.19. Appropriate changes in the sections referencing the figures were made.
+
+\subsection{Comment 2}
+Remove Section 5.4.4 (Chebyshev) entirely.\\[-2ex]
+
+\textbf{Response:}
+Section was removed and appropriate changes in the sections referencing the section were made.
+
+\subsection{Comment 3}
+Fig. 5.16---what is customised finite difference? Change to EFSM.\\[-2ex]
+
+\textbf{Response:}
+The caption of the figure was changed to EFSM (Fig. 5.12 in the revised manuscript). Furthermore, any mention of ``customised finite-differences'' method was removed from the text.
+
+\subsection{Comment 4}
+P66: ``in particular'' should be ``for example''.\\[-2ex]
+
+\textbf{Response:}
+Revised accordingly.
+
+\subsection{Comment 5}
+P65: mode detail on what ``slightly modified'' entails---just say ``using existing methods''.\\[-2ex]
+
+\textbf{Response:}
+Revised accordingly.
+
+\subsection{Comment 6}
+P56: should read network operator 1.\\[-2ex]
+
+\textbf{Response:}
+Revised accordingly.
+
+\subsection{Comment 7}
+P61: why do you make this statement regarding ``abuse of notation''?\\[-2ex]
+
+\textbf{Response:}
+Originally, it was introduced to justify the weird notation of the expected prices. However, since the notation is legible, the statement ``abuse of notation'' was removed.
+
+\subsection{Comment 8}
+P61: How do you know 10,000 is enough? Was this number empirically chosen? Need to justify. Why has 10,000 been chosen? Is it large?\\[-2ex]
+
+\textbf{Response:}
+A sentence explaining why 10,000 observations was added in the paragraph:
+\begin{quote}
+Furthermore, it was empirically established that averaging over more than 10,000 observations does not drastically improve the results; that is, the already narrow 95\% confidence intervals do not get narrower as the number of observations increases beyond 10,000. In other words, 10,000 is large enough a sample size, and therefore, an average of 10,000 observations of the price for each selected price weight should provide a reasonable approximation of the expected price for that price weight.
+\end{quote}
+
+\subsection{Comment 9}
+Superscript notation in Fig.~5.4 not clear. Put superscripts in brackets so that it does not look like squaring.\\[-2ex]
+
+\textbf{Response:}
+Superscripts are now in brackets in the text and in Fig.~5.4.
+
+\subsection{Comment 10}
+Implications of adapting price weights should be discussed.\\[-2ex]
+
+\textbf{Response:}
+A few sentences discussing the implications were added to the appropriate paragraph:
+\begin{quote}
+In other words, for any expected price, as the difference $(r_2-r_1)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed. This observation carries very serious implications on the operation of the DMP, as the subscriber is effectively given the ability to influence the expected prices by an appropriate choice of the price weight. To illustrate, suppose there are 2 network operators characterised by reputation ratings $(r_1, r_2)$. Suppose further that the subscriber paid the price of $p_1$ at some point in the past for some type of service, and they request the same service again. Therefore, in order to pay the expected price of at most $p_1$, the subscriber solves
+\begin{equation}
+p_1 \le E[p_1](w, r_1, r_2)
+\end{equation}
+for the price weight $w$. In this way, the subscriber is guaranteed the expected price of at most $p_1$.
+\end{quote}
+
+\subsection{Comment 11}
+P68, P71, P82---how do these algorithms terminate?\\[-2ex]
+
+\textbf{Response:}
+Each algorithmic listing features ``input'' and ``output'' statements at the very top of the listing.
+
+\subsection{Comment 12}
+You have avoided using the $k$-tuple language elsewhere in the thesis, so why start on P69?\\[-2ex]
+
+\textbf{Response:}
+All occurrences of $k$-tuples were changed to vectors.
+
+\subsection{Comment 13}
+Weird ends in Figs.~5.12 and 5.13---any explanation?\\[-2ex]
+
+\textbf{Response:}
+The explanation is provided in the text:
+\begin{quote}
+In the FSM case, the approximation diverges in the very near proximity of $\bar{\hat{b}}$, and therefore, the approximation satisfies the sufficiency only until $b$ reaches a close neighbourhood of $\bar{\hat{b}}$. This is due to the fact that the system of ODEs does not satisfy Lipschitz condition as $b$ approaches $\bar{\hat{b}}$.
+\end{quote}
+
+\subsection{Comment 14}
+Brackets on equation after (5.33) is strange. P81: need clearer notation.\\[-2ex]
+
+\textbf{Response:}
+The set-builder notation was removed altogether. Instead, the conditions were unwrapped into separate equations, and are reference in the algorithms and in the text.
+
+\subsection{Comment 15}
+What value are Kaplan and Zamir putting on the non-standard equilibria?\\[-2ex]
+
+\textbf{Response:}
+Added an explanation of the importance of the non-standard equilibria:
+\begin{quote}
+Kaplan and Zamir, who characterise equilibria like the one specified in Proposition~4.4 as non-standard, further argue that such equilibria are important and should not be neglected since they may result in different winning offered prices and different network operators winning the auction. In other words, relaxing the assumption about network operators submitting at least their cost might help in understanding the ``deviations'' from the predicted equilibrium bidding behaviour prescribed in Proposition~5.5 should these occur in reality. Here, those ``deviations'' may be captured by non-standard equilibria.
+\end{quote}
+
+\subsection{Comment 16}
+P84: is this brevity?\\[-2ex]
+
+\textbf{Response:}
+Rephrased to say:
+\begin{quote}
+Similarly to the algorithms presented in Section~5.4, the EFSM method was tested for correct implementation using the same procedure as presented in Section~5.4. However, since the verification results match exactly those presented in Figure~5.6, their discussion is omitted from this section.
+\end{quote}
+
+\subsection{Comment 17}
+What is the algorithm on P58 based on? Is it yours or taken from elsewhere? P58: Make clear whose procedure this is. Put into algorithmic style.[-2ex]
+
+\textbf{Response:}
+Added appropriate listing (Listing 5.1). Furthermore, updated the description of the steps:
+\begin{quote}
+Listing~5.1 depicts the pseudo-code of the proposed method. The steps of the algorithm can be summarised as follows:
+\begin{enumerate}
+\item For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2 (lines 1--4).
+\item If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ (lines 6--9).
+\item If $\bar{\hat{c}}_1 > 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is nontrivial. Hence,
+\begin{enumerate}
+\item Calculate the common bids-hat support $[\underline{\hat{b}}, \bar{\hat{b}}]$ using Equation~(5.37) (lines 11--12).
+\item For all $\hat{b}\in [\underline{\hat{b}}, \bar{\hat{b}}]$, calculate the corresponding costs-hat for both network operators using Equations~(5.33)~and~(5.34). Since by assumption $r_1 < r_2$, it follows that $\bar{\hat{c}}_1 \le \bar{\hat{c}}_2$, and hence, $\bar{\hat{b}}\le \bar{\hat{c}}_2$. Thus, network operator 2 bids their cost-hat, $\hat{c}_2(\hat{b}) = \hat{c}_2$ for all $\hat{b}\in [\bar{\hat{b}}, \bar{\hat{c}}_2]$ (lines 13--16).
+\end{enumerate}
+\end{enumerate}
+\end{quote}
+
+\subsection{Comment 18}
+Can you explain the simplification made before equation (5.27) and its impact?\\[-2ex]
+
+\textbf{Response:}
+A sentence explaining the impact of the simplifaction was added:
+\begin{quote}
+The ultimate aim of the numerical analysis is to obtain a numerical approximation to the equilibrium bidding strategies for all bidding scenarios that involve feasible bidders (cf.~Definition~5.2). However, as shown below, the assumption~(5.46) restricts the choice of the price weight and the reputation ratings to a subset of all possible bidding scenarios involving feasible bidders.
+\end{quote}
+
+\subsection{Comment 19}
+Section 5.4.1 you need to make clear what FSM is all about then move to the specifics of the problem of interest. Section 5.4.2---again you need to make clear what PPM is all about then move to the specifics of the problem of interest.\\[-2ex]
+
+\textbf{Response:}
+Removed the first paragraph from the sections which was confusing and delayed the description of the methods under consideration. Moved the paragraph to the end of the section preceding FSM and PPM sections.
+
+\clearpage
+
+%% Chapter 6
+\section{Chapter 6 Comments}
+\subsection{Comment 1}
+P99: Eq.~6.5 notation issue.\\[-2ex]
+
+\textbf{Response:}
+Made appropriate changes in the captions of figures 6.5 and 6.6.
+
+\subsection{Comment 2}
+P100: Last equation. Why is denominator 4? 95\% rule. Mention this first.\\[-2ex]
+
+\textbf{Response:}
+The paragraph explaining the choice of the parameters was rephrased:
+\begin{quote}
+Secondly, the distribution specific parameters (mean and standard deviation) need to be specified for each bidder. The choice of the parameters is motivated by the shape of the normal distribution. Therefore, the midpoints of the original supports are picked as means for both bidders, that is,
+\begin{equation}
+\mu_i = \underline{c}_i + \frac{\bar{c}_i - \underline{c}_i}{2} = \underline{c}_i + \frac{w}{2}.
+\end{equation}
+Furthermore, noting that, in the case of normal distribution, 95\% of all the values falls within 2 standard deviations away from the mean~[82], the standard deviations are selected to be equal to the quarter of the length of the original supports, that is,
+\begin{equation}
+\sigma_i = \frac{\bar{c}_i - \underline{c}_i}{4} = \frac{w}{4}.
+\end{equation}
+In this way, for each bidder, 95\% of all the costs falls within the interval $[\underline{c}_i, \bar{c}_i]$, and therefore, the probability of drawing cost outside this interval is minimised. With this choice of parameters, the truncated normal distributions are effectively imitating uniform distributions with support $[\underline{c}_i, \bar{c}_i]$ for each bidder.
+\end{quote}
+
+\clearpage
+
+%% Chapter 7
+\section{Chapter 7 Comments}
+
+\end{document} 

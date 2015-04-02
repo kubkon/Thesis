@@ -1,9 +1,10 @@
 LATEX = xelatex
 BIBTEX = bibtex
 THESIS = Thesis
+CORR = corrections
 
 .PHONY: all
-all: $(THESIS).pdf
+all: $(THESIS).pdf $(CORR).pdf
 
 .PHONY: show
 show: $(THESIS).pdf
@@ -18,6 +19,13 @@ $(THESIS).bbl: $(THESIS).tex $(THESIS).bib MyPublications.bib
 	$(BIBTEX) -terse $(THESIS)
 	$(BIBTEX) -terse MyPublications
 
+.PHONY: corrections
+corrections: $(CORR).pdf
+	open $(CORR).pdf
+
+$(CORR).pdf: $(CORR).tex
+	$(LATEX) $(CORR).tex
+
 .PHONY: clean
 clean:
 	find . -type f -name  '*.aux' -print0 | xargs -0 rm
@@ -27,4 +35,4 @@ clean:
 	find . -type f -name  '*.maf' -print0 | xargs -0 rm
 	find . -type f -name  '*.mtc*' -print0 | xargs -0 rm
 	find . -type f -name  '*.toc' -print0 | xargs -0 rm
-
+	find . -type f -name  '*.out' -print0 | xargs -0 rm
