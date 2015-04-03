@@ -18,8 +18,8 @@
 % Set Line spacing
 \usepackage{setspace}
 % \singlespacing
-% \onehalfspacing
-\doublespacing
+\onehalfspacing
+% \doublespacing
 % \setstretch{1.25}
 
 % Set Margins
@@ -205,6 +205,5 @@
 \setcounter{secnumdepth}{3}
 
 % Annotate correction
-\usepackage[normalem]{ulem}
 \usepackage{color}
-\newcommand{\annotate}[2]{\marginpar{{\color{red}\textbf{#1}}}{\color{red}\uwave{#2}}}
+\newcommand{\annotate}[2]{\marginpar{{\color{red}\textbf{#1}}}{\color{red}\emph{#2}}}

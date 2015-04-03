@@ -339,16 +339,16 @@ The equilibrium inverse bidding strategy functions are inconvenient to work with
 \end{algorithmic}
 \end{algorithm}
 
-\annotate{C5.17}{Listing~\ref{alg:inverse_of_equilibrium_inverse_bidding_strategy_functions_indirect} depicts the pseudo-code of the proposed method. The steps of the algorithm can be summarised as follows:}
+\annotate{C5.17}{Listing~\ref{alg:inverse_of_equilibrium_inverse_bidding_strategy_functions_indirect} depicts the pseudo-code of the proposed method. The steps of the algorithm can be summarised as follows:
 \begin{enumerate}
-  \item \annotate{}{For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2 (lines 1--4).}
-  \item \annotate{}{If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ (lines 6--9).}
-  \item \annotate{}{If $\bar{\hat{c}}_1 > 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is nontrivial. Hence,}
+  \item For a particular price weight $w$ and reputation ratings $r_1$ and $r_2$, calculate the costs-hat supports for both network operators; that is, the endpoints of the interval $[\underline{\hat{c}}_1, \bar{\hat{c}}_1]$ for network operator 1, and $[\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ for network operator 2 (lines 1--4).
+  \item If $\bar{\hat{c}}_1 \le 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is trivial. Network operator 1 bids the lower endpoint of the cost-hat support of network operator 2; that is, network operator 1 bids $\underline{\hat{c}}_2$ for all $\hat{c}\in [\underline{\hat{c}}_1, \bar{\hat{c}}_1]$. Network operator 2, on the other hand, bids their cost-hat; that is, network operator 2 bids $\hat{c}$ for all $\hat{c}\in [\underline{\hat{c}}_2, \bar{\hat{c}}_2]$ (lines 6--9).
+  \item If $\bar{\hat{c}}_1 > 2\underline{\hat{c}}_2 - \bar{\hat{c}}_2$, then the equilibrium is nontrivial. Hence,
   \begin{enumerate}
-    \item \annotate{}{Calculate the common bids-hat support $[\underline{\hat{b}}, \bar{\hat{b}}]$ using Equation~\eqref{eq:bounds_bid_restricted_indirect} (lines 11--12).}
-    \item \annotate{}{For all $\hat{b}\in [\underline{\hat{b}}, \bar{\hat{b}}]$, calculate the corresponding costs-hat for both network operators using Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}. Since by assumption $r_1 < r_2$, it follows that $\bar{\hat{c}}_1 \le \bar{\hat{c}}_2$, and hence, $\bar{\hat{b}}\le \bar{\hat{c}}_2$. Thus, network operator 2 bids their cost-hat, $\hat{c}_2(\hat{b}) = \hat{c}_2$  for all $\hat{b}\in [\bar{\hat{b}}, \bar{\hat{c}}_2]$ (lines 13--16).}
+    \item Calculate the common bids-hat support $[\underline{\hat{b}}, \bar{\hat{b}}]$ using Equation~\eqref{eq:bounds_bid_restricted_indirect} (lines 11--12).
+    \item For all $\hat{b}\in [\underline{\hat{b}}, \bar{\hat{b}}]$, calculate the corresponding costs-hat for both network operators using Equations~\eqref{eq:inverse_equi_bidding_str_1_indirect}~and~\eqref{eq:inverse_equi_bidding_str_2_indirect}. Since by assumption $r_1 < r_2$, it follows that $\bar{\hat{c}}_1 \le \bar{\hat{c}}_2$, and hence, $\bar{\hat{b}}\le \bar{\hat{c}}_2$. Thus, network operator 2 bids their cost-hat, $\hat{c}_2(\hat{b}) = \hat{c}_2$  for all $\hat{b}\in [\bar{\hat{b}}, \bar{\hat{c}}_2]$ (lines 13--16).
   \end{enumerate}
-\end{enumerate}
+\end{enumerate}}
 
 \begin{figure}[p!]
   \includegraphics[width=\figsize]{Indirect/Figures/bids_restricted}
@@ -435,11 +435,11 @@ To this end, for any given pair of reputation ratings, the costs are pseudo-rand
 
 It can be observed that regardless of the values of the reputation ratings, the expected prices, $E[p](w,r_1,r_2)$, are bounded from below by $E[p^*]$ for each price weight; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Hence, it can be concluded that regardless of the values of the reputation ratings, the lowest expected price is achieved for $w=1$, and will not decrease as $w$ decreases; in fact, it can only either increase or remain constant.
 
-Furthermore, as the difference $(r_2-r_1)$ increases, the expected prices, $E[p](w,r_1,r_2)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Therefore, it can be hypothesised that the smaller the difference $(r_2-r_1)$, the less (expected) price sensitive the price weight; \annotate{C5.9}{that is, for any $w_1\in[0,1]$, if $(r^{(2)}_2-r^{(2)}_1) > (r^{(1)}_2-r^{(1)}_1)$ for all $r^{(1)}_1,r^{(1)}_2,r^{(2)}_1,r^{(2)}_2\in [0,1]$, then $E[p](w_1,r^{(2)}_1,r^{(2)}_2) \ge E[p](w_1,r^{(1)}_1,r^{(1)}_2)$ (see Figure~\ref{fig:expected_prices_sensitivity_indirect}).} \annotate{C5.10}{In other words, for any expected price, as the difference $(r_2-r_1)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed. This observation carries very serious implications on the operation of the DMP, as the subscriber is effectively given the ability to influence the expected prices by an appropriate choice of the price weight. To illustrate, suppose there are 2 network operators characterised by reputation ratings $(r_1, r_2)$. Suppose further that the subscriber paid the price of $p_1$ at some point in the past for some type of service, and they request the same service again. Therefore, in order to pay the expected price of at most $p_1$, the subscriber solves}
+Furthermore, as the difference $(r_2-r_1)$ increases, the expected prices, $E[p](w,r_1,r_2)$, increase as the price weight decreases; this is depicted in Figure~\ref{fig:expected_prices_indirect}. Therefore, it can be hypothesised that the smaller the difference $(r_2-r_1)$, the less (expected) price sensitive the price weight; \annotate{C5.9}{that is, for any $w_1\in[0,1]$, if $(r^{(2)}_2-r^{(2)}_1) > (r^{(1)}_2-r^{(1)}_1)$ for all $r^{(1)}_1,r^{(1)}_2,r^{(2)}_1,r^{(2)}_2\in [0,1]$, then $E[p](w_1,r^{(2)}_1,r^{(2)}_2) \ge E[p](w_1,r^{(1)}_1,r^{(1)}_2)$ (see Figure~\ref{fig:expected_prices_sensitivity_indirect}).} \annotate{C5.10}{In other words, for any expected price, as the difference $(r_2-r_1)$ between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed. This observation carries very serious implications on the operation of the DMP, as the subscriber is effectively given the ability to influence the expected prices by an appropriate choice of the price weight. To illustrate, suppose there are 2 network operators characterised by reputation ratings $(r_1, r_2)$. Suppose further that the subscriber paid the price of $p_1$ at some point in the past for some type of service, and they request the same service again. Therefore, in order to pay the expected price of at most $p_1$, the subscriber solves
 \begin{equation}
   p_1 \ge E[p_1](w, r_1, r_2)
 \end{equation}
-\annotate{}{for the price weight $w$. In this way, the subscriber is guaranteed the expected price of at most $p_1$.}
+for the price weight $w$. In this way, the subscriber is guaranteed the expected price of at most $p_1$.}
 % subsection subscriber_s_perspective_expected_prices_in_restricted_case (end)
 
 As already mentioned in the previous section, the bidding problem does not possess a closed-form solution in the case of more than two network operators. However, it is possible to approximate the solution numerically, as it will be discussed in the next section. It should further be noted that the equilibrium bidding strategies derived in this section will be used to verify the correctness of the numerical methods presented in the next section.
@@ -527,21 +527,21 @@ The idea behind the FSM is to find the best approximation of the lower bound on 
     \hat{c}_i(\underline{\hat{b}}') &= \underline{\hat{c}}_i
   \end{array}
 \end{equation}
-\annotate{C5.14}{for all $i\in N$ satisfies the following three conditions: 1) it is a function mapping $[\underline{\hat{b}}', \bar{\hat{b}}]$ into $[\underline{\hat{c}}_i, \bar{\hat{c}}_i]$, that is,}
+\annotate{C5.14}{for all $i\in N$ satisfies the following three conditions: 1) it is a function mapping $[\underline{\hat{b}}', \bar{\hat{b}}]$ into $[\underline{\hat{c}}_i, \bar{\hat{c}}_i]$, that is,
 \begin{equation}
   \label{eq:fsm_condition_1_indirect}
   s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\underline{\hat{c}}_i, \bar{\hat{c}}_i];
 \end{equation}
-\annotate{}{2) it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, that is,}
+2) it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, that is,
 \begin{equation}
   \label{eq:fsm_condition_2_indirect}
   b_1 < b_2\implies s_i(b_1) < s_i(b_2) \textrm{ for all }b_1,b_2\in [\underline{\hat{b}}', \bar{\hat{b}});
 \end{equation}
-\annotate{}{and 3) each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$, that is,}
+and 3) each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$, that is,
 \begin{equation}
   \label{eq:fsm_condition_3_indirect}
   s_i(b) < b \textrm{ for all }b\in [\underline{\hat{b}}', \bar{\hat{b}}).
-\end{equation}
+\end{equation}}
 
 This specification of the problem is a modified version of the First Algorithm in Bajari~\cite{Bajari2001a} (cf.~Section~3.3 in~\cite{Bajari2001a}) that accommodates for different lower and upper extremities in the supports of bidders' costs.
 
@@ -781,21 +781,21 @@ The EFSM method extends the FSM method by effectively implementing the reasoning
     \hat{c}_i(\underline{\hat{b}}') &= \min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}
   \end{array}
 \end{equation}
-\annotate{C5.14}{for all $i\in N$ satisfies the following three conditions: 1) it is a function mapping $[\underline{\hat{b}}',\bar{\hat{b}}]$ into $[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i]$, that is,}
+\annotate{C5.14}{for all $i\in N$ satisfies the following three conditions: 1) it is a function mapping $[\underline{\hat{b}}',\bar{\hat{b}}]$ into $[\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i]$, that is,
 \begin{equation}
   \label{eq:efsm_condition_1_indirect}
   s_i: [\underline{\hat{b}}', \bar{\hat{b}}]\to [\min\{\underline{\hat{c}}_i, \hat{c}(\underline{\hat{b}}')\}, \bar{\hat{c}}_i];
 \end{equation}
-\annotate{}{2) it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, that is,}
+2) it is monotonically increasing everywhere except possibly at $\bar{\hat{b}}$, that is,
 \begin{equation}
   \label{eq:efsm_condition_2_indirect}
   b_1 < b_2\implies s_i(b_1) < s_i(b_2) \textrm{ for all }b_1,b_2\in [\underline{\hat{b}}', \bar{\hat{b}});
 \end{equation}
-\annotate{}{and 3) each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$, that is,}
+and 3) each function value is strictly lower than its argument except possibly at $\bar{\hat{b}}$, that is,
 \begin{equation}
   \label{eq:efsm_condition_3_indirect}
   s_i(b) < b \textrm{ for all }b\in [\underline{\hat{b}}', \bar{\hat{b}}).
-\end{equation}
+\end{equation}}
 
 \begin{algorithm}[p]
 \caption{Extended forward shooting method}
