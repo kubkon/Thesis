@@ -231,6 +231,8 @@ and the upper boundary condition
 \end{equation}
 for all, except possibly one, $1\leq i\leq n$.
 \end{proposition}
+\annotate{C5.20}{It is worth noting that, to the best of the author's knowledge, the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with boundary conditions~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect} is unique to the domain of auction theory. This can be attributed to the fact that the derivation of the system involves the inverses of the equilibrium bidding strategy functions (as opposed to the equilibrium bidding strategy functions themselves), and unknown \emph{a priori} lower bound on bids, $\underline{\hat{b}}$.}
+
 The intuition behind the upper boundary condition in Equation~\eqref{eq:foc_ode_upper_boundary_indirect} is that the network operator bids their cost-hat when their probability of winning is zero. Ignoring the minimum operator, the intuition behind the lower boundary condition in Equation~\eqref{eq:foc_ode_lower_boundary_indirect} on the other hand, is that the lowest bid-hat of each network operator is reached for their lowest cost-hat.
 
 Since both $w$ and $r_i$ are assumed to be given to the network operators (i.e., they cannot directly modify their values), the costs-hat and bids-hat are simply convex (and hence, linear) combinations involving costs and bids respectively (Equations~\eqref{eq:b_hat_indirect}~and~\eqref{eq:cost_hat_indirect}). Therefore, a network operator bidding their cost-hat is equivalent to bidding their cost, and the following corollary can immediately be deduced.

@@ -238,6 +238,9 @@ End of Section 3.2.2---referencing in big blocks is totally inapproriate---you n
 
 \textbf{Response:}
 Removed the first block of references altogether since they are elaborated upon in the subsequent section. Decomposed the second block (regarding QoE) into a short paragraph summarising each paper in relation to QoE.
+\begin{quote}
+The literature on the concept of QoE abounds. For example, Kilkki discusses the conceptual differences between QoS and QoE, and how the concepts fit into the communications ecosystem~[49]. He further defines QoE to be a set of metrics, such as mean opinion score, that capture the experience of the users within a particular services. At the same time, he reserves QoS to consist of metrics capturing the quality of the service at the technical level between network and application; e.g., bit rates, delay properties, and packet loss rates. Brooks and Hestnes, on the other hand, discuss different way of measuring QoE both subjectively and objectively~[50]. Furthermore, Fiedler~\emph{et al.}~propose a quantitative formula for relating QoS with QoE~[51], and similarly, Shaikh~\emph{et al.}~provide insight into the correlations of QoS and QoE; hence, capture the relationships between the two metrics~[52].
+\end{quote}
 
 \subsection{Comment 12}
 There are no references in subsection 3.2.1 and an overreliance on [8] elsewhere.
@@ -451,6 +454,15 @@ Section 5.4.1 you need to make clear what FSM is all about then move to the spec
 
 \textbf{Response:}
 Removed the first paragraph from the sections which was confusing and delayed the description of the methods under consideration. Moved the paragraph to the end of the section preceding FSM and PPM sections.
+
+\subsection{Comment 20}
+Section 5.4---you do not make clear whether these types of equations (5.13) to (5.14) arise elsewhere in other domains. P63: do the ODEs appear anywhere else with the same structure. Perhaps a quick look would be useful.
+
+\textbf{Response:}
+To the best of my knowledge, the system of ODEs is unique to auction theory domain. An explanation was added to the thesis to make it clear:
+\begin{quote}
+It is worth noting that, to the best of the author's knowledge, the system of ODEs in Equation~(5.27) with boundary conditions~(5.28)~and~(5.29) is unique to the domain of auction theory. This can be attributed to the fact that the derivation of the system involves the inverses of the equilibrium bidding strategy functions (as opposed to the equilibrium bidding strategy functions themselves), and unknown \emph{a priori} lower bound on bids, $\underline{\hat{b}}$.
+\end{quote}
 
 \clearpage
 
