@@ -303,6 +303,15 @@ The point was addressed in the thesis. A paragraph explaining the problem and as
 It is further assumed that the network operators will bid at least their cost (unless explicitly stated otherwise). The problem of bidding below cost or negatively deserves a more elaborate explanation. There are two fundamental assumptions governing game theory~[22]: 1) economic agents are rational decision-makers; that is, they make decisions consistently in pursuit of their own objectives; and 2) their objective is to maximise the expected value of their own utility. In the light of those assumptions, network operators are implied to bid at least their cost as they would always strive to maximise their expected utility. However, the real behaviour of the network operators might be different in the sense that they might, in the view of game theory, behave irrationally by bidding below their cost to secure the contract with the subscriber. In fact, if the temporal aspect of the DMP is considered, network operators will interact by engaging in the DMP auction more than once. Then, it might prove beneficial for them to bid below their cost trading positive utility for securing the win---this is a well-known pricing strategy in economics called ``loss leader'' pricing strategy~[61, 62]. The idea behind the strategy is to sell a good at a price below its market cost to increase the store traffic and encourage sales of other, possibly more profitable goods. Applied back to the DMP, a network operator could, in principle, willingly incur cost by bidding below their cost to encourage more subscribers to use their services, or to improve their reputation rating by serving more subscribers. While the fact that situations like this can occur in reality is appreciated, this thesis follows the fundamental assumptions of game theory; that is, in the rest of this thesis (unless explicitly stated otherwise), it is assumed that all economic agents involved in the DMP are rational decision-makers and strive to maximise their expected utility. Otherwise, the mathematical treatment of the problem would prove impossible~[63].
 \end{quote}
 
+\subsection{Comment 8}
+You need to make clear that $b$ contains a symmetric bid/offer pair.
+
+\textbf{Response:}
+The notation is now properly explained:
+\begin{quote}
+where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the type vector, and $r = (r_i, r_{-i})$ the reputation rating vector. In this notation, $b_{-i}$ is a shorthand notation for a vector containing all elements with the $b_i$ excluded; that is, $b_{-i} = (b_1, \ldots, b_{i-1}, b_{i+1}, \ldots, b_n)$.
+\end{quote}
+
 \clearpage
 
 %% Chapter 5
