@@ -22,7 +22,9 @@ denote the compound bid. Each network operator $i$ is characterised by the utili
 		0 & \;\text{if } \beta(b_i, r_i) > \displaystyle\min_{j\neq i}\beta(b_j,r_j),
 	\end{array}\right.
 \end{equation}
-where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the type vector, and $r = (r_i, r_{-i})$ the reputation rating vector. \annotate{C4.8}{In this notation, $b_{-i}$ is a shorthand notation for a vector containing all elements with the $b_i$ excluded; that is, $b_{-i} = (b_1, \ldots, b_{i-1}, b_{i+1}, \ldots, b_n)$.} The type of each network operator is assumed to represent the cost of (or the minimum price for) transporting the service request under consideration. The winner of the auction is determined as the network operator whose compound bid is the lowest one; i.e., network operator $i$ is the winner if
+where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the type vector, and $r = (r_i, r_{-i})$ the reputation rating vector. \annotate{C4.8}{In this notation, $b_{-i}$ is a shorthand notation for a vector containing all elements with the $b_i$ excluded; that is, $b_{-i} = (b_1, \ldots, b_{i-1}, b_{i+1}, \ldots, b_n)$.} \annotate{C4.9}{Furthermore, as already stated in Section~\ref{sub:conceptual_overview_dmp}, Chapter~\ref{cha:dmp}, the monetary bid is equivalent to the price of supporting the service by the network operator. The precise definition of the price is left open-ended; one possibility, for example, would be to charge the buyer per unit of bandwidth.}
+
+The type of each network operator is assumed to represent the cost of (or the minimum price for) transporting the service request under consideration. The winner of the auction is determined as the network operator whose compound bid is the lowest one; i.e., network operator $i$ is the winner if
 \begin{equation}
 	\beta(b_i, r_i) < \displaystyle\min_{j\neq i}\beta(b_j,r_j).
 \end{equation}
