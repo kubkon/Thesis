@@ -6,9 +6,9 @@ This chapter formally defines the network selection mechanism in the DMP, and ca
 
 \section{Problem Definition and Assumptions} % (fold)
 \label{sec:problem_definition_and_assumptions_direct}
-The formal description of the network selection mechanism employed in the DMP is as follows. The model is a modified version of procurement first-price sealed-bid auction; henceforth, referred to as FPA. Thus, formally, it represents a Bayesian game of incomplete information, $\Gamma^B$ (see Section~\ref{sec:theory_of_games_notation}, Appendix~\ref{cha:notation} for the definition of a Bayesian game of incomplete information). There are $n$ network operators who bid for the right to sell their product to the subscriber such that $n = |N|$ where $N$ denotes the set of all network operators.
+\annotate{C4.10}{The game-theoretic description of the network selection mechanism employed in the DMP is as follows. The model constitutes a version of procurement first-price sealed-bid auction (henceforth, referred to as FPA). To recap, in FPA, bidders submit their bids simultaneously. Furthermore, each bidder knows their own cost of selling the good to the buyer but does not know any other bidder's type; i.e., the costs are private knowledge. The bidder who submitted the highest bid, wins the auction and sells the good to the buyer for the price equivalent to their bid. Since the costs are private knowledge, the bidders are uncertain about another bidders' utility functions. Thus, FPA and the network selection mechanism represent Bayesian games of incomplete information (see Section~\ref{sec:theory_of_games_notation}, Appendix~\ref{cha:notation} for the formal definition of a Bayesian game of incomplete information).}
 
-Let $\beta : \mathbb{R}_+\times [0,1] \to \mathbb{R}_+$, defined by
+There are $n$ network operators who bid for the right to sell their product to the subscriber such that $n = |N|$ where $N$ denotes the set of all network operators. Let $\beta : \mathbb{R}_+\times [0,1] \to \mathbb{R}_+$, defined by
 \begin{equation}
 	\label{eq:def_beta_direct}
 	\beta(b_i, r_i) = w_{price}\cdot b_i + w_{penalty}\cdot r_i \quad\text{for all } i\in N,
@@ -22,9 +22,9 @@ denote the compound bid. Each network operator $i$ is characterised by the utili
 		0 & \;\text{if } \beta(b_i, r_i) > \displaystyle\min_{j\neq i}\beta(b_j,r_j),
 	\end{array}\right.
 \end{equation}
-where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the type vector, and $r = (r_i, r_{-i})$ the reputation rating vector. \annotate{C4.8}{In this notation, $b_{-i}$ is a shorthand notation for a vector containing all elements with the $b_i$ excluded; that is, $b_{-i} = (b_1, \ldots, b_{i-1}, b_{i+1}, \ldots, b_n)$.} \annotate{C4.9}{Furthermore, as already stated in Section~\ref{sub:conceptual_overview_dmp}, Chapter~\ref{cha:dmp}, the monetary bid is equivalent to the price of supporting the service by the network operator. The precise definition of the price is left open-ended; one possibility, for example, would be to charge the buyer per unit of bandwidth.}
+where $b = (b_i,b_{-i})$ represents the monetary bid (or offered price) vector, $c = (c_i, c_{-i})$ the cost vector, and $r = (r_i, r_{-i})$ the reputation rating vector. \annotate{C4.8}{In this notation, $b_{-i}$ is a shorthand notation for a vector containing all elements with the $b_i$ excluded; that is, $b_{-i} = (b_1, \ldots, b_{i-1}, b_{i+1}, \ldots, b_n)$.} \annotate{C4.9}{Furthermore, as already stated in Section~\ref{sub:conceptual_overview_dmp}, Chapter~\ref{cha:dmp}, the monetary bid is equivalent to the price of supporting the service by the network operator. The precise definition of the price is left open-ended; one possibility, for example, would be to charge the buyer per unit of bandwidth.}
 
-The type of each network operator is assumed to represent the cost of (or the minimum price for) transporting the service request under consideration. The winner of the auction is determined as the network operator whose compound bid is the lowest one; i.e., network operator $i$ is the winner if
+The cost of each network operator is assumed to represent the minimum price for transporting the service request under consideration. The winner of the auction is determined as the network operator whose compound bid is the lowest one; i.e., network operator $i$ is the winner if
 \begin{equation}
 	\beta(b_i, r_i) < \displaystyle\min_{j\neq i}\beta(b_j,r_j).
 \end{equation}
