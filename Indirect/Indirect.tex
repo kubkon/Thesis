@@ -775,7 +775,9 @@ In what follows, a numerical algorithm which improves upon the algorithms consid
 
 \subsection{Extended Forward Shooting Method} % (fold)
 \label{sub:extended_forward_shooting_method_indirect}
-The EFSM method extends the FSM method by effectively implementing the reasoning behind the bidding extension characterised by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). As such, like the original method, the EFSM aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
+The EFSM method extends the FSM method by effectively implementing the reasoning behind the bidding extension characterised by Lebrun~\cite{Lebrun2006} (see Section~\ref{sec:numerical_analysis_indirect} for a description of the extension). \annotate{C5.23}{To the best of the author's knowledge, the EFSM method developed in this thesis is the only numerical algorithm that considers all nontrivial equilibria to the system of ODEs in Equation~\eqref{eq:foc_ode_indirect} with lower and upper boundary conditions in Equations~\eqref{eq:foc_ode_lower_boundary_indirect}~and~\eqref{eq:foc_ode_upper_boundary_indirect} respectively.}
+
+Similarly to the FSM method, the EFSM aims at finding the best approximation of the lower bound on bids, $\underline{\hat{b}}'$ say, by successively picking a value from the feasible interval $(\underline{\hat{c}}_2,\bar{\hat{b}})$, and verifying whether a numerical solution to the initial value problem
 \begin{equation}
   \label{eq:efsm_initial_value_problem_indirect}
   \begin{array}{ll}
