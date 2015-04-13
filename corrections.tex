@@ -736,7 +736,10 @@ Fibich and Gavish~[85] showed that the FSM method and its derivatives, such as t
 Why choose a CP that is a truncated normal distribution?
 
 \textbf{Response:}
-FIX:ME
+The motivation for truncated normal distribution is now explained in the thesis:
+\begin{quote}
+All that remains is to then select a family of distributions which captures the numerical ranges of the original supports as closely as possible. To provide an illustrative example, let there be 2 bidders such that $\underline{c}_1 < \underline{c}_2 < \bar{c}_1 < \bar{c}_2$. Each bidder is characterised by a uniform distribution. The common support in this case equals $[\underline{c}, \bar{c}] = [\underline{c}_1, \bar{c}_2]$. Firstly, recall that the chosen distirbutions have to satisfy Assumptions~6.1. Thus, uniform distributions considered over the common support cannot be chosen since they violate those assumptions. To see this, let $F_1$ be the cumulative distribution function (cdf) of the uniform distribution with the support $[\underline{c}_1, \bar{c}_1]$. Extended to the common support $[\underline{c}, \bar{c}]$, the derivative of $F_1$, the probability density function (pdf), is zero over the interval $[\bar{c}_1, \bar{c}] = [\bar{c}_1, \bar{c}_2]$, and hence, it is not locally bounded away from zero over the common support. As a result, it is necessary to choose distributions such that they satisfy Assumptions~6.1, and at the same time, possess the shape characteristics similar to the uniform distribution, such as symmetry. One possible way of casting this scenario into common prior setting is to model the distributions of both bidders as truncated normal distributions truncated to the interval $[\underline{c}_1, \bar{c}_2]$, and with differing mean and standard deviation parameters. This is depicted in Figure~6.3.
+\end{quote}
 
 \subsection{Comment 6}
 P91: What is the physical interpretation of common priors in this application? Does the common priors assumption have any physical interpretation in terms of network selection?
