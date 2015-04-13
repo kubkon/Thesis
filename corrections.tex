@@ -742,7 +742,10 @@ FIX:ME
 P91: What is the physical interpretation of common priors in this application? Does the common priors assumption have any physical interpretation in terms of network selection?
 
 \textbf{Response:}
-FIX:ME
+Common priors assumption is used to address the instability issues of the EFSM algorithm. That is, it is used to approximate the DMP auction so that the EFSM algorithm does not have to be employ in deriving approximate equilibrium bidding strategies. However, this in itself might lead to a game between the network operators as now elaborated upon in the thesis:
+\begin{quote}
+Modelling of the DMP auction as a CP auction assumes that the network operators will use the equilibrium bidding strategies of the CP auction (CP strategies) as bidding strategies in the DMP auction. However, by Proposition~5.3, the CP strategies do not constitute an equilibrium to the DMP auction; they are merely used as \emph{approximations} to the actual equilibrium bidding strategies of the DMP auction (equilibrium strategies). Therefore, there exists possibility that a network operator might exploit this fact by bidding according to the equilibrium strategies while other network operators will bid according to the CP strategies. Concurrently, however, since the equilibrium strategies can only be derived using the EFSM method, it is likely that the derivation might fail due to the numerical instability of the algorithm. All in all, each network operator faces a tradeoff: bid according to the equilibrium strategies but risk lack of convergence, or bid according to CP strategies but risk other network operators bidding according to the equilibrium strategies. Of course, the magnitude of the problem decreases dramatically as the number of network operators involved in the DMP increases. For then the numerical instability will lead to the divergence of the EFSM algorithm and render the derivation of the equilibrium strategies impossible. Hence, the network operators will be forced to rely on the CP strategies.
+\end{quote}
 
 \clearpage
 
