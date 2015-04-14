@@ -229,13 +229,20 @@ Concurrently, the industry is driving for an all-IP-based platform which enables
 You need to add a definition of utility in section 2.2.1 (or similar) and also that it can be difficult to quantify the utility.
 
 \textbf{Response:}
-FIX:ME
+The section on utility-based network selection was rewritten. It now features definition of utility function and an explanation of why it is difficult to quantify it:
+\begin{quote}
+The utility theory approach to network selection is based on the concepts of classical demand theory of microeconomics. Classical demand theory assumes that each consumer is characterised by a preference relation that can be captured by a mapping into real numbers---the utility function~[12]. For example, suppose a subscriber prefers a monthly subscription contract to wireless services over a yearly one. Then, their utility of the former is greater than the utility of the latter.
+
+When applied to the problem of intelligent network selection, the utility function measures the level of subscriber's satisfaction with a set of characteristics offered by an access network~[13]. Thus, the main challenge is to capture subscriber's preferences for different attributes/characteristics of a wireless service in the form of a utility function. Some common attributes include but are not limited to: bandwidth required by the service, price of the service, bit error rate, delay, etc. In the context of network selection, utility function is defined as a mapping from the set of all attributes of a wireless service to the set of real numbers. Formally, let $\mathcal{X}$ denote the set of all attributes of a wireless service. Then, the utility function is a function $U: \mathcal{X}\to\mathbb{R}$. Therefore, it encodes user preferences for different attributes of a particular service as real numbers. The network selection mechanism uses the derived utility function to select network/access technology that yields the highest overall utility to the subscriber. The main shortcoming of this approach is to decide on a correct functional form of the utility function for each attribute of a wireless service. The most common ones include: linear piecewise, logarithmic, exponential and sigmoidal~[13]. The question remains, however, whether those functional forms are representative of the reality. In fact, there are as many characterisations of the attributes and associated utility functions as there are researchers working on the problem of utility-based network selection (cf.~Table III in~[11]).
+
+A more interesting approach to network selection that is not a pure utility-based approach but uses the concept of utility function is by Ormond \emph{et al.}~[14, 15, 16]. The authors propose to use the concept of consumer surplus to drive network selection. In economic terminology, consumer surplus refers to a measure of net benefit from consuming a good, and is equal to the difference between the utility the consumer extracts from consuming the good and its price~[12, 17, 18]. In their work, Ormond \emph{et al.}~focus mainly on non real-time data services, and for this case, derive a nonincreasing utility function which captures subscriber's willingness-to-pay versus their willingness-to-wait. The network that achieves the highest consumer surplus for the service is then selected. However, the approach is suffering from the same problem as all utility-based approaches: how to capture utility of a subscriber so that it is representative of the reality.
+\end{quote}
 
 \subsection{Comment 9}
 There is an over reliance on reference [11] in this chapter.
 
 \textbf{Response:}
-FIX:ME
+The literature review part of the chapter was substantially rewritten.
 
 \subsection{Comment 10}
 So at the end of section 2.2.2 what point are you trying to make? Is this useful, has anybody used this in practice? What are the strengths and weaknesses?
