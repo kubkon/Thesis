@@ -44,7 +44,7 @@
 
 \setcounter{subsection}{0}
 \subsection{Comment 1}
-The presented work is not in the University Thesis Style---change. Thesis should conform to SU style.\\[-2ex]
+The presented work is not in the University Thesis Style---change. Thesis should conform to SU style.
 
 \textbf{Response:}
 The style was changed to match the University Thesis Style. More specifically:
@@ -55,19 +55,19 @@ The style was changed to match the University Thesis Style. More specifically:
 \end{enumerate}
 
 \subsection{Comment 2}
-Section 2.2---you have slipped into first person English–––this should be changed throughout the entire thesis. Convert to third person English throughout. We/our.\\[-2ex]
+Section 2.2---you have slipped into first person English–––this should be changed throughout the entire thesis. Convert to third person English throughout. We/our.
 
 \textbf{Response:}
 All occurrences of ``we'' or ``our'' were removed and replaced with their passive voice counterpart.
 
 \subsection{Comment 3}
-Proofs should be in an appendix, not at the end of the chapter.\\[-2ex]
+Proofs should be in an appendix, not at the end of the chapter.
 
 \textbf{Response:}
 All proofs were moved to Appendix A. For convenience, each proposition proved in the Appendix is restated before the actual proof is conducted (numbering of propositions was preserved). Furthermore, in the thesis, after the first proposition is stated, the reader is directed to the Appendix for the proof.
 
 \subsection{Comment 4}
-Every equation should have a number.\\[-2ex]
+Every equation should have a number.
 
 \textbf{Response:}
 All equations are now numbered.
@@ -123,13 +123,13 @@ FIX:ME
 \renewcommand{\thesubsection}{C\arabic{section}.\arabic{subsection}}
 \section{Chapter 1 Comments}
 \subsection{Comment 1}
-Objective 3---why simple? A model that facilitates... would be more appropriate.\\[-2ex]
+Objective 3---why simple? A model that facilitates... would be more appropriate.
 
 \textbf{Response:}
 Removed ``simple'' altogether.
 
 \subsection{Comment 2}
-What is a bearer service?\\[-2ex]
+What is a bearer service?
 
 \textbf{Response:}
 Bearer service, in telecommunications, is equivalent to data service; that is, a service that allows transmission of information between network interfaces. ``Bearer'' was removed from the text. Instead, some examples of services were added:
@@ -138,7 +138,7 @@ The exclusive one-to-one mapping between network operators and subscribers need 
 \end{quote}
 
 \subsection{Comment 3}
-Are network operators interested in efficient network usage? Revenue generation may be stronger motivation?\\[-2ex]
+Are network operators interested in efficient network usage? Revenue generation may be stronger motivation?
 
 \textbf{Response:}
 Since both aspects are important (without efficient network usage, revenue may not be maximised), they are both included in the paragraph. The revised paragraph now reads:
@@ -229,14 +229,7 @@ Concurrently, the industry is driving for an all-IP-based platform which enables
 You need to add a definition of utility in section 2.2.1 (or similar) and also that it can be difficult to quantify the utility.
 
 \textbf{Response:}
-The section on utility-based network selection was rewritten. It now features definition of utility function and an explanation of why it is difficult to quantify it:
-\begin{quote}
-The utility theory approach to network selection is based on the concepts of classical demand theory of microeconomics. Classical demand theory assumes that each consumer is characterised by a preference relation that can be captured by a mapping into real numbers---the utility function~[12]. For example, suppose a subscriber prefers a monthly subscription contract to wireless services over a yearly one. Then, their utility of the former is greater than the utility of the latter.
-
-When applied to the problem of intelligent network selection, the utility function measures the level of subscriber's satisfaction with a set of characteristics offered by an access network~[13]. Thus, the main challenge is to capture subscriber's preferences for different attributes/characteristics of a wireless service in the form of a utility function. Some common attributes include but are not limited to: bandwidth required by the service, price of the service, bit error rate, delay, etc. In the context of network selection, utility function is defined as a mapping from the set of all attributes of a wireless service to the set of real numbers. Formally, let $\mathcal{X}$ denote the set of all attributes of a wireless service. Then, the utility function is a function $U: \mathcal{X}\to\mathbb{R}$. Therefore, it encodes user preferences for different attributes of a particular service as real numbers. The network selection mechanism uses the derived utility function to select network/access technology that yields the highest overall utility to the subscriber. The main shortcoming of this approach is to decide on a correct functional form of the utility function for each attribute of a wireless service. The most common ones include: linear piecewise, logarithmic, exponential and sigmoidal~[13]. The question remains, however, whether those functional forms are representative of the reality. In fact, there are as many characterisations of the attributes and associated utility functions as there are researchers working on the problem of utility-based network selection (cf.~Table III in~[11]).
-
-A more interesting approach to network selection that is not a pure utility-based approach but uses the concept of utility function is by Ormond \emph{et al.}~[14, 15, 16]. The authors propose to use the concept of consumer surplus to drive network selection. In economic terminology, consumer surplus refers to a measure of net benefit from consuming a good, and is equal to the difference between the utility the consumer extracts from consuming the good and its price~[12, 17, 18]. In their work, Ormond \emph{et al.}~focus mainly on non real-time data services, and for this case, derive a nonincreasing utility function which captures subscriber's willingness-to-pay versus their willingness-to-wait. The network that achieves the highest consumer surplus for the service is then selected. However, the approach is suffering from the same problem as all utility-based approaches: how to capture utility of a subscriber so that it is representative of the reality.
-\end{quote}
+The section on utility-based network selection was rewritten. It now features definition of utility function and an explanation of why it is difficult to quantify it.
 
 \subsection{Comment 9}
 There is an over reliance on reference [11] in this chapter.
@@ -259,7 +252,7 @@ Why do you concentrate on games between subscribers and games between network op
 \textbf{Response:}
 A detailed explanation of why mixed games are not desirable was added:
 \begin{quote}
-  There has been some nonextensive research carried out that permitted a third possibility of a game between subscribers and network operators~[11, 30]. In particular, in~[30], the authors model the network selection problem as a noncooperative game where subscribers select network operators who maximise the requested services' requirements, while the network operators select the subscribers who maximise their revenue and allow for optimal load balancing. The mechanism proposed by the authors is limited due to the fact it is not guaranteed to converge on an equilibrium solution; in fact, in their formulation of the game, Nash equilibrium is not guaranteed to exist. The authors provide an alternative solution concept, called \emph{suboptimal solution}, however, this solution concept is not rigorously shown to constitute an equilibrium of the game. In other words, in practice, it might happen that the players (subscribers and network operators) will deviate from it significantly, and therefore, putting in question the proposed network selection scheme. This result proves the complexity of the problem of network selection, and the fact that modelling it as a game between the subscribers and network operators might not be viable.
+There has been some nonextensive research carried out that permitted a third possibility of a game between subscribers and network operators~[11, 30]. In particular, in~[30], the authors model the network selection problem as a noncooperative game where subscribers select network operators who maximise the requested services' requirements, while the network operators select the subscribers who maximise their revenue and allow for optimal load balancing. The mechanism proposed by the authors is limited due to the fact it is not guaranteed to converge on an equilibrium solution; in fact, in their formulation of the game, Nash equilibrium is not guaranteed to exist. The authors provide an alternative solution concept, called \emph{suboptimal solution}, however, this solution concept is not rigorously shown to constitute an equilibrium of the game. In other words, in practice, it might happen that the players (subscribers and network operators) will deviate from it significantly, and therefore, putting in question the proposed network selection scheme. This result proves the complexity of the problem of network selection, and the fact that modelling it as a game between the subscribers and network operators might not be viable.
 \end{quote}
 
 \subsection{Comment 12}
@@ -272,18 +265,13 @@ Remedied by commenting on the approaches of other researchers and their deficien
 Subsection 2.2.4---I agree that there are many different approaches on network selection but you do not give a very comprehensive literature review to support this. Furthermore, you do not make clear why you are dismissing [38 to 42] + other.
 
 \textbf{Response:}
-The literature review in Subsection 2.2.4 is sparse due to the fact that this section was meant to serve as quick overview of approaches that do not utilise concepts from economics to solve the network selection problem. This has been now emphasised in the text.
+The literature review in Subsection 2.2.4 has now been substantially extended.
 
 \subsection{Comment 14}
 You do not make clear on P15 how your work is different to that reported in [8, 28], just that it is---this is missing. Chapter 2 needs to make clear how this work extends the economic aspects of previously published work of other researchers.
 
 \textbf{Response:}
-The deficiencies of the research of other researchers was outlined, and it was made clearer how this work extends the work of previously published work:
-\begin{quote}
-As outlined in the previous section, substantial work has been carried into the modelling of network selection from the economic perspective. The approaches can be categorised into 3 major classes: utility-based, MADM-based, and game-theory-based approaches. Each class of approaches is facing some challenges that need to be addressed if it is to be implemented in reality. To summarise, utility-based and MADM-based approaches require a specification of a correct functional form of the utility functions for the subscribers that is representative of reality; not an easily accomplished task. The game-theory-based approaches can be further subdivided into two categories: 1) user-centric approaches where the subscribers distribute themselves in the most optimal way between the available networks; and 2) network-centric approaches where the network operators compete for the right to provide the subscribers with a service. The former approach faces two major challenges. Firstly, since it relies on modelling of the utilities of the subscribers, similarly to utility-based and MADM-based approaches, it requires a correct specification of the utility functions for the subscribers. Secondly, this approach prioritises economic usage of network resources over revenue generation for the network operators, and as such, it might not be appealing to the network operators. The vast majority of network-centric approaches, on the other hand, assumes that the network operators have complete knowledge of the cost structure, etc., of their opponents. This assumption is unrealistic as in reality, there is always some uncertainty present especially in a competitive setting such as this one~[17]. Some researchers have attempted to address this issue by modelling the network selection problem as an auction. In particular, first-price and second-price sealed-bid auctions were advocated. While the theoretical properties of the second-price sealed-bid auction are appealing, the auction itself is rarely used in practice due the several inherent weaknesses. The first-price sealed-bid auction-based mechanism was first proposed by Le Bodic \emph{et al.}~[8] in their theoretical framework, Digital Marketplace. While the use of the first-price sealed-bid auction as a network selection mechanism is very appealing, the mechanism itself was not subjected to extensive economic analysis. Therefore, fundamental questions such as whether the proposed bidding strategies by the authors constitute an equilibrium of the proposed auction remain unanswered.
-
-The main contribution of the research reported in this thesis to the problem of intelligent network selection is an extensive economic and game theoretic analysis of the problem of network selection in the context of the Digital Marketplace (see Chapter~3 for a detailed description of the Digital Marketplace). It should be noted, however, that the analysis and results presented in this thesis are easily extrapolated away from the context of the Digital Marketplace. In fact, one of the main aims of this research was to analyse the bidding problem in the context of the Digital Marketplace, but in a manner such that the results are stated in a form generic enough to be applied elsewhere. In this way, this thesis contributes to the problem of intelligent network selection by providing an auction-based network selection mechanism that is based on a procurement first-price sealed-bid auction. Therefore, since the mechanism is based on an auction mechanism, it embraces the uncertainties that exist between the network operators in a competitive environment.
-\end{quote}
+The deficiencies of the research of other researchers were outlined, and it was made clearer how this work extends the work of previously published work.
 
 \clearpage
 
@@ -486,63 +474,56 @@ The game-theoretic description of the network selection mechanism employed in th
 Summary in Section 4.4 undersells what has been done. Need to relate to the wider, more general problem in the application domain.
 
 \textbf{Response:}
-The summary was rewritten and now includes more discussion about the applicability of the results to real life:
-\begin{quote}
-In this chapter, game-theoretical model for the DMP network selection mechanism was formally defined. Several simplifying assumptions were made in order to keep the analysis mathematically tractable. For example, network operators and the buyer are risk neutral, and the buyer does not have any budget constraints. Despite the fact that those assumptions are not entirely representative of the reality, following in the footsteps of von Neumann and Morgenstern~[65], the mathematical theory should be rigorous and developed gradually. Therefore, the simplifying assumptions made in this chapter serve as a starting point for the rigorous, gradual development of the theory of operation of the DMP network selection mechanism before it can embark on capturing the reality to a high degree.
-
-This chapter further demonstrated that for the price weight of $w=1$, and equal reputation ratings for all network operators, $r_i=r_j$ for all $i\neq j$, the DMP auction reduces to the standard, symmetric FPA (Proposition~4.2 and Corollary~4.3). In this case, the abundance of theoretical results and economic insight from the auction literature applies found, for example, in Krishna~[47]. For the price weight of $w=0$, however, it was shown that the network operators would engage in abnormally high bidding (Proposition~4.1). Hence, charging the buyer the maximum they are prepared to pay for the service. While this result sounds like a potential design flaw in the DMP network selection mechanism, in reality, the buyers will necessarily be budget constrained and therefore, abnormally high bidding of the network operators will translate into charging the buyers a premium price for the service that is within the limits of their respective budgets.
-
-Finally, the chapter concluded with the specification of an analytical solution to the restricted case of two network operators $n=2$ (Proposition~4.4). The solution is suboptimal in the sense that the derived equilibrium bidding strategies permit the network operators to bid negatively. In the view of game theory, this would imply that the network operators are not rational decision-makers. However, it was also shown that negative bidding does not lead to negative profit for either network operator (Proposition~4.5). Concurrently, it was proved that the network operators would not find it beneficial not to participate in the auction if they were to bid according to the strategies summarised in Proposition~4.4 (Proposition~4.6). It should further be noted that the real behaviour of the network operators might be dictated by the need to secure the contract with the subscriber first and foremost, and hence, lead to negative bidding; a strategy akin to the ``loss leader'' pricing strategy. However, since the ultimate aim of this thesis is to gradually develop rigorous theory of operation of the DMP auction, it is assumed throughout this thesis that network operators will bid at least their cost.
-\end{quote}
+The summary was rewritten and now includes more discussion about the applicability of the results to real life.
 
 \clearpage
 
 %% Chapter 5
 \section{Chapter 5 Comments}
 \subsection{Comment 1}
-Remove obsolete figures from Chapter 5.\\[-2ex]
+Remove obsolete figures from Chapter 5.
 
 \textbf{Response:}
 The following figures were removed: 5.8, 5.10, 5.12, 5.14, 5.17 and 5.19. Appropriate changes in the sections referencing the figures were made.
 
 \subsection{Comment 2}
-Remove Section 5.4.4 (Chebyshev) entirely.\\[-2ex]
+Remove Section 5.4.4 (Chebyshev) entirely.
 
 \textbf{Response:}
 Section was removed and appropriate changes in the sections referencing the section were made.
 
 \subsection{Comment 3}
-Fig. 5.16---what is customised finite difference? Change to EFSM.\\[-2ex]
+Fig. 5.16---what is customised finite difference? Change to EFSM.
 
 \textbf{Response:}
 The caption of the figure was changed to EFSM (Fig. 5.12 in the revised manuscript). Furthermore, any mention of ``customised finite-differences'' method was removed from the text.
 
 \subsection{Comment 4}
-P66: ``in particular'' should be ``for example''.\\[-2ex]
+P66: ``in particular'' should be ``for example''.
 
 \textbf{Response:}
 Revised accordingly.
 
 \subsection{Comment 5}
-P65: mode detail on what ``slightly modified'' entails---just say ``using existing methods''.\\[-2ex]
+P65: mode detail on what ``slightly modified'' entails---just say ``using existing methods''.
 
 \textbf{Response:}
 Revised accordingly.
 
 \subsection{Comment 6}
-P56: should read network operator 1.\\[-2ex]
+P56: should read network operator 1.
 
 \textbf{Response:}
 Revised accordingly.
 
 \subsection{Comment 7}
-P61: why do you make this statement regarding ``abuse of notation''?\\[-2ex]
+P61: why do you make this statement regarding ``abuse of notation''?
 
 \textbf{Response:}
 Originally, it was introduced to justify the weird notation of the expected prices. However, since the notation is legible, the statement ``abuse of notation'' was removed.
 
 \subsection{Comment 8}
-P61: How do you know 10,000 is enough? Was this number empirically chosen? Need to justify. Why has 10,000 been chosen? Is it large?\\[-2ex]
+P61: How do you know 10,000 is enough? Was this number empirically chosen? Need to justify. Why has 10,000 been chosen? Is it large?
 
 \textbf{Response:}
 A sentence explaining why 10,000 observations was added in the paragraph:
@@ -551,13 +532,13 @@ Furthermore, it was empirically established that averaging over more than 10,000
 \end{quote}
 
 \subsection{Comment 9}
-Superscript notation in Fig.~5.4 not clear. Put superscripts in brackets so that it does not look like squaring.\\[-2ex]
+Superscript notation in Fig.~5.4 not clear. Put superscripts in brackets so that it does not look like squaring.
 
 \textbf{Response:}
 Superscripts are now in brackets in the text and in Fig.~5.4.
 
 \subsection{Comment 10}
-Implications of adapting price weights should be discussed.\\[-2ex]
+Implications of adapting price weights should be discussed.
 
 \textbf{Response:}
 A few sentences discussing the implications were added to the appropriate paragraph:
@@ -570,19 +551,19 @@ for the price weight $w$. In this way, the subscriber is guaranteed the expected
 \end{quote}
 
 \subsection{Comment 11}
-P68, P71, P82---how do these algorithms terminate?\\[-2ex]
+P68, P71, P82---how do these algorithms terminate?
 
 \textbf{Response:}
 Each algorithmic listing features ``input'' and ``output'' statements at the very top of the listing.
 
 \subsection{Comment 12}
-You have avoided using the $k$-tuple language elsewhere in the thesis, so why start on P69?\\[-2ex]
+You have avoided using the $k$-tuple language elsewhere in the thesis, so why start on P69?
 
 \textbf{Response:}
 All occurrences of $k$-tuples were changed to vectors.
 
 \subsection{Comment 13}
-Weird ends in Figs.~5.12 and 5.13---any explanation?\\[-2ex]
+Weird ends in Figs.~5.12 and 5.13---any explanation?
 
 \textbf{Response:}
 The explanation is provided in the text:
@@ -591,13 +572,13 @@ In the FSM case, the approximation diverges in the very near proximity of $\bar{
 \end{quote}
 
 \subsection{Comment 14}
-Brackets on equation after (5.33) is strange. P81: need clearer notation.\\[-2ex]
+Brackets on equation after (5.33) is strange. P81: need clearer notation.
 
 \textbf{Response:}
 The set-builder notation was removed altogether. Instead, the conditions were unwrapped into separate equations, and are reference in the algorithms and in the text.
 
 \subsection{Comment 15}
-What value are Kaplan and Zamir putting on the non-standard equilibria?\\[-2ex]
+What value are Kaplan and Zamir putting on the non-standard equilibria?
 
 \textbf{Response:}
 Added an explanation of the importance of the non-standard equilibria:
@@ -606,7 +587,7 @@ Kaplan and Zamir, who characterise equilibria like the one specified in Proposit
 \end{quote}
 
 \subsection{Comment 16}
-P84: is this brevity?\\[-2ex]
+P84: is this brevity?
 
 \textbf{Response:}
 Rephrased to say:
@@ -615,7 +596,7 @@ Similarly to the algorithms presented in Section~5.4, the EFSM method was tested
 \end{quote}
 
 \subsection{Comment 17}
-What is the algorithm on P58 based on? Is it yours or taken from elsewhere? P58: Make clear whose procedure this is. Put into algorithmic style.[-2ex]
+What is the algorithm on P58 based on? Is it yours or taken from elsewhere? P58: Make clear whose procedure this is. Put into algorithmic style.
 
 \textbf{Response:}
 Added appropriate listing (Listing 5.1). Furthermore, updated the description of the steps:
@@ -633,7 +614,7 @@ Listing~5.1 depicts the pseudo-code of the proposed method. The steps of the alg
 \end{quote}
 
 \subsection{Comment 18}
-Can you explain the simplification made before equation (5.27) and its impact?\\[-2ex]
+Can you explain the simplification made before equation (5.27) and its impact?
 
 \textbf{Response:}
 A sentence explaining the impact of the simplifaction was added:
@@ -642,7 +623,7 @@ The ultimate aim of the numerical analysis is to obtain a numerical approximatio
 \end{quote}
 
 \subsection{Comment 19}
-Section 5.4.1 you need to make clear what FSM is all about then move to the specifics of the problem of interest. Section 5.4.2---again you need to make clear what PPM is all about then move to the specifics of the problem of interest.\\[-2ex]
+Section 5.4.1 you need to make clear what FSM is all about then move to the specifics of the problem of interest. Section 5.4.2---again you need to make clear what PPM is all about then move to the specifics of the problem of interest.
 
 \textbf{Response:}
 Removed the first paragraph from the sections which was confusing and delayed the description of the methods under consideration. Moved the paragraph to the end of the section preceding FSM and PPM sections.
@@ -687,27 +668,20 @@ To the best of the author's knowledge, the EFSM method developed in this thesis 
 A general point for discussion at the viva concerns with the value of the closed form solutions obtained and their applicability in an operational setting. To what extent do the assumptions made to yield these solutions compromise their operational value. This aspect is further compounded as you move to more numerical solutions.
 
 \textbf{Response:}
-In Chapter 5, an additional simplifying assumption is made about the DMP auction: costs for the network operators are uniformly distributed. The impact of this impact on the applicability of the solutions to real life is now discussed in the summary section of Chapter 5:
-\begin{quote}
-In this chapter, the bidding problem with symmetric cost distributions, as defined in Chapter~4, was transformed into a bidding problem with asymmetric cost distributions. Following the transformation, the equilibrium bidding strategies for the generic case of $n$ network operators were formally characterised; that is, it was shown that the pure strategy Bayesian Nash equilibrium exists and is unique (Proposition~5.3 and Corollary~5.4). This is an important result as it proves that the DMP network selection mechanism is economically well-behaved since the equilibrium exists.
-
-When restricted to $n=2$ network operators, the equilibrium bidding strategies were analytically derived. To aid in the derivation, it was necessary to assume that costs for the network operators were uniformly distributed. Given the lack of knowledge of the way the costs are distributed, it is standard practice to assume the probability of each cost to be uniform~[84]. Nonetheless, such an assumption is limiting and it is highly likely it will not be representative of the reality. Furthermore, in the same case of $n=2$ network operators, the expected prices for the subscriber were analysed, and it was shown that, for any expected price, as the difference between the reputation ratings of the network operators increases, the price weight has to increase (or remain constant) in order to keep the expected price fixed. This observation carries very serious implications on the operation of the DMP, as the subscriber is effectively given the ability to influence the expected prices by an appropriate choice of the price weight.
-
-Finally, for the case of $n\geq 2$ network operators, three numerical algorithms for approximating the equilibrium bidding strategies were proposed: FSM (Algorithm~5.2), PPM (Algorithm~5.3), and EFSM (Algorithm~5.4). When developing the algorithms, similarly to the restricted case with $n=2$ network operators, it was assumed that costs for the network operators were uniformly distributed. Therefore, the same limitations apply. However, generalising algorithms to nonuniform distributions should not prove difficult. The algorithms were further verified for correct implementation, and, for each approximated scenario, the derived equilibrium bidding strategies were tested for sufficiency condition for a pure strategy Bayesian Nash equilibrium. The FSM and PPM methods allow for numerically approximating equilibrium bidding strategies for a subset of all possible bidding scenarios resulting in nontrivial equilibria, while the EFSM method enables computation of the numerical solution to all bidding scenarios. Since, as shown in Section~5.2, analytical derivation of the equilibrium bidding strategies in the case of more than 2 network operators is not possible, the existence of algorithms capable of numerically approximating the solutions is a major step forward in understanding the DMP auction. In fact, the algorithms constitute a tool that network operators participating in the DMP can use to formulate their own bidding strategies and understand the bidding behaviours of other network operators.
-\end{quote}
+In Chapter 5, an additional simplifying assumption is made about the DMP auction: costs for the network operators are uniformly distributed. The impact of this impact on the applicability of the solutions to real life is now discussed in the summary section of Chapter 5.
 
 \clearpage
 
 %% Chapter 6
 \section{Chapter 6 Comments}
 \subsection{Comment 1}
-P99: Eq.~6.5 notation issue.\\[-2ex]
+P99: Eq.~6.5 notation issue.
 
 \textbf{Response:}
 Made appropriate changes in the captions of figures 6.5 and 6.6.
 
 \subsection{Comment 2}
-P100: Last equation. Why is denominator 4? 95\% rule. Mention this first.\\[-2ex]
+P100: Last equation. Why is denominator 4? 95\% rule. Mention this first.
 
 \textbf{Response:}
 The paragraph explaining the choice of the parameters was rephrased:
@@ -727,16 +701,7 @@ In this way, for each bidder, 95\% of all the costs falls within the interval $[
 What is the point of this chapter? What is the motivation? Need to explain how this chapter will be a contribution over and about the previous chapter.
 
 \textbf{Response:}
-The introduction to Chapter 6 was rewritten and features the problem of instability and its possible resolutions explained:
-\begin{quote}
-This chapter presents a methodology for approximating the DMP network selection mechanism with an asymmetric FPA auction with common prior. It is further argued that this methodology constitutes a possible resolution to the potential problem of numerical instability of the FSM and EFSM methods.
-
-Fibich and Gavish~[85] showed that the FSM method and its derivatives, such as the EFSM method, become numerically unstable for large numbers of bidders. The issue has not impacted the results thus far presented in this thesis due to the fact that only the scenarios with as many as 4 network operators were considered. However, it is important to acknowledge the fact that the issue exists and, sooner or later, for large number of network operators, it will affect the numerical solutions generated by FSM and, more importantly, EFSM methods. Therefore, it is vital to address the issue on a proactive rather than reactive basis.
-
-The most obvious way of addressing the issue would be to employ a different numerical method in place of the EFSM method. However, to the best of author's knowledge, the EFSM method is the only numerical algorithm in existence that considers all nontrivial equilibria to the system of ODEs in Equation~(5.27) with lower and upper boundary conditions in Equations~(5.28)~and~(5.29) respectively. Furthermore, it is not immediately obivious how the EFSM method would have to be modified to be based entirely on methods that are not FSM derivative, and hence, do not possess numerical instability issues.
-
-In this chapter, an alternative approach is presented. It is explored whether an auction format represented by the DMP network selection mechanism can be modelled as an asymmetric FPA auction with common prior (henceforth, referred to as CP auction). In a CP auction, the range the costs can vary is the same for each bidder. More formally, the cost distributions for each bidder share the same support. By modelling the DMP network selection mechanism as a CP auction, the numerical solution methods (other than the FSM-based methods) presented in Hubbard and Parsch~[75], and extensively studied by the economic community, could be used to approximate the solution to the DMP auction. This would allow network operators to consider a simpler bidding problem for which there are many well-defined numerical solutions. As a result, presented with a DMP auction, network operators could bid according to the equilibrium bidding strategies of the corresponding CP auction while approximately retaining the expected utility if bidding according to the equilibrium bidding strategies of the DMP auction, and hence, avoiding the need to use the EFSM method to solve the DMP auction.
-\end{quote}
+The introduction to Chapter 6 was rewritten and features the problem of instability and its possible resolutions explained.
 
 \subsection{Comment 4}
 Have you had any problems with convergence of the numerical methods? Need to mention that FSM/EFSM has instability.
