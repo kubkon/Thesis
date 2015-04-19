@@ -47,7 +47,11 @@ It is important to notice, however, that the reason those assumptions were incor
 
 \subsection{Subscriber's Perspective: Expected Prices}
 \label{sub:subscribers_perspective_expected_prices_conclusions}
-Currently, the expected prices are examined in the case of only two network operators (see Section~\ref{sub:subscriber_s_perspective_expected_prices_indirect}, Chapter~\ref{cha:indirect}). The subscribers involved in the Digital Marketplace would benefit from characterisation of the expected prices in scenarios with more than two network operators.
+This thesis examined the expected prices only in the case of two network operators (see Section~\ref{sub:subscriber_s_perspective_expected_prices_indirect}, Chapter~\ref{cha:indirect}). Since the UK market is currently dominated by an oligopoly of four incumbent network operators who own their infrastructure (EE, Vodafone, O2, and Three), examining the expected prices for more than two network operators is directly relevant.
+
+It should be noted that deriving the expected prices should be fairly straightforward to execute. All that is required is to treat the numerically approximated equilibrium bidding strategies (generated using EFSM method, or otherwise) as the input to Algorithm~\ref{alg:inverse_of_equilibrium_inverse_bidding_strategy_functions_indirect}, and proceed according to the methodology presented in Section~\ref{sub:subscriber_s_perspective_expected_prices_indirect}, Chapter~\ref{cha:indirect}.
+
+An analysis of expected prices in scenarios with more than two network operators would be of benefit not only to the subscribers involved in the Digital Marketplace, but also to the system designer/market provider. With the characterisation in place, it would then be possible to verify whether the subscribers are still able to influence the expected prices by an appropriate choice of the price weight like in the case of only two network operators (see Section~\ref{sub:subscriber_s_perspective_expected_prices_indirect}, Chapter~\ref{cha:indirect}).
 
 \subsection{Generalising Extended Forward Shooting Method}
 \label{sub:generalising_extended_forward_shooting_method_conclusions}
