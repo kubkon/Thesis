@@ -4,7 +4,7 @@ THESIS = Thesis
 CORR = corrections
 
 .PHONY: all
-all: $(THESIS).pdf $(CORR).pdf
+all: $(THESIS).pdf
 
 .PHONY: show
 show: $(THESIS).pdf
